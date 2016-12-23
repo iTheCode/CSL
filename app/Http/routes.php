@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Login Routes
+Route::get('/', array('uses' => 'LoginController@showLogin', 'as' => 'login'));
+Route::post('/', array('uses' => 'LoginController@doLogin'));
+
+//Dashboard Routes
+Route::get('/dashboard', ['middleware' => 'auth',  'as' => 'dashboard', 'uses' => 'DashboardController@showDashboard']);
+

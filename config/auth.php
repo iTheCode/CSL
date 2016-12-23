@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -12,12 +10,11 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
+    'table' => 'employees',
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'employees',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -34,19 +31,16 @@ return [
     | Supported: "session", "token"
     |
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'employees',
         ],
-
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'employees',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -63,19 +57,13 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
     'providers' => [
-        'users' => [
+        'employees' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Employee::class,
+            'table' => 'employees'
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -94,14 +82,11 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'email' => 'auth.emails.password',
+        'employees' => [
+            'provider' => 'employees',
             'table' => 'password_resets',
             'expire' => 60,
         ],
     ],
-
 ];
