@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use \App\Models\Area as Area;
+use Illuminate\Database\Eloquent\Model;
+
 class Employee extends Authenticatable
 {
     /**
@@ -27,6 +30,10 @@ class Employee extends Authenticatable
     public function getAuthIdentifier()
     {
         return $this->getKey();
+    }
+
+    public function area(){
+        return $this->hasOne('App\Models\Area', 'id', 'area_id');
     }
 
 }

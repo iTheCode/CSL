@@ -31,6 +31,16 @@
 
         
     </head>
+    <style>
+        html{
+            background-image: url('assets/images/bg.jpg');
+            background-repeat:no-repeat;    
+            background-size: 100%;
+        }
+        body{
+            background: none;
+        }
+    </style>
     <body>
 
 
@@ -38,7 +48,7 @@
             <div class="panel panel-color panel-primary panel-pages">
                 <div class="panel-heading bg-img"> 
                     <div class="bg-overlay"></div>
-                    <h3 class="text-center m-t-10 text-white"> Ingresar a <strong>{{ $system_name }}</strong> </h3>
+                    <h3 class="text-center m-t-10 text-white"><img src="assets/images/logo.png" alt=""> </h3>
                 </div> 
 
 
@@ -59,7 +69,7 @@
 
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <div class="checkbox checkbox-primary">
+                            <div class="checkbox checkbox-success">
                                 <input id="checkbox-signup" type="checkbox">
                                 <label for="checkbox-signup">
                                     Recordarme
@@ -71,16 +81,13 @@
                     
                     <div class="form-group text-center m-t-40">
                         <div class="col-xs-12">
-                            <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">Ingresar</button>
+                            <button class="btn btn-success btn-lg w-lg waves-effect waves-light" type="submit">Ingresar</button>
                         </div>
                     </div>
 
                     <div class="form-group m-t-30">
                         <div class="col-sm-7">
-                            <a href="{{ url('recoverpw') }}"><i class="fa fa-lock m-r-5"></i> Olvidaste tu Contraseña?</a>
-                        </div>
-                        <div class="col-sm-5 text-right">
-                            <a href="{{ url('register') }}">Crear una Cuenta</a>
+                            2017 © {{ $system_name }}
                         </div>
                     </div>
                 </form> 
