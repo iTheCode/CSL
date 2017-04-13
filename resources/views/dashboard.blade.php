@@ -8,7 +8,7 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="assets/plugins/morris.js/morris.css">
@@ -44,7 +44,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left bg-success">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="md md-terrain"></i> <span>{{ $system_name }} </span></a>
+                        <a href="index.html" class="logo"><img src="assets/images/icono.png" alt="CSLuren" width="30" height="30"> <span>{{ $system_name }} </span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -90,6 +90,7 @@
             <!-- Start right Content here -->
             <!-- ============================================================== -->                      
             <div class="content-page">
+
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
@@ -184,90 +185,6 @@
                                 </div>
                             </div>
                         </div> <!-- End row-->
-
-
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="portlet"><!-- /portlet heading -->
-                                    <div class="portlet-heading">
-                                        <h3 class="portlet-title text-dark text-uppercase">
-                                            Gráfico Mensual
-                                        </h3>
-                                        <div class="portlet-widgets">
-                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                                            <span class="divider"></span>
-                                            <a data-toggle="collapse" data-parent="#accordion1" href="index.html#portlet1"><i class="ion-minus-round"></i></a>
-                                            <span class="divider"></span>
-                                            <a href="index.html#" data-toggle="remove"><i class="ion-close-round"></i></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div id="portlet1" class="panel-collapse collapse in">
-                                        <div class="portlet-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div id="dashboard-chart-1" style="height: 300px;"></div>
-
-                                                    <div class="row text-center m-t-30">
-                                                        <div class="col-sm-4">
-                                                            <h4 class="counter">86,956</h4>
-                                                            <small class="text-muted">Semanal</small>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <h4 class="counter">86,69</h4>
-                                                            <small class="text-muted">Mensual</small>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <h4 class="counter">948,16</h4>
-                                                            <small class="text-muted">Anual</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- /Portlet -->
-                            </div> <!-- end col -->
-
-                            <div class="col-lg-4">
-                                <div class="portlet"><!-- /portlet heading -->
-                                    <div class="portlet-heading">
-                                        <h3 class="portlet-title text-dark text-uppercase">
-                                            Emergencia
-                                        </h3>
-                                        <div class="portlet-widgets">
-                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                                            <span class="divider"></span>
-                                            <a data-toggle="collapse" data-parent="#accordion1" href="index.html#portlet2"><i class="ion-minus-round"></i></a>
-                                            <span class="divider"></span>
-                                            <a href="index.html#" data-toggle="remove"><i class="ion-close-round"></i></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div id="portlet2" class="panel-collapse collapse in">
-                                        <div class="portlet-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div id="morris-donut-example" style="height: 300px;"></div>
-
-                                                    <div class="row text-center m-t-30">
-                                                        <div class="col-sm-6">
-                                                            <h4 class="counter">86,956</h4>
-                                                            <small class="text-muted"> En la Semana</small>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <h4 class="counter">86,69</h4>
-                                                            <small class="text-muted">En el Mes</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> <!-- /Portlet -->
-                            </div> <!-- end col -->
-                        </div> <!-- End row -->
-
                     </div> <!-- container -->
                                
                 </div> <!-- content -->

@@ -2,7 +2,7 @@
                 <div class="sidebar-inner slimscrollleft">
                     <div class="user-details">
                         <div class="pull-left">
-                            <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
+                            <img src="/assets/images/users/profile.jpg" alt="" class="thumb-md img-circle">
                         </div>
                         <div class="user-info">
                             <div class="dropdown">
@@ -24,42 +24,42 @@
                                 <a href="index.html" class="waves-effect"><i class="md md-home"></i><span> Principal </span></a>
                             </li>
 
-                            <li>
-                                <a href="index.html" class="waves-effect"><i class="md md-home"></i><span> Admision </span></a>
+                            <li class="has_sub">
+                                <a href="index.html" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ url('/atenciones') }}">Lista de Atenciones</a></li>
+                                    <li><a href="{{ url('/citas') }}">Lista de Citas</a></li>
+                                    <li><a href="{{ url('/horario') }}">Horario Médico</a></li>
+                                </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-typography.html">Typography</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-buttons.html">Buttons</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-panels.html">Panels</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-checkbox-radio.html">Checkboxs-Radios</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-modals.html">Modals</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-bootstrap.html">BS Elements</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-progressbars.html">Progress Bars</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-notification.html">Notification</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-sweet-alert.html">Sweet-Alert</a></li>
-                                </ul>
-                            </li>
-                            <li class="has_sub">
-                                <a href="index.html#" class="waves-effect"><i class="md md-assignment-ind"></i><span> Administración </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/mail-inbox.html">Inbox</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/mail-compose.html">Compose Mail</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/mail-read.html">View Mail</a></li>
+                                    <li><a href="{{ url('/servicios_recientes') }}">Servicios Recientes</a></li>
+                                    <li><a href="{{ url('/exportar_caja') }}">Exportar Caja</a></li>
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="http://moltran.coderthemes.com/purple/calendar.html" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span></a>
+                            <li class="has_sub">
+                                <a href="index.html#" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="http://moltran.coderthemes.com/purple/ui-typography.html">Servicios Recientes</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/ui-buttons.html">Exportar Caja</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="http://moltran.coderthemes.com/purple/calendar.html" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ url('/pacientes') }}">Lista de Pacientes</a></li>
+                                    <li><a href="{{ url('/monsantoo') }}">Ingresar Monsanto</a></li>
+                                </ul>
                             </li>
 
                             <li class="has_sub">
-                                <a href="index.html#" class="waves-effect"><i class="md md-local-hospital"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="index.html#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Grid</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
                                     <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Portlets</a></li>
                                     <li><a href="http://moltran.coderthemes.com/purple/components-widgets.html">Widgets</a></li>
                                     <li><a href="http://moltran.coderthemes.com/purple/components-nestable-list.html">Nesteble</a></li>
@@ -70,13 +70,65 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="index.html#" class="waves-effect"><i class="md md-local-atm"></i> <span> Facturación </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="index.html#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/icons-material.html">Material Design</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/icons-ion.html">Ion Icons</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/icons-fontawesome.html">Font awesome</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Portlets</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-widgets.html">Widgets</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-nestable-list.html">Nesteble</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-rangeslider.html">Sliders </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-gallery.html">Gallery </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-pricing.html">Pricing Table </a></li>
                                 </ul>
                             </li>
+
+                            <li class="has_sub">
+                                <a href="index.html#" class="waves-effect"><i class="fa fa-user-md"></i><span> Consulta Externa </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Portlets</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-widgets.html">Widgets</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-nestable-list.html">Nesteble</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-rangeslider.html">Sliders </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-gallery.html">Gallery </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-pricing.html">Pricing Table </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="index.html#" class="waves-effect"><i class="fa fa-ambulance"></i><span> Emergencia </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Portlets</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-widgets.html">Widgets</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-nestable-list.html">Nesteble</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-rangeslider.html">Sliders </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-gallery.html">Gallery </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-pricing.html">Pricing Table </a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
+                                <a href="index.html#" class="waves-effect"><i class="md md-local-atm"></i> <span> Facturación </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="http://moltran.coderthemes.com/purple/icons-material.html">Lista de Facturas</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/icons-ion.html">Generar Lotes</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/icons-ion.html">Exportar Proveedores</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/icons-ion.html">Exportar Contabilidad</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
+                                <a href="index.html#" class="waves-effect"><i class="md md-laptop-mac"></i><span> Administración </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="http://moltran.coderthemes.com/purple/mail-inbox.html">Administrar Horario</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/mail-inbox.html">Administrar Usuarios</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/mail-compose.html">Personal</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/mail-compose.html">Servicios</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/mail-compose.html">Estadísticas</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/mail-read.html">Notas de Crédito</a></li>
+                                </ul>
+                            </li>
+
                             <!--
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="md md-now-widgets"></i><span> Forms </span><span class="pull-right"><i class="md md-add"></i></span></a>
