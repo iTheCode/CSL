@@ -18,3 +18,17 @@ Route::post('/', array('uses' => 'LoginController@doLogin'));
 //Dashboard Routes
 Route::get('/dashboard', ['middleware' => 'auth',  'as' => 'dashboard', 'uses' => 'DashboardController@showDashboard']);
 
+
+//Admision Routes
+Route::get('/atenciones/', ['middleware' => 'auth',  'as' => 'atenciones', 'uses' => 'AuthorizationsController@showAuthorizations']);
+Route::get('/atencion/{input}', ['middleware' => 'auth',  'as' => 'atenciones', 'uses' => 'AuthorizationsController@viewAuthorization']);
+Route::get('/registrar_atencion/', ['middleware' => 'auth',  'as' => 'registrar_atencion', 'uses' => 'AuthorizationsController@createAuthorization']);
+
+//Pacientes Routes
+Route::get('/pacientes/{input?}', ['middleware' => 'auth',  'as' => 'pacientes', 'uses' => 'PatientsController@showPatients']);
+Route::get('/registrar_paciente/', ['middleware' => 'auth',  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
+
+//API Routes
+Route::get('/getPatientAPI/{input?}', ['middleware' => 'auth',  'as' => 'getPatientAPI', 'uses' => 'PatientsController@getPatientAPI']);
+
+Route::get('/getNewPatientAPI/{input?}', ['middleware' => 'auth',  'as' => 'getNewPatientAPI', 'uses' => 'PatientsController@getNewPatientAPI']);
