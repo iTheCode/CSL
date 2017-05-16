@@ -7,6 +7,7 @@ use \App\Employee as Employee;
 use \App\Models\Area as Area;
 use \App\Models\Authorization;	
 use \App\Models\Patient;	
+use \App\Helpers;	
 use View;
 use Redirect;
 use Illuminate\Http\Request;
@@ -27,9 +28,12 @@ class PatientsController extends BaseController
 		}
 
 			($response = Patient::orderBy('id','desc')->paginate(20));
+
+			$total_pages = ceil($response->total()/20);
+			$paginate = Helpers::manual_paginate('pacientes','/pacientes?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
 			//dd($response = Authorization::all()->first()->patient);
 			//return $response;
-		return view('patients', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response]);
+		return view('patients', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
 	}
 	
 
@@ -46,32 +50,51 @@ class PatientsController extends BaseController
 
 	public function getPatientAPI($input = null)
 	{
-		$response = Patient::where(DB::raw("CONCAT(name, ' ', paternal, ' ', maternal)"), 'like', '%' . $input . '%')->orWhere('document_identity_code', $input)->get();
-		return response()->json($response);
+		$response = Patient::where(DB::raw("CONCAT(name, ' ', paternal, ' ', maternal)"), 'like', '%' . $input . '%')->orWhere('document_identity_code', $input)->limit(5)->get();
+
+		
+		return view('patientsAPI', ['users' => $response]);
 	}
 
-	private function get_ruc($url){
-			return str_replace("RazonSocial", "Nombre",file_get_contents($url));
+	public function getPatientJSON($input)
+	{
+		$response = Patient::find($input);
+		if(isset($response->insureds))
+			$response->insureds->insurance->name;
+
+		return $response;
 	}
-
-	private function get_dni($url){
-			$result = file_get_contents($url);
-			preg_match("/\"ApellidoP\": \"(.*)\"/",$result,$salida1);
-
-			preg_match("/\"ApellidoM\": \"(.*)\"/",$result,$salida2);
-
-			preg_match("/\"Nombres\": \"(.*)\"/",$result,$salida3);
-
-			$nombres = $salida3[1]." ".$salida1[1]." ".$salida2[1];
-
-			$json["Nombre"] = str_replace("u00d", "ñ",$nombres);
-			$json["Direccion"] = "";
-			return json_encode($json);
-	}
-
 
 	public function getNewPatientAPI($input){
 
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		$response = Patient::Where('document_identity_code', $input)->limit(5)->get();
+		if(empty(json_decode($response, true))){
+			$json_data = Helpers::get_dni($input);
+			if(!empty(json_decode($json_data, true))){
+				$json_data = json_decode($json_data);
+				$last_clinic_history = DB::select("select max(abs(clinic_history_code)) as max from patients");
+				$p = new Patient();
+				$p->document_identity_type_id = 1;
+				$p->document_identity_code = $input;
+				$p->name = $json_data->name;
+				$p->paternal = $json_data->paternal;
+				$p->maternal = $json_data->maternal;
+				$p->employee_id = $user->id;
+				$p->is_insured  = null;
+				$p->clinic_history_code = $last_clinic_history[0]->max + 1;
+				if($p->save()) {
+				        $response = Patient::Where('document_identity_code', $input)->limit(5)->get();
+				}else{
+						$response['error'] = "No se ha creado el paciente";
+				}
+			}
+		}
+		return view('patientsAPI', ['users' => $response]);
 
 	}
 }

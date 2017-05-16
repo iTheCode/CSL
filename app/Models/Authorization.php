@@ -30,4 +30,15 @@ class Authorization extends Model
         return $this->hasOne('App\Models\Insured', 'patient_id', 'patient_id');
     }
 
+    public function coverage(){
+        return $this->hasOne('App\Models\Coverage', 'authorization_id', 'id');
+    }
+
+    public function authorization_types(){
+        return $this->hasOne('App\Models\AuthorizationType', 'id', 'authorization_type_id');
+    }
+    public function employee(){
+        return $this->hasOne('App\Models\Employee', 'id', 'employee_id');
+    }
+
 }

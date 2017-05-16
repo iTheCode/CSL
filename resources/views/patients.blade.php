@@ -98,7 +98,7 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title"><a href="{{ url('/registrar_atencion') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Registrar Paciente</a> </h4>
+                                <h4 class="pull-left page-title"><a href="{{ url('/registrar_atencion') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Paciente</a> </h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
                                     <li class="active">Atenciones</li>
@@ -125,7 +125,7 @@
                                                                 <th>DNI</th>
                                                                 <th>Paciente</th>
                                                                 <th>Aseguradora</th>
-                                                                <th>Fecha</th>
+                                                                <th>Edad</th>
                                                                 <th>Acciones</th>
                                                             </tr>
                                                         </thead>
@@ -138,7 +138,7 @@
                                                                 <td>{{ $user->document_identity_code or 'Corregir DNI' }}</td>
                                                                 <td>{{ $user->name }} {{ $user->paternal }} {{ $user->maternal }}</td>
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
-                                                                <td>{{ $user->date }}</td>
+                                                                <td>{{ Helpers::get_age($user->birthday) }}</td>
                                                                 <td><a href="{{ url('/atencion/'.$user->id) }}" class="on-default edit-row"><i class="md md-launch"></i></a></td>
                                                             </tr>
                                                         @endforeach
@@ -150,12 +150,7 @@
                                         </div>
                                     <div class="col-sm-6">
                                         <div class="dataTables_paginate paging_simple_numbers" id="datatable-editable_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button previous disabled" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_previous"><a href="#">Previous</a></li>
-                                                <li class="paginate_button active" aria-controls="datatable-editable" tabindex="0"><a href="#">1</a></li>
-                                                <li class="paginate_button " aria-controls="datatable-editable" tabindex="0"><a href="#">2</a></li>
-                                                <li class="paginate_button next" aria-controls="datatable-editable" tabindex="0" id="datatable-editable_next"><a href="#">Next</a></li>
-                                            </ul>
+                                             <?php echo $paginate;?>
                                         </div>
                                     </div>
                                 </div>

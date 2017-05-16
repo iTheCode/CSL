@@ -25,4 +25,8 @@ class Insured extends Model
     public function insurance(){
         return $this->hasOne('App\Models\Insurance', 'id', 'insurance_id');
     }
+
+    public function company(){
+        return $this->hasOne('App\Models\Company', 'id', 'company_id');
+    }
 }

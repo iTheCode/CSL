@@ -5,7 +5,7 @@ namespace App\Models;
 use \App\Models\Area as Area;
 use Illuminate\Database\Eloquent\Model as Model;
 
-class Insurance extends Model
+class Doctor extends Model
 {
 
     /**
@@ -20,8 +20,5 @@ class Insurance extends Model
     public function getAuthIdentifier()
     {
         return $this->getKey();
-    }
-    public function factor(){
-        return $this->hasOne('App\Models\Factor', 'insurance_id', 'id');
     }
 }

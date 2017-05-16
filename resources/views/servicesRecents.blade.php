@@ -98,7 +98,6 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title"><a href="{{ url('/registrar_atencion') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nueva Atención</a> </h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
                                     <li class="active">Atenciones</li>
@@ -110,7 +109,7 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Lista de Atenciones ( 
+                                        <h3 class="panel-title">Atenciones Recientes ( 
                                                         Total {{ $users->total() }} )</h3>
                                     </div>
                                     <div class="panel-body">
@@ -121,11 +120,9 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>Código</th>
-                                                                <th>Código Interno</th>
-                                                                <th>Historia Clínica</th>
                                                                 <th>DNI</th>
                                                                 <th>Paciente</th>
+                                                                <th>Copago Fijo/Var</th>
                                                                 <th>Aseguradora</th>
                                                                 <th>Fecha de Atención</th>
                                                                 <th>Acciones</th>
@@ -136,14 +133,13 @@
                                                         @foreach ($users as $user)
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
-                                                                <td>{{ $user->code or 'XXXXXXXXXX'}}</td>
-                                                                <td>{{ $user->intern_code or 'Corregir Código'}}</td>
-                                                                <td>{{ $user->patient->clinic_history_code or 'Corregir Historia'}}</td>
                                                                 <td>{{ $user->patient->document_identity_code or 'Corregir DNI' }}</td>
                                                                 <td><a href="/paciente/{{ $user->patient->id or '' }}">{{ $user->patient->name or ''}} {{ $user->patient->paternal or '' }} {{ $user->patient->maternal or '' }}</a></td>
+                                                                <td>{{ $user->coverage->cop_fijo or 'X' }}/{{ $user->coverage->cop_var or 'X' }}%</td>
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
                                                                 <td>{{ $user->date or 'Corregir Fecha' }}</td>
-                                                                <td><a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$user->employee->username or 'Sin asignar'}}"><i class="md md-launch"></i> </a></td>
+                                                                <td>
+                                                                <a href="{{ url('/agregar_servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="md md-add-to-photos"></i> </a></td>
                                                             </tr>
                                                         @endforeach
                                                             

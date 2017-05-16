@@ -1,0 +1,1 @@
+{{ Form::select('service_id', [null=>'Seleccione un servicio'] + $services, null, ['class' => 'select2 form-control col-md-2']) }}

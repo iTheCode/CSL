@@ -21,7 +21,7 @@
                     <div id="sidebar-menu">
                         <ul>
                             <li>
-                                <a href="index.html" class="waves-effect"><i class="md md-home"></i><span> Principal </span></a>
+                                <a href="/" class="waves-effect"><i class="md md-home"></i><span> Principal </span></a>
                             </li>
 
                             <li class="has_sub">
@@ -37,10 +37,10 @@
                                 <a href="index.html#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/servicios_recientes') }}">Servicios Recientes</a></li>
-                                    <li><a href="{{ url('/exportar_caja') }}">Exportar Caja</a></li>
+                                    <!--<li><a href="{{ url('/exportar_caja') }}">Exportar Caja</a></li>-->
                                 </ul>
                             </li>
-
+<!---
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">

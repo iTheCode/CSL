@@ -26,7 +26,7 @@ class Patient extends Model
         return $this->hasOne('App\Models\Area', 'id', 'area_id');
     }
 
-       public function insureds(){
+    public function insureds(){
         return $this->hasOne('App\Models\Insured', 'patient_id', 'id');
     }
 

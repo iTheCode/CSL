@@ -66,18 +66,6 @@
                             <input name="password" class="form-control input-lg" type="password" required="" placeholder="Contraseña">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <div class="checkbox checkbox-success">
-                                <input id="checkbox-signup" type="checkbox">
-                                <label for="checkbox-signup">
-                                    Recordarme
-                                </label>
-                            </div>
-                            
-                        </div>
-                    </div>
                     
                     <div class="form-group text-center m-t-40">
                         <div class="col-xs-12">
