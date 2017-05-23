@@ -72,7 +72,6 @@
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
                                 </ul>
                             </li>
 <!--
