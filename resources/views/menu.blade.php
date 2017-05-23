@@ -40,7 +40,7 @@
                                     <!--<li><a href="{{ url('/exportar_caja') }}">Exportar Caja</a></li>-->
                                 </ul>
                             </li>
-<!---
+<
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
@@ -81,7 +81,7 @@
                                     <li><a href="http://moltran.coderthemes.com/purple/components-pricing.html">Pricing Table </a></li>
                                 </ul>
                             </li>
-
+<!--
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="fa fa-user-md"></i><span> Consulta Externa </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
