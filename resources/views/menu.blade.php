@@ -73,12 +73,6 @@
                                 <a href="index.html#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Portlets</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-widgets.html">Widgets</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-nestable-list.html">Nesteble</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-rangeslider.html">Sliders </a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-gallery.html">Gallery </a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-pricing.html">Pricing Table </a></li>
                                 </ul>
                             </li>
 <!--
