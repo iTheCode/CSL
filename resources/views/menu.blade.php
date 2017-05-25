@@ -27,8 +27,8 @@
                             <li class="has_sub">
                                 <a href="index.html" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/admision/atenciones') }}">Lista de Atenciones</a></li>
-                                    <li><a href="{{ url('/admision/citas') }}">Lista de Citas</a></li>
+                                    <li><a href="{{ url('/admision/atenciones') }}">Atenciones</a></li>
+                                    <li><a href="{{ url('/admision/citas') }}">Citas</a></li>
                                     <li><a href="{{ url('/admision/horario') }}">Horario Médico</a></li>
                                 </ul>
                             </li>
@@ -44,30 +44,29 @@
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-typography.html">Atenciones</a></li>
+                                    <li><a href="{{ url('/triaje/atenciones') }}">Atenciones Recientes</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
                                 <a href="http://moltran.coderthemes.com/purple/calendar.html" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/pacientes') }}">Lista de Pacientes</a></li>
-                                    <li><a href="{{ url('/monsantoo') }}">Ingresar Monsanto</a></li>
+                                    <li><a href="{{ url('/pacientes/general') }}">Lista de Pacientes</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Almacén</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Reportes</a></li>
+                                    <li><a href="{{ url('/farmacia/liqudaciones') }}">Liquidaciones</a></li>
+                                    <li><a href="{{ url('/farmacia/almacen') }}">Almacén</a></li>
+                                    <li><a href="{{ url('/farmacia/reportes') }}">Reportes</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/hospitalizacion/centro') }}">Centro Hospitalario</a></li>
+                                    <li><a href="{{ url('/hospitalizacion/habitaciones') }}">Centro Hospitalario</a></li>
                                 </ul>
                             </li>
 <!--

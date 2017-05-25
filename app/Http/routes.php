@@ -38,7 +38,7 @@ Route::get('/addServicePay/', ['middleware' => 'auth',  'as' => 'addservicepay',
 
 //Hospitalización Routes
 
-Route::get('/hospitalizacion/centro/', ['middleware' => 'auth',  'as' => 'centro', 'uses' => 'CentroController@centro']);
+Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => 'centro', 'uses' => 'CentroController@centro']);
 
 
 
