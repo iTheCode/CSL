@@ -127,6 +127,12 @@
                             <li class="tab"> 
                                 <a href="#messages-2" data-toggle="tab" aria-expanded="true"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
+                                    <span class="hidden-xs">Pagos</span> 
+                                </a> 
+                            </li> 
+                            <li class="tab"> 
+                                <a href="#messages-2" data-toggle="tab" aria-expanded="true"> 
+                                    <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Documentos</span> 
                                 </a> 
                             </li> 

@@ -27,25 +27,24 @@
                             <li class="has_sub">
                                 <a href="index.html" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/atenciones') }}">Lista de Atenciones</a></li>
-                                    <li><a href="{{ url('/citas') }}">Lista de Citas</a></li>
-                                    <li><a href="{{ url('/horario') }}">Horario Médico</a></li>
+                                    <li><a href="{{ url('/admision/atenciones') }}">Lista de Atenciones</a></li>
+                                    <li><a href="{{ url('/admision/citas') }}">Lista de Citas</a></li>
+                                    <li><a href="{{ url('/admision/horario') }}">Horario Médico</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/servicios_recientes') }}">Servicios Recientes</a></li>
+                                    <li><a href="{{ url('/caja/atenciones') }}">Atenciones Recientes</a></li>
                                     <!--<li><a href="{{ url('/exportar_caja') }}">Exportar Caja</a></li>-->
                                 </ul>
                             </li>
-<
+
                             <li class="has_sub">
                                 <a href="index.html#" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-typography.html">Servicios Recientes</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/ui-buttons.html">Exportar Caja</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/ui-typography.html">Atenciones</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
@@ -60,18 +59,15 @@
                                 <a href="index.html#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Portlets</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-widgets.html">Widgets</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-nestable-list.html">Nesteble</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-rangeslider.html">Sliders </a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-gallery.html">Gallery </a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-pricing.html">Pricing Table </a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Almacén</a></li>
+                                    <li><a href="http://moltran.coderthemes.com/purple/components-portlets.html">Reportes</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
-                                <a href="index.html#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
+                                    <li><a href="{{ url('/hospitalizacion/centro') }}">Centro Hospitalario</a></li>
                                 </ul>
                             </li>
 <!--

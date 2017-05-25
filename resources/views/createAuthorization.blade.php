@@ -122,6 +122,7 @@
                                             <div>
                                                 <h3>Busqueda</h3>
                                                 <section>
+
                                                     <div class="form-group clearfix">
                                                         <label class="col-lg-3 control-label" for="metodo">Tipo de Busqueda</label>
                                                         <div class="col-lg-9">
@@ -262,85 +263,29 @@
                                                     </div>
                                                 </form>
                                                 </section>  
-                                                <h3>Imprimir</h3>
+                                                <h3>Finalizar</h3>
                                                 <section>
                                                     <div class="form-group clearfix">
-                                    <div class="panel-body">
-                                        <div class="clearfix">
-                                            <div class="pull-left">
-                                                <h4 class="text-right"><img src="/assets/images/logo.png"  width="250" height="70" alt="CSLuren"></h4>
-                                                
-                                            </div>
-                                            <div class="pull-right">
-                                                <h4>Atención #<br>
-                                                Autorización #<br>
-                                                Código Interno #
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                
-                                                <div class="pull-left m-t-30">
-                                                    <address>
-                                                    <p><strong>Tipo: </strong> </p>
-                                                    <p class="m-t-10"><strong>Paciente: </strong> </p>
-                                                    <p class="m-t-10"><strong>Titular: </strong> </p>
-                                                      </address>
-                                                </div>
-                                                <div class="pull-right m-t-30">
-                                                    <p><strong>Fecha: </strong> {{ $date }}</p>
-                                                    <p class="m-t-10"><strong>Empresa: </strong> {{ $client->insureds->company->name or 'No Posee' }}</p>
-                                                    <p class="m-t-10"><strong>Cubierto al: </strong> {{ $client->coverage->cop_var or '0'}}%</p>
-                                                </div>
-                                                <div class="pull-left m-t-30">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="m-h-50"></div>
-                                                                <div class="pull-right">
-                                                                    <a id="add" href="#" class="btn btn-primary waves-effect waves-light">Agregar</a>
-                                                                </div>  
-                                        <div class="m-h-50"></div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="table-responsive">
-                                                    <table class="table m-t-30">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Item</th>
-                                                            <th>Cantidad</th>
-                                                            <th>Precio U.</th>
-                                                            <th>Importe</th>
-                                                            <th></th>
-                                                        </tr></thead>
-                                                        <tbody id="list-content">
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="border-radius: 0px">
-                                            <div id="totales" class="col-md-3 col-md-offset-9">
-                                                <p class="text-right"><b>Descuento (%) :</b>0.00</p>
-                                                <p class="text-right"><b>Op. Gravada:</b> 0.00</p>
-                                                <p class="text-right"><b>Op. No Gravada:</b> 0.00</p>
-                                                <p class="text-right"><b>Op. Exonerada:</b> 0.00</p>
-                                                <p class="text-right"><b>Subtotal:</b> 0.00</p>
-                                                <p class="text-right"><b>IGV (18%) :</b> 0.00</p>
-                                                <hr>
-                                                <h3 class="text-right">S./ 0.00</h3>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="hidden-print">
-                                            <div class="pull-right">
-                                                <a href="#" id="print-button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                                            </div>  
-                                        </div>
-                                    </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="pull-left m-t-30">
+                                                                            <p><strong>Atención #</strong> </p>
+                                                                            <p><strong>Autorización # </strong> </p>
+                                                                            <p><strong>Código Interno #68277</strong> </p>
+                                                                            <p class="m-t-10"><strong>Paciente: </strong> </p>
+                                                                            <p class="m-t-10"><strong>Titular: </strong> </p>
+                                                                            <p class="m-t-10"><strong>Cobertura: (Empresa)</strong> </p>
+                                                                    </div>
+                                                                <div class="hidden-print">
+                                                                    <div class="pull-right">
+                                                                        <a href="#" id="print-button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
+                                                                    </div>  
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr>   
+                                                        </div>
                                                     </div>
                                                 </section>
                                             </div>
@@ -435,13 +380,11 @@
                         if(i == "2" && val == '3' ){
                              $("a[href='#next']").text('Crear Paciente');
                         }
-
                         if ($("a[href='#next']").hasClass('create_atencion')){
                                 $("a[href='#next']").removeClass('create_atencion');
                         }
                         if(i == "3"){
                             $("a[href='#next']").text('Crear Atención').addClass('create_atencion');$
-
                         }else{
                             $("a[href='#next']").text('Next').fadeIn();
                         }
@@ -452,16 +395,13 @@
                     
                 });
                 $("a[href='#next']").click(function(e){
-
                     e.preventDefault();
                     i++;
-
                     var value = $("#metodo").val();
                     if(i == "2" && value == '3' ){
                          $("a[href='#next']").text('Crear Paciente');
                     }
                     console.log(i);
-
                     if ($(this).hasClass('create_atencion')){
                         var question = confirm("Estás seguro de generar la atención?");
                         if(question){
@@ -484,14 +424,11 @@
                                     console.log(result);
                                   }
                                 });
-
                         }else{
                             location.reload();
                         }
                     }
-
                     if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response =false;}$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = true;}else{ response = false; }}); if(!response){alert("Seleccione un paciente");}}else{$(this).text('Next').removeClass('create_atencion');}
-
                     if (i == "4"){ $(this).text("Finalizar");}
                     var val = $('#userName').val();
                     var internal = "/getPatientAPI/";
@@ -507,13 +444,11 @@
                                    success: function(result)
                                   {
                                     $("tbody").html(result);
-
                                     $('table tbody tr').hover(function() {
                                         $(this).addClass('bg-success');
                                     }, function() {
                                         $(this).removeClass('bg-success');
                                     });
-
                                     $('table tbody tr').click(function() {
                                         var id = "{{ url( "/getPatientJSON/" )}}/"+$(this).attr("id");
                                         $.ajax(
@@ -529,10 +464,8 @@
                                                     }
                                                     $("#name").val(name);
                                                     $("#id_hidden").val(result.id);
-
                                                   }
                                               });
-
                                         $('table tbody tr').each(function(){
                                             if ($(this).hasClass('bg-primary')){
                                                 $(this).removeClass('bg-primary');

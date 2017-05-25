@@ -139,7 +139,7 @@
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
                                                                 <td>{{ $user->date or 'Corregir Fecha' }}</td>
                                                                 <td>
-                                                                <a href="{{ url('/agregar_servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="md md-add-to-photos"></i> </a></td>
+                                                                <a href="{{ url('/caja/servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="md md-add-to-photos"></i> </a></td>
                                                             </tr>
                                                         @endforeach
                                                             

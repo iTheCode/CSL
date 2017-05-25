@@ -94,79 +94,59 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title"><a href="{{ url('/admision/crear') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nueva Atención</a> </h4>
+                                <h4 class="pull-left page-title">Widgets</h4>
                                 <ol class="breadcrumb pull-right">
-                                    <li><a href="#">{{  $system_name }}</a></li>
-                                    <li class="active">Atenciones</li>
+                                    <li><a href="#">Moltran</a></li>
+                                    <li><a href="#">Components</a></li>
+                                    <li class="active">Widgets</li>
                                 </ol>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Lista de Atenciones ( 
-                                                        Total {{ $users->total() }} )</h3>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="mini-stat clearfix bx-shadow bg-white">
+                                    <a href="/test" class="text-white"><span class="mini-stat-icon bg-success waves-effect"><i class="fa fa-bed"></i></span></a>
+                                    <div class="mini-stat-info text-right text-dark">
+                                        <span class="name text-dark">Luis Uculmana</span>
+                                        Web Designer
                                     </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>Código</th>
-                                                                <th>Código Interno</th>
-                                                                <th>Historia Clínica</th>
-                                                                <th>DNI</th>
-                                                                <th>Paciente</th>
-                                                                <th>Aseguradora</th>
-                                                                <th>Fecha de Atención</th>
-                                                                <th>Acciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <?php $i = 1;?>
-                                                        @foreach ($users as $user)
-                                                            <tr>
-                                                                <td>{{ $i++ }}</td>
-                                                                <td>{{ $user->code or 'XXXXXXXXXX'}}</td>
-                                                                <td>{{ $user->intern_code or 'Corregir Código'}}</td>
-                                                                <td>{{ $user->patient->clinic_history_code or 'Corregir Historia'}}</td>
-                                                                <td>{{ $user->patient->document_identity_code or 'Corregir DNI' }}</td>
-                                                                <td><a href="/paciente/{{ $user->patient->id or '' }}">{{ $user->patient->name or ''}} {{ $user->patient->paternal or '' }} {{ $user->patient->maternal or '' }}</a></td>
-                                                                <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
-                                                                <td>{{ $user->date or 'Corregir Fecha' }}</td>
-                                                                <td><a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$user->employee->username or 'Sin asignar'}}"><i class="md md-launch"></i> </a></td>
-                                                            </tr>
-                                                        @endforeach
-                                                            
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                    <br>
+                                    <hr class="m-t-10">
+                                    <ul class="text-center social-links list-inline m-0">
+                                        <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-success"></i><span class="pull-right text-muted">5 Days</span>
                                         </div>
-                                    <div class="col-sm-12">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="datatable-editable_paginate">
-                                             <?php echo $paginate;?>
+                                        <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-success"></i><span class="pull-right text-muted">Dr. Montalvo</span>
                                         </div>
-                                    </div>
+                                        <div class="text-left">                                      <i class="fa fa-folder fa-2x text-success"></i><span class="pull-right text-muted">0 Documentos</span>
+                                        </div>
+                                    </ul>
                                 </div>
-
-                                    </div>
                             </div>
-                        </div> <!-- End row -->
-
-
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="mini-stat clearfix bx-shadow bg-white">
+                                    <a href="/test" class="text-white " ><span class="mini-stat-icon bg-info waves-effect"><i class="fa  fa-plus-square"></i></span></a>
+                                    <div class="mini-stat-info text-right text-dark">
+                                        <span class="name text-dark">Libre</span>
+                                        L
+                                    </div>
+                                    <br>
+                                    <hr class="m-t-10">
+                                    <ul class="text-center social-links list-inline m-0">
+                                        <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-info"></i><span class="pull-right text-muted">0 Days</span>
+                                        </div>
+                                        <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-info"></i><span class="pull-right text-muted">No Asignado</span>
+                                        </div>
+                                        <div class="text-left">                                      <i class="fa fa-folder fa-2x text-info"></i><span class="pull-right text-muted">No Asignado</span>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
                     </div> <!-- container -->
                                
                 </div> <!-- content -->
+
                 <footer class="footer text-right">
                     {{ $this_year}} © {{ $system_name }}
                 </footer>

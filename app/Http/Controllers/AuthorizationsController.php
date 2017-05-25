@@ -85,7 +85,6 @@ class AuthorizationsController extends BaseController
 		if (Auth::check()) {
 		    $user = Auth::user();
 		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
 		}
 		$last_intern_code = DB::select("select max(abs(intern_code)) as max from authorizations");
 		$a = new Authorization();
@@ -108,6 +107,10 @@ class AuthorizationsController extends BaseController
 			$c->cop_fijo = $request::get('cop_fijo');
 			$c->cop_var = $request::get('cop_var');
 			if($c->save()){
+				if(isset($a->insureds))
+					$a->insureds->insurance->name;
+				if(isset($a->coverage))
+					$a->coverage->cop_var;
 				return $a;
 			}
 		}
