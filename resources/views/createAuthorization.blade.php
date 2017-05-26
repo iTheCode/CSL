@@ -113,6 +113,85 @@
                         <div class="row">
                             <div class="col-md-12">
 
+                                        <div id="custom-width-modal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" >
+                                            <div class="modal-dialog modal-full">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                        <h4 class="modal-title" id="custom-width-modalLabel">Documento de Pago</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                    <div class="panel-body">
+                                        <div class="clearfix">
+                                             <div class="row" >
+                                            <div class="pull-left">
+                                                <h4 class="text-left"><img src="/assets/images/logo.png"  width="200" height="50" alt="CSLuren"></h4>
+                                            </div><div class="pull-right text-center">
+                                                <h4>FACTURA ELECTRONICA <br>
+RUC: 20494306043 <br>
+F002-50
+                                                </h4>
+                                            </div>
+                                                    <div class="text-center" style="width:200px;float:left;margin-left:5%;">Av. San Martín. N° 536 , Ica Ica <br>Citas: (056) 216166 <br> Email: info@clinicaluren.com.pe<br></div>
+                                            
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-left">
+                                                    <address>
+                                                    <p><strong>Señor(es): Paciente o RUC</strong> </p>
+                                                    <p><strong>Paciente: (Aseguradora)</strong> </p>
+                                                    <p><strong>Titular: </strong> </p>
+                                                      </address>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <p><strong>Fecha: </strong> </p>
+                                                    <p><strong>Autorización: </strong> </p>
+                                                    <p><strong>Atención: (Código Interno)</strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Item</th>
+                                                            <th>Cantidad</th>
+                                                            <th>P. U.</th>
+                                                            <th>Importe</th>
+                                                            <th></th>
+                                                        </tr></thead>
+                                                        <tbody id="list-content">
+                                                        <tr id=" 01.01.04" exented="1" quantity="1.00" pu="46.61" imp="46.61"><td> 01.01.04</td><td>AMBULATORIO PRE 30 DIAS Y POST 30 DIAS DE UNA HOSPITALIZACION - H2 -  </td><td>1.00</td><td>46.61</td><td>46.61</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div id="totales" class="col-md-3 col-md-offset-9">
+                                                <!--<p class="text-right"><b>Descuento (%) :</b>0.00</p>-->
+                                                <p class="text-right"><b>Op. Gravada:</b> 0.00</p>
+                                                <!--<p class="text-right"><b>Op. No Gravada:</b> 0.00</p>
+                                                <p class="text-right"><b>Op. Exonerada:</b> 0.00</p>-->
+                                                <p class="text-right"><b>Subtotal:</b> 0.00</p>
+                                                <p class="text-right"><b>IGV (18%) :</b> 0.00</p>
+                                                <p class="pull-left"><b>SON: </b>CINCUENTA Y NUEVE CON 00/100 SOLES</p>
+                                                <h3 class="text-right">S./ 0.00</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div>
+<a id="print-button" href="#" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
                                 <div class="panel panel-default">
                                     <div class="panel-heading"> 
                                         <h3 class="panel-title">Nueva Atención</h3> 
@@ -121,14 +200,13 @@
                                         <form id="basic-form" action="#">
                                             <div>
                                                 <h3>Busqueda</h3>
-                                                <section>
-
+                                                <section id="1">
                                                     <div class="form-group clearfix">
                                                         <label class="col-lg-3 control-label" for="metodo">Tipo de Busqueda</label>
                                                         <div class="col-lg-9">
                                                             <select name="metodo" id="metodo" class="form-control">
-                                                                <option value="1">INTERNA</option>
-                                                                <option value="2" selected>RENIEC</option>
+                                                                <option>Seleccione un Tipo de Búsqueda</option>
+                                                                <option value="2" selected>Automática</option>
                                                                 <option value="3">Manual</option>
                                                             </select>
                                                         </div>
@@ -166,7 +244,7 @@
                                                                                     <th>Edad</th>
                                                                                 </tr>
                                                                             </thead>
-                                                                            <tbody>
+                                                                            <tbody id="patients">
                                                                                 <tr>
                                                                                     <td>1</td>
                                                                                     <td>1</td>
@@ -224,7 +302,7 @@
                                                     </div>
                                                 </div>
                                                 </section>
-                                                <h3>Detalles</h3>
+                                                <h3>Atención</h3>
                                                 <section>
                                                 <form method="post" id="authorization">
                                                     <div class="form-group clearfix">
@@ -263,13 +341,10 @@
                                                     </div>
                                                 </form>
                                                 </section>  
-                                                <h3>Finalizar</h3>
+                                                <h3>Pago</h3>
                                                 <section>
                                                     <div class="form-group clearfix">
-                                                        <div class="panel-body">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="pull-left m-t-30">
+                                                                    <div id="voucher" class="pull-left m-t-30">
                                                                             <p><strong>Atención #</strong> </p>
                                                                             <p><strong>Autorización # </strong> </p>
                                                                             <p><strong>Código Interno #68277</strong> </p>
@@ -277,15 +352,6 @@
                                                                             <p class="m-t-10"><strong>Titular: </strong> </p>
                                                                             <p class="m-t-10"><strong>Cobertura: (Empresa)</strong> </p>
                                                                     </div>
-                                                                <div class="hidden-print">
-                                                                    <div class="pull-right">
-                                                                        <a href="#" id="print-button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                                                                    </div>  
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            <hr>   
-                                                        </div>
                                                     </div>
                                                 </section>
                                             </div>
@@ -343,6 +409,11 @@
         <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript"></script>
         <!--wizard initialization-->
         <script src="/assets/pages/jquery.wizard-init.js" type="text/javascript"></script>
+
+        <!-- Modal-Effect -->
+        <script src="/assets/plugins/modal-effect/js/classie.js"></script>
+        <script src="/assets/plugins/modal-effect/js/modalEffects.js"></script>
+        <script src="/assets/plugins/jquery-print/js/jQuery.print.js"></script>
         <script>
             $(document).ready(function(){
                 var i = 1;
@@ -370,38 +441,26 @@
                         $("#cop_var").val('').attr("disabled", false);
                     }
                 });
+                $("#print-button").click(function(){
+                    if(window.confirm('Está seguro de imprimir?')){
+                        $(".modal-body").print();
+                    }
+                    //$("#custom-width-modal").delay(700).modal("hide");
+                });
                 $("select[name='authorization_type_id']").change(function(){
                     $("input[name='authorization_type_id']").val($(this).val());
                 });
                 $("a[href='#previous']").click(function(){
-                    if (i != "1"){
-                        i--;
-                        var val = $("#metodo").val();
-                        if(i == "2" && val == '3' ){
-                             $("a[href='#next']").text('Crear Paciente');
-                        }
-                        if ($("a[href='#next']").hasClass('create_atencion')){
-                                $("a[href='#next']").removeClass('create_atencion');
-                        }
-                        if(i == "3"){
-                            $("a[href='#next']").text('Crear Atención').addClass('create_atencion');$
-                        }else{
-                            $("a[href='#next']").text('Next').fadeIn();
-                        }
-                        console.log(i);
-                    }
+                    check_buttons(i);
                 });
                 $("a[href='#finish']").click(function(){
                     
                 });
-                $("a[href='#next']").click(function(e){
-                    e.preventDefault();
-                    i++;
+                $("a[href='#next']").click(function(){
                     var value = $("#metodo").val();
                     if(i == "2" && value == '3' ){
                          $("a[href='#next']").text('Crear Paciente');
                     }
-                    console.log(i);
                     if ($(this).hasClass('create_atencion')){
                         var question = confirm("Estás seguro de generar la atención?");
                         if(question){
@@ -412,7 +471,7 @@
                             var cop_var = $("#cop_var").val();
                             var cop_fijo = $("#cop_fijo").val();
                             var sub_coverage_type_id = $("select[name='sub_coverage_type_id']").val();
-                            var data = "?id_hidden="+id_hidden+"&authorization_type_id="+authorization_type_id+"&doctor_id="+doctor_id+"&cop_var="+cop_var+"&cop_fijo="+cop_fijo+"&sub_coverage_type_id="+sub_coverage_type_id;
+                            var data = "id_hidden="+id_hidden+"&authorization_type_id="+authorization_type_id+"&doctor_id="+doctor_id+"&cop_var="+cop_var+"&cop_fijo="+cop_fijo+"&sub_coverage_type_id="+sub_coverage_type_id;
                             if(doctor_id == null || doctor_id == "" || sub_coverage_type_id == "" || sub_coverage_type_id == null|| cop_fijo == "" || cop_fijo == null || cop_var == "" || cop_var == null){ alert("Usted no ha ingresado los datos correctamente, debe volver a crear la atención."); location.reload();}
                             $.ajax(
                               {
@@ -422,6 +481,16 @@
                                    success: function(result)
                                   {
                                     console.log(result);
+                                    if (result.insureds == null) {
+                                        result.insureds = new Object();
+                                        result.insureds.hold_name = result.patient.name;
+                                        result.insureds.hold_maternal = result.patient.maternal;
+                                        result.insureds.hold_paternal = result.patient.paternal;
+                                        result.insureds.insurance = new Object();
+                                        result.insureds.insurance.name = 'Particular';
+                                    }
+                                    $('#voucher').html('<p><strong>Atención #'+result.id+'</strong> </p><p><strong>Autorización #'+result.code+'</strong> </p><p><strong>Código Interno #'+result.intern_code+'</strong> </p><p class="m-t-10"><strong>Paciente: '+result.patient.name+' '+result.patient.paternal+' '+result.patient.maternal+'</strong> </p><p class="m-t-10"><strong>Titular: '+result.insureds.hold_name+' '+result.insureds.hold_paternal+' '+result.insureds.hold_maternal+'</strong> </p><p class="m-t-10"><strong>Cobertura: S/.'+parseFloat(result.coverage.cop_fijo).toFixed(2)+' ('+result.coverage.cop_var+'%) ('+result.insureds.insurance.name+')</strong> </p>');
+                                                                            
                                   }
                                 });
                         }else{
@@ -429,12 +498,13 @@
                         }
                     }
                     if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response =false;}$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = true;}else{ response = false; }}); if(!response){alert("Seleccione un paciente");}}else{$(this).text('Next').removeClass('create_atencion');}
-                    if (i == "4"){ $(this).text("Finalizar");}
+                    if (i == "4"){ $("a[href='#finish']").parent().html('<a id="print-button" href="#" class="btn btn-inverse waves-effect waves-light" data-toggle="modal" data-target="#custom-width-modal"><i class="fa fa-print"></i></a>');}
                     var val = $('#userName').val();
                     var internal = "/getPatientAPI/";
                     var reniec = "/getNewPatientAPI/";
                     var method = $("#metodo").val();
-                    if(method == '2') {var data = reniec+val;} else { var data = internal+val;}
+
+                        if(!isNaN(val) && val.toString().length == 8){var data = reniec+val;}else{var data = internal+val;}
                     if( i == "2"){
                         if(val != "" || value == '3'  ){
                             if($("select[name='authorization_type_id']").val() == null || $("select[name='authorization_type_id']").val() == ""){alert("Seleccione el tipo de atención brindado."); location.reload();}
@@ -443,13 +513,13 @@
                                   url: data, 
                                    success: function(result)
                                   {
-                                    $("tbody").html(result);
-                                    $('table tbody tr').hover(function() {
+                                    $("#patients").html(result);
+                                    $('#patients tr').hover(function() {
                                         $(this).addClass('bg-success');
                                     }, function() {
                                         $(this).removeClass('bg-success');
                                     });
-                                    $('table tbody tr').click(function() {
+                                    $('#patients tr').click(function() {
                                         var id = "{{ url( "/getPatientJSON/" )}}/"+$(this).attr("id");
                                         $.ajax(
                                               {
@@ -480,6 +550,45 @@
                             alert("Ingrese el DNI o Nombres de Paciente");
                         }
                     }
+                    check_buttons(i);
+                });
+                function check_buttons(i){
+                        if (i != "1"){
+                            var val = $("#metodo").val();
+                            if(i == "2" && val == '3' ){
+                                 $("a[href='#next']").text('Crear Paciente');
+                            }
+                            if(i == "3"){
+                                $("a[href='#next']").text('Crear Atención').addClass('create_atencion');$
+                            }else{
+                                $("a[href='#next']").text('Next').fadeIn();
+                            }
+                        }
+                        console.log(i);
+                }
+                function check_create(){
+                            if ($("a[href='#next']").hasClass('create_atencion')){
+                                    $("a[href='#next']").removeClass('create_atencion').text('Next');
+                            }
+
+                }
+                $("#steps-uid-0-t-0").click(function(){
+                    i = 1;
+                    check_create();
+                });
+                $("#steps-uid-0-t-1").click(function(){
+                    i = 2;
+                    check_create();
+                });
+                $("#steps-uid-0-t-2").click(function(){
+                    i = 3;
+                    check_create();
+                });
+                $("#steps-uid-0-t-3").click(function(){
+                    i = 4;
+                    $("#steps-uid-0-t-0").parent().removeClass().addClass('disabled');
+                    $("#steps-uid-0-t-1").parent().removeClass().addClass('disabled');
+                    $("#steps-uid-0-t-2").parent().removeClass().addClass('disabled');
                 });
             });
         </script>

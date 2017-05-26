@@ -111,6 +111,8 @@ class AuthorizationsController extends BaseController
 					$a->insureds->insurance->name;
 				if(isset($a->coverage))
 					$a->coverage->cop_var;
+				if(isset($a->patient))
+					$a->patient->name;
 				return $a;
 			}
 		}
