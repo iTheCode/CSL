@@ -218,9 +218,16 @@
                                             </div>
                                         </div>
                                         <hr>
+                                                                    <div id="payments_options" class="pull-left text-left col-md-4">
+                                                                            <p><strong>Tipo de Pago:</strong> <select class="form-control" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
+                                                                            <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta</option><option value="2">Factura</option><option value="3">Boleta No Paciente</option></select></p>
+                                                                            <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
+                                                                            <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
+                                                                            <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
+                                                                    </div>
                                         <div class="hidden-print">
-                                            <div class="pull-right">
-                                                <a href="#" id="print-button" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
+                                            <div class="pull-right"><br><br><br><br><br><br><br><br>
+                                                <a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>
                                             </div>  
                                         </div>
                                     </div>
@@ -296,6 +303,14 @@
             var igv = 0.00;
             var total = 0.00;
             jQuery(document).ready(function($) {
+                $("#pay_edocument_type").change(function(){
+                    var selected = $(this).val();
+                    if(selected == 2){
+                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus();
+                    }else if(selected == 3){
+                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus();
+                    }
+                });
                 $("#add").click(function(){
                     var doctor = $('select[name="doctor_id"] option:selected').text();
                     var doctor_id = $('select[name="doctor_id"] option:selected').val();

@@ -121,77 +121,79 @@
                                                         <h4 class="modal-title" id="custom-width-modalLabel">Documento de Pago</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                    <div class="panel-body">
-                                        <div class="clearfix">
-                                             <div class="row" >
-                                            <div class="pull-left">
-                                                <h4 class="text-left"><img src="/assets/images/logo.png"  width="200" height="50" alt="CSLuren"></h4>
-                                            </div><div class="pull-right text-center">
-                                                <h4>FACTURA ELECTRONICA <br>
-RUC: 20494306043 <br>
-F002-50
-                                                </h4>
-                                            </div>
-                                                    <div class="text-center" style="width:200px;float:left;margin-left:5%;">Av. San Martín. N° 536 , Ica Ica <br>Citas: (056) 216166 <br> Email: info@clinicaluren.com.pe<br></div>
-                                            
-                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="pull-left">
-                                                    <address>
-                                                    <p><strong>Señor(es): Paciente o RUC</strong> </p>
-                                                    <p><strong>Paciente: (Aseguradora)</strong> </p>
-                                                    <p><strong>Titular: </strong> </p>
-                                                      </address>
-                                                </div>
-                                                <div class="pull-right">
-                                                    <p><strong>Fecha: </strong> </p>
-                                                    <p><strong>Autorización: </strong> </p>
-                                                    <p><strong>Atención: (Código Interno)</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Item</th>
-                                                            <th>Cantidad</th>
-                                                            <th>P. U.</th>
-                                                            <th>Importe</th>
-                                                            <th></th>
-                                                        </tr></thead>
-                                                        <tbody id="list-content">
-                                                        <tr id=" 01.01.04" exented="1" quantity="1.00" pu="46.61" imp="46.61"><td> 01.01.04</td><td>AMBULATORIO PRE 30 DIAS Y POST 30 DIAS DE UNA HOSPITALIZACION - H2 -  </td><td>1.00</td><td>46.61</td><td>46.61</td></tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div id="totales" class="col-md-3 col-md-offset-9">
-                                                <!--<p class="text-right"><b>Descuento (%) :</b>0.00</p>-->
-                                                <p class="text-right"><b>Op. Gravada:</b> 0.00</p>
-                                                <!--<p class="text-right"><b>Op. No Gravada:</b> 0.00</p>
-                                                <p class="text-right"><b>Op. Exonerada:</b> 0.00</p>-->
-                                                <p class="text-right"><b>Subtotal:</b> 0.00</p>
-                                                <p class="text-right"><b>IGV (18%) :</b> 0.00</p>
-                                                <p class="pull-left"><b>SON: </b>CINCUENTA Y NUEVE CON 00/100 SOLES</p>
-                                                <h3 class="text-right">S./ 0.00</h3>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                    <!-- Start Document Body -->
+                                                        <div class="panel-body">
+                                                            <div class="clearfix">
+                                                                 <div class="row" >
+                                                                <div class="pull-left">
+                                                                    <h4 class="text-left"><img src="/assets/images/logo.png"  width="200" height="50" alt="CSLuren"></h4>
+                                                                </div><div class="pull-right text-center">
+                                                                    <h4>FACTURA ELECTRONICA <br>
+                    RUC: 20494306043 <br>
+                    F002-50
+                                                                    </h4>
+                                                                </div>
+                                                                        <div class="text-center" style="width:200px;float:left;margin-left:5%;">Av. San Martín. N° 536 , Ica Ica <br>Citas: (056) 216166 <br> Email: info@clinicaluren.com.pe<br></div>
+                                                                
+                                                                 </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="pull-left">
+                                                                        <address>
+                                                                        <p><strong>Señor(es): Paciente o RUC</strong> </p>
+                                                                        <p><strong>Paciente: (Aseguradora)</strong> </p>
+                                                                        <p><strong>Titular: </strong> </p>
+                                                                          </address>
+                                                                    </div>
+                                                                    <div class="pull-right">
+                                                                        <p><strong>Fecha: </strong> </p>
+                                                                        <p><strong>Autorización: </strong> </p>
+                                                                        <p><strong>Atención: (Código Interno)</strong></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Item</th>
+                                                                                <th>Cantidad</th>
+                                                                                <th>P. U.</th>
+                                                                                <th>Importe</th>
+                                                                                <th></th>
+                                                                            </tr></thead>
+                                                                            <tbody id="list-content">
+                                                                            <tr id=" 01.01.04" exented="1" quantity="1.00" pu="46.61" imp="46.61"><td> 01.01.04</td><td>AMBULATORIO PRE 30 DIAS Y POST 30 DIAS DE UNA HOSPITALIZACION - H2 -  </td><td>1.00</td><td>46.61</td><td>46.61</td></tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="totales" class="col-md-3 col-md-offset-9">
+                                                                    <!--<p class="text-right"><b>Descuento (%) :</b>0.00</p>-->
+                                                                    <p class="text-right"><b>Op. Gravada:</b> 0.00</p>
+                                                                    <!--<p class="text-right"><b>Op. No Gravada:</b> 0.00</p>
+                                                                    <p class="text-right"><b>Op. Exonerada:</b> 0.00</p>-->
+                                                                    <p class="text-right"><b>Subtotal:</b> 0.00</p>
+                                                                    <p class="text-right"><b>IGV (18%) :</b> 0.00</p>
+                                                                    <p class="pull-left"><b>SON: </b>CINCUENTA Y NUEVE CON 00/100 SOLES</p>
+                                                                    <h3 class="text-right">S./ 0.00</h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    <!-- End Document Body -->
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Finalizar</button>
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
                                         </div>
-<a id="print-button" href="#" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
                                 <div class="panel panel-default">
                                     <div class="panel-heading"> 
                                         <h3 class="panel-title">Nueva Atención</h3> 
@@ -201,8 +203,11 @@ F002-50
                                             <div>
                                                 <h3>Busqueda</h3>
                                                 <section id="1">
+
                                                     <div class="form-group clearfix">
-                                                        <label class="col-lg-3 control-label" for="metodo">Tipo de Busqueda</label>
+
+
+                                                        <!--<label class="col-lg-3 control-label" for="metodo">Tipo de Busqueda</label>
                                                         <div class="col-lg-9">
                                                             <select name="metodo" id="metodo" class="form-control">
                                                                 <option>Seleccione un Tipo de Búsqueda</option>
@@ -222,7 +227,7 @@ F002-50
                                                         <div class="col-lg-9">
                                                             <input class="form-control required" id="userName" name="userName" type="text" placeholder="Ingrese Nombres del Paciente o Número de DNI">
                                                         </div>
-                                                    </div>
+                                                    </div>-->
                                                 </section>
                                                 <h3>Paciente</h3>
                                                 <section>
@@ -352,6 +357,13 @@ F002-50
                                                                             <p class="m-t-10"><strong>Titular: </strong> </p>
                                                                             <p class="m-t-10"><strong>Cobertura: (Empresa)</strong> </p>
                                                                     </div>
+                                                                    <div id="payments_options" class="pull-right text-right col-md-4">
+                                                                            <p><strong>Tipo de Pago:</strong> <select class="form-control" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
+                                                                            <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta</option><option value="2">Factura</option><option value="3">Boleta No Paciente</option></select></p>
+                                                                            <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
+                                                                            <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
+                                                                            <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
+                                                                    </div>
                                                     </div>
                                                 </section>
                                             </div>
@@ -442,8 +454,9 @@ F002-50
                     }
                 });
                 $("#print-button").click(function(){
-                    if(window.confirm('Está seguro de imprimir?')){
+                    if(window.confirm('¿Está seguro de imprimir el documento?')){
                         $(".modal-body").print();
+                        // emitir documento y enviarlo a la sunat //
                     }
                     //$("#custom-width-modal").delay(700).modal("hide");
                 });
@@ -455,6 +468,14 @@ F002-50
                 });
                 $("a[href='#finish']").click(function(){
                     
+                });
+                $("#pay_edocument_type").change(function(){
+                    var selected = $(this).val();
+                    if(selected == 2){
+                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus();
+                    }else if(selected == 3){
+                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus();
+                    }
                 });
                 $("a[href='#next']").click(function(){
                     var value = $("#metodo").val();
@@ -498,7 +519,7 @@ F002-50
                         }
                     }
                     if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response =false;}$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = true;}else{ response = false; }}); if(!response){alert("Seleccione un paciente");}}else{$(this).text('Next').removeClass('create_atencion');}
-                    if (i == "4"){ $("a[href='#finish']").parent().html('<a id="print-button" href="#" class="btn btn-inverse waves-effect waves-light" data-toggle="modal" data-target="#custom-width-modal"><i class="fa fa-print"></i></a>');}
+                    if (i == "4"){ $("a[href='#finish']").parent().html('<a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>');}
                     var val = $('#userName').val();
                     var internal = "/getPatientAPI/";
                     var reniec = "/getNewPatientAPI/";
