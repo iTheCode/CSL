@@ -3,6 +3,23 @@
 namespace App;
 
 class Helpers {
+	public static function sunat_status($num){
+		switch ($num) {
+			case '1':
+				return 'Auditado';
+				break;
+			case '2':
+				return 'SUNAT';
+				break;
+			case '3':
+				return 'Anulado';
+				break;
+			
+			default:
+				return 'Pendiente';
+				break;
+		}
+	}
 	public static function numtoletras($xcifra)
 	{
 	    $xarray = array(0 => "Cero",
