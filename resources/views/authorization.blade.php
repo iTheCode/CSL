@@ -113,33 +113,27 @@
                         <div class="col-sm-9 col-lg-6">
                             <ul class="nav nav-tabs tabs">
                             <li class="active tab">
-                                <a href="#home-2" data-toggle="tab" aria-expanded="false" class="active"> 
+                                <a href="#details" data-toggle="tab" aria-expanded="false" class="active"> 
                                     <span class="visible-xs"><i class="fa fa-home"></i></span> 
                                     <span class="hidden-xs">Principal</span> 
                                 </a> 
                             </li> 
                             <li class="tab"> 
-                                <a href="#profile-2" data-toggle="tab" aria-expanded="false"> 
+                                <a href="#services" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-user"></i></span> 
                                     <span class="hidden-xs">Servicios</span> 
                                 </a> 
                             </li> 
                             <li class="tab"> 
-                                <a href="#messages-2" data-toggle="tab" aria-expanded="true"> 
+                                <a href="#payments" data-toggle="tab" aria-expanded="true"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Pagos</span> 
                                 </a> 
                             </li> 
                             <li class="tab"> 
-                                <a href="#messages-2" data-toggle="tab" aria-expanded="true"> 
+                                <a href="#documents" data-toggle="tab" aria-expanded="true"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Documentos</span> 
-                                </a> 
-                            </li> 
-                            <li class="tab"> 
-                                <a href="#settings-2" data-toggle="tab" aria-expanded="false"> 
-                                    <span class="visible-xs"><i class="fa fa-cog"></i></span> 
-                                    <span class="hidden-xs">Avanzado</span> 
                                 </a> 
                             </li> 
                         <div class="indicator"></div></ul> 
@@ -147,12 +141,12 @@
                         <div class="hidden-xs col-sm-3 col-lg-6">
                             <div class="pull-right">
                                 <div class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toggle btn-rounded btn btn-primary waves-effect waves-light" href="#"> Following <span class="caret"></span></a>
+                                    <a data-toggle="dropdown" class="dropdown-toggle btn-rounded btn btn-primary waves-effect waves-light" href="#"> Opciones <span class="caret"></span></a>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <li><a href="#">Poke</a></li>
-                                        <li><a href="#">Private message</a></li>
+                                        <li><a href="#">Auditar</a></li>
+                                        <li><a href="#"></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Unfollow</a></li>
+                                        <li><a href="#">Eliminar</a></li>
                                     </ul>
                                 </div>
                               </div>
@@ -162,7 +156,7 @@
                         <div class="col-lg-12"> 
                         
                         <div class="tab-content profile-tab-content"> 
-                            <div class="tab-pane active" id="home-2"> 
+                            <div class="tab-pane active" id="details"> 
                                 <div class="row">
                                     <div class="col-md-4">
                                         <!-- Personal-Information -->
@@ -343,7 +337,7 @@
 
 
 
-                            <div class="tab-pane" id="profile-2">
+                            <div class="tab-pane" id="services">
                                 <!-- Personal-Information -->
                                 <div class="panel panel-default panel-fill">
                                     
@@ -403,7 +397,7 @@
 
 
 
-                            <div class="tab-pane" id="messages-2">
+                            <div class="tab-pane" id="payments">
                                 <!-- Personal-Information -->
                                 <div class="panel panel-default panel-fill">
                                     <div class="panel-heading"> 
@@ -474,7 +468,7 @@
                             </div> 
 
 
-                            <div class="tab-pane" id="settings-2">
+                            <div class="tab-pane" id="documents">
                                 <!-- Personal-Information -->
                                 <div class="panel panel-default panel-fill">
                                     <div class="panel-heading"> 

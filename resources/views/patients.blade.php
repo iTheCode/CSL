@@ -138,8 +138,7 @@
                                                                 <td>{{ $user->document_identity_code or 'Corregir DNI' }}</td>
                                                                 <td>{{ $user->name }} {{ $user->paternal }} {{ $user->maternal }}</td>
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
-                                                                <td>{{ Helpers::get_age($user->birthday) }}</td>
-                                                                <td><a href="{{ url('/atencion/'.$user->id) }}" class="on-default edit-row"><i class="md md-launch"></i></a></td>
+                                                                <td>{{ Helpers::get_age($user->birthday) }}</td><td><a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" ><i class="md md-account-box"></i> </a></td>
                                                             </tr>
                                                         @endforeach
                                                             
