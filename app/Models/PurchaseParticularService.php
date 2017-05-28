@@ -21,10 +21,6 @@ class PurchaseParticularService extends Model
     {
         return $this->getKey();
     }
-
-    public function particularservice(){
-        return $this->hasOne('App\Models\ParticularService', 'id', 'particular_service_id');
-    }
     public function service(){
         return $this->hasOne('App\Models\Service', 'id', 'service_id');
     }

@@ -5,7 +5,7 @@ namespace App\Models;
 use \App\Models\Area as Area;
 use Illuminate\Database\Eloquent\Model as Model;
 
-class InsuredService extends Model
+class InsuredPharmacy extends Model
 {
 
     /**
@@ -27,17 +27,14 @@ class InsuredService extends Model
     public function doctor(){
         return $this->hasOne('App\Models\Doctor', 'id', 'doctor_id');
     }
-    public function clinicarea(){
-        return $this->hasOne('App\Models\ClinicArea', 'id', 'clinic_area_id');
-    }
     public function employee(){
         return $this->hasOne('App\Models\Employee', 'id', 'employee_id');
     }
     //
-    public function purchaseinsuredservices(){
-        return $this->hasOne('App\Models\PurchaseInsuredService', 'insured_service_id', 'id');
+    public function purchaseinsuredpharmacies(){
+        return $this->hasOne('App\Models\PurchaseInsuredPharmacy', 'insured_pharmacy_id', 'id');
     }
-    public function purchasecoverageservices(){
-        return $this->hasOne('App\Models\PurchaseCoverageService', 'insured_service_id', 'id');
+    public function pharmtypesale(){
+        return $this->hasOne('App\Models\PharmTypeSale', 'id', 'pharm_type_sale_id');
     }
 }

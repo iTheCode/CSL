@@ -5,7 +5,7 @@ namespace App\Models;
 use \App\Models\Area as Area;
 use Illuminate\Database\Eloquent\Model as Model;
 
-class PurchaseInsuredService extends Model
+class PharmTypeSale extends Model
 {
 
     /**
@@ -20,12 +20,5 @@ class PurchaseInsuredService extends Model
     public function getAuthIdentifier()
     {
         return $this->getKey();
-    }
-
-    public function service(){
-        return $this->hasOne('App\Models\Service', 'id', 'service_id');
-    }
-    public function serviceexented(){
-        return $this->hasOne('App\Models\ServiceExented', 'id', 'service_exented_id');
     }
 }

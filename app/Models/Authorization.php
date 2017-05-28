@@ -40,5 +40,17 @@ class Authorization extends Model
     public function employee(){
         return $this->hasOne('App\Models\Employee', 'id', 'employee_id');
     }
+    public function insuredservices(){
+        return $this->hasMany('App\Models\InsuredService', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+    }
+    public function insuredpharmacies(){
+        return $this->hasMany('App\Models\InsuredPharmacy', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+    }
+    public function particularservices(){
+        return $this->hasOne('App\Models\ParticularService', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+    }
 
+    public function pay_documents(){
+        return $this->hasMany('App\Models\PayDocument', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+    }
 }

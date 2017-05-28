@@ -156,6 +156,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Artisaninweb\SoapWrapper\ServiceProvider::class
 
     ],
 
@@ -205,6 +206,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Helpers'    => App\Helpers::class,
+        'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class
 
     ],
 

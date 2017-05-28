@@ -144,7 +144,6 @@
                                     <a data-toggle="dropdown" class="dropdown-toggle btn-rounded btn btn-primary waves-effect waves-light" href="#"> Opciones <span class="caret"></span></a>
                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                         <li><a href="#">Auditar</a></li>
-                                        <li><a href="#"></a></li>
                                         <li class="divider"></li>
                                         <li><a href="#">Eliminar</a></li>
                                     </ul>
@@ -159,7 +158,7 @@
                             <div class="tab-pane active" id="details"> 
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <!-- Personal-Information -->
+                                    <!--
                                         <div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
                                                 <h3 class="panel-title">Información Personal</h3> 
@@ -187,9 +186,6 @@
                                                 </div>
                                             </div> 
                                         </div>
-                                        <!-- Personal-Information -->
-
-                                        <!-- Languages -->
                                         <div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
                                                 <h3 class="panel-title">Aseguradora</h3> 
@@ -200,13 +196,11 @@
                                                 </ul>
                                             </div> 
                                         </div>
-                                        <!-- Languages -->
 
                                     </div>
 
 
                                     <div class="col-md-8">
-                                        <!-- Personal-Information -->
                                         <div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
                                                 <h3 class="panel-title">General</h3> 
@@ -305,12 +299,11 @@
                                                 <div class="bootstrap-timepicker"><input id="time_transference" type="text" class="form-control" value="{{ $client->time_transference or '00:00' }}"></div>
                                                 </div>
                                             </div><br><br><br><br><br>
-                                            <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Guardar Cambios</button>
+                                            <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Guardar Cambios</button>-->
                                         </form>
 
                                             </div> 
-                                        </div>
-                                        <!-- Personal-Information -->
+                                        </div> 
 
                                         <div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
@@ -340,55 +333,63 @@
                             <div class="tab-pane" id="services">
                                 <!-- Personal-Information -->
                                 <div class="panel panel-default panel-fill">
-                                    
+                                    <div class="panel-heading"> 
+                                        <h3 class="panel-title">Servicios Prestados</h3> 
+                                    </div> 
                                     <div class="panel-body"> 
-                                        <div class="timeline-2">
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">5 minutes ago</div>
-                                                <p><strong><a href="#" class="text-info">John Doe</a></strong> Uploaded a photo <strong>"DSC000586.jpg"</strong></p>
-                                            </div>
-                                        </div>
+                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Código</th>
+                                                                        <th>Descripción</th>
+                                                                        <th>Fecha de Prestación</th>
+                                                                        <th>Area Clínica</th>
+                                                                        <th>Atención</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php $i = 1;?>
+                                                                    @if(isset($client->insuredservices))
+                                                                        @foreach ($client->insuredservices as $in)
+                                                                            @if(isset($in->purchaseinsuredservices))
+                                                                            <tr>
+                                                                                <td>{{ $i++ }}</td>
+                                                                                <td>{{ $in->purchaseinsuredservices->service->code or '' }}</td>
+                                                                                <td class="col-md-5">{{ $in->purchaseinsuredservices->service->name or '' }} (S)</td>
+                                                                                <td>{{ $in->purchaseinsuredservices->created_at or ''}}</td>
+                                                                                <td>{{ $in->clinicarea->name or ''}}</td>
+                                                                                <td>{{ $in->employee->username or 'Sin asignar'}}</td>
+                                                                            </tr>
+                                                                            @else
+                                                                            <tr>
+                                                                                <td>{{ $i++ }}</td>
+                                                                                <td>{{ $in->purchasecoverageservices->service->code or '' }}</td>
+                                                                                <td class="col-md-5">{{ $in->purchasecoverageservices->service->name or '' }} (S)</td>
+                                                                                <td>{{ $in->purchasecoverageservices->created_at or ''}}</td>
+                                                                                <td>{{ $in->clinicarea->name or 'Cobertura'}}</td>
+                                                                                <td>{{ $in->employee->username or 'Sin asignar'}}</td>
+                                                                            </tr>
 
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">30 minutes ago</div>
-                                                <p><a href="" class="text-info">Lorem</a> commented your post.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">59 minutes ago</div>
-                                                <p><a href="" class="text-info">Jessi</a> attended a meeting with<a href="#" class="text-success">John Doe</a>.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">5 minutes ago</div>
-                                                <p><strong><a href="#" class="text-info">John Doe</a></strong>Uploaded 2 new photos</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">30 minutes ago</div>
-                                                <p><a href="" class="text-info">Lorem</a> commented your post.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="time-item">
-                                            <div class="item-info">
-                                                <div class="text-muted">59 minutes ago</div>
-                                                <p><a href="" class="text-info">Jessi</a> attended a meeting with<a href="#" class="text-success">John Doe</a>.</p>
-                                                <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam laoreet tellus ut tincidunt euismod. "</em></p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                    @if(isset($client->particularservices))
+                                                                        @foreach ($client->particularservices as $in)
+                                                                            <tr>
+                                                                                <td>{{ $i++ }}</td>
+                                                                                <td>{{ $in->purchaseparticularservices->service->code or '' }}</td>
+                                                                                <td class="col-md-5">{{ $in->purchaseparticularservices->service->name or '' }} (P)</td>
+                                                                                <td>{{ $in->purchaseparticularservices->created_at or '' }}</td>
+                                                                                <td>{{ $in->clinicarea->name or ''}}</td>
+                                                                                <td>{{ $in->employee->username or 'Sin asignar'}}</td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
 
                                     </div> 
                                 </div>
@@ -402,6 +403,52 @@
                                 <div class="panel panel-default panel-fill">
                                     <div class="panel-heading"> 
                                         <h3 class="panel-title">Documentos de Pago</h3> 
+                                    </div> 
+                                    <div class="panel-body"> 
+                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Documento</th>
+                                                                        <th>Tipo de Documento</th>
+                                                                        <th>Fecha de Emisión</th>
+                                                                        <th>Fecha de Envio</th>
+                                                                        <th>Estado</th>
+                                                                        <th>Asignado</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php $i = 1;?>
+                                                                    @if(isset($client->pay_documents))
+                                                                        @foreach ($client->pay_documents as $p)
+                                                                            <tr>
+                                                                                <td>{{ $i++ }}</td>
+                                                                                <td>{{ $p->code or '' }}</td>
+                                                                                <td>{{ $p->pay_document_type->name or '' }}</td>
+                                                                                <td>{{ $p->created_at or '' }}</td>
+                                                                                <td>{{ $p->emission_date or '' }}</td>
+                                                                                <td><span class="label label-success">{{ Helpers::sunat_status($p->sunat_status) }}</span></td>
+                                                                                <td>{{ $p->employee->username or 'Sin asignar'}}</td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                    </div> 
+                                </div>
+                                <!-- Personal-Information -->
+                            </div> 
+
+
+                            <div class="tab-pane" id="documents">
+                                <!-- Personal-Information -->
+
+                                <div class="panel panel-default panel-fill">
+                                    <div class="panel-heading"> 
+                                        <h3 class="panel-title">Documentos Anexados</h3> 
                                     </div> 
                                     <div class="panel-body"> 
                                         <div class="table-responsive">
@@ -462,19 +509,6 @@
                                                             </table>
                                                         </div>
 
-                                    </div> 
-                                </div>
-                                <!-- Personal-Information -->
-                            </div> 
-
-
-                            <div class="tab-pane" id="documents">
-                                <!-- Personal-Information -->
-                                <div class="panel panel-default panel-fill">
-                                    <div class="panel-heading"> 
-                                        <h3 class="panel-title">Edit Profile</h3> 
-                                    </div> 
-                                    <div class="panel-body"> 
                                     </div> 
                                 </div>
                                 <!-- Personal-Information -->

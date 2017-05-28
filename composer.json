@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.4.*",
         "laravelcollective/html": "^5.4",
-        "tecactus/reniec-php": "^1.0"
+        "tecactus/reniec-php": "^1.0",
+        "artisaninweb/laravel-soap": "0.3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -50,6 +51,6 @@
         "preferred-install": "dist"
     },
     "files": [
-        "app/helpers.php"
+        "app/Helpers.php"
     ]
 }

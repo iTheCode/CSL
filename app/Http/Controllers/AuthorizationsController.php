@@ -21,6 +21,7 @@ use Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model as Model;
 
 class AuthorizationsController extends BaseController
@@ -37,7 +38,8 @@ class AuthorizationsController extends BaseController
 			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
 			//return $response;
 			$total_pages = ceil($response->total()/20);
-			$paginate = Helpers::manual_paginate('atenciones','/atenciones?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
+			$currentPath = Route::getFacadeRoot()->current()->uri();
+			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
 		return view('authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
 	}
 
@@ -54,11 +56,24 @@ class AuthorizationsController extends BaseController
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::orderby('name')->get());
 			$diagnostic_types_codes = Helpers::get_diagnostic_codes(DiagnosticType::orderBy('id')->get());
+
 			if(!isset($response->employee_id)){ $response->employee_id = $user->id; $response->save();}
+
+			if(isset($response->insuredservices))
+					$response->insuredservices;
+			if(isset($response->insuredpharmacies))
+					$response->insuredpharmacies;
+			if(isset($response->particularservices))
+					$response->particularservices;
+			if(isset($response->pay_documents))
+					$response->pay_documents;
+
+
+
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 
 
-			//return $response;
+			return $response;
 			//return $sub_coverage_types;
 		return view('authorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
 	}
