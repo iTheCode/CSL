@@ -32,7 +32,7 @@ class InsuredPharmacy extends Model
     }
     //
     public function purchaseinsuredpharmacies(){
-        return $this->hasOne('App\Models\PurchaseInsuredPharmacy', 'insured_pharmacy_id', 'id');
+        return $this->hasMany('App\Models\PurchaseInsuredPharmacy', 'insured_pharmacy_id', 'id');
     }
     public function pharmtypesale(){
         return $this->hasOne('App\Models\PharmTypeSale', 'id', 'pharm_type_sale_id');

@@ -34,7 +34,9 @@ Route::get('/registrar_paciente/', ['middleware' => 'auth',  'as' => 'registrar_
 //Caja & Servicios Routes
 Route::get('/caja/atenciones', ['middleware' => 'auth',  'as' => 'services', 'uses' => 'ServicesController@showRecents']);
 Route::get('/caja/servicio/{input?}', ['middleware' => 'auth',  'as' => 'addservice', 'uses' => 'ServicesController@addService']);
-Route::get('/addServicePay/', ['middleware' => 'auth',  'as' => 'addservicepay', 'uses' => 'ServicesController@addServicePay']);
+
+//Pay Electrnic Documents
+Route::get('/pay_edocument/{input}', ['middleware' => 'auth',  'as' => 'payedocument', 'uses' => 'EDocumentsController@view_print']);
 
 //Hospitalización Routes
 
@@ -49,3 +51,4 @@ Route::get('/getPatientJSON/{input?}', ['middleware' => 'auth',  'as' => 'getPat
 Route::get('/ServiceAPI/{input?}', ['middleware' => 'auth',  'as' => 'serviceAPI', 'uses' => 'ServicesController@ServicesAPI']);
 Route::get('/ServiceFindAPI/{input?}', ['middleware' => 'auth',  'as' => 'servicefindAPI', 'uses' => 'ServicesController@ServiceAPI']);
 Route::get('/getNewPatientAPI/{input?}', ['middleware' => 'auth',  'as' => 'getNewPatientAPI', 'uses' => 'PatientsController@getNewPatientAPI']);
+Route::get('/authorizationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'authorizationsAPI', 'uses' => 'AuthorizationsController@showAuthorizationsAPI']);

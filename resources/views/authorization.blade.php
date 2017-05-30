@@ -95,7 +95,7 @@
 
                 <!-- Start content -->
                 <div class="content">
-                <div class="wraper container-fluid">
+                <div class="wraper container-fluid" style="display: none;">
                     
                 <!--<div class="row">
                         <div class="col-sm-12">
@@ -124,6 +124,14 @@
                                     <span class="hidden-xs">Servicios</span> 
                                 </a> 
                             </li> 
+                            @if(isset($client->insuredpharmacies))
+                            <li class="tab"> 
+                                <a href="#pharmacy" data-toggle="tab" aria-expanded="true"> 
+                                    <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
+                                    <span class="hidden-xs">Farmacia</span> 
+                                </a> 
+                            </li> 
+                            @endif
                             <li class="tab"> 
                                 <a href="#payments" data-toggle="tab" aria-expanded="true"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
@@ -158,7 +166,6 @@
                             <div class="tab-pane active" id="details"> 
                                 <div class="row">
                                     <div class="col-md-4">
-                                    <!--
                                         <div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
                                                 <h3 class="panel-title">Información Personal</h3> 
@@ -352,39 +359,58 @@
                                                                 <tbody>
                                                                     <?php $i = 1;?>
                                                                     @if(isset($client->insuredservices))
-                                                                        @foreach ($client->insuredservices as $in)
-                                                                            @if(isset($in->purchaseinsuredservices))
-                                                                            <tr>
-                                                                                <td>{{ $i++ }}</td>
-                                                                                <td>{{ $in->purchaseinsuredservices->service->code or '' }}</td>
-                                                                                <td class="col-md-5">{{ $in->purchaseinsuredservices->service->name or '' }} (S)</td>
-                                                                                <td>{{ $in->purchaseinsuredservices->created_at or ''}}</td>
-                                                                                <td>{{ $in->clinicarea->name or ''}}</td>
-                                                                                <td>{{ $in->employee->username or 'Sin asignar'}}</td>
-                                                                            </tr>
+                                                                        @foreach($client->insuredservices as $is)
+                                                                            @if($is->is_consultation != 1)
+                                                                                @foreach ($is->purchaseinsuredservices as $in)
+                                                                                <tr>
+                                                                                    <td>{{ $i++ }}</td>
+                                                                                    <td>{{ $in->service->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->service->name or '' }} (S)</td>
+                                                                                    <td>{{ $in->created_at or ''}}</td>
+                                                                                    <td>{{ $in->service->clinicarea->name or ''}}</td>
+                                                                                    <td>{{ $is->employee->username or 'Sin asignar'}}</td>
+                                                                                </tr>
+                                                                                @endforeach
                                                                             @else
-                                                                            <tr>
-                                                                                <td>{{ $i++ }}</td>
-                                                                                <td>{{ $in->purchasecoverageservices->service->code or '' }}</td>
-                                                                                <td class="col-md-5">{{ $in->purchasecoverageservices->service->name or '' }} (S)</td>
-                                                                                <td>{{ $in->purchasecoverageservices->created_at or ''}}</td>
-                                                                                <td>{{ $in->clinicarea->name or 'Cobertura'}}</td>
-                                                                                <td>{{ $in->employee->username or 'Sin asignar'}}</td>
-                                                                            </tr>
-
+                                                                                @foreach ($is->purchasecoverageservices as $in)
+                                                                                <tr>
+                                                                                    <td>{{ $i++ }}</td>
+                                                                                    <td>{{ $in->service->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->service->name or '' }} (S)</td>
+                                                                                    <td>{{ $in->created_at or ''}}</td>
+                                                                                    <td>{{ 'Cobertura'}}</td>
+                                                                                    <td>{{ $is->employee->username or 'Sin asignar'}}</td>
+                                                                                </tr>
+                                                                                @endforeach
                                                                             @endif
+                                                                         @endforeach
+                                                                    @endif
+
+                                                                    @if(isset($client->particularservices))
+                                                                        @foreach($client->particularservices as $ps)
+                                                                            @foreach ($ps->purchaseparticularservices as $in)
+                                                                                <tr>
+                                                                                    <td>{{ $i++ }}</td>
+                                                                                    <td>{{ $in->service->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->service->name or '' }} (P)</td>
+                                                                                    <td>{{ $in->created_at or '' }}</td>
+                                                                                    <td>{{ $in->service->clinicarea->name or ''}}</td>
+                                                                                    <td>{{ $ps->employee->username or 'Sin asignar'}}</td>
+                                                                                </tr>
+                                                                            @endforeach
                                                                         @endforeach
                                                                     @endif
-                                                                    @if(isset($client->particularservices))
-                                                                        @foreach ($client->particularservices as $in)
-                                                                            <tr>
-                                                                                <td>{{ $i++ }}</td>
-                                                                                <td>{{ $in->purchaseparticularservices->service->code or '' }}</td>
-                                                                                <td class="col-md-5">{{ $in->purchaseparticularservices->service->name or '' }} (P)</td>
-                                                                                <td>{{ $in->purchaseparticularservices->created_at or '' }}</td>
-                                                                                <td>{{ $in->clinicarea->name or ''}}</td>
-                                                                                <td>{{ $in->employee->username or 'Sin asignar'}}</td>
-                                                                            </tr>
+
+                                                                    @if(isset($client->insuredpharmacies))
+                                                                        @foreach ($client->insuredpharmacies as $ip)
+                                                                                <tr>
+                                                                                    <td>{{ $i++ }}</td>
+                                                                                    <td>{{ $ip->ticket_code or '' }}</td>
+                                                                                    <td class="col-md-5">Venta de Farmacia N°{{ $ip->liquidation or '' }} (F)</td>
+                                                                                    <td>{{ $ip->created_at or '' }}</td>
+                                                                                    <td>Farmacia</td>
+                                                                                    <td>{{ $ip->employee->username or 'Sin asignar'}}</td>
+                                                                                </tr>
                                                                         @endforeach
                                                                     @endif
                                                                 </tbody>
@@ -396,7 +422,49 @@
                                 <!-- Personal-Information -->
                             </div> 
 
+                            @if(isset($client->insuredpharmacies))
+                            <div class="tab-pane" id="pharmacy">
+                                <!-- Personal-Information -->
+                                <div class="panel panel-default panel-fill">
+                                    <div class="panel-heading"> 
+                                        <h3 class="panel-title">Medicamentos de Farmacia</h3> 
+                                    </div> 
+                                    <div class="panel-body"> 
+                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>#</th>
+                                                                        <th>Liquidación</th>
+                                                                        <th>Código</th>
+                                                                        <th>Descripción</th>
+                                                                        <th>Fecha de Venta</th>
+                                                                        <th>Atención</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php $i = 1;?>
+                                                                        @foreach ($client->insuredpharmacies as $ip)
+                                                                            @foreach ($ip->purchaseinsuredpharmacies as $in)
+                                                                                <tr>
+                                                                                    <td>{{ $i++ }}</td>
+                                                                                    <td>{{ $ip->liquidation or '' }} </td>
+                                                                                    <td>{{ $in->digemid_product->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->digemid_product->name or '' }} {{ $in->digemid_product->concentration or '' }}</td>
+                                                                                    <td>{{ $ip->created_at or '' }}</td>
+                                                                                    <td>{{ $ip->employee->username or 'Sin asignar'}}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
 
+                                    </div> 
+                                </div>
+                                <!-- Personal-Information -->
+                            </div> 
+                            @endif
 
                             <div class="tab-pane" id="payments">
                                 <!-- Personal-Information -->
@@ -415,7 +483,7 @@
                                                                         <th>Fecha de Emisión</th>
                                                                         <th>Fecha de Envio</th>
                                                                         <th>Estado</th>
-                                                                        <th>Asignado</th>
+                                                                        <th>Usuario</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -424,7 +492,7 @@
                                                                         @foreach ($client->pay_documents as $p)
                                                                             <tr>
                                                                                 <td>{{ $i++ }}</td>
-                                                                                <td>{{ $p->code or '' }}</td>
+                                                                                <td><a href="{{ url('/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
                                                                                 <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                 <td>{{ $p->created_at or '' }}</td>
                                                                                 <td>{{ $p->emission_date or '' }}</td>
@@ -457,9 +525,9 @@
                                                                     <tr>
                                                                         <th>#</th>
                                                                         <th>Tipo de Documento</th>
-                                                                        <th>Fecha de Emisión</th>
-                                                                        <th>Fecha de Envio</th>
-                                                                        <th>Estado</th>
+                                                                        <th>Motivo</th>
+                                                                        <th>Fecha de Subida</th>
+                                                                        <th>Área</th>
                                                                         <th>Asignado</th>
                                                                     </tr>
                                                                 </thead>
@@ -586,6 +654,7 @@
             jQuery(document).ready(function($) {
                 $('#time_transference').timepicker({showMeridian: false});
                 $('#date_transference').datepicker();
+                $(".wraper").fadeIn();
             });
         </script>
 

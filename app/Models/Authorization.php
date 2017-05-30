@@ -47,7 +47,7 @@ class Authorization extends Model
         return $this->hasMany('App\Models\InsuredPharmacy', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
     }
     public function particularservices(){
-        return $this->hasOne('App\Models\ParticularService', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+        return $this->hasMany('App\Models\ParticularService', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
     }
 
     public function pay_documents(){
