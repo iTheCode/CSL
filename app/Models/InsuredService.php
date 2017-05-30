@@ -35,9 +35,9 @@ class InsuredService extends Model
     }
     //
     public function purchaseinsuredservices(){
-        return $this->hasOne('App\Models\PurchaseInsuredService', 'insured_service_id', 'id');
+        return $this->hasMany('App\Models\PurchaseInsuredService', 'insured_service_id', 'id');
     }
     public function purchasecoverageservices(){
-        return $this->hasOne('App\Models\PurchaseCoverageService', 'insured_service_id', 'id');
+        return $this->hasMany('App\Models\PurchaseCoverageService', 'insured_service_id', 'id');
     }
 }

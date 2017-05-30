@@ -207,7 +207,7 @@
                                                     <div class="form-group clearfix">
 
 
-                                                        <!--<label class="col-lg-3 control-label" for="metodo">Tipo de Busqueda</label>
+                                                        <label class="col-lg-3 control-label" for="metodo">Tipo de Busqueda</label>
                                                         <div class="col-lg-9">
                                                             <select name="metodo" id="metodo" class="form-control">
                                                                 <option>Seleccione un Tipo de Búsqueda</option>
@@ -215,19 +215,19 @@
                                                                 <option value="3">Manual</option>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group clearfix">
-                                                        <label class="col-lg-3 control-label" for="metodo">Tipo de Atención</label>
-                                                        <div class="col-lg-9">
-                                                                {{ Form::select('authorization_type_id', [null=>'Seleccione un tipo'] + $authorization_types, null, ['class' => 'form-control']) }}
                                                         </div>
-                                                    </div>
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-lg-3 control-label" for="metodo">Tipo de Atención</label>
+                                                            <div class="col-lg-9">
+                                                                    {{ Form::select('authorization_type_id', [null=>'Seleccione un tipo'] + $authorization_types, null, ['class' => 'form-control']) }}
+                                                            </div>
+                                                        </div>
                                                     <div class="form-group clearfix">
                                                         <label class="col-lg-3 control-label" for="userName">Nombres de Paciente</label>
                                                         <div class="col-lg-9">
                                                             <input class="form-control required" id="userName" name="userName" type="text" placeholder="Ingrese Nombres del Paciente o Número de DNI">
-                                                        </div>
-                                                    </div>-->
+                                                            </div>
+                                                    </div>
                                                 </section>
                                                 <h3>Paciente</h3>
                                                 <section>
@@ -327,10 +327,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group clearfix">
-                                                            <label class="col-lg-2 control-label" for="name"> Tipo de Cobertura *</label>
+                                                            <label class="col-lg-2 control-label" for="name"> Tipo de Cobertura / Servicio</label>
 
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-5">
                                                                 {{ Form::select('sub_coverage_type_id', [null=>'Seleccione la cobertura'] + $sub_coverage_types, null, ['class' => 'select2 form-control']) }}
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                    {{ Form::select('service_id', [null=>'Seleccione un servicio'] + $services, null, ['class' => 'select2 form-control']) }}
                                                             </div>
                                                         </div>
                                                         <div class="form-group clearfix">
@@ -453,13 +456,6 @@
                         $("#cop_var").val('').attr("disabled", false);
                     }
                 });
-                $("#print-button").click(function(){
-                    if(window.confirm('¿Está seguro de imprimir el documento?')){
-                        $(".modal-body").print();
-                        // emitir documento y enviarlo a la sunat //
-                    }
-                    //$("#custom-width-modal").delay(700).modal("hide");
-                });
                 $("select[name='authorization_type_id']").change(function(){
                     $("input[name='authorization_type_id']").val($(this).val());
                 });
@@ -518,8 +514,17 @@
                             location.reload();
                         }
                     }
-                    if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response =false;}$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = true;}else{ response = false; }}); if(!response){alert("Seleccione un paciente");}}else{$(this).text('Next').removeClass('create_atencion');}
-                    if (i == "4"){ $("a[href='#finish']").parent().html('<a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>');}
+                    if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response =false;}$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = response || true;}else{ response = response || false; }}); if(!response){alert("Seleccione un paciente"); location.reload(); }}else{$(this).text('Next').removeClass('create_atencion');}
+                    if (i == "4"){ 
+                        $("a[href='#finish']").parent().html('<hr><a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>'); 
+                        $("#print-button").click(function(){
+                            if(window.confirm('¿Está seguro de imprimir el documento?')){
+                                $(".modal-body").print();
+                                // emitir documento y enviarlo a la sunat //
+                            }
+                            //$("#custom-width-modal").delay(700).modal("hide");
+                        });
+                    }
                     var val = $('#userName').val();
                     var internal = "/getPatientAPI/";
                     var reniec = "/getNewPatientAPI/";

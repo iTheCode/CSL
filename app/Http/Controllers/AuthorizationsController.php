@@ -14,6 +14,7 @@ use \App\Models\Status;
 use \App\Models\Doctor;	
 use \App\Models\DiagnosticType;	
 use \App\Models\Coverage;	
+use \App\Models\Service;	
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -34,13 +35,28 @@ class AuthorizationsController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-			$response = Authorization::orderBy('intern_code','desc')->paginate(20);
+		return view('authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
+	public function showAuthorizationsAPI($input)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+			$input = json_decode($input);
+			if($input->data != "null"){
+				$response = Authorization::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
+			}else{
+				$response = Authorization::orderBy('intern_code','desc')->paginate(20);
+			}
+
 			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
 			//return $response;
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+		return view('authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
 	}
 
 	public function viewAuthorization($input)
@@ -56,7 +72,6 @@ class AuthorizationsController extends BaseController
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::orderby('name')->get());
 			$diagnostic_types_codes = Helpers::get_diagnostic_codes(DiagnosticType::orderBy('id')->get());
-
 			if(!isset($response->employee_id)){ $response->employee_id = $user->id; $response->save();}
 
 			if(isset($response->insuredservices))
@@ -73,7 +88,6 @@ class AuthorizationsController extends BaseController
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 
 
-			return $response;
 			//return $sub_coverage_types;
 		return view('authorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
 	}
@@ -87,8 +101,9 @@ class AuthorizationsController extends BaseController
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
 			$authorization_types = Helpers::get_list(AuthorizationType::all());
+			$services = Helpers::get_services(Service::whereNull('clinic_area_id')->get());
 			//dd($response = Authorization::all()->first()->patient);
-		return view('createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types]);
+		return view('createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
 	}
 	public function createSITEDS()
 	{

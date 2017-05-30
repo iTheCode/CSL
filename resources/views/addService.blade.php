@@ -151,7 +151,7 @@
 
                                                             <div class="col-md-4">
                                                             <label class="col-md-4 control-label" for="name"> Area *</label>
-                                                                {{ Form::select('clinic_area_id', [null=>'Seleccione un área'] + $areas, null, ['class' => 'select2 form-control  col-md-2']) }}
+                                                                {{ Form::select('clinic_area_id', [null=>'Seleccione un área'] + $areas , null, ['class' => 'select2 form-control  col-md-2']) }}
                                                             </div>
                                                                 <div class="col-md-4">
                                                                 <label class="col-md-2 control-label" for="name"> Exento</label>
@@ -220,7 +220,7 @@
                                         <hr>
                                                                     <div id="payments_options" class="pull-left text-left col-md-4">
                                                                             <p><strong>Tipo de Pago:</strong> <select class="form-control" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
-                                                                            <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta</option><option value="2">Factura</option><option value="3">Boleta No Paciente</option></select></p>
+                                                                            <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta Paciente</option><option value="3">Boleta DNI</option><option value="4">Boleta No DNI</option><option value="2">Factura RUC</option></select></p>
                                                                             <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
                                                                             <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                             <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
@@ -345,18 +345,7 @@
                     total = parseFloat(parseFloat(subtotal)+parseFloat(igv)).toFixed(2);
                     $("#totales").html('<p class="text-right"><b>Descuento ({{ $client->coverage->cop_var or "0"}}%) :</b> '+discountt+'</p><p class="text-right"><b>Op. Gravada:</b> '+opgravada+'</p><p class="text-right"><b>Op. No Gravada:</b> '+opnogravada+'</p><p class="text-right"><b>Op. Exonerada:</b> '+opexonerada+'</p><p class="text-right"><b>Subtotal:</b> '+subtotal+'</p><p class="text-right"><b>IGV (18%) :</b> '+igv+'</p><hr><h3 class="text-right">S./ '+total+'</h3>');
 
-                    $("#list-content").append("<tr id='"+arr[1]+"' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a id=\"delete\" val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5'>-</a></td></tr>");
-
-                    var data = "?service_id="+service_id+"&exented="+exonerado+"&quantity="+cantidad+"&pu="+pu+"&imp="+imp+"&authorization_id={{ $client->id }}&doctor_id="+doctor_id+"&clinic_area_id="+clinic_area_id;
-                    console.log(data);
-                    $.ajax({
-                            url: "{{ url('/addServicePay/') }}/"+data, 
-                            method: "GET",
-                            success: function(result){
-                                console.log(result);
-                            }
-
-                    });
+                    $("#list-content").append("<tr id='"+arr[1]+"' service_id='"+service_id+"'' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' clinic_area='"+clinic_area_id+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a id=\"delete\" val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5'>-</a></td></tr>");
 
                     return false;
 
@@ -393,8 +382,18 @@
                                 });
                 });
                 $("#print-button").click(function(){
+                    var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val()};
+                    var items = {};
+                    var a = 0;
+                    $("#list-content tr").each(function(){
+                        items[a] =  {'service_id': $(this).attr('service_id'), 'exented' : $(this).attr('exented'), 'quantity':$(this).attr('quantity'), 'pu' : $(this).attr('pu'), 'imp': $(this).attr('imp'), 'clinic_area_id' : $(this).attr('clinic_area') };
+                        a++;
+                    });
+                    values['items'] = items;
+                    var data = JSON.stringify(values);
+                    console.log(data);
                     $.ajax({
-                        url:"{{ url('/create_pay_document/') }}/"+data,
+                        url:"{{ url('/pay_edocument/') }}/"+data,
                         method: "GET",
                         success: function(result){
 
