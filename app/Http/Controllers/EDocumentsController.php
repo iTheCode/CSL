@@ -57,7 +57,7 @@ class EDocumentsController extends BaseController
 		    $position = $user->area->name;
 		}
 		$clinic = Clinic::find(1);
-		$pay_edocuments = PayEDocuments::select(DB::raw('max(code) as number'))->where("payment_document_type", $json->local_payment_document_type)->join('employees as e', 'e.id','=','employee_id')->where("e.serie", $user->serie)->orderBy('id', 'DESC')->limit(0)->offset(1)->->get();
+		$pay_edocuments = PayEDocuments::select(DB::raw('max(code) as number'))->where("payment_document_type", $json->local_payment_document_type)->join('employees as e', 'e.id','=','employee_id')->where("e.serie", $user->serie)->orderBy('id', 'DESC')->limit(0)->offset(1)->get();
 		$pay_edocument = new PayEDocuments();
 		$pay_edocument->code = $pay_edocuments->number + 1;
 		$pay_edocument->payment_document_type = $json->local_payment_document_type;
@@ -106,7 +106,7 @@ class EDocumentsController extends BaseController
 		$items = "";
 		foreach($json->items as $item){
 			$service = Service::find($item->service_id);
-			$items .= '{ "codUnidadMedida" : "NIU", "ctdUnidadItem" : "'.$item->quantity.'", "desItem" : "'.$service->name.'", "mtoValorUnitario" : "'.$item->pu.'", "mtoIgvItem" : "'.number_format(($item->imp*0.18),2).'", "tipAfeIGV" : "'.$item->exented.'0", "mtoPrecioVentaItem" : "'.$item->imp.'", "mtoValorVentaItem" : "'.$item->imp.'" }';
+			$items .= '{ "codUnidadMedida" : "NIU", "ctdUnidadItem" : "'.$item->quantity.'", "desItem" : "<![CDATA['.$service->name.']]>", "mtoValorUnitario" : "'.$item->pu.'", "mtoIgvItem" : "'.number_format(($item->imp*0.18),2).'", "tipAfeIGV" : "'.$item->exented.'0", "mtoPrecioVentaItem" : "'.$item->imp.'", "mtoValorVentaItem" : "'.$item->imp.'" }';
 		}
 		switch ($json->payment_document_type) {
 			case '1':
