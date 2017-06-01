@@ -316,6 +316,9 @@ class Helpers {
 		}
 
 
+		public static function get_ruc($ruc){
+				return file_get_contents("http://edunegociosperu.com/sunat-ws/?ruc=".$ruc);
+		}
 		public static function get_dni($input){
 				$result = file_get_contents("http://edunegociosperu.com/reniec/?dni=".$input);
 				if(!empty($result)){
