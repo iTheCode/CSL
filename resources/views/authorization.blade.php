@@ -501,6 +501,19 @@
                                                                             </tr>
                                                                         @endforeach
                                                                     @endif
+                                                                    @if(isset($client->pay_edocuments))
+                                                                        @foreach ($client->pay_edocuments as $p)
+                                                                            <tr>
+                                                                                <td>{{ $i++ }}</td>
+                                                                                <td><a href="{{ url('/pay_edocument/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
+                                                                                <td>{{ $p->pay_document_type->name or '' }}</td>
+                                                                                <td>{{ $p->created_at or '' }}</td>
+                                                                                <td>{{ $p->emission_date or '' }}</td>
+                                                                                <td><span class="label label-success">{{ Helpers::sunat_status($p->sunat_status) }}</span></td>
+                                                                                <td>{{ $p->employee->username or 'Sin asignar'}}</td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </tbody>
                                                             </table>
                                                         </div>
