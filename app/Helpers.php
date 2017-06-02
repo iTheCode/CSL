@@ -20,6 +20,9 @@ class Helpers {
 				break;
 		}
 	}
+	public static function number_format_sunat($number,$decimals){
+		return (string) str_replace(",","",number_format($number,$decimals));
+	}
 	public static function numtoletras($xcifra)
 	{
 	    $xarray = array(0 => "Cero",
@@ -317,7 +320,7 @@ class Helpers {
 
 
 		public static function get_ruc($ruc){
-				return file_get_contents("http://edunegociosperu.com/sunat-ws/?ruc=".$ruc);
+				return json_decode(file_get_contents("http://edunegociosperu.com/sunat-ws/?ruc=".$ruc));
 		}
 		public static function get_dni($input){
 				$result = file_get_contents("http://edunegociosperu.com/reniec/?dni=".$input);

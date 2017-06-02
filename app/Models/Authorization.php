@@ -53,4 +53,7 @@ class Authorization extends Model
     public function pay_documents(){
         return $this->hasMany('App\Models\PayDocument', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
     }
+    public function pay_edocuments(){
+        return $this->hasMany('App\Models\PayEDocument', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+    }
 }
