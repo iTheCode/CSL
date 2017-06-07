@@ -29,6 +29,7 @@ Route::get('/createAtencion/', ['middleware' => 'auth',  'as' => 'registrar_aten
 //Pacientes Routes
 Route::get('/pacientes/{input?}', ['middleware' => 'auth',  'as' => 'pacientes', 'uses' => 'PatientsController@showPatients']);
 Route::get('/registrar_paciente/', ['middleware' => 'auth',  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
+Route::get('/paciente/{input?}', ['middleware' => 'auth',  'as' => 'view_patient', 'uses' => 'PatientsController@view_patient']);
 
 
 //Caja & Servicios Routes

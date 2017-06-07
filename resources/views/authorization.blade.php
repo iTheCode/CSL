@@ -111,40 +111,40 @@
                 -->
                     <div class="row user-tabs">
                         <div class="col-sm-9 col-lg-6">
-                            <ul class="nav nav-tabs tabs">
-                            <li class="active tab">
-                                <a href="#details" data-toggle="tab" aria-expanded="false" class="active"> 
+                            <ul class="nav nav-tabs tabs" style="width: 100%;">
+                            <li class="tab" style="width: 20%;">
+                                <a href="#details" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-home"></i></span> 
                                     <span class="hidden-xs">Principal</span> 
                                 </a> 
                             </li> 
-                            <li class="tab"> 
-                                <a href="#services" data-toggle="tab" aria-expanded="false"> 
+                            <li class="tab" style="width: 20%;"> 
+                                <a href="#services" data-toggle="tab" aria-expanded="false" class=""> 
                                     <span class="visible-xs"><i class="fa fa-user"></i></span> 
                                     <span class="hidden-xs">Servicios</span> 
                                 </a> 
                             </li> 
+
                             @if(isset($client->insuredpharmacies))
-                            <li class="tab"> 
-                                <a href="#pharmacy" data-toggle="tab" aria-expanded="true"> 
+                            <li class="tab" style="width: 20%;"> 
+                                <a href="#pharmacy" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Farmacia</span> 
                                 </a> 
                             </li> 
                             @endif
-                            <li class="tab"> 
-                                <a href="#payments" data-toggle="tab" aria-expanded="true"> 
+                            <li class="tab" style="width: 20%;"> 
+                                <a href="#payments" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Pagos</span> 
                                 </a> 
                             </li> 
-                            <li class="tab"> 
-                                <a href="#documents" data-toggle="tab" aria-expanded="true"> 
+                            <li class="tab" style="width: 20%;"> 
+                                <a href="#documents" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Documentos</span> 
                                 </a> 
-                            </li> 
-                        <div class="indicator"></div></ul> 
+                            </li> </ul> 
                         </div>
                         <div class="hidden-xs col-sm-3 col-lg-6">
                             <div class="pull-right">
@@ -159,6 +159,7 @@
                               </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-12"> 
                         
@@ -505,7 +506,7 @@
                                                                         @foreach ($client->pay_edocuments as $p)
                                                                             <tr>
                                                                                 <td>{{ $i++ }}</td>
-                                                                                <td><a href="{{ url('/pay_edocument/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
+                                                                                <td><a href="{{ url('/pay_edocument/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->serie }}-{{ $p->code or '' }}</a></td>
                                                                                 <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                 <td>{{ $p->created_at or '' }}</td>
                                                                                 <td>{{ $p->emission_date or '' }}</td>

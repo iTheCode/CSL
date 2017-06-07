@@ -12,10 +12,6 @@ class Authorization extends Model
      *
      * @var array
      */
-    protected $table = 'authorizations';
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 
     public function getAuthIdentifier()
     {
@@ -28,6 +24,9 @@ class Authorization extends Model
 
     public function insureds(){
         return $this->hasOne('App\Models\Insured', 'patient_id', 'patient_id');
+    }
+    public function doctor(){
+        return $this->hasOne('App\Models\Doctor', 'id', 'doctor_id');
     }
 
     public function coverage(){

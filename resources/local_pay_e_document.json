@@ -1,0 +1,29 @@
+{ 
+
+	"authorization_id" : "", 
+	"discountp" : "", 
+	"discountt" : , 
+	"importe" : , 
+	"opgravada" : , 
+	"opnogravada" : , 
+	"opexonerada" : , 
+	"subtotal" : , 
+	"igv" : , 
+	"total": , 
+	"is_coverage" : 0, 
+	"payment_type" : , 
+	"view_print": ,
+	"payment_document_type" : , 
+	"DNI" : , 
+	"RUC": ,
+	"items":{
+		"0":{
+			"service_id": , 
+			"exented" : , 
+			"quantity": , 
+			"pu" : , 
+			"imp": , 
+			"clinic_area_id" : 
+		}
+	}
+}

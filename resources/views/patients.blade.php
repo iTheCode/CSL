@@ -98,7 +98,7 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title"><a href="{{ url('/registrar_atencion') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Paciente</a> </h4>
+                                <!--<h4 class="pull-left page-title"><a href="{{ url('/registrar_atencion') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Paciente</a> </h4>-->
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
                                     <li class="active">Atenciones</li>
@@ -138,7 +138,7 @@
                                                                 <td>{{ $user->document_identity_code or 'Corregir DNI' }}</td>
                                                                 <td>{{ $user->name }} {{ $user->paternal }} {{ $user->maternal }}</td>
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
-                                                                <td>{{ Helpers::get_age($user->birthday) }}</td><td><a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" ><i class="md md-account-box"></i> </a></td>
+                                                                <td>{{ Helpers::get_age($user->birthday) }}</td><td><a href="{{ url('/paciente/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" ><i class="md md-account-box"></i> </a></td>
                                                             </tr>
                                                         @endforeach
                                                             

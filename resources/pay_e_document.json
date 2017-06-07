@@ -1,0 +1,31 @@
+{ 
+	"cabecera": 
+	{
+		"tipOperacion": "01", 
+		"fecEmision" : "2017-06-02", 
+		"tipDocUsuario" : "03", 
+		"numDocUsuario" : "0", 
+		"rznSocialUsuario" : "<![CDATA[]]>", 
+		"tipMoneda" : "PEN", 
+		"sumDsctoGlobal" : "1866.15", 
+		"mtoDescuentos" : "1866.15", 
+		"mtoOperGravadas" : "202.95", 
+		"mtoOperInafectas" : "4.40", 
+		"mtoOperExoneradas" : "0.00", 
+		"mtoIGV" : "36.53", 
+		"mtoImpVenta" : "243.88"
+	}, 
+	"detalle" : [
+			{ 
+				"codUnidadMedida" : "NIU", 
+				"ctdUnidadItem" : "1.00", 
+				"desItem" : "<![CDATA[TX QX DEL ENCEFALOMENINGOCELE  Y DE LA CRANEOSTENOSIS. CRANEOPLASTIAS]]>", 
+				"mtoValorUnitario" : "1639.00", 
+				"mtoDsctoItem" : "1475.10", 
+				"mtoIgvItem" : "295.02", 
+				"tipAfeIGV" : "10", 
+				"mtoPrecioVentaItem" : "1639.00", 
+				"mtoValorVentaItem" : "1639.00" 
+			}
+			]
+}

@@ -40,7 +40,13 @@
                                                                 <td><a href="/paciente/{{ $user->patient->id or '' }}">{{ $user->patient->name or ''}} {{ $user->patient->paternal or '' }} {{ $user->patient->maternal or '' }}</a></td>
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
                                                                 <td>{{ $user->date or 'Corregir Fecha' }}</td>
-                                                                <td><a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$user->employee->username or 'Sin asignar'}}"><i class="md md-launch"></i> </a></td>
+                                                                <td>
+                                                                <div class="btn-group m-b-10">
+                                            <a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{$user->employee->username or 'Sin asignar'}}"><i class="md md-launch"></i></a> 
+                                            <a href="{{ url('/caja/servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Servicios"> <i class="md md-add-to-photos"></i></a> 
+                                            <a href="{{ url('/caja/servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light btn-success m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Farmacia"> <i class="ion-medkit"></i></a> 
+                                        </div>
+                                        </td>
                                                             </tr>
                                                         @endforeach
                                                             

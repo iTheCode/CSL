@@ -25,6 +25,9 @@ class Patient extends Model
     public function area(){
         return $this->hasOne('App\Models\Area', 'id', 'area_id');
     }
+    public function authorizations(){
+        return $this->hasMany('App\Models\Authorization', 'patient_id', 'id')->orderBy('id', 'desc'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
+    }
 
     public function insureds(){
         return $this->hasOne('App\Models\Insured', 'patient_id', 'id');
