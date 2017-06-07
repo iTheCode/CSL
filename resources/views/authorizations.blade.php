@@ -181,7 +181,7 @@
                     if(object != null){ data = object.val(); }else{data = null;}
                     $.ajax(
                               {
-                                  url: "{{ url('/authorizationsAPI/') }}/{\"data\": \""+data+"\"}?page="+page, 
+                                  url: "{{ url('/authorizationsAPI/') }}/{\"data\": \""+data+"\", \"from\": \"authorizations\"}?page="+page, 
                                   method: "GET",
                                    success: function(result)
                                   {

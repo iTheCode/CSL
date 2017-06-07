@@ -57,6 +57,7 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
+                                    <li><a href="{{ url('/farmacia/atenciones') }}">Atenciones</a></li>
                                     <li><a href="{{ url('/farmacia/liqudaciones') }}">Liquidaciones</a></li>
                                     <li><a href="{{ url('/farmacia/almacen') }}">Almacén</a></li>
                                     <li><a href="{{ url('/farmacia/reportes') }}">Reportes</a></li>
@@ -86,8 +87,8 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-local-atm"></i> <span> Facturación </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/facturacion/sunat') }}">Estado SUNAT</a></li>
-                                    <li><a href="{{ url('/facturacion/lotes') }}">Generar Lotes</a></li>
+                                    <li><a href="{{ url('/facturacion/sunat') }}">Documentos Emitidos</a></li>
+                                    <li><a href="{{ url('/facturacion/lotes') }}">Tramas</a></li>
                                     <li><a href="{{ url('/facturacion/proveedores') }}">Proveedores</a></li>
                                     <li><a href="{{ url('/facturacion/contabilidad') }}">Contabilidad</a></li>
                                 </ul>

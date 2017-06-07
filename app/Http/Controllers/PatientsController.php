@@ -55,6 +55,19 @@ class PatientsController extends BaseController
 		
 		return view('patientsAPI', ['users' => $response]);
 	}
+	public function view_patient($input)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		$response = Patient::find($input);
+
+		if(isset($response->authorizations))
+			$response->authorizations;
+		return view('view_patient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'patient' => $response]);
+	}
 
 	public function getPatientJSON($input)
 	{

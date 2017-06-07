@@ -3,6 +3,27 @@
 namespace App;
 
 class Helpers {
+	
+	public static function save_file($document,$path,$content,$method){
+		switch ($method) {
+			case "ftp":
+				if (file_put_contents('ftp://root:81848133@csluren.sytes.net:8900/'.$path."/".$document, $content)) { $return = true; }
+				break;
+			case "local":
+				if(!file_exists($path.$document)){
+				    $fc = iconv('UTF-8//IGNORE', 'ISO-8859-1//IGNORE', $content); 
+					$file = fopen($path.$document, "w:ANSI");
+					fwrite($file, $fc);
+					fclose($file);
+					$return = true;
+				}
+				break;
+			default:
+				$return = false;
+				break;
+		}
+		return $return;
+	}
 	public static function sunat_status($num){
 		switch ($num) {
 			case '1':
