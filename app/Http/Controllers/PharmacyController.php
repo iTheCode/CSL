@@ -31,4 +31,18 @@ use Illuminate\Database\Eloquent\Model as Model;
 class PharmacyController extends BaseController
 {
 	
+	public function showRecents()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+			$response = Authorization::orderBy('intern_code','desc')->paginate(20);
+			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
+			//return $response;
+			$total_pages = ceil($response->total()/20);
+			$paginate = Helpers::manual_paginate('atenciones','/atenciones?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
+		return view('farmaciaRecents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+	}
 }

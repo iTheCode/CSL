@@ -3,7 +3,45 @@
 namespace App;
 
 class Helpers {
-	
+	public static function get_color($id = null){
+		switch ($id) {
+			case '1':
+				return "btn-inverse";
+				break;
+			
+			case '2':
+				return "btn-primary";
+				break;
+			
+			case '3':
+				return "btn-info";
+				break;
+			
+			case '4':
+				return "btn-pink";
+				break;
+			
+			case '5':
+				return "btn-success";
+				break;
+			
+			case '6':
+				return "btn-warning";
+				break;
+			
+			case '7':
+				return "btn-danger";
+				break;
+			
+			case '8':
+				return "btn-purple";
+				break;
+			
+			default:
+				return "btn-default";
+				break;
+		}
+	}
 	public static function save_file($document,$path,$content,$method){
 		switch ($method) {
 			case "ftp":

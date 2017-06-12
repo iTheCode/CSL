@@ -43,6 +43,7 @@ Route::get('/pay_edocument/{input}', ['middleware' => 'auth',  'as' => 'payedocu
 Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => 'centro', 'uses' => 'CentroController@centro']);
 
 //Farmacia Routes
+Route::get('/farmacia/atenciones/', ['middleware' => 'auth',  'as' => 'farmacia', 'uses' => 'PharmacyController@showRecents']);
 //Route::get('/farmacia/liquidaciones/', ['middleware' => 'auth',  'as' => 'liquidaciones', 'uses' => 'PharmacyController@centro']);
 //Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'uses' => 'PharmacyController@centro']);
 //Route::get('/farmacia/liquidacion/{input?}', ['middleware' => 'auth',  'as' => 'liquidacion', 'uses' => 'PharmacyController@centro']);

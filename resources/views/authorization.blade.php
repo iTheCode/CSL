@@ -109,9 +109,9 @@
                         </div>
                     </div>
                 -->
-                    <div class="row user-tabs">
+                    <div class="row user-tabs hidden-xs">
                         <div class="col-sm-9 col-lg-6">
-                            <ul class="nav nav-tabs tabs" style="width: 100%;">
+                            <ul class="nav nav-tabs tabs tabs-top" style="width: 100%;">
                             <li class="tab" style="width: 20%;">
                                 <a href="#details" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-home"></i></span> 
@@ -319,7 +319,7 @@
                                             </div> 
                                             <div class="panel-body"> 
                                                 <div class="m-b-0">
-                                                    <h5>Atención Al<span class="pull-right">95%</span></h5>
+                                                    <h5>Atención <span class="pull-right">95%</span></h5>
                                                     <div class="progress">
                                                         <div class="progress-bar progress-bar-info wow animated progress-animated" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
                                                             <span class="sr-only">95% Complete</span>

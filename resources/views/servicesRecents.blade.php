@@ -195,6 +195,7 @@
                                             load_data(page, $(this));
                                         }
                                     });
+                                        $('[data-toggle="tooltip"]').tooltip();
                                   }
                     });
             }

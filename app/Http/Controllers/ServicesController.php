@@ -60,6 +60,16 @@ class ServicesController extends BaseController
 			$service_exented = Helpers::get_list(ServiceExented::all());
 			date_default_timezone_set('America/Lima');
 			$date = date("F j, Y, g:i a");
+			if(isset($response->coverage)){
+				if(count($response->insuredservices) == 0 && $response->coverage->cop_var != "100"){
+
+					$response->coverage->cop_var = "0";
+					$response->insureds->insurance->factor->factor = "1";
+
+				}
+				
+			}
+
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 			//return $sub_coverage_types;
 		return view('addService', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);

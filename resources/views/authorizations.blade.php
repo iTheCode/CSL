@@ -105,7 +105,6 @@
                                 </ol>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default" style="display: none;">
@@ -192,6 +191,8 @@
                                             load_data(page, $(this));
                                         }
                                     });
+
+                                        $('[data-toggle="tooltip"]').tooltip();
                                   }
                     });
             }
