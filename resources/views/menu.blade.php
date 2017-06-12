@@ -8,9 +8,9 @@
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ $user }}<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Perfil<div class="ripple-wrapper"></div></a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-settings"></i> Configuración</a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-settings-power"></i> Salir</a></li>
+                                    <!--<li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Perfil<div class="ripple-wrapper"></div></a></li>
+                                    <li><a href="javascript:void(0)"><i class="md md-settings"></i> Configuración</a></li>-->
+                                    <li><a href="{{ url('/logout') }}"><i class="md md-settings-power"></i> Salir</a></li>
                                 </ul>
                             </div>
                             
@@ -27,7 +27,7 @@
                             <li class="has_sub">
                                 <a href="index.html" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/admision/atenciones') }}">Atenciones</a></li>
+                                    <li><a href="{{ url('/admision/atenciones') }}">Atenciones Médicas</a></li>
                                     <li><a href="{{ url('/admision/citas') }}">Citas</a></li>
                                     <li><a href="{{ url('/admision/horario') }}">Horario Médico</a></li>
                                 </ul>
@@ -58,7 +58,7 @@
                                 <a href="#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/farmacia/atenciones') }}">Atenciones</a></li>
-                                    <li><a href="{{ url('/farmacia/liqudaciones') }}">Liquidaciones</a></li>
+                                    <li><a href="{{ url('/farmacia/liquidaciones') }}">Liquidaciones</a></li>
                                     <li><a href="{{ url('/farmacia/almacen') }}">Almacén</a></li>
                                     <li><a href="{{ url('/farmacia/reportes') }}">Reportes</a></li>
                                 </ul>

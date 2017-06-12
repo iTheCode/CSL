@@ -45,6 +45,7 @@ class AuthorizationsController extends BaseController
 		    $position = $user->area->name;
 		}
 			$input = json_decode($input);
+			$from = $input->from;
 			if($input->data != "null"){
 				$response = Authorization::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
 			}else{
@@ -56,7 +57,7 @@ class AuthorizationsController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+		return view('authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'from' => $from, 'currentPage' => $response->CurrentPage()]);
 	}
 
 	public function viewAuthorization($input)
@@ -101,7 +102,7 @@ class AuthorizationsController extends BaseController
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
 			$authorization_types = Helpers::get_list(AuthorizationType::all());
-			$services = Helpers::get_services(Service::whereNull('clinic_area_id')->get());
+			$services = Helpers::get_services(Service::all());
 			//dd($response = Authorization::all()->first()->patient);
 		return view('createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
 	}
