@@ -105,60 +105,188 @@
                                                 <div class="modal-content"> 
                                                     <div class="modal-header"> 
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                                                        <h4 class="modal-title">Modal Content is Responsive</h4> 
+                                                        <h4 class="modal-title">Datos de Paciente</h4> 
                                                     </div> 
                                                     <div class="modal-body"> 
+                                                        <div id="patient_data">
+                                                            <div class="row"> 
+                                                                <div class="col-md-4"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-1" class="control-label">Nombre</label> 
+                                                                        <input type="text" class="form-control" name="name" value="{{ $patient->name }}"> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="col-md-4"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-2" class="control-label">Paterno</label> 
+                                                                        <input type="text" class="form-control" name="paterno" value="{{ $patient->paternal }}"> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="col-md-4"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-2" class="control-label">Materno</label> 
+                                                                        <input type="text" class="form-control" name="materno" value="{{ $patient->maternal }}"> 
+                                                                    </div> 
+                                                                </div> 
+                                                            </div> 
+                                                            <div class="row"> 
+                                                                <div class="col-md-12"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-3" class="control-label">Dirección</label> 
+                                                                        <input type="text" class="form-control" name="direccion" value="{{ $patient->direction }}"> 
+                                                                    </div> 
+                                                                </div>  
+                                                            </div> 
+                                                            <div class="row"> 
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-4" class="control-label">DNI</label> 
+                                                                        <input type="text" class="form-control" name="document_identity_code" value="{{ $patient->document_identity_code }}"> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-5" class="control-label">Fecha de Nacimiento</label> 
+                                                                        <input type="text" class="form-control" name="fecha" value="{{ $patient->birthday }}"> 
+                                                                    </div> 
+                                                                </div> 
+                                                            </div>
+                                                            <div class="row"> 
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-3" class="control-label">Sexo</label> 
+                                                                        <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                    </div> 
+                                                                </div>
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-6" class="control-label">Teléfono</label> 
+                                                                        <input type="text" class="form-control" name="telefono" value="{{ $patient->phone }}"> 
+                                                                    </div> 
+                                                                </div> 
+                                                            </div>
+                                                            @if(isset($patient->insureds))
+                                                            <hr>
+                                                                <div class="row"> 
+                                                                    <div class="col-md-6"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-3" class="control-label">Compañía</label> 
+                                                                            <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                        </div> 
+                                                                    </div>
+                                                                    <div class="col-md-6"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-6" class="control-label">Tipo de Afiliación</label> 
+                                                                            <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                                        </div> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="row"> 
+                                                                    <div class="col-md-6"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-3" class="control-label">Código de Asegurado</label> 
+                                                                            <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                        </div> 
+                                                                    </div>
+                                                                    <div class="col-md-6"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-6" class="control-label">Relación al Titular</label> 
+                                                                            <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                                        </div> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="row"> 
+                                                                    <div class="col-md-12"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-3" class="control-label">Aseguradora</label> 
+                                                                            <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                        </div> 
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="row"> 
+                                                                    <div class="col-md-4"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-6" class="control-label">Nombre del Titular</label> 
+                                                                            <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                                        </div> 
+                                                                    </div> 
+                                                                    <div class="col-md-4"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-3" class="control-label">Ap. Paterno del Titular</label> 
+                                                                            <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                        </div> 
+                                                                    </div>
+                                                                    <div class="col-md-4"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="field-6" class="control-label">Ap. Materno del Titular</label> 
+                                                                            <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                                        </div> 
+                                                                    </div> 
+                                                                </div> 
+                                                            @else
+                                                                <button id="convert_insured" type="button" class="pull-right btn btn-info waves-effect waves-light">Asegurar</button> <br><br><br>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <div id="insured_convert" style="display: none;">
+                                                    <div class="text-center"><a href="#" id="create_company">¿No se encuentra la compañía? Regístrala.</a></div><br><br>
                                                         <div class="row"> 
                                                             <div class="col-md-6"> 
                                                                 <div class="form-group"> 
-                                                                    <label for="field-1" class="control-label">Name</label> 
-                                                                    <input type="text" class="form-control" id="field-1" placeholder="John"> 
-                                                                </div> 
-                                                            </div> 
-                                                            <div class="col-md-6"> 
-                                                                <div class="form-group"> 
-                                                                    <label for="field-2" class="control-label">Surname</label> 
-                                                                    <input type="text" class="form-control" id="field-2" placeholder="Doe"> 
-                                                                </div> 
-                                                            </div> 
-                                                        </div> 
-                                                        <div class="row"> 
-                                                            <div class="col-md-12"> 
-                                                                <div class="form-group"> 
-                                                                    <label for="field-3" class="control-label">Address</label> 
+                                                                    <label for="field-3" class="control-label">Compañía</label> 
                                                                     <input type="text" class="form-control" id="field-3" placeholder="Address"> 
                                                                 </div> 
+                                                            </div>
+                                                            <div class="col-md-6"> 
+                                                                <div class="form-group"> 
+                                                                    <label for="field-6" class="control-label">Tipo de Afiliación</label> 
+                                                                    <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                                </div> 
                                                             </div> 
                                                         </div> 
                                                         <div class="row"> 
-                                                            <div class="col-md-4"> 
+                                                            <div class="col-md-6"> 
                                                                 <div class="form-group"> 
-                                                                    <label for="field-4" class="control-label">City</label> 
-                                                                    <input type="text" class="form-control" id="field-4" placeholder="Boston"> 
+                                                                    <label for="field-3" class="control-label">Código de Asegurado</label> 
+                                                                    <input type="text" class="form-control" id="field-3" placeholder="Address"> 
                                                                 </div> 
-                                                            </div> 
-                                                            <div class="col-md-4"> 
+                                                            </div>
+                                                            <div class="col-md-6"> 
                                                                 <div class="form-group"> 
-                                                                    <label for="field-5" class="control-label">Country</label> 
-                                                                    <input type="text" class="form-control" id="field-5" placeholder="United States"> 
-                                                                </div> 
-                                                            </div> 
-                                                            <div class="col-md-4"> 
-                                                                <div class="form-group"> 
-                                                                    <label for="field-6" class="control-label">Zip</label> 
+                                                                    <label for="field-6" class="control-label">Relación al Titular</label> 
                                                                     <input type="text" class="form-control" id="field-6" placeholder="123456"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
                                                         <div class="row"> 
                                                             <div class="col-md-12"> 
-                                                                <div class="form-group no-margin"> 
-                                                                    <label for="field-7" class="control-label">Personal Info</label> 
-                                                                    <textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px"></textarea> 
+                                                                <div class="form-group"> 
+                                                                    <label for="field-3" class="control-label">Aseguradora</label> 
+                                                                    <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                </div> 
+                                                            </div>
+                                                        </div> 
+                                                        <div class="row"> 
+                                                            <div class="col-md-4"> 
+                                                                <div class="form-group"> 
+                                                                    <label for="field-6" class="control-label">Nombre del Titular</label> 
+                                                                    <input type="text" class="form-control" id="field-6" placeholder="123456"> 
+                                                                </div> 
+                                                            </div> 
+                                                            <div class="col-md-4"> 
+                                                                <div class="form-group"> 
+                                                                    <label for="field-3" class="control-label">Ap. Paterno del Titular</label> 
+                                                                    <input type="text" class="form-control" id="field-3" placeholder="Address"> 
+                                                                </div> 
+                                                            </div>
+                                                            <div class="col-md-4"> 
+                                                                <div class="form-group"> 
+                                                                    <label for="field-6" class="control-label">Ap. Materno del Titular</label> 
+                                                                    <input type="text" class="form-control" id="field-6" placeholder="123456"> 
                                                                 </div> 
                                                             </div> 
                                                         </div> 
-                                                    </div> 
+                                                    </div>
                                                     <div class="modal-footer"> 
                                                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
                                                         <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button> 
@@ -327,15 +455,15 @@
         <!-- jQuery  -->
         <script src="/assets/pages/jquery.chat.js"></script>
         
-        <!--Morris Chart-->
-        <script src="/assets/plugins/raphael/raphael-min.js"></script>
-        <script src="/assets/plugins/morris.js/morris.min.js"></script>
         
-        <!-- jQuery  -->
-        <script src="/assets/pages/jquery.dashboard.js"></script>
         
         <script type="text/javascript">
             jQuery(document).ready(function($){
+                $("#convert_insured").click(function(event) {
+                    $(this).fadeOut();
+                    $(".modal-title").text("Convertir a Asegurado");
+                    $("#patient_data").slideUp().parent().next().slideDown();
+                });
             var $timeline_block = $('.cd-timeline-block');
 
                 //hide timeline blocks which are outside the viewport
