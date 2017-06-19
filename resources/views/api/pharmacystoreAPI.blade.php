@@ -17,7 +17,7 @@
 
 							                            <div class="col-sm-6 col-lg-3">
 							                                <div class="mini-stat clearfix bx-shadow bg-white">
-							                                    <a href="/test" class="text-white " ><span class="mini-stat-icon bg-info waves-effect"><i class="fa  fa-plus-square"></i></span></a>
+							                                    <a href="/test" class="text-white " ><span class="mini-stat-icon bg-info waves-effect"><i class="fa  fa-flask"></i></span></a>
 							                                    <div class="mini-stat-info text-right text-dark">
 							                                        <span class="name text-dark">{{ $product->name }}</span>
 							                                        {{ $product->concentration }} {{ $product->presentation }}
