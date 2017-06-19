@@ -17,7 +17,7 @@
 
 							                            <div class="col-sm-6 col-lg-3">
 							                                <div class="mini-stat clearfix bx-shadow bg-white">
-							                                    <a href="/test" class="text-white " ><span class="mini-stat-icon bg-info waves-effect"><i class="fa fa-flask"></i></span></a>
+							                                    <a href="#" class="text-white " ><span class="mini-stat-icon bg-purple waves-effect"><i class="fa fa-flask"></i></span></a>
 							                                    <div class="mini-stat-info text-right text-dark">
 							                                        <span class="name text-dark">{{ $product->name }}</span>
 							                                        {{ $product->concentration }} {{ $product->presentation }}
@@ -25,9 +25,7 @@
 							                                    <br>
 							                                    <hr class="m-t-10">
 							                                    <ul class="text-center social-links list-inline m-0">
-							                                        <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-info"></i><span class="pull-right text-muted">Stock</span>
-							                                        </div>
-							                                        <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-info"></i><span class="pull-right text-muted">Estado</span>
+							                                        <div class="text-left">                                     <span class="pull-right text-muted">Stock</span>
 							                                        </div>
 							                                    </ul>
 							                                </div>

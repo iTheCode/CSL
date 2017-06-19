@@ -94,14 +94,13 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-                        
+
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title"><a href="{{ url('/admision/crear') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nueva Atención</a> </h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
-                                    <li class="active">Atenciones</li>
+                                    <li class="active">Documentos de Pago</li>
                                 </ol>
                             </div>
                         </div>
@@ -180,7 +179,7 @@
                     if(object != null){ data = object.val(); }else{data = null;}
                     $.ajax(
                               {
-                                  url: "{{ url('/authorizationsAPI/') }}/{\"data\": \""+data+"\", \"from\": \"authorizations\"}?page="+page, 
+                                  url: "{{ url('/paydocumentsAPI/') }}/{\"data\": \""+data+"\"}?page="+page, 
                                   method: "GET",
                                    success: function(result)
                                   {
