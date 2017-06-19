@@ -94,11 +94,10 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-                        
+
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title"><a href="{{ url('/admision/crear') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nueva Atención</a> </h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
                                     <li class="active">Atenciones</li>
@@ -107,8 +106,71 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel panel-default" style="display: none;">
+                                <div class="panel panel-default">
 
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Lista de Lotes ( 
+                                                        Total {{ $lotes->total() }} )</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Código</th>
+                                                                <th>Aseguradora</th>
+                                                                <th>Intervalo</th>
+                                                                <th>Fecha</th>
+                                                                <th>Facturas Asociadas</th>
+                                                                <th>Acciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php $i = (20*($currentPage-1))+1;?>
+                                                        @foreach ($lotes as $lote)
+                                                            <tr>
+                                                                <td>{{ $i++ }}</td>
+                                                                <td>{{ $lote->code}}</td>
+                                                                <td>{{ $lote->insurance->name}}</td>
+                                                                <td>{{ $lote->init_date}} <-> {{ $lote->end_date}}</td>
+                                                                <td>{{ $lote->date}}</td>
+                                                                <td>
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-info dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Ver Facturas <span class="caret"></span></button>
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            @foreach($lote->pay_documents as $p)
+                                                                            <li><a href="{{ url('/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">Factura {{ $p->code }}</a></li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-purple dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Seleccione <span class="caret"></span></button>
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            <li><a href="#">Regenerar Lote</a></li>
+                                                                            <li><a href="#">Exportar Lote</a></li>
+                                                                            <li><a href="#">Eliminar Lote</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col-sm-12">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="datatable-editable_paginate">
+                                             <?php echo $paginate;?>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div> <!-- End row -->
@@ -175,30 +237,6 @@
             /* ==============================================
             Counter Up
             =============================================== */
-            function load_data(page = null,object = null){
-                    $('.panel-body').slideUp(1000);
-                    if(object != null){ data = object.val(); }else{data = null;}
-                    $.ajax(
-                              {
-                                  url: "{{ url('/authorizationsAPI/') }}/{\"data\": \""+data+"\", \"from\": \"authorizations\"}?page="+page, 
-                                  method: "GET",
-                                   success: function(result)
-                                  {
-                                    $('.panel').html(result).fadeIn(1000).children(".panel-body").fadeIn(1000);
-
-                                    $("#search").keypress(function(e) {
-                                        if(e.which == 13) {
-                                            load_data(page, $(this));
-                                        }
-                                    });
-
-                                        $('[data-toggle="tooltip"]').tooltip();
-                                  }
-                    });
-            }
-            jQuery(document).ready(function($) {
-            load_data();
-            });
         </script>
 
     

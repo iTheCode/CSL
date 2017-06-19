@@ -38,5 +38,5 @@ class PurchaseInsuredPharmacy extends Model
     }
     public function product_pharm_exented(){
         return $this->hasOne('App\Models\ProducPharmExented', 'id', ' product_pharm_exented_id');
-    }
+    } 
 }

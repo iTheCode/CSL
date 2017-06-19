@@ -47,15 +47,15 @@ Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => '
 
 //Farmacia Routes
 Route::get('/farmacia/atenciones/', ['middleware' => 'auth',  'as' => 'farmacia', 'uses' => 'PharmacyController@showRecents']);
-//Route::get('/farmacia/liquidaciones/', ['middleware' => 'auth',  'as' => 'liquidaciones', 'uses' => 'PharmacyController@centro']);
+Route::get('/farmacia/liquidaciones/', ['middleware' => 'auth',  'as' => 'liquidaciones', 'uses' => 'PharmacyController@showLiquidations']);
 Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'uses' => 'PharmacyController@pharmacyStore']);
 //Route::get('/farmacia/liquidacion/{input?}', ['middleware' => 'auth',  'as' => 'liquidacion', 'uses' => 'PharmacyController@centro']);
 //Route::get('/farmacia/liquidacion/nueva/{input?}', ['middleware' => 'auth',  'as' => 'nueva_liquidacion', 'uses' => 'PharmacyController@centro']);
 
 //Facturacion Routes
 
-//Route::get('/facturacion/sunat/', ['middleware' => 'auth',  'as' => 'sunat', 'uses' => 'FacturactionController@centro']);
-//Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', 'uses' => 'FacturactionController@centro']);
+Route::get('/facturacion/sunat/', ['middleware' => 'auth',  'as' => 'sunat', 'uses' => 'FacturationController@showDocuments']);
+Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', 'uses' => 'FacturationController@showTramas']);
 //Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturactionController@centro']);
 //Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturactionController@centro']);
 
@@ -74,4 +74,6 @@ Route::get('/ServiceAPI/{input?}', ['middleware' => 'auth',  'as' => 'serviceAPI
 Route::get('/ServiceFindAPI/{input?}', ['middleware' => 'auth',  'as' => 'servicefindAPI', 'uses' => 'ServicesController@ServiceAPI']);
 Route::get('/getNewPatientAPI/{input?}', ['middleware' => 'auth',  'as' => 'getNewPatientAPI', 'uses' => 'PatientsController@getNewPatientAPI']);
 Route::get('/authorizationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'authorizationsAPI', 'uses' => 'AuthorizationsController@showAuthorizationsAPI']);
-Route::get('/pharmacystoreAPI/{input?}', ['middleware' => 'auth',  'as' => 'authorizationsAPI', 'uses' => 'PharmacyController@pharmacystoreAPI']);
+Route::get('/pharmacystoreAPI/{input?}', ['middleware' => 'auth',  'as' => 'pharmacystoreAPI', 'uses' => 'PharmacyController@pharmacystoreAPI']);
+Route::get('/liquidationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'liquidationsAPI', 'uses' => 'PharmacyController@liquidationsAPI']);
+Route::get('/paydocumentsAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'FacturationController@showdocumentsAPI']);
