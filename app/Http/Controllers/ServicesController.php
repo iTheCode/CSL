@@ -38,7 +38,7 @@ class ServicesController extends BaseController
 			//return $response;
 			$total_pages = ceil($response->total()/20);
 			$paginate = Helpers::manual_paginate('atenciones','/atenciones?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('servicesRecents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+		return view('shop.servicesRecents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
 	}
 
 	public function addService($input)
@@ -72,11 +72,11 @@ class ServicesController extends BaseController
 
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 			//return $sub_coverage_types;
-		return view('addService', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
+		return view('shop.addService', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
 	}
 	public function ServicesAPI($input){
 		$services = Helpers::get_codes(Service::where('clinic_area_id', $input)->get());
-		return view('ServiceAPI', ['services' => $services]);
+		return view('api.ServiceAPI', ['services' => $services]);
 	}
 	public function ServiceAPI($input){
 		$service = Service::find($input);

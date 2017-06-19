@@ -74,7 +74,12 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="fa fa-user-md"></i><span> Consulta Externa </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/components-grid.html">Liquidaciones</a></li>
+                                <?php $all = App\Models\Speciality::all() ;?>
+                                @foreach($all as $spec)
+                                    @if($spec->name != "")
+                                    <li><a href="{{ url('/consulta_externa/'.$spec->name.'/'.$spec->id) }}">{{ $spec->name }}</a></li>
+                                    @endif
+                                @endforeach
                                 </ul>
                             </li>
 
@@ -88,7 +93,7 @@
                                 <a href="#" class="waves-effect"><i class="md md-local-atm"></i> <span> Facturación </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/facturacion/sunat') }}">Documentos Emitidos</a></li>
-                                    <li><a href="{{ url('/facturacion/lotes') }}">Tramas</a></li>
+                                    <li><a href="{{ url('/facturacion/tramas') }}">Tramas</a></li>
                                     <li><a href="{{ url('/facturacion/proveedores') }}">Proveedores</a></li>
                                     <li><a href="{{ url('/facturacion/contabilidad') }}">Contabilidad</a></li>
                                 </ul>
@@ -103,90 +108,6 @@
                                     <li><a href="{{ url('/administracion/servicios') }}">Servicios</a></li>
                                 </ul>
                             </li>
-
-                            <!--
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-now-widgets"></i><span> Forms </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-elements.html">General Elements</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-validation.html">Form Validation</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-advanced.html">Advanced Form</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-wizard.html">Form Wizard</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-wysiwyg.html">WYSIWYG Editor</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-codeeditor.html">Code Editors</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-uploads.html">Multiple File Upload</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/form-xeditable.html">X-editable</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-view-list"></i><span> Tables </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/tables-basic.html">Basic Tables</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/tables-datatable.html">Data Table</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/tables-editable.html">Editable Table</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/tables-responsive.html">Responsive Table</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-poll"></i><span> Charts </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-morris.html">Morris Chart</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-chartjs.html">Chartjs</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-flot.html">Flot Chart</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-peity.html">Peity Charts</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-sparkline.html">Sparkline Charts</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-radial.html">Radial charts</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/charts-other.html">Other Chart</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-place"></i><span> Maps </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/maps-google.html"> Google Map</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/maps-vector.html"> Vector Map</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-pages"></i><span> Pages </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-profile.html">Profile</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-timeline.html">Timeline</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-invoice.html">Invoice</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-email-template.html">Email template</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-contact.html">Contact-list</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-login.html">Login</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-register.html">Register</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-recoverpw.html">Recover Password</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-lock-screen.html">Lock Screen</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-blank.html">Blank Page</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-maintenance.html">Maintenance</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-coming-soon.html">Coming-soon</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-404.html">404 Error</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-404_alt.html">404 alt</a></li>
-                                    <li><a href="http://moltran.coderthemes.com/purple/pages-500.html">500 Error</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="md md-share"></i><span>Multi Level </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul>
-                                    <li class="has_sub">
-                                        <a href="javascript:void(0);" class="waves-effect"><span>Menu Level 1.1</span> <span class="pull-right"><i class="md md-add"></i></span></a>
-                                        <ul style="">
-                                            <li><a href="javascript:void(0);"><span>Menu Level 2.1</span></a></li>
-                                            <li><a href="javascript:void(0);"><span>Menu Level 2.2</span></a></li>
-                                            <li><a href="javascript:void(0);"><span>Menu Level 2.3</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);"><span>Menu Level 1.2</span></a>
-                                    </li>
-                                </ul>
-                            </li>-->
                         </ul>
                         <div class="clearfix"></div>
                     </div>

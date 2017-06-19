@@ -113,7 +113,7 @@
                                     <span class="mini-stat-icon bg-info"><i class="ion-arrow-graph-up-right"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
                                         <span class="counter text-dark">{{ $atenciones_mes }}</span>
-                                        Pacientes Atendidos
+                                        Atenciones
                                     </div>
                                     <div class="tiles-progress">
                                         <div class="m-t-20">
@@ -170,7 +170,7 @@
                                     <span class="mini-stat-icon bg-primary"><i class="ion-eye"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
                                         <span class="counter text-dark">20544</span>
-                                        Pacientes Particulares
+                                        Particulares
                                     </div>
                                     <div class="tiles-progress">
                                         <div class="m-t-20">

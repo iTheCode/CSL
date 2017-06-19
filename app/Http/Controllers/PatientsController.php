@@ -33,7 +33,7 @@ class PatientsController extends BaseController
 			$paginate = Helpers::manual_paginate('pacientes','/pacientes?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
 			//dd($response = Authorization::all()->first()->patient);
 			//return $response;
-		return view('patients', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+		return view('patients.patients', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
 	}
 	
 
@@ -45,7 +45,7 @@ class PatientsController extends BaseController
 		    $position = $user->area->name;
 		}
 			//dd($response = Authorization::all()->first()->patient);
-		return view('createPatient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('patients.createPatient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
 
 	public function getPatientAPI($input = null)
@@ -53,7 +53,7 @@ class PatientsController extends BaseController
 		$response = Patient::where(DB::raw("CONCAT(name, ' ', paternal, ' ', maternal)"), 'like', '%' . $input . '%')->orWhere('document_identity_code', $input)->limit(5)->get();
 
 		
-		return view('patientsAPI', ['users' => $response]);
+		return view('api.patientsAPI', ['users' => $response]);
 	}
 	public function view_patient($input)
 	{
@@ -66,7 +66,7 @@ class PatientsController extends BaseController
 
 		if(isset($response->authorizations))
 			$response->authorizations;
-		return view('view_patient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'patient' => $response]);
+		return view('patients.view_patient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'patient' => $response]);
 	}
 
 	public function getPatientJSON($input)
@@ -107,7 +107,7 @@ class PatientsController extends BaseController
 				}
 			}
 		}
-		return view('patientsAPI', ['users' => $response]);
+		return view('api.patientsAPI', ['users' => $response]);
 
 	}
 }

@@ -28,15 +28,6 @@ use Illuminate\Database\Eloquent\Model as Model;
 class AuthorizationsController extends BaseController
 {
 
-	public function showAuthorizations()
-	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
-		return view('authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
-	}
 	public function showAuthorizationsAPI($input)
 	{
 		if (Auth::check()) {
@@ -57,7 +48,34 @@ class AuthorizationsController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'from' => $from, 'currentPage' => $response->CurrentPage()]);
+		return view('api.authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'from' => $from, 'currentPage' => $response->CurrentPage()]);
+	}
+	public function showAuthorizations()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('admision.authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
+	public function showDates()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('admision.dates', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
+	public function showHourMedic()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('admision.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
 
 	public function viewAuthorization($input)
@@ -90,7 +108,7 @@ class AuthorizationsController extends BaseController
 
 
 			//return $sub_coverage_types;
-		return view('authorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
+		return view('admision.authorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
 	}
 	public function createAuthorization()
 	{
@@ -104,7 +122,7 @@ class AuthorizationsController extends BaseController
 			$authorization_types = Helpers::get_list(AuthorizationType::all());
 			$services = Helpers::get_services(Service::all());
 			//dd($response = Authorization::all()->first()->patient);
-		return view('createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
+		return view('admision.createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
 	}
 	public function createSITEDS()
 	{
