@@ -56,15 +56,15 @@ Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'u
 
 Route::get('/facturacion/sunat/', ['middleware' => 'auth',  'as' => 'sunat', 'uses' => 'FacturationController@showDocuments']);
 Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', 'uses' => 'FacturationController@showTramas']);
-//Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturactionController@centro']);
-//Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturactionController@centro']);
+Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturationController@showProviders']);
+Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
 
 //Administración Routes
 
-//Route::get('/administracion/horario/', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'AdministrationController@centro']);
+Route::get('/administracion/horario/', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'AdministrationController@showHourMedic']);
 //Route::get('/administracion/usuarios/', ['middleware' => 'auth',  'as' => 'usuarios', 'uses' => 'AdministrationController@centro']);
 //Route::get('/administracion/personal/', ['middleware' => 'auth',  'as' => 'personal', 'uses' => 'AdministrationController@centro']);
-//Route::get('/administracion/servicios/', ['middleware' => 'auth',  'as' => 'servicios', 'uses' => 'AdministrationController@centro']);
+Route::get('/administracion/servicios/', ['middleware' => 'auth',  'as' => 'servicios', 'uses' => 'AdministrationController@showServices']);
 
 
 //API Routes
@@ -77,3 +77,4 @@ Route::get('/authorizationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'aut
 Route::get('/pharmacystoreAPI/{input?}', ['middleware' => 'auth',  'as' => 'pharmacystoreAPI', 'uses' => 'PharmacyController@pharmacystoreAPI']);
 Route::get('/liquidationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'liquidationsAPI', 'uses' => 'PharmacyController@liquidationsAPI']);
 Route::get('/paydocumentsAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'FacturationController@showdocumentsAPI']);
+Route::get('/servicesAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'AdministrationController@servicesAPI']);

@@ -66,6 +66,25 @@ class FacturationController extends BaseController
 		}
 		return view('facturation.documents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
+	public function showProviders()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
+		return view('facturation.providers', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'doctors' => $doctors]);
+	}
+	public function showContabilidad()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('facturation.contabilidad', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
 	public function showTramas()
 	{
 		if (Auth::check()) {
