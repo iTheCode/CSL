@@ -26,9 +26,48 @@ use Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model as Model;
 
 class AdministrationController extends BaseController
 {
-	
+		public function servicesAPI($input)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+			$input = json_decode($input);
+			if($input->data != "null"){
+				$response = Service::where('name', 'like', '%' . $input->data . '%')->orderBy('id','asc')->paginate(20);
+			}else{
+				$response = Service::orderBy('id','asc')->paginate(20);
+			}
+
+			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
+			//return $response;
+			$total_pages = ceil($response->total()/20);
+			$currentPath = Route::getFacadeRoot()->current()->uri();
+			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
+		return view('api.servicesAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+	}
+	public function showServices()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('administration.services', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
+	public function showHourMedic()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('administration.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
 }
