@@ -1,11 +1,11 @@
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Lista de Servicios ( 
+                                        <h3 class="panel-title">Lista de Usuarios ( 
                                                         Total {{ $users->total() }} )
                                         <div class="col-md-4 pull-right" style="margin-right: 20px">
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
-                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese nombre del servicio">
+                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese nombre del usuario">
                                                         <button onclick="load_data(null,$(this).prev())" type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-search"></i></button></span>
                                                     </div>
                                         </div></h3>
@@ -18,11 +18,9 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
-                                                                <th>Código</th>
-                                                                <th>Nombre</th>
-                                                                <th>Área Clínica</th>
-                                                                <th>Área Contable</th>
-                                                                <th>Unitario</th>
+                                                                <th>Nombres Completos</th>
+                                                                <th>Usuario</th>
+                                                                <th>Área</th>
                                                                 <th>Acciones</th>
                                                             </tr>
                                                         </thead>
@@ -31,11 +29,9 @@
                                                         @foreach ($users as $user)
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
-                                                                <td>{{ $user->code }}</td>
-                                                                <td>{{ $user->name }}</td>
-                                                                <td>{{ $user->clinicarea->name or ''}}</td>
-                                                                <td>{{ $user->contable_name }}</td>
-                                                                <td>{{ $user->unitary}} </td>
+                                                                <td>{{ $user->name }} {{ $user->paternal }} {{ $user->maternal }}</td>
+                                                                <td>{{ $user->username }}</td>
+                                                                <td>{{ $user->area->name or ''}}</td>
                                                                 <td></td>
                                                                 
                                                             </tr>
