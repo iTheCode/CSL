@@ -97,11 +97,10 @@
                         
                         <!-- Page-Title -->
                         <div class="row">
-                            <div class="col-sm-12"> <h4 class="pull-left page-title"><a href="#" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Servicio</a> </h4>
+                            <div class="col-sm-12">
                                 <ol class="breadcrumb pull-right">
-                               
                                     <li><a href="#">{{  $system_name }}</a></li>
-                                    <li class="active">Servicios</li>
+                                    <li class="active">Atenciones</li>
                                 </ol>
                             </div>
                         </div>
@@ -180,7 +179,7 @@
                     if(object != null){ data = object.val(); }else{data = null;}
                     $.ajax(
                               {
-                                  url: "{{ url('/servicesAPI/') }}/{\"data\": \""+data+"\"}?page="+page, 
+                                  url: "{{ url('/externAPI/') }}/{\"data\": \""+data+"\", \"from\": \"{{ $speciality_id }}\"}?page="+page, 
                                   method: "GET",
                                    success: function(result)
                                   {

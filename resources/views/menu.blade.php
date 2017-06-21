@@ -103,7 +103,7 @@
                                 <a href="#" class="waves-effect"><i class="md md-laptop-mac"></i><span> Administración </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/administracion/horario') }}">Horario Medico</a></li>
-                                    <li><a href="{{ url('/administracion/usuario') }}">Usuarios</a></li>
+                                    <li><a href="{{ url('/administracion/usuarios') }}">Usuarios</a></li>
                                     <li><a href="{{ url('/administracion/personal') }}">Personal</a></li>
                                     <li><a href="{{ url('/administracion/servicios') }}">Servicios</a></li>
                                 </ul>

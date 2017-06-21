@@ -28,6 +28,27 @@ use Illuminate\Database\Eloquent\Model as Model;
 class AuthorizationsController extends BaseController
 {
 
+	public function externAPI($input)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+			$input = json_decode($input);
+			if($input->data != "null"){
+				$response = Authorization::select('patients.id as aID', 'patients.*', 'authorizations.*', 'doctor.complet_name', 'specialities.name')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->join('specialities', 'specialities.id', '=', 'doctors.speciality_id')->where('specialities.id', $input->from)->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
+			}else{
+				$response = Authorization::join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->join('specialities', 'specialities.id', '=', 'doctors.speciality_id')->where('specialities.id', $input->from)->orderBy('intern_code','desc')->paginate(20);
+			}
+
+			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
+			//return $response;
+			$total_pages = ceil($response->total()/20);
+			$currentPath = Route::getFacadeRoot()->current()->uri();
+			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
+		return view('api.externAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+	}
 	public function showAuthorizationsAPI($input)
 	{
 		if (Auth::check()) {
@@ -78,6 +99,15 @@ class AuthorizationsController extends BaseController
 		return view('admision.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
 
+	public function showExtern($input,$id)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('extern_consult.extern', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'speciality_id' => $id]);
+	}
 	public function viewAuthorization($input)
 	{
 		if (Auth::check()) {

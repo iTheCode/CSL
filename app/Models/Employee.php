@@ -21,4 +21,7 @@ class Employee extends Model
     {
         return $this->getKey();
     }
+    public function area(){
+        return $this->hasOne('App\Models\Area', 'id', 'area_id');
+    }
 }

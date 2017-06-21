@@ -21,4 +21,7 @@ class Doctor extends Model
     {
         return $this->getKey();
     }
+    public function speciality(){
+        return $this->hasOne('App\Models\Speciality', 'id', 'speciality_id');
+    }
 }
