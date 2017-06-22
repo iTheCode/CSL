@@ -1,7 +1,7 @@
 
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Lista de Atenciones ( 
-                                                        Total {{ $users->total() }} )
+                                                        Total {{ $pay_documents->total() }} )
                                         <div class="col-md-4 pull-right" style="margin-right: 20px">
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
@@ -36,7 +36,9 @@
 
                                                                             <tr>
                                                                                 <td>{{ $i++ }}</td>
-                                                                                <td><a href="{{ url('/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
+                                                                                <td>{{ $p->authorization->code or '' }}</td>
+                                                                                <td>{{ $p->authorization->patient->name or '' }} {{ $p->authorization->patient->paternal or '' }} {{ $p->authorization->patient->maternal or '' }}</td>
+                                                                                <td><a href="{{ url('/pay_edocument/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
                                                                                 <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                 <td>{{ $p->created_at or '' }}</td>
                                                                                 <td>{{ $p->emission_date or '' }}</td>
