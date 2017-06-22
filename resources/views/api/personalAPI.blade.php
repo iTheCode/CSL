@@ -19,8 +19,8 @@
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Código</th>
-                                                                <th>Nombres Completos</th>
                                                                 <th>DNI</th>
+                                                                <th>Nombres Completos</th>
                                                                 <th>Especialidad</th>
                                                                 <th>Acciones</th>
                                                             </tr>
