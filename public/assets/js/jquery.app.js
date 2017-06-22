@@ -251,6 +251,7 @@ function($) {
 
 }(window.jQuery),
 
+
 //initializing main application module
 function($) {
     "use strict";
@@ -368,6 +369,12 @@ wow.init();
 
 /* === following js will activate the menu in left side bar based on url ==== */
 $(document).ready(function() {
+  $(".search-bar").keypress(function(e) {
+      if(e.which == 13) {
+          window.location.href = '/buscar/'+$(this).val();
+          return false;
+      }
+  });
     $("#sidebar-menu a").each(function() {
         if (this.href == window.location.href) {
             $(this).addClass("active");

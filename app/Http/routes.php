@@ -29,6 +29,8 @@ Route::get('/admision/crear', ['middleware' => 'auth',  'as' => 'registrar_atenc
 
 Route::get('/createAtencion/', ['middleware' => 'auth',  'as' => 'registrar_atencion_partilar', 'uses' => 'AuthorizationsController@createAtencion']);
 
+Route::get('/buscar/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'uses' => 'AuthorizationsController@findAuthorization']);
+
 //Pacientes Routes
 Route::get('/pacientes/{input?}', ['middleware' => 'auth',  'as' => 'pacientes', 'uses' => 'PatientsController@showPatients']);
 Route::get('/registrar_paciente/', ['middleware' => 'auth',  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
@@ -55,7 +57,6 @@ Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'u
 
 
 //Consulta Externa Routes
-
 
 Route::get('/consulta_externa/{input?}/{id?}', ['middleware' => 'auth',  'as' => 'consulta_externa', 'uses' => 'AuthorizationsController@showExtern']);
 

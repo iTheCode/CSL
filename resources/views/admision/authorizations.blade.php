@@ -117,6 +117,9 @@
                     </div> <!-- container -->
                                
                 </div> <!-- content -->
+                @if(isset($find))
+                    <input style="display: none;" type="text" id="find" value="{{ $find }}">
+                @endif
                 <footer class="footer text-right">
                     {{ $this_year}} © {{ $system_name }}
                 </footer>
@@ -197,7 +200,11 @@
                     });
             }
             jQuery(document).ready(function($) {
-            load_data();
+            @if(isset($find))
+                load_data(null,$("#find"));
+            @else
+                load_data();
+            @endif
             });
         </script>
 
