@@ -40,7 +40,8 @@ Route::get('/caja/atenciones', ['middleware' => 'auth',  'as' => 'services', 'us
 Route::get('/caja/servicio/{input?}', ['middleware' => 'auth',  'as' => 'addservice', 'uses' => 'ServicesController@addService']);
 
 //Pay Electrnic Documents
-Route::get('/pay_edocument/{input}', ['middleware' => 'auth',  'as' => 'payedocument', 'uses' => 'EDocumentsController@view_print']);
+Route::get('/pay_edocument/view/{input}', ['middleware' => 'auth',  'as' => 'payedocument', 'uses' => 'EDocumentsController@view_print']);
+Route::get('/pay_edocument/charge_document/{type}/{id}', ['middleware' => 'auth',  'as' => 'payedocument', 'uses' => 'FacturationController@showCharge']);
 
 //Hospitalización Routes
 Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => 'centro', 'uses' => 'CentroController@centro']);

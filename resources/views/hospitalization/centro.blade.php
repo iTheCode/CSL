@@ -94,55 +94,59 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
+
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Widgets</h4>
                                 <ol class="breadcrumb pull-right">
-                                    <li><a href="#">Moltran</a></li>
-                                    <li><a href="#">Components</a></li>
-                                    <li class="active">Widgets</li>
+                                    <li><a href="#">{{  $system_name }}</a></li>
+                                    <li class="active">Centro Hospitalario</li>
                                 </ol>
                             </div>
                         </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <a href="/test" class="text-white"><span class="mini-stat-icon bg-success waves-effect"><i class="fa fa-bed"></i></span></a>
-                                    <div class="mini-stat-info text-right text-dark">
-                                        <span class="name text-dark">Luis Uculmana</span>
-                                        Web Designer
+                        @foreach ($rooms as $room)
+                            @if(isset($room->hospitalization))
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="mini-stat clearfix bx-shadow bg-white">
+                                        <a href="/test" class="text-white"><span class="mini-stat-icon bg-success waves-effect"><i class="fa fa-bed"></i></span></a>
+                                        <div class="mini-stat-info text-right text-dark">
+                                            <span class="name text-dark">{{ $room->hospitalization->authorization->patient->name }} {{ $room->hospitalization->authorization->patient->paternal }}</span>
+                                            {{ $room->hospitalization->authorization->insured->insurance->name }}
+                                        </div>
+                                        <br>
+                                        <hr class="m-t-10">
+                                        <ul class="text-center social-links list-inline m-0">
+                                            <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-success"></i><span class="pull-right text-muted">{{ Helpers::days_ago($room->hospitalization->date_input)}}</span>
+                                            </div>
+                                            <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-success"></i><span class="pull-right text-muted">{{ $room->hospitalization->authorization->doctor->complet_name }}</span>
+                                            </div>
+                                            <div class="text-left">                                      <i class="fa fa-folder fa-2x text-success"></i><span class="pull-right text-muted">0 Documentos</span>
+                                            </div>
+                                        </ul>
                                     </div>
-                                    <br>
-                                    <hr class="m-t-10">
-                                    <ul class="text-center social-links list-inline m-0">
-                                        <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-success"></i><span class="pull-right text-muted">5 Days</span>
-                                        </div>
-                                        <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-success"></i><span class="pull-right text-muted">Dr. Montalvo</span>
-                                        </div>
-                                        <div class="text-left">                                      <i class="fa fa-folder fa-2x text-success"></i><span class="pull-right text-muted">0 Documentos</span>
-                                        </div>
-                                    </ul>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <a href="/test" class="text-white " ><span class="mini-stat-icon bg-info waves-effect"><i class="fa  fa-plus-square"></i></span></a>
-                                    <div class="mini-stat-info text-right text-dark">
-                                        <span class="name text-dark">Libre</span>
-                                        L
+                            @else
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="mini-stat clearfix bx-shadow bg-white">
+                                        <a href="/test" class="text-white " ><span class="mini-stat-icon bg-info waves-effect"><i class="fa  fa-plus-square"></i></span></a>
+                                        <div class="mini-stat-info text-right text-dark">
+                                            <span class="name text-dark">Habitación #{{ $room->id }}</span>
+                                            Libre
+                                        </div>
+                                        <br>
+                                        <hr class="m-t-10">
+                                        <ul class="text-center social-links list-inline m-0">
+                                            <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-info"></i><span class="pull-right text-muted">0 Days</span>
+                                            </div>
+                                            <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-info"></i><span class="pull-right text-muted">No Asignado</span>
+                                            </div>
+                                            <div class="text-left">                                      <i class="fa fa-folder fa-2x text-info"></i><span class="pull-right text-muted">No Asignado</span>
+                                            </div>
+                                        </ul>
                                     </div>
-                                    <br>
-                                    <hr class="m-t-10">
-                                    <ul class="text-center social-links list-inline m-0">
-                                        <div class="text-left">                                      <i class="fa fa-heartbeat fa-2x text-info"></i><span class="pull-right text-muted">0 Days</span>
-                                        </div>
-                                        <div class="text-left">                                      <i class="fa fa-user-md fa-2x text-info"></i><span class="pull-right text-muted">No Asignado</span>
-                                        </div>
-                                        <div class="text-left">                                      <i class="fa fa-folder fa-2x text-info"></i><span class="pull-right text-muted">No Asignado</span>
-                                        </div>
-                                    </ul>
                                 </div>
-                            </div>
+                            @endif
+                            @endforeach
                     </div> <!-- container -->
                                
                 </div> <!-- content -->

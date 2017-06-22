@@ -14,6 +14,8 @@ use \App\Models\Status;
 use \App\Models\Doctor;	
 use \App\Models\DiagnosticType;	
 use \App\Models\Coverage;	
+use \App\Models\Hospitalization;
+use \App\Models\HospitalizationRoom;	
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -33,6 +35,8 @@ class CentroController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('hospitalization.centro', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		$response = HospitalizationRoom::all();
+
+		return view('hospitalization.centro', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'rooms' => $response]);
 	}
 }

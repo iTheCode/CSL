@@ -13,4 +13,7 @@ class PayDocument extends Model
     public function employee(){
         return $this->hasOne('App\Models\Employee', 'id', 'employee_id');
     }
+    public function authorization(){
+        return $this->hasOne('App\Models\Authorization', 'id', 'authorization_id');
+    }
 }

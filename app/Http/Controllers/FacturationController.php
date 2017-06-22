@@ -43,7 +43,7 @@ class FacturationController extends BaseController
 		}
 			$input = json_decode($input);
 			if($input->data != "null"){
-				$response = PayDocument::orderBy('id','desc')->paginate(20);
+				$response = PayDocument::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('id','desc')->paginate(20);
 				$local_response = PayEDocument::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
 			}else{
 				$response = PayDocument::orderBy('id','desc')->paginate(20);
