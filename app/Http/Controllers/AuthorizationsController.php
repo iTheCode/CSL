@@ -79,6 +79,15 @@ class AuthorizationsController extends BaseController
 		    $position = $user->area->name;
 		}
 		return view('admision.authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}	
+	public function findAuthorization($input)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('admision.authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'find' => $input]);
 	}
 	public function showDates()
 	{
