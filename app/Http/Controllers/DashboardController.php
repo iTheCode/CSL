@@ -6,6 +6,8 @@ use Auth;
 use \App\Employee as Employee;
 use \App\Models\Authorization;	
 use \App\Models\Coverage;	
+use \App\Models\PayDocument;
+use \App\Models\PayEDocument;		
 use \App\Models\Patient;	
 use \App\Models\Area as Area;
 use View;
@@ -42,7 +44,12 @@ class DashboardController extends BaseController
 		$pacientes_año_anterior = count(Patient::where(DB::raw('YEAR(created_at) '), [$year-1])->get());
 		$porcentaje_pacientes_mes = number_format((100*$pacientes_nuevos_mes )/$pacientes_año_anterior,2);
 
-		return view('dashboard', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'atenciones_mes' => $atenciones_mes, 'porcentaje_antenciones_mes' => $porcentaje_antenciones_mes, 'emergencias_mes' => $emergencias_mes, 'porcentaje_emergencias_mes' => $porcentaje_emergencias_mes, 'pacientes_nuevos_mes' => $pacientes_nuevos_mes, 'porcentaje_pacientes_mes' => $porcentaje_pacientes_mes]);
+
+		$pay_documents_mes = count(PayDocument::where(DB::raw('MONTH(created_at) = ? AND YEAR(created_at) '), [$month, $year])->get()) + count(PayEDocument::where(DB::raw('MONTH(created_at) = ? AND YEAR(created_at) '), [$month, $year])->get());
+		$pay_documents_año_anterior = count(PayDocument::where(DB::raw('YEAR(created_at) '), [$year-1])->get()) + count(PayEDocument::where(DB::raw('YEAR(created_at)'), [$year-1])->get()); 
+		$porcentaje_pay_documents_mes = number_format((100*$pay_documents_mes)/$pay_documents_año_anterior,2);
+
+		return view('dashboard', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'atenciones_mes' => $atenciones_mes, 'porcentaje_antenciones_mes' => $porcentaje_antenciones_mes, 'emergencias_mes' => $emergencias_mes, 'porcentaje_emergencias_mes' => $porcentaje_emergencias_mes, 'pacientes_nuevos_mes' => $pacientes_nuevos_mes, 'porcentaje_pacientes_mes' => $porcentaje_pacientes_mes, 'pay_documents_mes' => $pay_documents_mes, 'porcentaje_pay_documents_mes' => $porcentaje_pay_documents_mes]);
 	}
 	
 }
