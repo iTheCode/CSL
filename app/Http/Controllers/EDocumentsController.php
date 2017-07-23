@@ -96,7 +96,7 @@ class EDocumentsController extends BaseController
 			/*$pdf = PDF::loadView('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);*/
 			$json->payEdocument = $pay_edocument->id;
 			$this->json = $json;
-			if(Helpers::($file,"data",$content,"ftp") && Helpers::($pdf_name,"pdf",$pdf->stream(),"ftp")){
+			if(Helpers::($file,"data",$content,"ftp_luren") && Helpers::($pdf_name,"pdf",$pdf->stream(),"ftp_luren")){
 				//Create the Queue for to send the email in the night.
 
 				//Create the Queue for check if the document receipt for the SUNAT or have an error.
@@ -268,15 +268,23 @@ class EDocumentsController extends BaseController
 
 
 	}
-	public function view_print($input){
+	public function create_edocument($input){
+
 
 		$input = json_decode($input);
 		$authorization = Authorization::find($input->authorization_id);
 		if(self::generate_services($input)){
-			$pay_edocument = PayEDocument::find($this->json->payEdocument);
-			return $pay_edocument;
-		}else{} //Creating the services for the patient.
+			//$pay_edocument = PayEDocument::find($this->json->payEdocument);
+			//return $pay_edocument;
+
+			return redirect()->route('login', array('type' => $json->payment_document_type, 'input' => $this->json->payEdocument));
+		}
 
 		//return view('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'pay_edocument' = $pay_edocument]);
+
+	}
+	public function view_print($type,$input){
+		$pay_edocument = PayEDocument::find($input);
+
 	}
 } 

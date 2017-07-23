@@ -167,14 +167,14 @@
                             </div>
                             <div class="col-sm-6 col-lg-3">
                                 <div class="mini-stat clearfix bx-shadow bg-white">
-                                    <span class="mini-stat-icon bg-primary"><i class="ion-eye"></i></span>
+                                    <span class="mini-stat-icon bg-primary"><i class="ion-document"></i></span>
                                     <div class="mini-stat-info text-right text-dark">
                                         <span class="counter text-dark">{{ $pay_documents_mes}}</span>
-                                        Particulares
+                                        Documentos
                                     </div>
                                     <div class="tiles-progress">
                                         <div class="m-t-20">
-                                            <h5 class="text-uppercase">META <span class="pull-right">{{ $porcentaje_pay_documents_mes }}%</span></h5>
+                                            <h5 class="text-uppercase">ESTE MES <span class="pull-right">{{ $porcentaje_pay_documents_mes }}%</span></h5>
                                             <div class="progress progress-sm m-0">
                                                 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ $porcentaje_pay_documents_mes }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $porcentaje_pay_documents_mes }}%">
                                                     <span class="sr-only">{{ $porcentaje_pay_documents_mes }}% Complete</span>

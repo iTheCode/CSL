@@ -393,7 +393,7 @@
                     var data = JSON.stringify(values);
                     console.log(data);
                     $.ajax({
-                        url:"{{ url('/pay_edocument/') }}/"+data,
+                        url:"{{ url('/pay_edocument/create/') }}/"+data,
                         method: "GET",
                         success: function(result){
 

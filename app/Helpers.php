@@ -1,7 +1,5 @@
 <?php 
-
 namespace App;
-
 class Helpers {
 	public static function count_element ($element){
 		return count($element);
@@ -53,7 +51,10 @@ class Helpers {
 	}
 	public static function save_file($document,$path,$content,$method){
 		switch ($method) {
-			case "ftp":
+			case "ftp_luren":
+				if (file_put_contents('ftp://root:81848133@csluren.sytes.net:8900/'.$path."/".$document, $content)) { $return = true; }
+				break;
+			case "ftp_ramco":
 				if (file_put_contents('ftp://root:81848133@csluren.sytes.net:8900/'.$path."/".$document, $content)) { $return = true; }
 				break;
 			case "local":
@@ -243,10 +244,6 @@ class Helpers {
 	        $xsub = "MIL";
 	    return $xsub;
 	}
-
-
-
-
 	public static function get_age( $fecha ) {
 		if(isset($fecha)){
 	    	list($Y,$m,$d) = explode("-",$fecha);
@@ -266,7 +263,6 @@ class Helpers {
 	        array(60 , 'minute'),
 	        array(1 , 'second')
 	    );
-
 	    for ($i = 0, $j = count($chunks); $i < $j; $i++) {
 	        $seconds = $chunks[$i][0];
 	        $name = $chunks[$i][1];
@@ -274,7 +270,6 @@ class Helpers {
 	            break;
 	        }
 	    }
-
 	    $print = ($count == 1) ? '1 '.$name : "$count {$name}s";
 	    return $print;
 	}
@@ -284,14 +279,12 @@ class Helpers {
 		$out = '<ul class="pagination pagination-large">';
 		
 		// previous label
-
 		if($page==1) {
 			$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
 		} else if($page==2) {
 			$out.= "<li><span><a href='#' onclick='load_data(1)'>$prevlabel</a></span></li>";
 		}else {
 			$out.= "<li><span><a href='#' onclick='load_data(".($page-1).")'>$prevlabel</a></span></li>";
-
 		}
 		
 		// first label
@@ -302,9 +295,7 @@ class Helpers {
 		if($page>($adjacents+2)) {
 			$out.= "<li><a>...</a></li>";
 		}
-
 		// pages
-
 		$pmin = ($page>$adjacents) ? ($page-$adjacents) : 1;
 		$pmax = ($page<($tpages-$adjacents)) ? ($page+$adjacents) : $tpages;
 		for($i=$pmin; $i<=$pmax; $i++) {
@@ -316,21 +307,15 @@ class Helpers {
 				$out.= "<li><a href='#' onclick='load_data(".$i.")'>$i</a></li>";
 			}
 		}
-
 		// interval
-
 		if($page<($tpages-$adjacents-1)) {
 			$out.= "<li><a>...</a></li>";
 		}
-
 		// last
-
 		if($page<($tpages-$adjacents)) {
 			$out.= "<li><a href='#' onclick='load_data($tpages)'>$tpages</a></li>";
 		}
-
 		// next
-
 		if($page<$tpages) {
 			$out.= "<li><span><a href='#' onclick='load_data(".($page+1).")'>$nextlabel</a></span></li>";
 		}else {
@@ -340,7 +325,6 @@ class Helpers {
 		$out.= "</ul>";
 		return $out;
 	}
-
 		public static function get_hash_sub($sub_coverage_types){
 			foreach($sub_coverage_types as $sub_coverage_type){
 				$array[$sub_coverage_type->id] = $sub_coverage_type->name." - ".$sub_coverage_type->code." - ".$sub_coverage_type->other_code;
@@ -371,22 +355,18 @@ class Helpers {
 			}
 			return $array;
 		}
-
 		public static function get_diagnostic($diagnostic_types){
 			foreach($diagnostic_types as $diagnostic){
 				$array[$diagnostic->id] = $diagnostic->name." - ".$diagnostic->code;
 			}
 			return $array;
 		}
-
 		public static function get_diagnostic_codes($diagnostic_types){
 			foreach($diagnostic_types as $diagnostic){
 				$array[$diagnostic->id] = $diagnostic->code;
 			}
 			return $array;
 		}
-
-
 		public static function get_ruc($ruc){
 				return json_decode(file_get_contents("http://edunegociosperu.com/sunat-ws/?ruc=".$ruc));
 		}
@@ -394,11 +374,8 @@ class Helpers {
 				$result = file_get_contents("http://edunegociosperu.com/reniec/?dni=".$input);
 				if(!empty($result)){
 					preg_match("/\"ApellidoP\": \"(.*)\"/",$result,$salida1);
-
 					preg_match("/\"ApellidoM\": \"(.*)\"/",$result,$salida2);
-
 					preg_match("/\"Nombres\": \"(.*)\"/",$result,$salida3);
-
 					$json["name"] = $salida3[1];
 					$json["paternal"] = $salida1[1];
 					$json["maternal"] = $salida2[1];
@@ -408,7 +385,6 @@ class Helpers {
 					$json["name"] = $json_reniec->nombres;
 					$json["paternal"] = $json_reniec->apellido_paterno;
 					$json["maternal"] = $json_reniec->apellido_materno;
-
 				}
 				return json_encode($json);
 			
