@@ -33,7 +33,7 @@ Route::get('/buscar/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'use
 
 //Pacientes Routes
 Route::get('/pacientes/{input?}', ['middleware' => 'auth',  'as' => 'pacientes', 'uses' => 'PatientsController@showPatients']);
-Route::get('/registrar_paciente/', ['middleware' => 'auth',  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
+Route::get('/createPatient/', ['middleware' => 'auth',  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
 Route::get('/paciente/{input?}', ['middleware' => 'auth',  'as' => 'view_patient', 'uses' => 'PatientsController@view_patient']);
 
 
@@ -86,7 +86,8 @@ Route::get('/authorizationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'aut
 Route::get('/pharmacystoreAPI/{input?}', ['middleware' => 'auth',  'as' => 'pharmacystoreAPI', 'uses' => 'PharmacyController@pharmacystoreAPI']);
 Route::get('/liquidationsAPI/{input?}', ['middleware' => 'auth',  'as' => 'liquidationsAPI', 'uses' => 'PharmacyController@liquidationsAPI']);
 Route::get('/paydocumentsAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'FacturationController@showdocumentsAPI']);
-Route::get('/servicesAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'AdministrationController@servicesAPI']);
-Route::get('/personalAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'AdministrationController@personalAPI']);
-Route::get('/usersAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'AdministrationController@usersAPI']);
-Route::get('/externAPI/{input?}', ['middleware' => 'auth',  'as' => 'paydocumentsAPI', 'uses' => 'AuthorizationsController@externAPI']);
+Route::get('/servicesAPI/{input?}', ['middleware' => 'auth',  'as' => 'servicesAPI', 'uses' => 'AdministrationController@servicesAPI']);
+Route::get('/personalAPI/{input?}', ['middleware' => 'auth',  'as' => 'personalAPI', 'uses' => 'AdministrationController@personalAPI']);
+Route::get('/usersAPI/{input?}', ['middleware' => 'auth',  'as' => 'usersAPI', 'uses' => 'AdministrationController@usersAPI']);
+Route::get('/externAPI/{input?}', ['middleware' => 'auth',  'as' => 'externAPI', 'uses' => 'AuthorizationsController@externAPI']);
+Route::get('/dniAPI/{input?}', ['as' => 'dniAPI', 'uses' => 'CentroController@dniAPI']);

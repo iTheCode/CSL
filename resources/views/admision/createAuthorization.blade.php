@@ -413,9 +413,55 @@
                 });
                 $("a[href='#next']").click(function(){
                     var value = $("#metodo").val();
-                    if(i == "2" && value == '3' ){
+                    if(i == "2" && value == "3" ){
                          $("a[href='#next']").text('Crear Paciente');
                     }
+
+                    if ($(this).hasClass('create_paciente')){
+                        var question = confirm("Estás seguro de crear al paciente?");
+                        if(question){
+
+                            $("a[href='#previous']").remove();
+
+                            var names = $("#names").val();
+                            var ap_paterno = $("#ap_paterno").val();
+                            var ap_materno = $("#ap_materno").val();
+                            var dni = $("#surname").val();
+                            var email = $("#email").val();
+                            var boolean = $("#boolean_sex").val();
+                            var date = $("#date").val();
+                            var data = "names="+names+"&ap_paterno="+ap_paterno+"&ap_materno="+ap_materno+"&dni="+dni+"&email="+email+"&sex="+boolean+"&date="+date;
+
+                            if(names == null || names == "" ||ap_paterno == null || ap_paterno == "" || ap_materno == null || ap_materno == "" || dni == null || dni == "" || email == null || email == "" || boolean == null || boolean == "" || date == null || date == "" ){ alert("Usted no ha ingresado los datos correctamente, debe volver a crear el paciente."); location.reload();}
+
+                            $.ajax(
+                              {
+                                  url: "{{ url('/createPatient/') }}", 
+                                  method: "GET",
+                                  data: data,
+                                   success: function(result)
+                                  {
+                                    var name = result.name+" "+result.paternal+" "+result.maternal;
+                                    console.log(result);
+                                    if (result.insureds == null) {
+                                        $("#cop_var").val('0').attr("disabled", true);
+                                    }
+
+
+                                    $("#name").val(name);
+                                    $("#id_hidden").val(result.id);
+
+                                    $(this).addClass('bg-primary');
+
+                                                                            
+                                  }
+                                });
+                        }else{
+                            location.reload();
+                        }
+                    }
+
+
                     if ($(this).hasClass('create_atencion')){
                         var question = confirm("Estás seguro de generar la atención?");
                         if(question){
@@ -452,7 +498,7 @@
                             location.reload();
                         }
                     }
-                    if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response =false;}$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = response || true;}else{ response = response || false; }}); if(!response){alert("Seleccione un paciente"); location.reload(); }}else{$(this).text('Next').removeClass('create_atencion');}
+                    if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response = false;} if(value != "3"){$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = response || true;}else{ response = response || false; }});} if(!response){alert("Seleccione un paciente"); location.reload(); }}else{$(this).text('Next').removeClass('create_atencion');}
                     if (i == "4"){ 
                         $("a[href='#finish']").parent().html('<hr><a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>'); 
                         $("#print-button").click(function(){
@@ -519,8 +565,8 @@
                 function check_buttons(i){
                         if (i != "1"){
                             var val = $("#metodo").val();
-                            if(i == "2" && val == '3' ){
-                                 $("a[href='#next']").text('Crear Paciente');
+                            if(i == "2" && val == "3" ){
+                                $("a[href='#next']").text('Crear Paciente').addClass('create_paciente');$
                             }
                             if(i == "3"){
                                 $("a[href='#next']").text('Crear Atención').addClass('create_atencion');$
@@ -528,6 +574,7 @@
                                 $("a[href='#next']").text('Next').fadeIn();
                             }
                         }
+                        console.log(val);
                         console.log(i);
                 }
                 function check_create(){
