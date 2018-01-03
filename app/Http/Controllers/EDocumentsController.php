@@ -96,7 +96,7 @@ class EDocumentsController extends BaseController
 			/*$pdf = PDF::loadView('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);*/
 			$json->payEdocument = $pay_edocument->id;
 			$this->json = $json;
-			if(Helpers::($file,"data",$content,"ftp_luren") && Helpers::($pdf_name,"pdf",$pdf->stream(),"ftp_luren")){
+			if(Helpers::save_file($file,"data",$content,"ftp_luren") && Helpers::save_file($pdf_name,"pdf",$pdf->stream(),"ftp_luren")){
 				//Create the Queue for to send the email in the night.
 
 				//Create the Queue for check if the document receipt for the SUNAT or have an error.
