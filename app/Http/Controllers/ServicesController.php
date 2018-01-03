@@ -61,13 +61,12 @@ class ServicesController extends BaseController
 			date_default_timezone_set('America/Lima');
 			$date = date("F j, Y, g:i a");
 			if(isset($response->coverage)){
-				if(count($response->insuredservices) == 0 && $response->coverage->cop_var != "100"){
+				if(isset($response->insureds) && count($response->insuredservices) == 0 && $response->coverage->cop_var != "100"){
 
 					$response->coverage->cop_var = "0";
 					$response->insureds->insurance->factor->factor = "1";
 
 				}
-				
 			}
 
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}

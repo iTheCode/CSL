@@ -371,21 +371,11 @@ class Helpers {
 				return json_decode(file_get_contents("http://edunegociosperu.com/sunat-ws/?ruc=".$ruc));
 		}
 		public static function get_dni($input){
-				$result = file_get_contents("http://edunegociosperu.com/reniec/?dni=".$input);
-				if(!empty($result)){
-					preg_match("/\"ApellidoP\": \"(.*)\"/",$result,$salida1);
-					preg_match("/\"ApellidoM\": \"(.*)\"/",$result,$salida2);
-					preg_match("/\"Nombres\": \"(.*)\"/",$result,$salida3);
-					$json["name"] = $salida3[1];
-					$json["paternal"] = $salida1[1];
-					$json["maternal"] = $salida2[1];
-				}else{
-					$reniecDni = new \Tecactus\Reniec\DNI('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ5MGJlMjlmMTUwY2ZiMzQxMmMzMmVlODcyYmY5OTY0ZmRkY2MyMzkxYmQ3ZTFjYTNjY2VmYWQ2MjcyOTA4ZWE2OGVlMDRkNmUwZTBkZjE2In0.eyJhdWQiOiIxIiwianRpIjoiNDkwYmUyOWYxNTBjZmIzNDEyYzMyZWU4NzJiZjk5NjRmZGRjYzIzOTFiZDdlMWNhM2NjZWZhZDYyNzI5MDhlYTY4ZWUwNGQ2ZTBlMGRmMTYiLCJpYXQiOjE0OTI4MTM0OTgsIm5iZiI6MTQ5MjgxMzQ5OCwiZXhwIjoxODA4MzQ2Mjk4LCJzdWIiOiI1MCIsInNjb3BlcyI6WyJ1c2UtcmVuaWVjIl19.SfnCgVhQrLkVkysOdx83vbnZejxXO1-NMcH_pMglT7r3PmjN4r5RQbT80s5tPeaNT6t27HwEePIKW4D10O6t2CNsjuJSPx2Q6xmCMm8b9IejvPKlTUndgBGF4ncgPCmiI4ek4pDlOw1a-cDKcPLgzhNCLuyfGJWPa01TNsj6IVgFiUMmTnt2pF5iUWEDTKdWDsbjDT4fCCLSUS9zpkH8PoTGl7-ZabXSJ48DzEw2Se_Qp7Uk8dr72TElhNo4sCCAtqznZsqbKmc3uwmQt2uggBWJteB9jpsu-9VBFgUDK2cpzBJKlmLNFRlasTRGT7Z508YHmDprsClGhqM5rR-YAqdSU2-ARX69LrGsyZ9MTy3kSrUf0PZz4JUGnaLlvky-ONJMf7OOzKK4_hGDUYiU9Xbc_ALyH4lqc5407Vta5eXm6gmDn3ta4GwsBRjaN3hMqqZQSEhRQFMxfLiI2DHaLW37GjKKI2Q9hFQOQpT14imEKNTtY8vHH1qXg40UTgAdtlLarXPSjA4ULI3aAe8h3arux42hVcapQAvDO6Vjal_3bUXA0tfrLa49xUZfBAIhR9XsjmU7xVsa-zFTCDk2LFRvzqZipW_ygOkiPsG_lM6QV5jV1YU-qxtFYG33LQM0mYQuzBbdlT7qPXeuLGE2lhx1l1LcXvhTpKjdVm3kXmE');
+					$reniecDni = new \Tecactus\Reniec\DNI('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjdkNDI0YTM5OWM4Nzk0MDNmNzA1Yjg1YTg0NDJlZDI2OTI1NGZhOTc4YzZhNDgzMzIzNWFkN2MwMzM5N2I1ZGYxNTNlODk1ZTdjNDNmMmZmIn0.eyJhdWQiOiIxIiwianRpIjoiN2Q0MjRhMzk5Yzg3OTQwM2Y3MDViODVhODQ0MmVkMjY5MjU0ZmE5NzhjNmE0ODMzMjM1YWQ3YzAzMzk3YjVkZjE1M2U4OTVlN2M0M2YyZmYiLCJpYXQiOjE1MTUwMTU1MTQsIm5iZiI6MTUxNTAxNTUxNCwiZXhwIjoxNTQ2NTUxNTE0LCJzdWIiOiI1MCIsInNjb3BlcyI6WyJ1c2UtcmVuaWVjIiwidXNlLXN1bmF0Il19.CFgNhQ-8xL9QDqb9wV3ea8pv5AJPfwhxQdU7gWQ1ZytUbWKtxfLrRcZAK_tDo80xlW5M9NkI6tDQ1QFAoP9O8B12KfSY_3dZZZpNnMOTYexiQDtXA-H_eCpwEgBs6xlrGywQdUh5VRw3Berht-T1hflXDV4zxZ5gzuljlZ8a3sH3Nnh0ZeVITlFgU2AtpKb1xT63O1quhGbV-Gnzjm3aK-iMSyGhymhAGFBPy6HbMxqkvM1uN9VU37eB3Zn0n1rf9IMAdD2iFjgQCxCpRWwFndkHjGCht0mQ_zWdnWA9f7y2spQkRhFSuhM1m6XrKE3UAn_bYMwpQzBZ3ydzuGbYGg19J-kn7iSrU3hoHgYiIDvOSV1xWBVuRIMxSyFeL2Q1OJVx4mDb5B0KnxI3Ms2-GpFgYwslto-1xK5gwFGyf0l8n27mnvxPFRbrWHN4e98CUdIf7MZtuFmWbHLDvr5UvYMRG3z0UM_qljKzqJqUxn9sbgsZawYJHMEqVeIsboGkQ48gpuHM4I8DJg6Jr2jat1rTyoJANHWpjOBpdykIQ6F9ysxpN7MR5YnflSUA6NVim1qYIpeLKt-rHuyp-amc_ozncY1qoY58vABFV4uODtikRURFO6duyfCEfBCA5EqFOxpy-Gr5eEkr8s35yNZQDZwe2dN1nnE45w4Sy0ZSARE');
 					$json_reniec = $reniecDni->get($input);
 					$json["name"] = $json_reniec->nombres;
 					$json["paternal"] = $json_reniec->apellido_paterno;
 					$json["maternal"] = $json_reniec->apellido_materno;
-				}
 				return json_encode($json);
 			
 		}
