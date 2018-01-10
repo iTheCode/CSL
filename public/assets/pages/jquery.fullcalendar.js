@@ -37,7 +37,7 @@
 		var $this=this;$this.$modal.modal({backdrop:'static'});
 		var form=$("<form></form>");
 		form.append("<div class='row'></div>");
-		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Category</label><select class='form-control' name='category'></select></div></div>").find("select[name='category']").append("<option value='bg-danger'>Danger</option>").append("<option value='bg-success'>Success</option>").append("<option value='bg-purple'>Purple</option>").append("<option value='bg-primary'>Primary</option>").append("<option value='bg-warning'>Warning</option></div></div>");
+		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><select class='form-control' name='category'></select></div></div>").find("select[name='category']").append($("#consult").find("select").html());
 		$this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function(){form.submit();});$this.$modal.find('form').on('submit',function(){var title=form.find("input[name='title']").val();var beginning=form.find("input[name='beginning']").val();var ending=form.find("input[name='ending']").val();var categoryClass=form.find("select[name='category'] option:checked").val();if(title!==null&&title.length!=0){$this.$calendarObj.fullCalendar('renderEvent',{title:title,start:start,end:end,allDay:false,className:categoryClass},true);$this.$modal.modal('hide');}else{alert('You have to give a title to your event');}return false;});$this.$calendarObj.fullCalendar('unselect');},CalendarApp.prototype.enableDrag=function(){$(this.$event).each(function(){var eventObject={title:$.trim($(this).text())};$(this).data('eventObject',eventObject);$(this).draggable({zIndex:999,revert:true,revertDuration:0});});}
 	CalendarApp.prototype.init=function(){
 		this.enableDrag();
@@ -49,7 +49,7 @@
 		var today=new Date($.now());
 		var defaultEvents=[];
 		var $this=this;$this.$calendarObj=$this.$calendar.fullCalendar({
-			slotDuration:'00:15:00',
+			slotDuration:'00:30:00',
 			minTime:'08:00:00',
 			locale:'es',
 			maxTime:'23:00:00',defaultView:'agendaWeek',

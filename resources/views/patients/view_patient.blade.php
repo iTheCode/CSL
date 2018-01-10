@@ -315,8 +315,8 @@
                             <div class="panel panel-color panel-success" style="width:70%; margin: 0 auto;">
                                     <div class="panel-body"> 
                                        <div class="" style="margin:0 auto;">
-                                        <img class="" src="http://www.freeiconspng.com/uploads/person-icon-person-icon-clipart-image-from-our-icon-clipart-category--9.png" width="31%" height="100%">
-                                        <div class="panel" style="float:right;height:270px;width:450px">
+                                        <!--<img class="" src="http://www.freeiconspng.com/uploads/person-icon-person-icon-clipart-image-from-our-icon-clipart-category--9.png" width="31%" height="100%">-->
+                                        <div class="panel" style="float:right;height:270px;width:500px">
                                             <div class="panel-body">
                                                 <div class="media-main">
                                                     <div class="pull-right btn-group-sm">

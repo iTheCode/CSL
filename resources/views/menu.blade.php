@@ -33,25 +33,16 @@
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span> <span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{ url('/caja/atenciones') }}">Atenciones Recientes</a></li>
-                                    <!--<li><a href="{{ url('/exportar_caja') }}">Exportar Caja</a></li>-->
-                                </ul>
+                            <li>
+                                <a href="{{ url('/caja/atenciones') }}" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span> </a>
+                              
                             </li>
 
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{ url('/triaje/atenciones') }}">Atenciones Recientes</a></li>
-                                </ul>
+                            <li>
+                                <a href="{{ url('/triaje/atenciones') }}" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                             </li>
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{ url('/pacientes/general') }}">Lista de Pacientes</a></li>
-                                </ul>
+                            <li>
+                                <a href="{{ url('/pacientes/general') }}" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span></a>
                             </li>
 
                             <li class="has_sub">
@@ -65,10 +56,7 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span><span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{ url('/hospitalizacion/habitaciones') }}">Centro Hospitalario</a></li>
-                                </ul>
+                                <a href="{{ url('/hospitalizacion/habitaciones') }}" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span></a>
                             </li>
 
                             <li class="has_sub">
