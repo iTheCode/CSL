@@ -99,14 +99,13 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Calendar</h4>
+                                <h4 class="pull-left page-title">Citas Médicas</h4>
                                 <ol class="breadcrumb pull-right">
-                                    <li><a href="#">Moltran</a></li>
-                                    <li class="active">Calendar</li>
+                                    <li><a href="#">{{  $system_name }}</a></li>
+                                    <li class="active">Citas</li>
                                 </ol>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-lg-12">
 
@@ -131,9 +130,19 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title"><strong>Add Event</strong></h4>
+                                                <h4 class="modal-title"><strong>Agregar Cita Médica</strong></h4>
                                             </div>
                                             <div class="modal-body"></div>
+                                            <div id="consult" style="display: none;">
+                                                <?php $all = App\Models\Speciality::all() ;?>
+                                                <select class="form-control" name="category">
+                                                    @foreach($all as $spec)
+                                                        @if($spec->name != "")
+                                                        <option value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                                                 <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
