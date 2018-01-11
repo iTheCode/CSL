@@ -57,6 +57,10 @@ Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'u
 //Route::get('/farmacia/liquidacion/nueva/{input?}', ['middleware' => 'auth',  'as' => 'nueva_liquidacion', 'uses' => 'PharmacyController@centro']);
 
 
+//TriajeRoutess/FormularioTri
+Route::get('/triaje/atenciones/', ['middleware' => 'auth',  'as' => 'triaje', 'uses' => 'TriajeController@showAuthorizations']);
+Route::get('/triaje/atencion/{input}', ['middleware' => 'auth',  'as' => 'triaje_form', 'uses' => 'TriajeController@showFormulario']);
+
 //Consulta Externa Routes
 
 Route::get('/consulta_externa/{input?}/{id?}', ['middleware' => 'auth',  'as' => 'consulta_externa', 'uses' => 'AuthorizationsController@showExtern']);
