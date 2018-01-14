@@ -59,7 +59,7 @@ Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'u
 
 //TriajeRoutess/FormularioTri
 Route::get('/triaje/atenciones/', ['middleware' => 'auth',  'as' => 'triaje', 'uses' => 'TriajeController@showAuthorizations']);
-Route::get('/triaje/atencion/{input}', ['middleware' => 'auth',  'as' => 'triaje_form', 'uses' => 'TriajeController@showFormulario']);
+Route::get('/triaje/atencion/{input}', ['middleware' => 'auth',  'as' => 'triaje_form', 'uses' => 'TriajeController@showFormulario']);	
 
 //Consulta Externa Routes
 
