@@ -25,7 +25,7 @@
                             </li>
 
                             <li class="has_sub">
-                                <a href="index.html" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/admision/atenciones') }}">Atenciones Médicas</a></li>
                                     <li><a href="{{ url('/admision/citas') }}">Citas</a></li>
@@ -55,7 +55,7 @@
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
+                            <li>
                                 <a href="{{ url('/hospitalizacion/habitaciones') }}" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span></a>
                             </li>
 

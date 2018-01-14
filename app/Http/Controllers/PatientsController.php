@@ -55,6 +55,18 @@ class PatientsController extends BaseController
 		
 		return view('api.patientsAPI', ['users' => $response]);
 	}
+	public function getPatientComplete($input = null)
+	{
+		$response = Patient::where(DB::raw("CONCAT(name, ' ', paternal, ' ', maternal)"), 'like', '%' . $input . '%')->orWhere('document_identity_code', $input)->limit(5)->get();
+		foreach ($response as $patient) {
+			$json[] = ["value" => $patient->id, "label" => $patient->name." ".$patient->paternal." ".$patient->maternal, "phone" => $patient->phone];
+
+		}
+		if( count($response) == 0 ){
+			$json[] = 'No se ha encontrado al paciente.';
+		}
+		return json_encode($json);
+	}
 	public function view_patient($input)
 	{
 		if (Auth::check()) {

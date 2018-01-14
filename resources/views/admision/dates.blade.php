@@ -23,7 +23,7 @@
         <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
 
         <script src="/assets/js/modernizr.min.js"></script>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -130,15 +130,25 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title"><strong>Agregar Cita Médica</strong></h4>
+                                                <h4 class="modal-title"><strong>Cita Médica</strong></h4>
                                             </div>
                                             <div class="modal-body"></div>
                                             <div id="consult" style="display: none;">
                                                 <?php $all = App\Models\Speciality::all() ;?>
-                                                <select class="form-control" name="category">
+                                                <select class="form-control" >
                                                     @foreach($all as $spec)
                                                         @if($spec->name != "")
                                                         <option value="{{ $spec->id }}">{{ $spec->name }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div id="doctors" style="display: none;">
+                                                <?php $all = App\Models\Doctor::all() ;?>
+                                                <select class="form-control" >
+                                                    @foreach($all as $spec)
+                                                        @if($spec->complet_name != "")
+                                                        <option value="{{ $spec->id }}">{{ $spec->complet_name }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -198,6 +208,7 @@
         <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
         
         
+        <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
         <script src="/assets/plugins/fullcalendar/dist/moment.min.js"></script>
         <script src="/assets/plugins/fullcalendar/dist/fullcalendar.min.js"></script>
         <script src="/assets/plugins/fullcalendar/dist/es.js"></script>
@@ -208,6 +219,7 @@
             Counter Up
             =============================================== */
             jQuery(document).ready(function($) {
+
             });
         </script>
 
