@@ -22,23 +22,45 @@
 	CalendarApp.prototype.onEventClick=function(calEvent,jsEvent,view){
 		var $this=this;
 		var form=$("<form></form>");
-		form.append("<label>Change event name</label>");
-		form.append("<div class='input-group'><input class='form-control' type=text value='"+calEvent.title+"' /><span class='input-group-btn'><button type='submit' class='btn btn-success waves-effect waves-light'><i class='fa fa-check'></i> Save</button></span></div>");
+		var explode = calEvent.title.split(" - ");
+		form.append("<div class='row'></div>");
+		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Paciente: </label><input id='search_patient' class='form-control' placeholder='Buscar' type='text' name='title' value='"+explode[0]+"'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Médico: </label><input class='form-control' name='doctor' value='"+explode[1]+"'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><input class='form-control' name='category' value='"+ explode[2] +"'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Celular: </label><input class='form-control' name='phone' value='" + explode[3] +"'></div></div>");
 		$this.$modal.modal({backdrop:'static'});
-		$this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function(){
+		$this.$modal.find('.delete-event').text("Eliminar Cita").show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function(){
 			$this.$calendarObj.fullCalendar('removeEvents',function(ev){return(ev._id==calEvent._id);});
 			$this.$modal.modal('hide');});
 		$this.$modal.find('form').on('submit',function(){
 				calEvent.title=form.find("input[type=text]").val();
-				$this.$calendarObj.fullCalendar('updateEvent',calEvent);
+				//$this.$calendarObj.fullCalendar('updateEvent',calEvent);
 				$this.$modal.modal('hide');return false;});
 	},
 	CalendarApp.prototype.onSelect=function(start,end,allDay){
 		var $this=this;$this.$modal.modal({backdrop:'static'});
 		var form=$("<form></form>");
 		form.append("<div class='row'></div>");
-		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><select class='form-control' name='category'></select></div></div>").find("select[name='category']").append($("#consult").find("select").html());
-		$this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function(){form.submit();});$this.$modal.find('form').on('submit',function(){var title=form.find("input[name='title']").val();var beginning=form.find("input[name='beginning']").val();var ending=form.find("input[name='ending']").val();var categoryClass=form.find("select[name='category'] option:checked").val();if(title!==null&&title.length!=0){$this.$calendarObj.fullCalendar('renderEvent',{title:title,start:start,end:end,allDay:false,className:categoryClass},true);$this.$modal.modal('hide');}else{alert('You have to give a title to your event');}return false;});$this.$calendarObj.fullCalendar('unselect');},CalendarApp.prototype.enableDrag=function(){$(this.$event).each(function(){var eventObject={title:$.trim($(this).text())};$(this).data('eventObject',eventObject);$(this).draggable({zIndex:999,revert:true,revertDuration:0});});}
+		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Paciente: </label><input id='search_patient' class='form-control' placeholder='Buscar' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Médico: </label><select class='form-control' name='doctor'></select></div></div>").append("<div class='col-md-6' style=display:none;''><div class='form-group'><label class='control-label'>ID: </label><input class='form-control' name='id'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><select class='form-control' name='category'></select></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Celular: </label><input class='form-control' name='phone'></div></div>").find("select[name='category']").append($("#consult").find("select").html());
+		form.find("#search_patient").autocomplete({
+		    source: function (request, response) {
+		        $.getJSON("/getPatientComplete/" + request.term, function (data) {
+		            response($.map(data, function (value, key) {
+		                return value;
+		            }));
+		        });
+		    },
+		    open: function(){
+		        $(this).autocomplete('widget').css('z-index', 9999);
+		        return false;
+		    },
+		    select: function (event, ui) {
+		    	event.preventDefault();
+		        $("#search_patient").val(ui.item.label);
+		        $("input[name='id']").val(ui.item.value);
+		        $("input[name='phone']").val(ui.item.phone);
+		    }
+		});
+		form.find("select[name='doctor']").append($("#doctors").find("select").html());
+		$this.$modal.find('.delete-event').hide().end().find('.save-event').text("Crear Cita").show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function(){form.submit();});$this.$modal.find('form').on('submit',function(){var title=form.find("input[name='title']").val()+" - "+form.find("select[name='doctor'] option:selected").text()+" - "+form.find("select[name='category'] option:selected").text()+" - "+form.find("input[name='phone']").val();var beginning=form.find("input[name='beginning']").val();var ending=form.find("input[name='ending']").val();var categoryClass=form.find("select[name='category'] option:checked").val();if(title!==null&&title.length!=0){$this.$calendarObj.fullCalendar('renderEvent',{title:title,start:start,end:end,allDay:false,className:categoryClass},true);$this.$modal.modal('hide');}else{alert('You have to give a title to your event');}return false;});$this.$calendarObj.fullCalendar('unselect');},CalendarApp.prototype.enableDrag=function(){$(this.$event).each(function(){var eventObject={title:$.trim($(this).text())};$(this).data('eventObject',eventObject);$(this).draggable({zIndex:999,revert:true,revertDuration:0});});}
+	 	
 	CalendarApp.prototype.init=function(){
 		this.enableDrag();
 		var date=new Date();

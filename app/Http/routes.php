@@ -82,6 +82,7 @@ Route::get('/administracion/servicios/', ['middleware' => 'auth',  'as' => 'serv
 
 //API Routes
 Route::get('/getPatientAPI/{input?}', ['middleware' => 'auth',  'as' => 'getPatientAPI', 'uses' => 'PatientsController@getPatientAPI']);
+Route::get('/getPatientComplete/{input?}', ['middleware' => 'auth',  'as' => 'getPatientComplete', 'uses' => 'PatientsController@getPatientComplete']);
 Route::get('/getPatientJSON/{input?}', ['middleware' => 'auth',  'as' => 'getPatientAPI', 'uses' => 'PatientsController@getPatientJSON']);
 Route::get('/ServiceAPI/{input?}', ['middleware' => 'auth',  'as' => 'serviceAPI', 'uses' => 'ServicesController@ServicesAPI']);
 Route::get('/ServiceFindAPI/{input?}', ['middleware' => 'auth',  'as' => 'servicefindAPI', 'uses' => 'ServicesController@ServiceAPI']);
