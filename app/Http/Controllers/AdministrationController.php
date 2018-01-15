@@ -130,4 +130,5 @@ class AdministrationController extends BaseController
 		}
 		return view('administration.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
+	
 }
