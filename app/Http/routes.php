@@ -31,6 +31,9 @@ Route::get('/createAtencion/', ['middleware' => 'auth',  'as' => 'registrar_aten
 
 Route::get('/buscar/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'uses' => 'AuthorizationsController@findAuthorization']);
 
+Route::get('/admision/reporte', ['middleware' => 'auth',  'as' => 'reporte', 'uses' => 'AuthorizationsController@showReportes']);
+
+
 //Pacientes Routes
 Route::get('/pacientes/{input?}', ['middleware' => 'auth',  'as' => 'pacientes', 'uses' => 'PatientsController@showPatients']);
 Route::get('/createPatient/', ['middleware' => 'auth',  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);

@@ -30,6 +30,7 @@
                                     <li><a href="{{ url('/admision/atenciones') }}">Atenciones Médicas</a></li>
                                     <li><a href="{{ url('/admision/citas') }}">Citas</a></li>
                                     <li><a href="{{ url('/admision/horario') }}">Horario Médico</a></li>
+                                    <li><a href="{{ url('/admision/reporte') }}">Reportes</a></li>
                                 </ul>
                             </li>
 
