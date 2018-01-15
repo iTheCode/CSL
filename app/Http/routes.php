@@ -43,6 +43,10 @@ Route::get('/paciente/{input?}', ['middleware' => 'auth',  'as' => 'view_patient
 //Caja & Servicios Routes
 Route::get('/caja/atenciones', ['middleware' => 'auth',  'as' => 'services', 'uses' => 'ServicesController@showRecents']);
 Route::get('/caja/servicio/{input?}', ['middleware' => 'auth',  'as' => 'addservice', 'uses' => 'ServicesController@addService']);
+Route::get('/caja/reporte', ['middleware' => 'auth',  'as' => 'reporte', 'uses' => 'ServicesController@showReportes']);
+
+
+
 
 //Pay Electrnic Documents
 Route::get('/pay_edocument/create/{input}', ['middleware' => 'auth',  'as' => 'createpayedocument', 'uses' => 'EDocumentsController@create_edocument']);
