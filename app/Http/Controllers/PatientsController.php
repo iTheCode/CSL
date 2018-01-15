@@ -122,4 +122,5 @@ class PatientsController extends BaseController
 		return view('api.patientsAPI', ['users' => $response]);
 
 	}
+	
 }

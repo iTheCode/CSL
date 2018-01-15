@@ -35,7 +35,11 @@
                             </li>
 
                             <li>
-                                <a href="{{ url('/caja/atenciones') }}" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span> </a>
+                                <a href="#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span><span class="pull-right"><i class="md md-add"></i> </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ url('/caja/atenciones') }}">Atenciones</a></li>
+                                    <li><a href="{{ url('/caja/reporte') }}">Reportes</a></li>
+                                </ul>
                               
                             </li>
 

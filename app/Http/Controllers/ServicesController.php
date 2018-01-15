@@ -85,4 +85,13 @@ class ServicesController extends BaseController
 	public function addServicePay(Request $request) {
 		print_r($request::get('service_id'));
 	}
+	public function showReportes()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('auth.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
 }
