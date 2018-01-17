@@ -97,7 +97,69 @@
                         
                         <!-- Page-Title -->
                         <div class="row">
-                            <div class="col-sm-12"> <h4 class="pull-left page-title"><a href="#" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Empleado</a> </h4>
+                            <div class="col-sm-12"> <h4 class="pull-left page-title"> 
+                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Nuevo Personal
+                                </button></h4>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <div class="panel-heading"><h3 class="panel-title">AGREGAR PERSONAL</h3></div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form">
+                                            <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
+                                                 <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">Código :</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="username" name="username" type="text">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">DNI :</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="username" name="username" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="firstname" class="control-label col-lg-2">Nombres :</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="lastname" class="control-label col-lg-2">Apellidos :</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">Especialidad :</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="opcion" class="form-control">
+                                                            <option value="1">MEDICINA GENERAL</option>
+                                                            <option value="2">GINECOLOGIA Y OBSTETRICIA</option>
+                                                            <option value="2">PATOLOGIA Y LABORATORIO CLÍNICO</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    
+                                                </div>
+                                              
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Guardar</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                                 <ol class="breadcrumb pull-right">
                                
                                     <li><a href="#">{{  $system_name }}</a></li>
