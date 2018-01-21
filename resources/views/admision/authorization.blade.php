@@ -527,11 +527,75 @@
 
                             <div class="tab-pane" id="documents">
                                 <!-- Personal-Information -->
+                                <div class="row">
+                            <div class="col-sm-12"> 
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form">
+                                            <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
+                                                 <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">Tipo de documento :</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="username" name="username" type="text">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">Motivo :</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="username" name="username" type="text">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">Área :</label>
+                                                    <div class="col-lg-10">
+                                                        <select name="opcion" class="form-control">
+                                                            <option value="1">HOSPITALIZACIÓN</option>
+                                                           
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    
+                                                </div>
+                                              
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                        <button type="button" class="btn btn-primary">SUBIR</button>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default" style="display: none;">
+
+                                </div>
+                            </div>
+                        </div> <!-- End row -->
 
                                 <div class="panel panel-default panel-fill">
                                     <div class="panel-heading"> 
                                         <h3 class="panel-title">Documentos Anexados</h3> 
+                                        <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#exampleModalCenter">
+                                        +
+                                        </button>
+                                        
+                                    
                                     </div> 
+
                                     <div class="panel-body"> 
                                         <div class="table-responsive">
                                                             <table class="table">
