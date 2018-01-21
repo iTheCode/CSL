@@ -135,7 +135,7 @@
                                                                 <td>{{ $i++ }}</td>
                                                                 <td>{{ $lote->code}}</td>
                                                                 <td>{{ $lote->insurance->name}}</td>
-                                                                <td>{{ $lote->init_date}} <-> {{ $lote->end_date}}</td>
+                                                                <td>{{ $lote->init_date}} — {{ $lote->end_date}}</td>
                                                                 <td>{{ $lote->date}}</td>
                                                                 <td>
                                                                     <div class="btn-group">
