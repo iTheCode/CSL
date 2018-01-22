@@ -265,21 +265,23 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group clearfix">
-                                                            <label class="col-lg-2 control-label" for="name"> Tipo de Cobertura / Servicio</label>
+                                                            <label class="col-lg-2 control-label" for="name"> Tipo de Cobertura</label><br>
 
                                                             <div class="col-lg-5">
                                                                 {{ Form::select('sub_coverage_type_id', [null=>'Seleccione la cobertura'] + $sub_coverage_types, null, ['class' => 'select2 form-control']) }}
                                                             </div>
+                                                            <label class="col-lg-2 control-label" for="name"> Tipo de Servicio</label><br>
                                                             <div class="col-lg-5">
                                                                     {{ Form::select('service_id', [null=>'Seleccione un servicio'] + $services, null, ['class' => 'select2 form-control']) }}
                                                             </div>
                                                         </div>
                                                         <div class="form-group clearfix">
-                                                            <label class="col-lg-2 control-label" for="name"> Copago Fijo / Copago Variable</label>
+                                                            <label class="col-lg-2 control-label" for="name"> Copago Fijo</label><br>
 
                                                             <div class="col-lg-5">
                                                                 <input id="cop_fijo" name="cop_fijo" type="text" class="required form-control">
                                                             </div>
+                                                            <label class="col-lg-2 control-label" for="name"> Copago Variable</label><br>
                                                             <div class="col-lg-5">
                                                                 <div class="input-group bootstrap-touchspin"><input id="cop_var" name="cop_var" type="text" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" class="form-control" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix">%</span></div>
                                                             </div>
@@ -473,7 +475,7 @@
                             var cop_fijo = $("#cop_fijo").val();
                             var sub_coverage_type_id = $("select[name='sub_coverage_type_id']").val();
                             var data = "id_hidden="+id_hidden+"&authorization_type_id="+authorization_type_id+"&doctor_id="+doctor_id+"&cop_var="+cop_var+"&cop_fijo="+cop_fijo+"&sub_coverage_type_id="+sub_coverage_type_id;
-                            if(doctor_id == null || doctor_id == "" || sub_coverage_type_id == "" || sub_coverage_type_id == null|| cop_fijo == "" || cop_fijo == null || cop_var == "" || cop_var == null){ alert("Usted no ha ingresado los datos correctamente, debe volver a crear la atención."); location.reload();}
+                            if(doctor_id == null || doctor_id == "" || cop_fijo == "" || cop_fijo == null || cop_var == "" || cop_var == null){ alert("Usted no ha ingresado los datos correctamente, debe volver a crear la atención."); location.reload();}
                             $.ajax(
                               {
                                   url: "{{ url('/createAtencion/') }}", 
