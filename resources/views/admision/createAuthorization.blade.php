@@ -36,7 +36,151 @@
 
         
     </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 
+        .container-auth{
+          width: 700px;
+          height: 330px;
+          background: #fff;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .img-container{
+          width: 35%;
+          height: 100%;
+          float: left;
+          position: relative;
+        }
+
+        .img-container img{
+          width: 100%;
+          height: 60%;
+          padding-top:45%;
+          margin-left:35px;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+
+        .content-auth{
+          width: 60%;
+          height: 100%;
+          float: left;
+          padding: 30px;
+          margin-left:35px;
+          box-sizing: border-box;
+        }
+
+        .head{
+          padding-bottom: 30px;
+        }
+
+        .head p{
+          font-size: 20px;
+          color: #444444;
+          font-weight: 600;
+        }
+
+        .head span{
+          color: #aaabaf;
+          font-size: 14px;
+        }
+
+        .data{
+          width: 110%;
+          overflow: hidden;
+        }
+
+        .inner-data{
+          width: 32%;
+          padding-top:30px;
+          float: left;
+          text-align: left;
+          color: #aaabaf;
+        }
+
+        .inner-data p{
+          font-size: 14px;
+          padding-bottom: 5px;
+        }
+
+        .inner-data span{
+          font-size: 12px;
+          font-weight: 400;
+        }
+
+        .img-container:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-left: 30px solid #1DA1F2;
+          border-right: 30px solid transparent;
+          border-top: 30px solid #1DA1F2;
+          border-bottom: 30px solid transparent;
+          cursor: pointer;
+          border-top-left-radius: 5px;
+        }
+
+        .img-container:after{
+          font-family: fontawesome;
+          content:"\f0f9";
+          position: absolute;
+          top: 10px;
+          left: 8px;
+          color: #fff;
+          font-size: 18px;
+        }
+
+
+        .floating-icon{
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          top: 38%;
+          right: -5%;
+          background: #1DA1F2;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
+        .floating-icon .fa{
+          position: absolute;
+          left: 18px;
+          top: 15px;
+          color: #fff;
+          font-size: 20px;
+          transition: all 1s ease;
+        }
+
+        .floating-icon.active .fa{
+            transform: rotate(45deg); 
+            transition: all 1s ease;
+        }
+
+        .btn{
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          text-transform: uppercase;
+          font-size: 12px;
+          background: #1DA1F2;
+          padding: 6px 15px;
+          color: #fff;
+          font-weight: 600;
+          opacity: 0;
+          transition: all 1s ease;
+          cursor: pointer;
+        }
+        .btn:hover{
+            color:#fff;
+        }
+        .btn.active{
+          opacity: 1;
+          color:#fff;
+        }
+    </style>
 
     <body class="fixed-left">
         
@@ -291,21 +435,36 @@
                                                 </section>  
                                                 <h3>Pago</h3>
                                                 <section>
-                                                    <div class="form-group clearfix">
+                                                    <div class="form-group clearfix" style="margin-left: 20px;">
+
                                                                     <div id="voucher" class="pull-left m-t-30">
-                                                                            <p><strong>Atención #</strong> </p>
-                                                                            <p><strong>Autorización # </strong> </p>
-                                                                            <p><strong>Código Interno #68277</strong> </p>
-                                                                            <p class="m-t-10"><strong>Paciente: </strong> </p>
-                                                                            <p class="m-t-10"><strong>Titular: </strong> </p>
-                                                                            <p class="m-t-10"><strong>Cobertura: (Empresa)</strong> </p>
+                                                                        <div class="wrapper">
+                                                                          <div class="container-auth">
+                                                                            <div class="img-container">
+                                                                              <img src="http://system.clinicaluren.com.pe/assets/images/logo.png" alt="">
+                                                                            </div>
+                                                                            
+                                                                            <div class="content-auth">
+                                                                            </div>
+                                                                            
+                                                                            <div class="btn">imprimir</div>
+                                                                            
+                                                                          </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div id="payments_options" class="pull-right text-right col-md-4">
-                                                                            <p><strong>Tipo de Pago:</strong> <select class="form-control" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
-                                                                            <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta</option><option value="2">Factura</option><option value="3">Boleta No Paciente</option></select></p>
-                                                                            <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
-                                                                            <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
-                                                                            <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
+                                                                    <div id="payments_options" class="row" style="margin-top: 400px;">
+                                                                            <div class="col-md-4">
+                                                                                <p><strong>Tipo de Pago:</strong> 
+                                                                                <select class="form-control col-md-4" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta</option><option value="2">Factura</option><option value="3">Boleta No Paciente</option></select></p>
+                                                                                <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
+                                                                                <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
+                                                                            </div>
                                                                     </div>
                                                     </div>
                                                 </section>
@@ -372,6 +531,8 @@
         <script>
             $(document).ready(function(){
                 var i = 1;
+                $("a[href='#next']").text('Buscar');
+                $("a[href='#previous']").hide();
                 $('select.select2').select2();
                 $('select[name="authorization_type_id"]').change(function(){
                     var val = $(this).val();
@@ -408,12 +569,14 @@
                 $("#pay_edocument_type").change(function(){
                     var selected = $(this).val();
                     if(selected == 2){
-                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus();
+                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus().prev().remove();
                     }else if(selected == 3){
-                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus();
+                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus().prev().prev().remove();
                     }
                 });
                 $("a[href='#next']").click(function(){
+
+                    $("a[href='#previous']").show();
                     var value = $("#metodo").val();
                     if(i == "2" && value == "3" ){
                          $("a[href='#next']").text('Crear Paciente');
@@ -492,7 +655,9 @@
                                         result.insureds.insurance = new Object();
                                         result.insureds.insurance.name = 'Particular';
                                     }
-                                    $('#voucher').html('<p><strong>Atención #'+result.id+'</strong> </p><p><strong>Autorización #'+result.code+'</strong> </p><p><strong>Código Interno #'+result.intern_code+'</strong> </p><p class="m-t-10"><strong>Paciente: '+result.patient.name+' '+result.patient.paternal+' '+result.patient.maternal+'</strong> </p><p class="m-t-10"><strong>Titular: '+result.insureds.hold_name+' '+result.insureds.hold_paternal+' '+result.insureds.hold_maternal+'</strong> </p><p class="m-t-10"><strong>Cobertura: S/.'+parseFloat(result.coverage.cop_fijo).toFixed(2)+' ('+result.coverage.cop_var+'%) ('+result.insureds.insurance.name+')</strong> </p>');
+                                    $('.content-auth').html('<div class="head"><p>'+result.patient.name+' '+result.patient.paternal+' '+result.patient.maternal+'</p><span>'+result.insureds.insurance.name+'</span></div><div class="data"><div class="inner-data"><p>Atención</p><span>#'+result.id+'</span></div><div class="inner-data"><p>Autorización</p><span>#'+result.code+'</span></div><div class="inner-data"><p>Código Interno</p><span>#'+result.intern_code+'</span></div><div class="inner-data"><p>Historia Clínica</p><span>'+result.patient.clinic_history_code+'</span></div><div class="inner-data"><p>Pago Fijo</p><span>S/.'+parseFloat(result.coverage.cop_fijo).toFixed(2)+'</span></div><div class="inner-data"><p>Cubierto al</p><span>'+result.coverage.cop_var+'%</span></div></div>');
+
+
                                                                             
                                   }
                                 });
@@ -502,7 +667,7 @@
                     }
                     if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response = false;} if(value != "3"){$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = response || true;}else{ response = response || false; }});} if(!response){alert("Seleccione un paciente"); location.reload(); }}else{$(this).text('Next').removeClass('create_atencion');}
                     if (i == "4"){ 
-                        $("a[href='#finish']").parent().html('<hr><a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>'); 
+                        $("a[href='#finish']").parent().html('<hr><a id="print-button" href="#" class="btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>'); 
                         $("#print-button").click(function(){
                             if(window.confirm('¿Está seguro de imprimir el documento?')){
                                 $(".modal-body").print();
