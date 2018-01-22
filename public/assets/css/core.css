@@ -192,7 +192,7 @@ a:focus {
   padding: 6px 20px;
 }
 .bg-primary {
-  background-color: #5e35b1 !important;
+  background-color: #29b6f6 !important;
 }
 .bg-success {
   background-color: #00b19d !important;
@@ -231,7 +231,7 @@ a:focus {
   color: #98a6ad;
 }
 .text-primary {
-  color: #5e35b1;
+  color: #29b6f6;
 }
 .text-warning {
   color: #ffd740;
@@ -272,7 +272,7 @@ a:focus {
   box-shadow: none;
 }
 .label-primary {
-  background-color: #5e35b1;
+  background-color: #29b6f6;
 }
 .label-success {
   background-color: #00b19d;
@@ -313,7 +313,7 @@ a:focus {
   transform: translate(0, -2px);
 }
 .badge-primary {
-  background-color: #5e35b1;
+  background-color: #29b6f6;
 }
 .badge-success {
   background-color: #00b19d;
@@ -352,8 +352,8 @@ a:focus {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-  background-color: #5e35b1;
-  border-color: #5e35b1;
+  background-color: #29b6f6;
+  border-color: #29b6f6;
 }
 .tabs {
   background-color: #ffffff;
@@ -383,10 +383,10 @@ a:focus {
   width: 100%;
 }
 .tabs li.tab a.active {
-  color: #5e35b1 !important;
+  color: #29b6f6 !important;
 }
 .tabs .indicator {
-  background-color: #5e35b1;
+  background-color: #29b6f6;
   bottom: 0;
   height: 2px;
   position: absolute;
@@ -444,7 +444,7 @@ a:focus {
 }
 .nav.nav-tabs > li > a:hover,
 .nav.tabs-vertical > li > a:hover {
-  color: #5e35b1 !important;
+  color: #29b6f6 !important;
 }
 .tab-content {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -472,7 +472,7 @@ a:focus {
 .tabs-vertical > li.active > a,
 .tabs-vertical > li.active > a:focus,
 .tabs-vertical > li.active > a:hover {
-  color: #5e35b1 !important;
+  color: #29b6f6 !important;
 }
 /* Dropcap */
 .dropcap {
@@ -552,7 +552,7 @@ a:focus {
   z-index: 2;
 }
 .list-group-item.active:hover .list-group-item-text {
-  color: #5e35b1;
+  color: #29b6f6;
 }
 .list-group-item.active:focus {
   background-color: #dddddd;
@@ -561,10 +561,10 @@ a:focus {
   z-index: 2;
 }
 .list-group-item.active:focus .list-group-item-text {
-  color: #5e35b1;
+  color: #29b6f6;
 }
 .list-group-item.active .list-group-item-text {
-  color: #5e35b1;
+  color: #29b6f6;
 }
 .list-group-item {
   border-radius: 0px;
@@ -582,10 +582,10 @@ a:focus {
   font-weight: 300;
 }
 .list-group-item.active > .badge {
-  color: #5e35b1;
+  color: #29b6f6;
 }
 .nav-pills > .active > a > .badge {
-  color: #5e35b1;
+  color: #29b6f6;
 }
 .has-success .form-control {
   border-color: #00b19d;

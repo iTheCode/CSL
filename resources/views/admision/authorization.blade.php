@@ -589,7 +589,7 @@
                                 </div>
                             </div>
                         </div> <!-- End row -->
-                                <button type="button" class=" float btn waves-effect waves-light btn-success " data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class=" float btn waves-effect waves-light btn-success " data-toggle="modal" style="margin-right:5px;margin-top: 5px;" data-target="#exampleModalCenter">
                                         +
                                         </button>
                                 <div class="panel panel-default panel-fill">
