@@ -44,7 +44,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ url('/triaje/atenciones') }}" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="{{ url('/triaje/atenciones') }}" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> </a>
                             </li>
                             <li>
                                 <a href="{{ url('/pacientes/general') }}" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span></a>
