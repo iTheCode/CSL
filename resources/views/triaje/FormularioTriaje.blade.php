@@ -138,44 +138,47 @@
                                 </ul> 
                                 <div class="tab-content"> 
                                     <div class="tab-pane active" id="home-21"> 
-                                    		
-                            				<div class="form-group">
+                                    <div class="panel-body">
+                                        <div class="form">
+                                            <div class="form-group">
                                                 <label for="exampleInputEmail1"> Número de historia clínica</label>
                                                 <input class="form-control" id="exampleInputEmail1" placeholder="N° historia">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Nombre del paciente</label>
-                                                <input  class="form-control" id="exampleInputPassword1" placeholder="Nombre">
+                                                <input  class="form-control" id="exampleInputPassword1" placeholder="">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Apellidos del paciente</label>
-                                                <input  class="form-control" id="exampleInputPassword1" placeholder="Apellidos">
+                                                <input  class="form-control" id="exampleInputPassword1" placeholder="">
                                             </div>
-                                			<label>Fecha de atención</label>
-                                			<div class="input-group">
-                                   				<input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-multiple">
-                                    			<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                			</div><!-- input-group -->
-                                			<br>
+                                            <label>Fecha de atención</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-multiple">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div><!-- input-group -->
+                                            <br>
                               
-                              			  	<label>Calendario Actual</label>
-                              			  	<div class="input-group mb15">
-                                    			<div id="datepicker-inline"></div>
-                               			 	</div><!-- input-group -->
-  											<br>
-                               			 	<label>Hora de atención</label>
-                               			 	<div class="input-group m-b-15">
+                                            <label>Calendario Actual</label>
+                                            <div class="input-group mb15">
+                                                <div id="datepicker-inline"></div>
+                                            </div><!-- input-group -->
+                                            <br>
+                                            <label>Hora de atención</label>
+                                            <div class="input-group m-b-15">
                                     
-                                			<div class="bootstrap-timepicker"><input id="timepicker" type="text" class="form-control"></div>
-                               			    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                               			 	</div>
-                               			 		<div class="form-group">
+                                            <div class="bootstrap-timepicker"><input id="timepicker" type="text" class="form-control"></div>
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                            </div>
+                                                <div class="form-group">
                                                     <div class="col-lg-offset-2 col-lg-10">
                                                         <button class="btn btn-success waves-effect waves-light" type="submit">Save</button>
                                                         <button class="btn btn-default waves-effect" type="button">Cancel</button>
                                                     </div>
                                                 </div>
-                              		
+                                        </div>
+                                    </div>		
+                            				
                                         
                                     </div> 
                                     <div class="tab-pane" id="profile-21">
@@ -207,76 +210,69 @@
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Sintomas y signos principales</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Funciones Biológicas</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Examen Físico</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email" class="control-label col-lg-2">Funciones vitales (P.A - FC - FR - T° - Sat.O2 - peso - talla)</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="firstname" name="firstname" placeholder="P.A , FC , FR , T° , Sat.O2 , peso , talla" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Examen General</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                       <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Examen Regional</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Antecedentes: Personales y familiares</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="email" class="control-label col-lg-2">Diagnóstico:
+                                                    <label for="email" class="control-label col-lg-2">Diagnóstico presuntivo (motivo de la consulta - utiliza CIE-10):
                                                     </label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
-                                                    <label for="email" class="control-label col-lg-2">Diagnóstico:
+                                                    <label for="email" class="control-label col-lg-2">Diagnóstico definitivo (Dx de Salud Mental, Dx nutricional, Dx de causa externa de morbilidad.):
                                                     </label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                       <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
-                                                    <label for="email" class="control-label col-lg-2">Diagnóstico:
-                                                    </label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
-                                                    </div>
-                                                    <label for="email" class="control-label col-lg-2">Diagnóstico:
-                                                    </label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
-                                                    </div>
-                                                    <label for="email" class="control-label col-lg-2">Diagnóstico:
-                                                    </label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
-                                                    </div>
+
+                                                    
                                                     
                                                     
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Exámenes de ayuda diagnóstica</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
                                                 
-                                           
+                                            
 
                                                 <div class="form-group">
                                                     <div class="col-lg-offset-2 col-lg-10">
@@ -314,7 +310,7 @@
                                                 <div class="form-group">
                                                     <label for="email" class="control-label col-lg-2">Tratamiento</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="email" name="email" type="email">
+                                                        <input class="form-control" id="firstname" name="firstname" type="text">
                                                     </div>
                                                 </div>
 
