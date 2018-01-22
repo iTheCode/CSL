@@ -50,7 +50,7 @@ class PatientsController extends BaseController
 
 	public function getPatientAPI($input = null)
 	{
-		$response = Patient::where(DB::raw("CONCAT(name, ' ', paternal, ' ', maternal)"), 'like', '%' . $input . '%')->orWhere('document_identity_code', $input)->limit(5)->get();
+		$response = Patient::where(DB::raw("CONCAT(name, ' ', paternal, ' ', maternal)"), 'like', '%' . $input . '%')->orWhere('document_identity_code', $input)->limit(7)->get();
 
 		
 		return view('api.patientsAPI', ['users' => $response]);

@@ -189,9 +189,13 @@ class AuthorizationsController extends BaseController
 			$sub_coverage_type = SubCoverageType::find($request::get('sub_coverage_type_id'));
 			$c = new Coverage();
 			$c->authorization_id = $a->id;
-			$c->sub_coverage_type_id = $sub_coverage_type->id;
-			$c->name  = $sub_coverage_type->name;
-			$c->code = $sub_coverage_type->code;
+			if(!$sub_coverage_type){ 
+				$c->sub_coverage_type_id = null;
+			} else { 
+				$c->sub_coverage_type_id = $sub_coverage_type->id; 
+				$c->name  = $sub_coverage_type->name;
+				$c->code = $sub_coverage_type->code;
+			}
 			$c->cop_fijo = $request::get('cop_fijo');
 			$c->cop_var = $request::get('cop_var');
 			if($c->save()){
