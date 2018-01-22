@@ -569,7 +569,10 @@
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
-                                        <button type="button" class="btn btn-primary">SUBIR</button>
+                                        <button type="button" class="btn waves-effect waves-light btn-success">SUBIR</button>
+                                        <form name="formulario" action="envio.php" method="post"  enctype="multipart/form-data">
+                                        <input name="archivo" type="file" size="20" class="btn waves-effect waves-light btn-success "> 
+
                                       </div>
 
                                     </div>
@@ -585,19 +588,21 @@
                                 </div>
                             </div>
                         </div> <!-- End row -->
-
-                                <div class="panel panel-default panel-fill">
-                                    <div class="panel-heading"> 
-                                        <h3 class="panel-title">Documentos Anexados</h3> 
-                                        <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class=" float btn waves-effect waves-light btn-success " data-toggle="modal" data-target="#exampleModalCenter">
                                         +
                                         </button>
+                                <div class="panel panel-default panel-fill">
+                                    <div class="panel-heading "> 
+                                        <h3 class="panel-title">Documentos Anexados</h3>
+                                        
+                                        
                                         
                                     
                                     </div> 
 
                                     <div class="panel-body"> 
                                         <div class="table-responsive">
+                                            
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
