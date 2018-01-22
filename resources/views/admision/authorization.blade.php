@@ -112,14 +112,14 @@
                     <div class="row user-tabs hidden-xs">
                         <div class="col-sm-9 col-lg-6">
                             <ul class="nav nav-tabs tabs tabs-top" style="width: 100%;">
-                            <li class="tab" style="width: 20%;">
-                                <a href="#details" data-toggle="tab" aria-expanded="false"> 
+                            <li class="tab active" style="width: 20%;">
+                                <a href="#details" data-toggle="tab" aria-expanded="true" class="active"> 
                                     <span class="visible-xs"><i class="fa fa-home"></i></span> 
                                     <span class="hidden-xs">Principal</span> 
-                                </a> 
+                                </a>
                             </li> 
                             <li class="tab" style="width: 20%;"> 
-                                <a href="#services" data-toggle="tab" aria-expanded="false" class=""> 
+                                <a href="#services" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-user"></i></span> 
                                     <span class="hidden-xs">Servicios</span> 
                                 </a> 
@@ -144,7 +144,8 @@
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
                                     <span class="hidden-xs">Documentos</span> 
                                 </a> 
-                            </li> </ul> 
+                            </li>
+                        </ul> 
                         </div>
                         <div class="hidden-xs col-sm-3 col-lg-6">
                             <div class="pull-right">
@@ -221,7 +222,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="sub_coverage_type_id">Tipo de Cobertura</label>
-                                                @if($client->coverage)
+                                                @if($client->coverage->sub_coverage_type)
                                                     {{ Form::select('sub_coverage_type_id',[null=>'Seleccione la cobertura'] + $sub_coverage_types, $client->coverage->sub_coverage_type->id, ['class' => 'form-control']) }}
                                                 @else
                                                     {{ Form::select('sub_coverage_type_id',[null=>'Seleccione la cobertura'] + $sub_coverage_types, null, ['class' => 'form-control']) }}
@@ -706,6 +707,7 @@
                 $('#time_transference').timepicker({showMeridian: false});
                 $('#date_transference').datepicker();
                 $(".wraper").fadeIn();
+                $(".indicator").attr("style","right: 442px; left: 0px;");
             });
         </script>
 

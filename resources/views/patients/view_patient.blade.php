@@ -378,16 +378,16 @@
                                                                                 <li class="clearfix">
                                                                                             <strong class="title">Cobertura</strong>
                                                                                             @if(isset($auth->coverage))
-                                                                                            <span class="text-muted">{{ $auth->coverage->sub_coverage_type->name}}</span>
+                                                                                            <span class="text-muted">{{ $auth->coverage->sub_coverage_type->name or 'Indefinido'}}</span>
                                                                                             @endif
                                                                                     </li> <br>      
                                                                                 <li class="clearfix">
                                                                                             <strong class="title">Fijo</strong>
-                                                                                            <span class="text-muted">{{ $auth->coverage->cop_fijo }}</span>
+                                                                                            <span class="text-muted">{{ $auth->coverage->cop_fijo or 'Indefinido' }}</span>
                                                                                     </li>    <br>   
                                                                                 <li class="clearfix">
                                                                                             <strong class="title">Variable</strong>
-                                                                                            <span class="text-muted">{{ $auth->coverage->cop_var    }}%</span>
+                                                                                            <span class="text-muted">{{ $auth->coverage->cop_var or 'Indefinido' }}%</span>
                                                                                     </li>       <br>
                                                                                 <li class="clearfix">
                                                                                             <strong class="title">Doctor</strong>

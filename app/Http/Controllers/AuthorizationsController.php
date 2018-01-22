@@ -59,9 +59,9 @@ class AuthorizationsController extends BaseController
 			$input = json_decode($input);
 			$from = $input->from;
 			if($input->data != "null"){
-				$response = Authorization::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
+				$response = Authorization::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('date','desc')->paginate(20);
 			}else{
-				$response = Authorization::orderBy('intern_code','desc')->paginate(20);
+				$response = Authorization::orderBy('date','desc')->paginate(20);
 			}
 
 			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
