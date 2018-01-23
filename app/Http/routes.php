@@ -62,7 +62,9 @@ Route::get('/farmacia/liquidaciones/', ['middleware' => 'auth',  'as' => 'liquid
 Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'uses' => 'PharmacyController@pharmacyStore']);
 //Route::get('/farmacia/liquidacion/{input?}', ['middleware' => 'auth',  'as' => 'liquidacion', 'uses' => 'PharmacyController@centro']);
 //Route::get('/farmacia/liquidacion/nueva/{input?}', ['middleware' => 'auth',  'as' => 'nueva_liquidacion', 'uses' => 'PharmacyController@centro']);
-Route::get('/farmacia/liquidaciones/viewsales', ['middleware' => 'auth',  'as' => 'viewsales', 'uses' => 'PharmacyController@showSales']);
+Route::get('/farmacia/liquidaciones/viewsales', ['middleware' => 'auth',  'as' => 'viewsales', 'uses' => 'PharmacyController@showViewSales']);
+Route::get('/farmacia/liquidaciones/sales', ['middleware' => 'auth',  'as' => 'sales', 'uses' => 'PharmacyController@showSales']);
+
 
 
 
