@@ -23,6 +23,7 @@ Route::get('/user_test', function() { $user = Auth::user(); $user->getPermission
 Route::group(['middleware' => ['role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica']], function () {
 
 });
+
 //Admision Routes
 Route::get('/admision/atenciones', ['middleware' => 'auth',  'as' => 'atenciones', 'uses' => 'AuthorizationsController@showAuthorizations']);
 Route::get('/admision/citas', ['middleware' => 'auth',  'as' => 'citas', 'uses' => 'AuthorizationsController@showDates']);
