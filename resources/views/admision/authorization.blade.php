@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 -->
-                    <div class="row user-tabs hidden-xs">
+                    <div class="row user-tabs hidden-xs" style="margin-right: -20px;">
                         <div class="col-sm-9 col-lg-6">
                             <ul class="nav nav-tabs tabs tabs-top" style="width: 100%;">
                             <li class="tab active" style="width: 20%;">
@@ -308,7 +308,7 @@
                                                 <div class="bootstrap-timepicker"><input id="time_transference" type="text" class="form-control" value="{{ $client->time_transference or '00:00' }}"></div>
                                                 </div>
                                             </div><br><br><br><br><br>
-                                            <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Guardar Cambios</button>-->
+                                            <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Guardar Cambios</button>
                                         </form>
 
                                             </div> 
@@ -469,6 +469,9 @@
                             @endif
 
                             <div class="tab-pane" id="payments">
+                                <button type="button" class=" float btn waves-effect waves-light btn-success " data-toggle="modal" style="margin-right:5px;margin-top: 5px;">
+                                        +
+                                        </button>
                                 <!-- Personal-Information -->
                                 <div class="panel panel-default panel-fill">
                                     <div class="panel-heading"> 

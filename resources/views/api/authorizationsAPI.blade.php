@@ -5,7 +5,7 @@
                                         <div class="col-md-4 pull-right" style="margin-right: 20px">
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
-                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese DNI o Nombres del Paciente">
+                                                        <input type="text" id="search" name="search" class="form-control" value="{{ $data or '' }}" placeholder="Ingrese DNI o Nombres del Paciente">
                                                         <button onclick="load_data(null,$(this).prev())" type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-search"></i></button></span>
                                                     </div>
                                         </div></h3>

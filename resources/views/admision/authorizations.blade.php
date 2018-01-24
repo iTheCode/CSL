@@ -179,6 +179,7 @@
             Counter Up
             =============================================== */
             function load_data(page = null,object = null){
+                console.log(object);
                     $('.panel-body').slideUp(1000);
                     if(object != null){ data = object.val(); }else{data = null;}
                     $.ajax(

@@ -98,7 +98,7 @@ class FacturationController extends BaseController
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
 		return view('facturation.tramas', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'lotes' => $response,'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
-	public function showFactu()
+	public function showFactu($input,$id)
 	{
 		if (Auth::check()) {
 		    $user = Auth::user();
