@@ -104,7 +104,7 @@ class PharmacyController extends BaseController
 		}
 		return view('pharmacy.pharmacyStore', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
-	public function showSales()
+	public function showSales($input)
 	{
 		if (Auth::check()) {
 		    $user = Auth::user();

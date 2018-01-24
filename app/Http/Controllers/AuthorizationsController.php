@@ -69,7 +69,7 @@ class AuthorizationsController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'from' => $from, 'currentPage' => $response->CurrentPage()]);
+		return view('api.authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'from' => $from, 'data' => $input->data, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showAuthorizations()
 	{

@@ -60,12 +60,10 @@ Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => '
 Route::get('/farmacia/atenciones/', ['middleware' => 'auth',  'as' => 'farmacia', 'uses' => 'PharmacyController@showRecents']);
 Route::get('/farmacia/liquidaciones/', ['middleware' => 'auth',  'as' => 'liquidaciones', 'uses' => 'PharmacyController@showLiquidations']);
 Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'uses' => 'PharmacyController@pharmacyStore']);
-//Route::get('/farmacia/liquidacion/{input?}', ['middleware' => 'auth',  'as' => 'liquidacion', 'uses' => 'PharmacyController@centro']);
+//Route::get('', ['middleware' => 'auth',  'as' => 'liquidacion', 'uses' => 'PharmacyController@centro']);
 //Route::get('/farmacia/liquidacion/nueva/{input?}', ['middleware' => 'auth',  'as' => 'nueva_liquidacion', 'uses' => 'PharmacyController@centro']);
 Route::get('/farmacia/liquidaciones/viewsales', ['middleware' => 'auth',  'as' => 'viewsales', 'uses' => 'PharmacyController@showViewSales']);
 Route::get('/farmacia/liquidaciones/sales', ['middleware' => 'auth',  'as' => 'sales', 'uses' => 'PharmacyController@showSales']);
-
-
 
 
 //TriajeRoutess/FormularioTri
@@ -83,7 +81,7 @@ Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', '
 Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturationController@showProviders']);
 Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
 
-Route::get('/facturacion/sunat/factu', ['middleware' => 'auth',  'as' => 'factu', 'uses' => 'FacturationController@showFactu']);
+Route::get('/charge_document/{type?}/{id?}', ['middleware' => 'auth',  'as' => 'factu', 'uses' => 'FacturationController@showFactu']);
 
 
 
