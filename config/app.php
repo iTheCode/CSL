@@ -156,7 +156,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Artisaninweb\SoapWrapper\ServiceProvider::class
+        Artisaninweb\SoapWrapper\ServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class
 
     ],
 
