@@ -24,7 +24,7 @@
 		var form=$("<form></form>");
 		var explode = calEvent.title.split(" - ");
 		form.append("<div class='row'></div>");
-		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Paciente: </label><input id='search_patient' class='form-control' placeholder='Buscar' type='text' name='title' value='"+explode[0]+"'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Médico: </label><input class='form-control' name='doctor' value='"+explode[1]+"'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><input class='form-control' name='category' value='"+ explode[2] +"'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Celular: </label><input class='form-control' name='phone' value='" + explode[3] +"'></div></div>");
+		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Paciente: </label><input id='search_patient' class='form-control' placeholder='Buscar' type='text' name='title' value='"+explode[0]+"'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Médico: </label><input class='form-control' name='doctor' value='"+explode[1]+"'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><input class='form-control' name='category' value='"+ explode[2] +"'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Celular: </label><input class='form-control' name='phone' maxlength='9' size='9' value='" + explode[3] +"'></div></div>");
 		$this.$modal.modal({backdrop:'static'});
 		$this.$modal.find('.delete-event').text("Eliminar Cita").show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function(){
 			$this.$calendarObj.fullCalendar('removeEvents',function(ev){return(ev._id==calEvent._id);});
@@ -38,7 +38,7 @@
 		var $this=this;$this.$modal.modal({backdrop:'static'});
 		var form=$("<form></form>");
 		form.append("<div class='row'></div>");
-		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Paciente: </label><input id='search_patient' class='form-control' placeholder='Buscar' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Médico: </label><select class='form-control' name='doctor'></select></div></div>").append("<div class='col-md-6' style=display:none;''><div class='form-group'><label class='control-label'>ID: </label><input class='form-control' name='id'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><select class='form-control' name='category'></select></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Celular: </label><input class='form-control' name='phone'></div></div>").find("select[name='category']").append($("#consult").find("select").html());
+		form.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Paciente: </label><input id='search_patient' class='form-control' placeholder='Buscar' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Médico: </label><select class='form-control' name='doctor'></select></div></div>").append("<div class='col-md-6' style=display:none;''><div class='form-group'><label class='control-label'>ID: </label><input class='form-control' name='id'></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Especialidad: </label><select class='form-control' name='category'></select></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Celular: </label><input class='form-control' maxlength='9' size='9' name='phone'></div></div>").find("select[name='category']").append($("#consult").find("select").html());
 		form.find("#search_patient").autocomplete({
 		    source: function (request, response) {
 		        $.getJSON("/getPatientComplete/" + request.term, function (data) {
@@ -75,14 +75,15 @@
 			minTime:'08:00:00',
 			locale:'es',
 			maxTime:'23:00:00',defaultView:'agendaWeek',
-			handleWindowResize:true,
+			handleWindowResize:false,
 			height:$(window).height()-200,
 			header:{left:'prev,next today',center:'title',right:'month,agendaWeek,agendaDay'},
 			events:defaultEvents,
-			editable:true,
+			editable:false,
 			droppable:true,
 			eventLimit:true,
 			selectable:true,
+			allDaySlot:false,
 			drop:function(date){$this.onDrop($(this),date);},
 			select:function(start,end,allDay){$this.onSelect(start,end,allDay);},
 			eventClick:function(calEvent,jsEvent,view){$this.onEventClick(calEvent,jsEvent,view);},

@@ -6,9 +6,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use \App\Models\Area as Area;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Employee extends Authenticatable
 {
+    
+    use HasRoles;
     /**
      * The attributes that are mass assignable.
      *

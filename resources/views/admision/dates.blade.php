@@ -219,7 +219,6 @@
             Counter Up
             =============================================== */
             jQuery(document).ready(function($) {
-                $(".fc-day-grid").remove();
 
             });
         </script>
