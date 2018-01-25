@@ -53,7 +53,7 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/farmacia/atenciones') }}">Atenciones</a></li>
+                                    <li><a href="{{ url('/farmacia/atenciones') }}">Atenciones Médicas</a></li>
                                     <li><a href="{{ url('/farmacia/liquidaciones') }}">Liquidaciones</a></li>
                                     <li><a href="{{ url('/farmacia/almacen') }}">Almacén</a></li>
                                     <li><a href="{{ url('/farmacia/reportes') }}">Reportes</a></li>

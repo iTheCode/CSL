@@ -60,12 +60,9 @@ Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => '
 Route::get('/farmacia/atenciones/', ['middleware' => 'auth',  'as' => 'farmacia', 'uses' => 'PharmacyController@showRecents']);
 Route::get('/farmacia/liquidaciones/', ['middleware' => 'auth',  'as' => 'liquidaciones', 'uses' => 'PharmacyController@showLiquidations']);
 Route::get('/farmacia/almacen/', ['middleware' => 'auth',  'as' => 'almacen', 'uses' => 'PharmacyController@pharmacyStore']);
-//Route::get('', ['middleware' => 'auth',  'as' => 'liquidacion', 'uses' => 'PharmacyController@centro']);
-//Route::get('/farmacia/liquidacion/nueva/{input?}', ['middleware' => 'auth',  'as' => 'nueva_liquidacion', 'uses' => 'PharmacyController@centro']);
-Route::get('/farmacia/liquidaciones/viewsales', ['middleware' => 'auth',  'as' => 'viewsales', 'uses' => 'PharmacyController@showViewSales']);
-Route::get('/farmacia/liquidaciones/sales', ['middleware' => 'auth',  'as' => 'sales', 'uses' => 'PharmacyController@showSales']);
+Route::get('farmacia/liquidacion/{input?}', ['middleware' => 'auth',  'as' => 'viewsales', 'uses' => 'PharmacyController@showViewSales']);
+Route::get('/farmacia/liquidacion/nueva/{input?}', ['middleware' => 'auth',  'as' => 'sales', 'uses' => 'PharmacyController@showSales']);
 Route::get('/farmacia/reportes', ['middleware' => 'auth',  'as' => 'reportes', 'uses' => 'PharmacyController@addReport']);
-
 
 
 //TriajeRoutess/FormularioTri

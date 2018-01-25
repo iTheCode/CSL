@@ -5,7 +5,11 @@
                                         <div class="col-md-4 pull-right" style="margin-right: 20px">
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
+                                                        @if($data == "null")
                                                         <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese el número de liquidación">
+                                                        @else
+                                                        <input type="text" id="search" name="search" class="form-control" value="{{ $data }}" placeholder="Ingrese el número de liquidación">
+                                                        @endif
                                                         <button onclick="load_data(null,$(this).prev())" type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-search"></i></button></span>
                                                     </div>
                                         </div></h3>

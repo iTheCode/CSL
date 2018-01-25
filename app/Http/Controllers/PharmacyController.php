@@ -42,17 +42,15 @@ class PharmacyController extends BaseController
 		    $position = $user->area->name;
 		}
 			$input = json_decode($input);
-			if($input->data != "null"){
+			if($input->data != "null" and $input->data != ""){
 				$response = InsuredPharmacy::where('pharm_type_sale_id', '2')->where('liquidation', $input->data)->orderBy(DB::raw('abs(liquidation)'),'desc')->paginate(20);
 			}else{
 				$response = InsuredPharmacy::where('pharm_type_sale_id', '2')->orderBy(DB::raw('abs(liquidation)'),'desc')->paginate(20);
 			}
-			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
-			//return $response;
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.liquidationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.liquidationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'data' => $input->data, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function pharmacystoreAPI($input)
 	{
