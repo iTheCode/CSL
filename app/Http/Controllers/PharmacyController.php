@@ -122,5 +122,15 @@ class PharmacyController extends BaseController
 		}
 		return view('pharmacy.viewsales', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
+	public function addReport()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+		return view('pharmacy.reportes', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+	}
+	
 	
 }
