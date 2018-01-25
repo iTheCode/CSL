@@ -5,7 +5,11 @@
                                         <div class="col-md-4 pull-right" style="margin-right: 20px">
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
-                                                        <input type="text" id="search" name="search" class="form-control" value="{{ $data or '' }}" placeholder="Ingrese DNI o Nombres del Paciente">
+                                                        @if($data == "null")
+                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese el número de liquidación">
+                                                        @else
+                                                        <input type="text" id="search" name="search" class="form-control" value="{{ $data }}" placeholder="Ingrese el número de liquidación">
+                                                        @endif
                                                         <button onclick="load_data(null,$(this).prev())" type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-search"></i></button></span>
                                                     </div>
                                         </div></h3>
@@ -52,7 +56,7 @@
                                             <a href="{{ url('/farmacia/liquidacion/nueva/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Farmacia"> <i class="ion-medkit"></i></a> 
                                             @endif
                                             @if($from == "triaje")
-                                            <a href="{{ url('/triaje/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Llenar triaje"> <i class="fa fa-heartbeat"></i></a> 
+                                            <a href="{{ url('/triaje/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Completar Ficha"> <i class="fa fa-heartbeat"></i></a> 
                                             @endif
                                         </div>
                                         </td>
