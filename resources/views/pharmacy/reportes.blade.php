@@ -145,6 +145,24 @@
                                                         <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
+                                                    Tipo de Producto
+                                                    <div class="input-group col-md-12">
+                                                        <select name="opcion" class="form-control">
+                                                            <option value="1">Analgésicos</option>
+                                                            <option value="2">Otros</option>
+                                                        </select>
+                                                    </div><br><br>
+                                                    Precio inicio
+                                                    <div class="input-group col-md-12">
+                                                         <input type="text" class="form-control" placeholder="00.00" id="datepicker">
+                                                        
+                                                    </div><br><br>
+                                                    Precio fin
+                                                    <div class="input-group col-md-12">
+                                                         <input type="text" class="form-control" placeholder="00.00" id="datepicker">
+                                                       
+                                                    </div>
+
                                                     <!--Tipo de Documento
                                                     <div class="input-group col-md-12">
                                                         <select name="opcion" class="form-control">
