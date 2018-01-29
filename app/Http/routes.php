@@ -81,7 +81,7 @@ Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'prove
 Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
 
 Route::get('/charge_document/{type?}/{id?}', ['middleware' => 'auth',  'as' => 'factu', 'uses' => 'FacturationController@showFactu']);
-Route::get('/facturacion/vista/', ['middleware' => 'auth',  'as' => 'vista', 'uses' => 'FacturationController@showVista']);
+
 
 
 //Administración Routes
