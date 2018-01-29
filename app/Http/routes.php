@@ -51,8 +51,7 @@ Route::get('/caja/reporte', ['middleware' => 'auth',  'as' => 'reporte', 'uses' 
 //Pay Electrnic Documents
 Route::get('/pay_edocument/create/{input}', ['middleware' => 'auth',  'as' => 'createpayedocument', 'uses' => 'EDocumentsController@create_edocument']);
 Route::get('/pay_edocument/view/{type}/{input}', ['middleware' => 'auth',  'as' => 'viewpayedocument', 'uses' => 'EDocumentsController@view_print']);
-Route::get('/pay_edocument/charge_document/{type}/{id}', ['middleware' => 'auth',  'as' => 'payedocument', 'uses' => 'FacturationController@showCharge']);
-
+Route::get('/pay_edocument/charge_document/{type?}/{id?}', ['middleware' => 'auth',  'as' => 'factu', 'uses' => 'FacturationController@showFactu']);
 //Hospitalización Routes
 Route::get('/hospitalizacion/habitaciones/', ['middleware' => 'auth',  'as' => 'centro', 'uses' => 'CentroController@centro']);
 
@@ -79,8 +78,6 @@ Route::get('/facturacion/sunat/', ['middleware' => 'auth',  'as' => 'sunat', 'us
 Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', 'uses' => 'FacturationController@showTramas']);
 Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturationController@showProviders']);
 Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
-
-Route::get('/charge_document/{type?}/{id?}', ['middleware' => 'auth',  'as' => 'factu', 'uses' => 'FacturationController@showFactu']);
 
 
 
