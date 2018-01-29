@@ -72,6 +72,8 @@ Route::get('/farmacia/reportes', ['middleware' => 'auth',  'as' => 'reportes', '
 Route::get('/triaje/atenciones/', ['middleware' => 'auth',  'as' => 'triaje', 'uses' => 'TriajeController@showAuthorizations']);
 Route::get('/triaje/atencion/{input}', ['middleware' => 'auth',  'as' => 'triaje_form', 'uses' => 'TriajeController@showFormulario']);	
 
+	
+
 //Consulta Externa Routes
 
 Route::get('/consulta_externa/{input?}/{id?}', ['middleware' => 'auth',  'as' => 'consulta_externa', 'uses' => 'AuthorizationsController@showExtern']);
@@ -82,7 +84,6 @@ Route::get('/facturacion/sunat/', ['middleware' => 'auth',  'as' => 'sunat', 'us
 Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', 'uses' => 'FacturationController@showTramas']);
 Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturationController@showProviders']);
 Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
-
 //Administración Routes
 
 Route::get('/administracion/horario/', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'AdministrationController@showHourMedic']);
