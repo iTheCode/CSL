@@ -619,6 +619,177 @@
                                     </div> 
                                     <div class="tab-pane" id="VISTA">
                                         Vista de la boleta 
+                                        <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+     <br><br>
+<table width="99%"id="fact-header" border="0" style="font-size:15px;"> 
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img alt="Logo" class="img-thumbnail" height="200" src="/assets/images/logo.png" width="200"><br>CLINICA SEÑOR DE LUREN DE ICA S.A.C.</td>
+    <td align="center">Av. San Martín. N° 536 , Ica Ica<br>Telef.: (056) 211989<br>http://clinicaluren.com.pe</td>
+    <td align="center" ><div style="border:1px solid #0992c5;border-radius:5px;padding-top: 10px;"><p style="font-size:14px"><b>FACTURA ELECTRONICA</b></p><p style="font-size:14px">R.U.C. 20494306043</p><p style="font-size:14px"><b>F001-0020000</b></p></div></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td width="450">
+      <b>SEÑOR(ES): </b>Rimac S.A. Entidad Prestadora de Salud. 
+    </td>
+    <td width="250"></td>
+    <td width="200"></td>
+  </tr>
+  <tr>
+    <td>
+      <b>DIRECCION: </b>Jr Carpaccio Nº 296 San Borja.  
+    </td>
+    <td>
+      <b>R.U.C.: </b>20414955020  
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <b>PACIENTE: </b>ZAPATA NAVARRO MARIA GRAZZIA 
+    </td>
+    <td>
+      <b>N° DE ATENCION: </b>1727703457 
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <b>TITULAR: </b>NAVARRO MUÑOZ EVELYN FIORELA  
+    </td>
+    <td>
+      <b>FECHA DE EMISION: </b>22/11/2017 
+    </td>
+    <td>
+      <b>EMPRESA: </b>NUMAY SOCIEDAD ANONI  
+    </td>
+  </tr>
+</table><br>
+<table width="99%" style="font-size:14px;border:1px solid #0992c5;border-radius:20px;">
+  <tr border=1 style="background-color:#64bee0;">
+    <td>Código</td>
+    <td align="center" >Descripcion</td>
+    <td>Cantidad</td>
+    <td>P. unit</td>
+    <td>Total</td>
+  </tr>
+  <tbody>
+    <tr>
+      <td width="80">50.01.01</td>
+      
+      <td width="700">CONSULTA AMBULATORIA POR MEDICO ESPECIALISTA(21/11) <span style="font-size:10px">  (BAZZETTI BRICEÑO, MARIO)</span>
+      </td>
+      <td width="110" align="left">1.0</td>
+      <td align="left">50.00</td>
+      <td  align="right">50.00</td>
+    </tr>
+    <tr>
+      <td>Farmacia</td>
+      <td>Gastos de farmacia 165095 - </td>
+      <td width="110"></td>
+      <td></td>
+      <td align="right">88.72</td>
+    </tr>
+    
+    <tr>
+      <td width="80"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="700"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="50"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="100"><div style="font-size:10px;">&nbsp; </div></td>
+      <td><div style="font-size:10px;">&nbsp; </div></td>
+    </tr>
+    <tr>
+      <td width="80"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="700"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="50"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="100"><div style="font-size:10px;">&nbsp; </div></td>
+      <td><div style="font-size:10px;">&nbsp; </div></td>
+    </tr>
+    <tr>
+      <td width="80"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="700"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="50"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="100"><div style="font-size:10px;">&nbsp; </div></td>
+      <td><div style="font-size:10px;">&nbsp; </div></td>
+    </tr>
+    <tr>
+      <td width="80"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="700"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="50"><div style="font-size:10px;">&nbsp; </div></td>
+      <td width="100"><div style="font-size:10px;">&nbsp; </div></td>
+      <td><div style="font-size:10px;">&nbsp; </div></td>
+    </tr>
+    
+
+    <tr>
+      <td colspan="2"></td>
+      <td>Copago fijo</td>
+      <td align="right">S/.</td>
+      <td align="right">(29.66)</td>
+    </tr>
+    <tr>
+      <td colspan="2 "></td>
+      <td>Copago var</td>
+      <td align="right">S/.</td>
+      <td align="right">(8.87)</td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td>Op. Gravada</td>
+      <td align="right">S/.</td>
+      <td align="right">100.19</td>
+    </tr>                <tr>
+                        <td colspan="2"></td>
+                        <td>Op. No Gravada</td>
+                        <td align="right">S/.</td>
+                        <td align="right">0.00</td>
+                </tr>
+                <tr>
+                        <td colspan="2"></td>
+                        <td>Op. Exonerada</td>
+                        <td align="right">S/.</td>
+                        <td align="right">0.00</td>
+                </tr>
+
+                <tr>
+                        <td colspan="2"></td>
+                        <td>Subtotal</td>
+                        <td align="right">S/.</td>
+                        <td align="right">100.19</td>
+                </tr>
+
+    <tr>
+      <td colspan="2"></td>
+      <td>IGV 18%</td>
+      <td align="right">S/.</td>
+      <td align="right">18.03</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        SON : CIENTO DIECIOCHO Y 22/100 SOLES
+      </td>
+      <td>Total</td>
+      <td align="right">S/.</td>
+      <td align="right">118.22</td>
+    </tr>
+  </tbody>
+</table><br>
+<!--<div align="left">Autorizado Mediante Resolución N° 203-2015/SUNAT</div><br>-->
+<div align="center" style="border-style: double;width:99%;" alig>Representación impresa de la factura electrónica generada desde el sistema CSL. Puede verificarla utilizando su clave SOL</br>Autorizado Mediante Resolución N° 203-2015/SUNAT</div>
+
+   </div>
+</div>
                                     </div>
                                 </div> 
                             </div> 
