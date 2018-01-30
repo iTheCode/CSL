@@ -618,7 +618,7 @@
                                         
                                     </div> 
                                     <div class="tab-pane" id="VISTA">
-                                        Vista de la boleta 
+                                        
                                         <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
      <br><br>

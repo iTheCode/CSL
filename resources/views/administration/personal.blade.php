@@ -105,52 +105,44 @@
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                      <div class="modal-header">
-                                        <div class="panel-heading"><h3 class="panel-title">AGREGAR PERSONAL</h3></div>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
+                                      <div class="modal-header " >
+                                         <label for="exampleInputEmail1">AGREGAR PERSONAL</label>
+                                        
+                                        
+                                          
                                         </div>
                                         <div class="modal-body">
                                             <div class="form">
                                             <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
-                                                 <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Código :</label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="username" name="username" type="text">
-                                                    </div>
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">DNI :</label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="username" name="username" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="firstname" class="control-label col-lg-2">Nombres :</label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="firstname" name="firstname" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="lastname" class="control-label col-lg-2">Apellidos :</label>
-                                                    <div class="col-lg-10">
+                                                 <div>
+                                                    Código :
+                                                    <div class="input-group col-md-12">
                                                         <input class="form-control" id="lastname" name="lastname" type="text">
-                                                    </div>
-                                                </div>
+                                                    </div><br>
+                                                 
+                                                    DNI :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div><br>
+                                                
+                                                    Nombres :
+                                                    <div class="input-group col-md-12">
+                                                       <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div><br>
+                                                
+                                                    Apellidos :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div><br>
                                                
-                                                <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Especialidad :</label>
-                                                    <div class="col-lg-10">
+                                                
+                                                    Especialdiad :
+                                                    <div class="input-group col-md-12">
                                                         <select name="opcion" class="form-control">
                                                             <option value="1">MEDICINA GENERAL</option>
-                                                            <option value="2">GINECOLOGIA Y OBSTETRICIA</option>
-                                                            <option value="2">PATOLOGIA Y LABORATORIO CLÍNICO</option>
-                                                            
+                                                            <option value="2">...</option>
                                                         </select>
-                                                    </div>
-                                                    
-                                                </div>
+                                                    </div><br>
                                               
                                         </div>
                                         <div class="modal-footer">
@@ -160,11 +152,8 @@
                                     </div>
                                   </div>
                                 </div>
-                                <ol class="breadcrumb pull-right">
-                               
-                                    <li><a href="#">{{  $system_name }}</a></li>
-                                    <li class="active">Personal</li>
-                                </ol>
+                                
+                                
                             </div>
                         </div>
                         <div class="row">

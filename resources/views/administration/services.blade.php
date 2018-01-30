@@ -105,79 +105,56 @@
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <div class="panel-heading"><h3 class="panel-title">AGREGAR SERVICIOS</h3></div>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <label for="exampleInputEmail1">AGREGAR SERVICIO</label>
+                                          
                                         </div>
                                         <div class="modal-body">
                                             <div class="form">
                                             <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
-                                                <div class="form-group">
-                                                    <label for="firstname" class="control-label col-lg-2">Código : </label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="firstname" name="firstname" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="lastname" class="control-label col-lg-2">Nombre :</label>
-                                                    <div class="col-lg-10">
+                                                <div>
+                                                    Código :
+                                                    <div class="input-group col-md-12">
                                                         <input class="form-control" id="lastname" name="lastname" type="text">
-                                                    </div>
-                                                </div>
+                                                    </div><br>
+                                                 
+                                                    Nombres :
+                                                    <div class="input-group col-md-12">
+                                                       <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div><br>
                                                 
-                                                <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Área Clínica :</label>
-                                                    <div class="col-lg-10">
+                                                    Apellidos :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div><br>
+                                               
+                                                    Unitario :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                    </div><br>
+                                                    Área clínica :
+                                                    <div class="input-group col-md-12">
                                                         <select name="opcion" class="form-control">
                                                             <option value="1">HON QX-Quirúrgicos</option>
                                                             <option value="2">Cons Tópicos</option>
-                                                            <option value="2">Proced-Procedimientos Clínicos</option>
-                                                            <option value="2">Labor-Laboratorio</option>
-                                                            <option value="2">RX x-Rayos X</option>
-                                                            <option value="2">ECO-Ecografías</option>
-                                                            <option value="2">TAC-Tomografía axial computarizada</option>
-                                                            <option value="2">Odonto-Procedimientos odontológicos</option>
-                                                            <option value="2">Farmacia</option>
+                                                            <option value="3">Proced-Procedimientos Clínicos</option>
+                                                            <option value="4">Labor-Laboratorio</option>
+                                                            <option value="5">RX x-Rayos X</option>
+                                                            <option value="6">ECO-Ecografías</option>
+                                                            <option value="7">TAC-Tomografía axial computarizada</option>
+                                                            <option value="8">Odonto-Procedimientos odontológicos</option>
+                                                            <option value="9">Farmacia</option>
                                                         </select>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Área Contable :</label>
-                                                    <div class="col-lg-10">
+                                                    </div><br>
+                                                    Área Contable :
+                                                    <div class="input-group col-md-12">
                                                         <select name="opcion" class="form-control">
                                                             <option value="1">HONORARIOS Y PROCEDIMIENTOS MÉDICOS</option>
                                                             
                                                         </select>
-                                                    </div>
+                                                    </div><br>
                                                     
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Unitario :</label>
-                                                    <div class="col-lg-10">
-                                                        <input class="form-control" id="username" name="username" type="text">
-                                                    </div>
-                                                </div>
-                                            
-                                                
+                                               
                                     
-                                                
-                                                
-                                                <!--<div class="form-group">
-                                                <label for="agree" class="control-label col-lg-2 col-sm-3">Agree to Our Policy *</label>
-                                                <div class="col-lg-10 col-sm-9">
-                                                    <input type="checkbox" style="width: 16px"  id="agree" name="agree">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="newsletter" class="control-label col-lg-2 col-sm-3">Receive the Newsletter</label>
-                                                <div class="col-lg-10 col-sm-9">
-                                                    <input type="checkbox" style="width: 16px" id="newsletter" name="newsletter">
-                                                </div>
-                                            </div>
-                                            </form>
-                                        </div> <!-- .form -->
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -186,12 +163,6 @@
                                     </div>
                                   </div>
                                 </div>
-
-                                <ol class="breadcrumb pull-right">
-                               
-                                    <li><a href="#">{{  $system_name }}</a></li>
-                                    <li class="active">Servicios</li>
-                                </ol>
                             </div>
                         </div>
                         <div class="row">
