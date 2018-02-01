@@ -59,7 +59,38 @@
 		    }
 		});
 		form.find("select[name='doctor']").append($("#doctors").find("select").html());
-		$this.$modal.find('.delete-event').hide().end().find('.save-event').text("Crear Cita").show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function(){form.submit();});$this.$modal.find('form').on('submit',function(){var title=form.find("input[name='title']").val()+" - "+form.find("select[name='doctor'] option:selected").text()+" - "+form.find("select[name='category'] option:selected").text()+" - "+form.find("input[name='phone']").val();var beginning=form.find("input[name='beginning']").val();var ending=form.find("input[name='ending']").val();var categoryClass=form.find("select[name='category'] option:checked").val();if(title!==null&&title.length!=0){$this.$calendarObj.fullCalendar('renderEvent',{title:title,start:start,end:end,allDay:false,className:categoryClass},true);$this.$modal.modal('hide');}else{alert('You have to give a title to your event');}return false;});$this.$calendarObj.fullCalendar('unselect');},CalendarApp.prototype.enableDrag=function(){$(this.$event).each(function(){var eventObject={title:$.trim($(this).text())};$(this).data('eventObject',eventObject);$(this).draggable({zIndex:999,revert:true,revertDuration:0});});}
+		$this.$modal.find('.delete-event').hide().end().find('.save-event').text("Crear Cita").show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function(){form.submit();});$this.$modal.find('form').on('submit',function(){
+			var title=form.find("input[name='title']").val()+" - "+form.find("select[name='doctor'] option:selected").text()+" - "+form.find("select[name='category'] option:selected").text()+" - "+form.find("input[name='phone']").val();
+			var beginning=form.find("input[name='beginning']").val();
+			var ending=form.find("input[name='ending']").val();
+			var categoryClass=form.find("select[name='category'] option:checked").val();
+				if(title!==null&&title.length!=0){
+					// Save the data into db, add job queue for the sms.
+                    $.ajax({
+                    	url: "{{ url('/createDate/') }}", 
+                        method: "GET",
+                        data: data,
+                        success: function(result){
+							$this.$calendarObj.fullCalendar('renderEvent',{title:title,start:start,end:end,allDay:false,className:categoryClass},true);
+							$this.$modal.modal('hide');
+                        }
+                    });
+
+
+				}else{
+					alert('You have to give a title to your event');
+				}
+			return false;
+		});
+		$this.$calendarObj.fullCalendar('unselect');},
+
+	CalendarApp.prototype.enableDrag=function(){
+			$(this.$event).each(function(){
+				var eventObject={title:$.trim($(this).text())};
+				$(this).data('eventObject',eventObject);
+				$(this).draggable({zIndex:999,revert:true,revertDuration:0});
+			});
+	}
 	 	
 	CalendarApp.prototype.init=function(){
 		this.enableDrag();

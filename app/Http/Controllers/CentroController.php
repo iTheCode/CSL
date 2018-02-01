@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use \App\Employee as Employee;
 use \App\Models\Area as Area;
+use \App\Models\Date as Date_Auth;
 use \App\Models\Authorization;	
 use \App\Models\AuthorizationType;	
 use \App\Models\Insurance;	
@@ -46,5 +47,12 @@ class CentroController extends BaseController
     	//$reniecDni = new \Tecactus\Reniec\DNI('6VctJJd0pw1FsJ2aLxMlahOG49KAWr8ixDsUW46v');
     	//dd($reniecDni);
     	dd ($reniecDni->get($input));
+    }
+    public function sendSMS($job, $data){
+    	$date = Date_Auth::find($data->id);
+    	if($date){
+    		// Sending Message;
+    	}
+
     }
 }

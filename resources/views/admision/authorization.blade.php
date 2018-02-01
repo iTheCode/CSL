@@ -497,7 +497,7 @@
                                                                         @foreach ($client->pay_documents as $p)
                                                                             <tr>
                                                                                 <td>{{ $i++ }}</td>
-                                                                                <td><a href="{{ url('/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
+                                                                                <td><a href="{{ url('/pay_edocument/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
                                                                                 <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                 <td>{{ $p->created_at or '' }}</td>
                                                                                 <td>{{ $p->emission_date or '' }}</td>
