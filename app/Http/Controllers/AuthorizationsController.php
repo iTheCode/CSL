@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use \App\Employee as Employee;
 use \App\Models\Area as Area;
+use \App\Models\Date as Date_Auth;
 use \App\Models\Authorization;	
 use \App\Models\AuthorizationType;	
 use \App\Models\Insurance;	
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model as Model;
+use Carbon\Carbon;
 
 class AuthorizationsController extends BaseController
 {
@@ -162,6 +164,24 @@ class AuthorizationsController extends BaseController
 			$services = Helpers::get_services(Service::all());
 			//dd($response = Authorization::all()->first()->patient);
 		return view('admision.createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
+	}
+	public function createDate(Request $request){
+		$date = new Date_Auth();
+		$date->patient_id = $request::get('id');
+		$date->doctor_id = $request::get('doctor');
+		$date->speciality_id = $request::get('category');
+		$date->date_init = $request::get('start');
+		$date->date_end = $request::get('end');
+		$date->phone = $request::get('phone');
+
+		if($date->save()){
+			//Create the queue for the sms
+			$now = Carbon::now(new DateTimeZone('America/Lima'));
+			$to_time = strtotime($request::get('date_init'));
+			$from_time = strtotime($now);
+			$date = $now->addMinutes(max(round(abs($to_time - $from_time) / 60,0)-30,0));
+			Queue::later($date, 'CentroController@sendSMS', $date); // Creating the task for send message;
+		}
 	}
 	public function createSITEDS()
 	{

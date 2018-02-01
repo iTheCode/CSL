@@ -27,7 +27,10 @@ Route::get('/admision/horario', ['middleware' => 'auth',  'as' => 'horario', 'us
 Route::get('/atencion/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'uses' => 'AuthorizationsController@viewAuthorization']);
 Route::get('/admision/crear', ['middleware' => 'auth',  'as' => 'registrar_atencion', 'uses' => 'AuthorizationsController@createAuthorization']);
 
-Route::get('/createAtencion/', ['middleware' => 'auth',  'as' => 'registrar_atencion_partilar', 'uses' => 'AuthorizationsController@createAtencion']);
+Route::get('/createAtencion/', ['middleware' => 'auth',  'as' => 'registrar_atencion_particular', 'uses' => 'AuthorizationsController@createAtencion']);
+
+
+Route::get('/createDate/', ['middleware' => 'auth',  'as' => 'registrar_atencion_cita', 'uses' => 'AuthorizationsController@createDate']);
 
 Route::get('/buscar/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'uses' => 'AuthorizationsController@findAuthorization']);
 
