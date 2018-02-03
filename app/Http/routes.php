@@ -84,6 +84,7 @@ Route::get('/facturacion/sunat/', ['middleware' => 'auth',  'as' => 'sunat', 'us
 Route::get('/facturacion/tramas/', ['middleware' => 'auth',  'as' => 'tramas', 'uses' => 'FacturationController@showTramas']);
 Route::get('/facturacion/proveedores/', ['middleware' => 'auth',  'as' => 'proveedores', 'uses' => 'FacturationController@showProviders']);
 Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
+
 //Administración Routes
 
 Route::get('/administracion/horario/', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'AdministrationController@showHourMedic']);
