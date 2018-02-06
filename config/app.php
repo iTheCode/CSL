@@ -157,6 +157,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Artisaninweb\SoapWrapper\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class
 
     ],
@@ -207,6 +208,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Helpers'    => App\Helpers::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class
 
     ],

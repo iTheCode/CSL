@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App;
 use \App\Employee as Employee;
 use \App\Models\Area as Area;
 use \App\Models\Authorization;	
@@ -25,6 +26,7 @@ use \App\Helpers;
 use View;
 use Redirect;
 use Request;
+use PDF;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
@@ -285,6 +287,18 @@ class EDocumentsController extends BaseController
 	}
 	public function view_print($type,$input){
 		$pay_edocument = PayEDocument::find($input);
+
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+
+		$pdf = App::make('dompdf.wrapper');
+		$view = view('shop.document_pdf',['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		$pdf->setPaper('A4', 'fullpage');
+		return $pdf->loadHTML($view)->stream();
+
 
 	}
 } 
