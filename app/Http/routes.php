@@ -18,12 +18,15 @@ Route::post('/', array('uses' => 'LoginController@doLogin'));
 //Dashboard Routes
 Route::get('/dashboard', ['middleware' => 'auth',  'as' => 'dashboard', 'uses' => 'DashboardController@showDashboard']);
 
+Route::get('/user_test', function() { $user = Auth::user(); $user->getPermissionsViaRoles(); dd($user); });
 
+Route::group(['middleware' => ['role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica']], function () {
 //Admision Routes
 Route::get('/admision/atenciones', ['middleware' => 'auth',  'as' => 'atenciones', 'uses' => 'AuthorizationsController@showAuthorizations']);
 Route::get('/admision/citas', ['middleware' => 'auth',  'as' => 'citas', 'uses' => 'AuthorizationsController@showDates']);
 Route::get('/admision/horario', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'AuthorizationsController@showHourMedic']);
 
+});
 Route::get('/atencion/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'uses' => 'AuthorizationsController@viewAuthorization']);
 Route::get('/admision/crear', ['middleware' => 'auth',  'as' => 'registrar_atencion', 'uses' => 'AuthorizationsController@createAuthorization']);
 
