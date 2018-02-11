@@ -126,7 +126,9 @@ function($) {
       var $this  = this;
       //bind
       $this.$fullscreenBtn.on('click', function() {
-        $this.toggle_fullscreen();
+        if (confirm("Deseas cerrar la aplicación?")) {
+          window.close();
+        }
       });
     },
      //init FullScreen

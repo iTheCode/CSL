@@ -8,7 +8,7 @@
                                                         @if($data == "null")
                                                         <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese el número de liquidación">
                                                         @else
-                                                        <input type="text" id="search" name="search" class="form-control" value="{{ $data }}" placeholder="Ingrese el número de liquidación">
+                                                        <input type="text" id="search" name="search" class="form-control" value="{{ $data }}" placeholder="Ingrese su búsqueda">
                                                         @endif
                                                         <button onclick="load_data(null,$(this).prev())" type="button" class="btn waves-effect waves-light btn-success"><i class="fa fa-search"></i></button></span>
                                                     </div>
