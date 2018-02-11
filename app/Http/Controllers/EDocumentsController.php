@@ -286,7 +286,7 @@ class EDocumentsController extends BaseController
 
 	}
 	public function view_print($type,$input){
-		$pay_edocument = PayEDocument::find($input);
+		#$pay_edocument = PayEDocument::find($input);
 
 		if (Auth::check()) {
 		    $user = Auth::user();
