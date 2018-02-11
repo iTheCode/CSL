@@ -72,6 +72,8 @@ Route::get('/farmacia/reportes', ['middleware' => 'auth',  'as' => 'reportes', '
 Route::get('/triaje/atenciones/', ['middleware' => 'auth',  'as' => 'triaje', 'uses' => 'TriajeController@showAuthorizations']);
 Route::get('/triaje/atencion/{input}', ['middleware' => 'auth',  'as' => 'triaje_form', 'uses' => 'TriajeController@showFormulario']);	
 
+	
+
 //Consulta Externa Routes
 
 Route::get('/consulta_externa/{input?}/{id?}', ['middleware' => 'auth',  'as' => 'consulta_externa', 'uses' => 'AuthorizationsController@showExtern']);

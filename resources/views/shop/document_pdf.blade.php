@@ -1,3 +1,4 @@
+@if($type == 2)
 <style type="text/css">
     table { vertical-align: top; }
     tr    { vertical-align: top; }
@@ -133,3 +134,162 @@
                 <td style="padding-right: 20px;text-align: right;"><br> CINCO MIL SEISCIENTOS SETENTA Y UN Y 08/100 SOLES</td>
             </tr>
             </table>
+
+
+@else
+<div style="padding-left: -30px; padding-top: -30px; width: 8em">
+        <table cellspacing="0" style="width: 8em;">
+           
+            <tr>
+                <td style="padding-right: -60px;font-size:0.7em;text-align:right;">
+                     Av. San Martín. N° 536 , Ica Ica  
+                </td>
+                 
+            </tr>
+            <tr> 
+                <td style="padding-right: -60px;font-size:0.7em;text-align:right;">
+                     
+                    Mail:info@clinicaluren.com.pe   
+                </td>
+            </tr>
+            <tr> 
+                <td style="padding-right: -32px;font-size:0.7em;text-align:right;">
+                      RUC: 20494306043     
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-right: -30px;font-size:0.7em;text-align:right;">
+                     Citas:(056) 216166
+                           
+                </td>
+                
+            </tr>
+            <tr>
+                <td style="padding-right: -50px;font-size:0.7em;text-align:right;">
+                <br>FACTURA ELECTRONICA<p style="padding-right: -50px ;text-align:center;font-size:1em">F002-371  </p>
+                </td>
+            </tr>
+        </table>
+        </table>
+
+        <table  style="width: 14em">
+            <tr>
+                
+                <td>----------------------------------------------</td>
+                <td><br></td>
+                
+            </tr>
+            <tr>
+                <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
+                    Cliente: CONSTRUCTORA KATARINDO S.A.C.       
+                </td>
+                
+            </tr>
+            <tr>
+               <td COLSPAN=2 style="width:4em;font-size:0.7em;" >
+                    RUC: 20521046024
+                </td>
+                
+            </tr>
+            <tr>
+                <td COLSPAN=2 style="width:8em;font-size:0.7em;" >
+                    Dirección: AV. MANUEL OLGUIN NRO. 335 INT. 1707 URB. MONTERRICO CHICO (AL COSTADO DEL EDIFICIO LOS CUBOS) LIMA - LIMA - SANTIAGO DE SURCO 
+                </td>
+                
+            </tr>
+            <tr>
+                <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
+                Fecha: 2018-02-02 17:30:49<br>     
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
+                Atención: Carmen
+                </td>
+                
+            </tr>
+        </table>
+        
+        <label style="width: 8em">----------------------------------------------</label>
+       
+     
+      
+        <table >
+            <tr>
+                <th style="text-align: center; font-size: 0.7em" >CANT.</th>
+                <th style="text-align: center; font-size: 0.7em" >DESCRIPCION</th>
+                <th style="text-align: center; font-size: 0.7em" >PRECIO. U.</th>
+                <th style="text-align: center; font-size: 0.7em" >PRECIO. T.</th>
+                
+            </tr>
+            <tr>
+                <td  style="text-align: center; font-size:0.7em" >1</td>
+                <td  style="text-align: left; font-size:0.7em" >EXAMEN MEDICO INCOMPLETO (SÓLO LABORATORIO Y RADIOGRAFIAR)</td>
+                <td  style="text-align: right; font-size:0.7em" >46.00</td>
+                <td  style="text-align: right; font-size:0.7em" >46.00</td>
+                
+            </tr>
+
+            <tr>
+                <td><br></td>
+                <td></td>
+                <td></td>
+            </tr>
+        
+            <tr>
+                <td  style="text-align:center; font-size:0.7em" >34</td>
+                <td  style="text-align:left; font-size:0.7em" >EXÁMENES MÉDICOS PRE OCUPACIONALES</td>
+                <td  style="text-align:right; font-size:0.7em" >140.00</td>
+                <td  style="text-align:right; font-size:0.7em" >4,760.00</td>
+                
+            </tr>
+            <tr>
+                <td><br></td>
+                
+            </tr>
+            <tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">SUBTOTAL S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> 4,806.00</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">IGV (18)% S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> 865.08</td>
+            </tr><tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">TOTAL S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> 5,671.08</td>
+            </tr>
+            <tr>
+                <td><br></td>
+                
+            </tr>
+              <tr>
+                <td  style="  font-size:0.6em;"><br>SON:</td>
+                <td COLSPAN=3 style="   font-size:0.6em;"> CINCO MIL SEISCIENTOS SETENTA Y UN Y 08/100 SOLES</td>
+            </tr>
+            
+        </table>
+        
+        
+          
+        
+          
+            
+        <label style="width: 8em">----------------------------------------------</label>
+        <table cellspacing="0" style="width: 8em;">
+            <tr>
+                <td style=" padding-right: -60px ;font-size:0.7em;text-align:right;">
+                    Autorización SUNAT:      
+                </td>
+            </tr>
+            <tr>
+                <td style=" padding-right: -60px ;font-size:0.7em;text-align:right;">
+                    Gracias por su preferencia!         
+                </td>
+            </tr>
+        </table>
+
+</div>
+
+@endif
