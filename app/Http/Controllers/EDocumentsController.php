@@ -295,7 +295,7 @@ class EDocumentsController extends BaseController
 		}
 
 		$pdf = App::make('dompdf.wrapper');
-		$view = view('shop.document_pdf',['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		$view = view('shop.document_pdf',['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'type' => $type]);
 		$pdf->setPaper('A4', 'fullpage');
 		return $pdf->loadHTML($view)->stream();
 
