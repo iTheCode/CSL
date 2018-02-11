@@ -27,7 +27,7 @@ class Handler extends ExceptionHandler
      * Report or log an exception.
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
+     *ssw
      * @param  \Exception  $e
      * @return void
      */
@@ -45,11 +45,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        /*if(env('APP_DEBUG')){
+        if(env('APP_DEBUG')){
             return parent::render($request, $e);
         }else{
-            return redirect('error');
-        }*/
-        dd($e);
+            return view('errors.custom', ['request' => $request, 'e' => $e]);
+        }
     }
 }
