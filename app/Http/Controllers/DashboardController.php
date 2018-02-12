@@ -47,8 +47,7 @@ class DashboardController extends BaseController
 		$meses = array("NULL","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		foreach ($atenciones_globales as $key => $value) {
 			$quantity_month = 0;
-			foreach ($value as $auth) {
-				$response = Authorization::find($auth);
+			foreach ($value as $response) {
 				$quantity = 0;
 				if(isset($response->insuredservices))
 					foreach($response->insuredservices as $i){
@@ -68,6 +67,7 @@ class DashboardController extends BaseController
 
 				$quantity_month = $quantity_month + $quantity;
 			}
+			unset($atenciones_globales[$key]);
 			$key = intval($key);
 			$month = $meses[$key];
 			$atenciones_globales[$month] = array("count" => count($value), "diner" => $quantity_month);
