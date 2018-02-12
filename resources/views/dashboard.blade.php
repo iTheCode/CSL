@@ -184,6 +184,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="panel panel-border panel-primary">
+                                    <div class="panel-body">
+                                        <div class="legend"><div style="position: absolute; width: 284px; height: 16px; top: 4px; right: 10px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:4px;right:10px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(220,220,220);overflow:hidden"></div></div></td><td class="legendLabel">Last 24 Hours&nbsp;&nbsp;</td><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(0,177,157);overflow:hidden"></div></div></td><td class="legendLabel">Last 48 Hours&nbsp;&nbsp;</td><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(126,87,194);overflow:hidden"></div></div></td><td class="legendLabel">Difference&nbsp;&nbsp;</td></tr></tbody></table></div>
+                                        <canvas id="lineChart" data-type="Line" width="520" height="300"></canvas>
+                                    </div>
+                                </div>
+                            </div>
                         </div> <!-- End row-->
                     </div> <!-- container -->
                                
@@ -239,9 +247,7 @@
         <!-- jQuery  -->
         <script src="assets/pages/jquery.chat.js"></script>
         
-        <!--Morris Chart-->
-        <script src="assets/plugins/raphael/raphael-min.js"></script>
-        <script src="assets/plugins/morris.js/morris.min.js"></script>
+        <script src="assets/plugins/Chart.js/Chart.min.js"></script>
         
         <!-- jQuery  -->
         <script src="assets/pages/jquery.dashboard.js"></script>
@@ -255,6 +261,59 @@
                     delay: 100,
                     time: 1200
                 });
+                !function($){
+                    "use strict";
+                    var ChartJs=function(){};
+                    ChartJs.prototype.respChart=function respChart(selector,type,data,options){
+                        var ctx=selector.get(0).getContext("2d");
+                        var container=$(selector).parent();
+                        $(window).resize(generateChart);
+                        function generateChart(){
+                            var ww=selector.attr('width',$(container).width());
+                            switch(type){
+                                case'Line':
+                                    new Chart(ctx).Line(data,options);
+                                    break;
+                                case'Doughnut':
+                                    new Chart(ctx).Doughnut(data,options);
+                                    break;
+                                case'Pie':
+                                    new Chart(ctx).Pie(data,options);
+                                    break;
+                                case'Bar':
+                                    new Chart(ctx).Bar(data,options);
+                                    break;
+                                case'Radar':
+                                    new Chart(ctx).Radar(data,options);
+                                    break;
+                                case'PolarArea':
+                                    new Chart(ctx).PolarArea(data,options);
+                                    break;
+                            }
+                        };
+                        generateChart();
+                    },
+                    ChartJs.prototype.init=function(){
+                        var data={
+                                    labels:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"],
+                                    datasets:[{
+                                                fillColor:"rgba(94, 53, 114, 0.3)",
+                                                strokeColor:"rgba(94, 53, 114, 1)",
+                                                pointColor:"#rgba(94, 53, 114, 1)",
+                                                pointStrokeColor:"#fff",
+                                                data:[33,52,63,92,50,53,46,40,50,30,20,15]
+                                            },
+                                            {
+                                                fillColor:"rgba(0, 177, 157, 0.5)",
+                                                strokeColor:"#00b19d",
+                                                pointColor:"#00b19d",
+                                                pointStrokeColor:"#fff",
+                                                data:[15,25,40,35,32,9,33,33,52,63,92,50]
+                                            }]
+                                };
+                        this.respChart($("#lineChart"),'Line',data);
+                    },
+                    $.ChartJs=new ChartJs,$.ChartJs.Constructor=ChartJs}(window.jQuery),function($){"use strict";$.ChartJs.init()}(window.jQuery);
             });
         </script>
 
