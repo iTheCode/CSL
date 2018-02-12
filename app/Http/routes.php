@@ -59,7 +59,7 @@ Route::get('/caja/reporte', ['middleware' => 'auth',  'as' => 'reporte', 'uses' 
 
 //Pay Electrnic Documents
 Route::get('/pay_edocument/create/{input}', ['middleware' => 'auth',  'as' => 'createpayedocument', 'uses' => 'EDocumentsController@create_edocument']);
-Route::get('/pay_edocument/view/{type}/{input}', ['middleware' => 'auth',  'as' => 'viewpayedocument', 'uses' => 'EDocumentsController@view_print']);
+Route::get('/pay_edocument/view/{type}/{input}/print.pdf', ['middleware' => 'auth',  'as' => 'viewpayedocument', 'uses' => 'EDocumentsController@view_print']);
 Route::get('/pay_edocument/charge_document/{type}/{id}', ['middleware' => 'auth',  'as' => 'payedocument', 'uses' => 'FacturationController@showCharge']);
 
 //Hospitalización Routes
