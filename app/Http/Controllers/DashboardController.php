@@ -45,6 +45,14 @@ class DashboardController extends BaseController
 		$atenciones_globales = Authorization::select('id', 'created_at')->where(DB::raw('YEAR(date) '), [$year])->get()->groupBy(function($val) {return Carbon::parse($val->created_at)->format('m');});
 
 		$meses = array("NULL","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+		foreach ($atenciones_globales as $key => $value) {
+			unset($atenciones_globales[$key]);
+			$key = intval($key);
+			$month = $meses[$key];
+			$atenciones_globales[$month] = "";
+			$atenciones_globales[$month]['count'] = count($value);
+		}
 		foreach ($atenciones_globales as $key => $value) {
 			$quantity_month = 0;
 			foreach ($value as $auth) {
@@ -71,12 +79,6 @@ class DashboardController extends BaseController
 			$key = intval($key);
 			$month = $meses[$key];
 			$atenciones_globales[$month]['diner'] = $quantity_month;
-		}
-		foreach ($atenciones_globales as $key => $value) {
-			unset($atenciones_globales[$key]);
-			$key = intval($key);
-			$month = $meses[$key];
-			$atenciones_globales[$month]['count'] = count($value);
 		}
 		dd($atenciones_globales);
 		$emergencias_mes = count(Authorization::join("coverages AS c", "c.authorization_id", "=", "authorizations.id")->join("sub_coverage_types AS sub", "c.sub_coverage_type_id", "=", "sub.id")->join("coverage_types AS ct", "ct.id", "=", "sub.coverage_type_id")->where(DB::raw('MONTH(authorizations.date) = ? AND YEAR(authorizations.date) '), [$month, $year])->where('ct.code', '6')->get());
