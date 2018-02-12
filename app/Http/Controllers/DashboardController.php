@@ -26,6 +26,9 @@ class DashboardController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
+
+		ini_set('memory_limit','160M');
+		
 		$month = date('m');
 		$year = date('Y');
 
