@@ -12,6 +12,8 @@ use \App\Models\Patient;
 use \App\Models\Area as Area;
 use View;
 use Redirect;
+use DateTime;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
@@ -28,7 +30,7 @@ class DashboardController extends BaseController
 		}
 
 		ini_set('memory_limit','160M');
-		
+
 		$month = date('m');
 		$year = date('Y');
 
@@ -39,6 +41,44 @@ class DashboardController extends BaseController
 		$atenciones_año_anterior = count($atendidos_año_anterior);
 		$porcentaje_antenciones_mes = number_format((100*$atenciones_mes)/$atenciones_año_anterior,2);
 
+
+		$atenciones_globales = Authorization::select('id', 'created_at')->where(DB::raw('YEAR(date) '), [$year])->get()->groupBy(function($val) {return Carbon::parse($val->created_at)->format('m');});
+
+		$meses = array("NULL","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		foreach ($atenciones_globales as $key => $value) {
+			$quantity_month = 0;
+			foreach ($value as $auth) {
+				$response = Authorization::find($auth);
+				$quantity = 0;
+				if(isset($response->insuredservices))
+					foreach($response->insuredservices as $i){
+						$quantity = $quantity + $i->initial_amount;
+					}
+				if(isset($response->insuredpharmacies))
+					foreach($response->insuredpharmacies as $i){
+						$quantity = $quantity + $i->initial_amount;
+					}
+
+				if(isset($response->particularservices))
+					foreach($response->particularservices as $i){
+						$quantity = $quantity + $i->initial_amount;
+					}
+				if(isset($response->coverage))
+					$quantity = $quantity + $response->coverage->cop_fijo;
+
+				$quantity_month = $quantity_month + $quantity;
+			}
+			$key = intval($key);
+			$month = $meses[$key];
+			$atenciones_globales[$month]['diner'] = $quantity_month;
+		}
+		foreach ($atenciones_globales as $key => $value) {
+			unset($atenciones_globales[$key]);
+			$key = intval($key);
+			$month = $meses[$key];
+			$atenciones_globales[$month]['count'] = count($value);
+		}
+		dd($atenciones_globales);
 		$emergencias_mes = count(Authorization::join("coverages AS c", "c.authorization_id", "=", "authorizations.id")->join("sub_coverage_types AS sub", "c.sub_coverage_type_id", "=", "sub.id")->join("coverage_types AS ct", "ct.id", "=", "sub.coverage_type_id")->where(DB::raw('MONTH(authorizations.date) = ? AND YEAR(authorizations.date) '), [$month, $year])->where('ct.code', '6')->get());
 		$emergencias_año_anterior = count(Authorization::join("coverages AS c", "c.authorization_id", "=", "authorizations.id")->join("sub_coverage_types AS sub", "c.sub_coverage_type_id", "=", "sub.id")->join("coverage_types AS ct", "ct.id", "=", "sub.coverage_type_id")->where(DB::raw('YEAR(date) '), [$year-1])->where('ct.code', '6')->get());
 		$porcentaje_emergencias_mes = number_format((100*$emergencias_mes )/$emergencias_año_anterior,2);
