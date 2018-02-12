@@ -313,9 +313,7 @@
                 $("#print").click(function(){
 
                     if(window.confirm('¿Está seguro de generar el documento?')){
-                        //$(".panel-body").slideUp(1000).html('<iframe src="{{ url('/pay_edocument/view/1/2000') }}/" alt="pdf" style="width:100%;height:600px"></iframe>').slideDown(1000);
-                        window.open("{{ url('/pay_edocument/view/1/2000') }}/");
-                        window.print();
+                        $(".panel-body").slideUp(1000).html('<iframe src="{{ url('/pay_edocument/view/1/2000') }}/" onload="this.contentWindow.print()" alt="pdf" style="width:100%;height:600px"></iframe>').slideDown(1000);
                     }
                     
                 });
