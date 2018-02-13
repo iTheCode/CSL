@@ -29,7 +29,7 @@ class DashboardController extends BaseController
 		    $position = $user->area->name;
 		}
 
-		ini_set('memory_limit','160M');
+		ini_set('memory_limit','240M');
 
 		$month = date('m');
 		$year = date('Y');
