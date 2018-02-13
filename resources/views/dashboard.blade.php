@@ -187,7 +187,7 @@
                             <div class="col-lg-12">
                                 <div class="panel panel-border panel-primary">
                                     <div class="panel-body">
-                                        <div class="legend"><div style="position: absolute; width: 284px; height: 16px; top: 4px; right: 10px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:4px;right:10px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(220,220,220);overflow:hidden"></div></div></td><td class="legendLabel">Last 24 Hours&nbsp;&nbsp;</td><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(0,177,157);overflow:hidden"></div></div></td><td class="legendLabel">Last 48 Hours&nbsp;&nbsp;</td><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(126,87,194);overflow:hidden"></div></div></td><td class="legendLabel">Difference&nbsp;&nbsp;</td></tr></tbody></table></div>
+                                        <div class="legend"><div style="position: absolute; width: 284px; height: 16px; top: 4px; right: 10px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:4px;right:10px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(0,177,157);overflow:hidden"></div></div></td><td class="legendLabel">Atenciones Actuales&nbsp;&nbsp;</td><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(126,87,194);overflow:hidden"></div></div></td><td class="legendLabel">Atenciones Anteriores&nbsp;&nbsp;</td></tr></tbody></table></div>
                                         <canvas id="lineChart" data-type="Line" width="520" height="300"></canvas>
                                     </div>
                                 </div>
@@ -296,19 +296,19 @@
                     ChartJs.prototype.init=function(){
                         var data={
                                     labels:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"],
-                                    datasets:[{
+                                    datasets:[
+                                            {
                                                 fillColor:"rgba(94, 53, 114, 0.3)",
                                                 strokeColor:"rgba(94, 53, 114, 1)",
-                                                pointColor:"#rgba(94, 53, 114, 1)",
+                                                pointColor:"rgba(94, 53, 114, 1)",
                                                 pointStrokeColor:"#fff",
-                                                data:[33,52,63,92,50,53,46,40,50,30,20,15]
-                                            },
-                                            {
+                                                data:[@foreach($chart_pasado as $data) {{ $data['count'] or 0}}, @endforeach]
+                                            },{
                                                 fillColor:"rgba(0, 177, 157, 0.5)",
                                                 strokeColor:"#00b19d",
                                                 pointColor:"#00b19d",
                                                 pointStrokeColor:"#fff",
-                                                data:[15,25,40,35,32,9,33,33,52,63,92,50]
+                                                data:[@foreach($chart_pasado as $key => $data) {{ $chart_actual[$key]['count'] or 0}}, @endforeach]
                                             }]
                                 };
                         this.respChart($("#lineChart"),'Line',data);

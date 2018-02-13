@@ -46,20 +46,20 @@
                                                                 <td>{{ $user->date or 'Corregir Fecha' }}</td>
                                                                 <td>
                                                                 <div class="btn-group m-b-10">
-                                            @if($from == "authorizations")
-                                            <a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5 tooltips" data-toggle="tooltip" data-placement="top" title data-original-title="{{ $user->coverage->sub_coverage_type->coverage_type->name or 'INDEFINIDO' }} {{$user->employee->username or 'Sin asignar'}}"><i class="md md-launch"></i></a> 
-                                            @endif
-                                            @if($from == "caja")
-                                            <a href="{{ url('/caja/servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Servicios"> <i class="md md-add-to-photos"></i></a> 
-                                            @endif
-                                            @if($from == "farmacia")
-                                            <a href="{{ url('/farmacia/liquidacion/nueva/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Farmacia"> <i class="ion-medkit"></i></a> 
-                                            @endif
-                                            @if($from == "triaje")
-                                            <a href="{{ url('/triaje/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Completar Ficha"> <i class="fa fa-heartbeat"></i></a> 
-                                            @endif
-                                        </div>
-                                        </td>
+                                                                    @if($from == "authorizations")
+                                                                    <a href="{{ url('/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5 tooltips" data-toggle="tooltip" data-placement="top" title data-original-title="{{ $user->coverage->sub_coverage_type->coverage_type->name or 'INDEFINIDO' }} {{$user->employee->username or 'Sin asignar'}}"><i class="md md-launch"></i></a> 
+                                                                    @endif
+                                                                    @if($from == "caja")
+                                                                    <a href="{{ url('/caja/servicio/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Servicios"> <i class="md md-add-to-photos"></i></a> 
+                                                                    @endif
+                                                                    @if($from == "farmacia")
+                                                                    <a href="{{ url('/farmacia/liquidacion/nueva/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Farmacia"> <i class="ion-medkit"></i></a> 
+                                                                    @endif
+                                                                    @if($from == "triaje")
+                                                                    <a href="{{ url('/triaje/atencion/'.$user->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Completar Ficha"> <i class="fa fa-heartbeat"></i></a> 
+                                                                    @endif
+                                                                </div>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                             
