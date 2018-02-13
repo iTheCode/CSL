@@ -35,8 +35,8 @@ class DashboardController extends BaseController
 		$year = date('Y');
 
 
-		$atendidos_mes = Authorization::where(DB::raw('MONTH(date) = ? AND YEAR(date) '), [$month, $year])->groupBy('patient_id')->get();
-		$atendidos_año_anterior = Authorization::where(DB::raw('YEAR(date)'), [$year-1])->groupBy('patient_id')->get();
+		$atendidos_mes = Authorization::where(DB::raw('MONTH(date) = ? AND YEAR(date) '), [$month, $year])->get();
+		$atendidos_año_anterior = Authorization::where(DB::raw('YEAR(date)'), [$year-1])->get();
 		$atenciones_mes = count($atendidos_mes);
 		$atenciones_año_anterior = count($atendidos_año_anterior);
 		$porcentaje_antenciones_mes = number_format((100*$atenciones_mes)/$atenciones_año_anterior,2);
