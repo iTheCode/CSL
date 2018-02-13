@@ -184,7 +184,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-sm-12">
                                 <div class="panel panel-border panel-primary">
                                     <div class="panel-body">
                                         <div class="legend"><div style="position: absolute; width: 284px; height: 16px; top: 4px; right: 10px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:4px;right:10px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(0,177,157);overflow:hidden"></div></div></td><td class="legendLabel">Atenciones Actuales&nbsp;&nbsp;</td><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(126,87,194);overflow:hidden"></div></div></td><td class="legendLabel">Atenciones Anteriores&nbsp;&nbsp;</td></tr></tbody></table></div>
