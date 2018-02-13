@@ -54,9 +54,9 @@ class DashboardController extends BaseController
 		$pay_documents_año_anterior = count(PayDocument::where(DB::raw('YEAR(created_at) '), [$year-1])->get()) + count(PayEDocument::where(DB::raw('YEAR(created_at)'), [$year-1])->get()); 
 		$porcentaje_pay_documents_mes = number_format((100*$pay_documents_mes)/$pay_documents_año_anterior,2);
 
-		$atenciones_globales = Authorization::select('id', 'created_at')->where(DB::raw('YEAR(created_at)'), [$year])->get()->groupBy(function($val) {return Carbon::parse($val->created_at)->format('m');});
+		$atenciones_globales = Authorization::select('id', 'created_at')->where(DB::raw('YEAR(date)'), [$year])->get()->groupBy(function($val) {return Carbon::parse($val->created_at)->format('m');});
 
-		$atenciones_globales_last = Authorization::select('id', 'created_at')->where(DB::raw('YEAR(created_at)'), [$year - 1])->get()->groupBy(function($val) {return Carbon::parse($val->created_at)->format('m');});
+		$atenciones_globales_last = Authorization::select('id', 'created_at')->where(DB::raw('YEAR(date)'), [$year - 1])->get()->groupBy(function($val) {return Carbon::parse($val->created_at)->format('m');});
 		$meses = array("NULL","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		foreach ($atenciones_globales as $key => $value) {
 			unset($atenciones_globales[$key]);
