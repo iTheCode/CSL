@@ -47,7 +47,7 @@ class DashboardController extends BaseController
 		$meses = array("NULL","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		foreach ($atenciones_globales as $key => $value) {
 			$quantity_month = 0;
-			foreach ($value as $response) {
+			/*foreach ($value as $response) {
 				$quantity = 0;
 				if(isset($response->insuredservices))
 					foreach($response->insuredservices as $i){
@@ -66,11 +66,11 @@ class DashboardController extends BaseController
 					$quantity = $quantity + $response->coverage->cop_fijo;
 
 				$quantity_month = $quantity_month + $quantity;
-			}
+			}*/
 			unset($atenciones_globales[$key]);
 			$key = intval($key);
 			$month = $meses[$key];
-			$atenciones_globales[$month] = array("count" => count($value), "diner" => $quantity_month);
+			$atenciones_globales[$month] = array("count" => count($value));
 		}
 		dd($atenciones_globales);
 		$emergencias_mes = count(Authorization::join("coverages AS c", "c.authorization_id", "=", "authorizations.id")->join("sub_coverage_types AS sub", "c.sub_coverage_type_id", "=", "sub.id")->join("coverage_types AS ct", "ct.id", "=", "sub.coverage_type_id")->where(DB::raw('MONTH(authorizations.date) = ? AND YEAR(authorizations.date) '), [$month, $year])->where('ct.code', '6')->get());
