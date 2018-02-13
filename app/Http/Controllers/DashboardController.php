@@ -57,7 +57,7 @@ class DashboardController extends BaseController
 		$atenciones_globales = Authorization::select('id', 'date')->where(DB::raw('YEAR(date)'), [$year])->get()->groupBy(function($val) {return Carbon::parse($val->date)->format('m');});
 
 		$atenciones_globales_last = Authorization::select('id', 'date')->where(DB::raw('YEAR(date)'), [$year - 1])->get()->groupBy(function($val) {return Carbon::parse($val->date)->format('m');});
-
+		
 		$meses = array("NULL","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 		foreach ($atenciones_globales as $key => $value) {
 			unset($atenciones_globales[$key]);
