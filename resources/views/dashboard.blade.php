@@ -227,7 +227,7 @@
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/jquery.nicescroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
-
+        
         <script src="assets/js/jquery.app.js"></script>
         
         <!-- jQuery  -->

@@ -10,7 +10,7 @@
                                 <ul class="dropdown-menu">
                                     <!--<li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Perfil<div class="ripple-wrapper"></div></a></li>
                                     <li><a href="javascript:void(0)"><i class="md md-settings"></i> Configuración</a></li>-->
-                                    <li><a href="{{ url('/logout') }}"><i class="md md-settings-power"></i> Salir</a></li>
+                                    <li><a href="/logout"><i class="md md-settings-power"></i> Salir</a></li>
                                 </ul>
                             </div>
                             
@@ -21,47 +21,47 @@
                     <div id="sidebar-menu">
                         <ul>
                             <li>
-                                <a href="/" class="waves-effect"><i class="md md-home"></i><span> Principal </span></a>
+                                <a href="/dashboard" class="waves-effect" data="address"><i class="md md-home"></i><span> Principal </span></a>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/admision/atenciones') }}">Atenciones Médicas</a></li>
-                                    <li><a href="{{ url('/admision/citas') }}">Citas</a></li>
-                                    <li><a href="{{ url('/admision/horario') }}">Horario Médico</a></li>
-                                    <li><a href="{{ url('/admision/reporte') }}">Reportes</a></li>
+                                    <li><a href="/admision/atenciones" data="address">Atenciones Médicas</a></li>
+                                    <li><a href="/admision/citas" data="address">Citas</a></li>
+                                    <li><a href="/admision/horario" data="address">Horario Médico</a></li>
+                                    <li><a href="/admision/reporte" data="address">Reportes</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span><span class="pull-right"><i class="md md-add"></i> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/caja/atenciones') }}">Atenciones</a></li>
-                                    <li><a href="{{ url('/caja/reporte') }}">Reportes</a></li>
+                                    <li><a href="/caja/atenciones" data="address">Atenciones</a></li>
+                                    <li><a href="/caja/reporte" data="address">Reportes</a></li>
                                 </ul>
                               
                             </li>
 
                             <li>
-                                <a href="{{ url('/triaje/atenciones') }}" class="waves-effect"><i class="fa fa-stethoscope"></i> <span> Triaje </span> </a>
+                                <a href="/triaje/atenciones" class="waves-effect" data="address"><i class="fa fa-stethoscope"></i> <span> Triaje </span> </a>
                             </li>
                             <li>
-                                <a href="{{ url('/pacientes/general') }}" class="waves-effect"><i class="md md-perm-identity"></i><span> Pacientes </span></a>
+                                <a href="/pacientes/general" class="waves-effect" data="address"><i class="md md-perm-identity"></i><span> Pacientes </span></a>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ion-medkit"></i><span> Farmacia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/farmacia/atenciones') }}">Atenciones Médicas</a></li>
-                                    <li><a href="{{ url('/farmacia/liquidaciones') }}">Liquidaciones</a></li>
-                                    <li><a href="{{ url('/farmacia/almacen') }}">Almacén</a></li>
-                                    <li><a href="{{ url('/farmacia/reportes') }}">Reportes</a></li>
+                                    <li><a href="/farmacia/atenciones" data="address">Atenciones Médicas</a></li>
+                                    <li><a href="/farmacia/liquidaciones" data="address">Liquidaciones</a></li>
+                                    <li><a href="/farmacia/almacen" data="address">Almacén</a></li>
+                                    <li><a href="/farmacia/reportes" data="address">Reportes</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="{{ url('/hospitalizacion/habitaciones') }}" class="waves-effect"><i class="md md-local-hotel"></i><span> Hospitalización </span></a>
+                                <a href="/hospitalizacion/habitaciones" class="waves-effect" data="address"><i class="md md-local-hotel"></i><span> Hospitalización </span></a>
                             </li>
 
                             <li class="has_sub">
@@ -70,7 +70,7 @@
                                 <?php $all = App\Models\Speciality::all() ;?>
                                 @foreach($all as $spec)
                                     @if($spec->name != "")
-                                    <li><a href="{{ url('/consulta_externa/'.$spec->name.'/'.$spec->id) }}">{{ $spec->name }}</a></li>
+                                    <li><a href="/consulta_externa/'.$spec->name.'/'.$spec->id) }}" data="address">{{ $spec->name }}</a></li>
                                     @endif
                                 @endforeach
                                 </ul>
@@ -85,20 +85,20 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-local-atm"></i> <span> Facturación </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/facturacion/sunat') }}">Documentos Emitidos</a></li>
-                                    <li><a href="{{ url('/facturacion/tramas') }}">Tramas</a></li>
-                                    <li><a href="{{ url('/facturacion/proveedores') }}">Proveedores</a></li>
-                                    <li><a href="{{ url('/facturacion/contabilidad') }}">Contabilidad</a></li>
+                                    <li><a href="/facturacion/sunat" data="address">Documentos Emitidos</a></li>
+                                    <li><a href="/facturacion/tramas" data="address">Tramas</a></li>
+                                    <li><a href="/facturacion/proveedores" data="address">Proveedores</a></li>
+                                    <li><a href="/facturacion/contabilidad" data="address">Contabilidad</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-laptop-mac"></i><span> Administración </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/administracion/horario') }}">Horario Medico</a></li>
-                                    <li><a href="{{ url('/administracion/usuarios') }}">Usuarios</a></li>
-                                    <li><a href="{{ url('/administracion/personal') }}">Personal</a></li>
-                                    <li><a href="{{ url('/administracion/servicios') }}">Servicios</a></li>
+                                    <li><a href="/administracion/horario" data="address">Horario Medico</a></li>
+                                    <li><a href="/administracion/usuarios" data="address">Usuarios</a></li>
+                                    <li><a href="/administracion/personal" data="address">Personal</a></li>
+                                    <li><a href="/administracion/servicios" data="address">Servicios</a></li>
                                 </ul>
                             </li>
                         </ul>
