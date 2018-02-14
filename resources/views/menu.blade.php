@@ -70,7 +70,7 @@
                                 <?php $all = App\Models\Speciality::all() ;?>
                                 @foreach($all as $spec)
                                     @if($spec->name != "")
-                                    <li><a href="/consulta_externa/'.$spec->name.'/'.$spec->id) }}" data="address">{{ $spec->name }}</a></li>
+                                    <li><a href="{{ '/consulta_externa/'.$spec->name.'/'.$spec->id) }}" data="address">{{ $spec->name }}</a></li>
                                     @endif
                                 @endforeach
                                 </ul>
