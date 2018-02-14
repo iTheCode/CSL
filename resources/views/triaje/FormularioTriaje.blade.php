@@ -109,7 +109,7 @@
                         </div>
                         <!-- end row -->
      
-                            <div class="col-lg-6"> 
+                            <div class="col-sm-12"> 
                                 <ul class="nav nav-tabs tabs tabs-top">
                                     <li class="active tab">
                                         <a href="#home-21" data-toggle="tab" aria-expanded="false"> 
