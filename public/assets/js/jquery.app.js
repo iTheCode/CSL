@@ -111,15 +111,19 @@ true);return this}})(jQuery);
                         url: event.path,
                         success: function(data) {
                             handler(data);
+                            $("#load_bar").fadeOut(3000);
+                        },
+                        beforeSend:function(){
+                          $("#load_bar").remove();
+                          $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background-color: #2aff10c7;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
                         },
                         progress: function(e) {
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
-                                var pct = (e.loaded / e.total) * 100;
-
-                                //log percentage loaded
-                                console.log(pct);
+                                var pct = ((e.loaded / e.total) * 100)+"%";
+                                $("#load_bar").animate({'width':pct});
+                                
                             }
                             //this usually happens when Content-Length isn't set
                             else {
@@ -138,7 +142,6 @@ true);return this}})(jQuery);
             }
 
                 $('a[data="address"]').click(function(e) {  
-                              console.log($(this));
                     e.preventDefault();
                     var pathname = new URL($(this).attr('href').replace('#', '')).pathname;
                     $.address.value(pathname);  
