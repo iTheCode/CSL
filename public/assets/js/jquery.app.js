@@ -118,6 +118,8 @@ true);return this}})(jQuery);
                           $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background-color: #2aff10c7;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
                         },
                         progress: function(e) {
+
+                                console.warn(e);
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
@@ -128,8 +130,10 @@ true);return this}})(jQuery);
                             //this usually happens when Content-Length isn't set
                             else {
                                 console.warn('Content Length not reported!');
-                                console.warn(e);
                             }
+                        },
+                        complete: function(resp){
+                            console.log(resp.getAllResponseHeaders());
                         }
                     });
                 }
