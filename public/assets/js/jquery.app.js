@@ -75,7 +75,7 @@ true);return this}})(jQuery);
                 });
 
                 $(data).filter("link").each(function(){
-                  var src = String($(this).attr('src'));
+                  var src = String($(this).attr('href'));
                   var unload = "assets/css/";
                   if(!(src.indexOf(unload) != -1)){
                       $('.content-page').append($(this));

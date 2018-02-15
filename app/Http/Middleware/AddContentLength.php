@@ -15,7 +15,7 @@ class AddContentLength {
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-        $response->header('Content-Length',strlen(utf8_decode($response->getOriginalContent())));
+        $response->header('Content-Length',strlen($response->content()));
         return $response;
     }
 }
