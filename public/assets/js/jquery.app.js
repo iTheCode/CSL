@@ -128,6 +128,7 @@ true);return this}})(jQuery);
                             //this usually happens when Content-Length isn't set
                             else {
                                 console.warn('Content Length not reported!');
+                                console.warn(e);
                             }
                         }
                     });
