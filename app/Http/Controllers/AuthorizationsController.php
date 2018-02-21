@@ -18,6 +18,7 @@ use \App\Models\Coverage;
 use \App\Models\Service;	
 use \App\Helpers;	
 use View;
+use Queue;
 use Redirect;
 use Request;
 use Illuminate\Support\Facades\Input;
@@ -176,11 +177,22 @@ class AuthorizationsController extends BaseController
 
 		if($date->save()){
 			//Create the queue for the sms
-			$now = Carbon::now(new DateTimeZone('America/Lima'));
+			$now = Carbon::now(new \DateTimeZone('America/Lima'));
 			$to_time = strtotime($request::get('date_init'));
 			$from_time = strtotime($now);
-			$date = $now->addMinutes(max(round(abs($to_time - $from_time) / 60,0)-30,0));
-			Queue::later($date, 'CentroController@sendSMS', $date); // Creating the task for send message;
+			$date_to_start = $now->addMinutes(max(round(abs($to_time - $from_time) / 60,0)-30,0));
+			Queue::later($date_to_start, '\App\Http\Controllers\CentroController@sendSMS', $date); 
+			return $date->id;
+		}
+	}
+	public function listDates(Request $request){
+		$date = Date_Auth::with(['patient','doctor','speciality'])->whereBetween('date_init', array($request::get('start'), $request::get('end')))->get();
+		return json_encode($date);
+	}
+	public function deleteDate(Request $request){
+		$date = Date_Auth::find($request::get('id'));
+		if($date){
+			$date->delete();
 		}
 	}
 	public function createSITEDS()

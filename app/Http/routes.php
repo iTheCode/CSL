@@ -37,6 +37,7 @@ Route::get('/createAtencion/', ['middleware' => 'auth',  'as' => 'registrar_aten
 
 
 Route::get('/createDate/', ['middleware' => 'auth',  'as' => 'registrar_atencion_cita', 'uses' => 'AuthorizationsController@createDate']);
+Route::get('/deleteDate/', ['middleware' => 'auth',  'as' => 'borrar_atencion_cita', 'uses' => 'AuthorizationsController@deleteDate']);
 
 Route::get('/buscar/{input}', ['middleware' => 'auth',  'as' => 'atencion', 'uses' => 'AuthorizationsController@findAuthorization']);
 
@@ -115,3 +116,4 @@ Route::get('/personalAPI/{input?}', ['middleware' => 'auth',  'as' => 'personalA
 Route::get('/usersAPI/{input?}', ['middleware' => 'auth',  'as' => 'usersAPI', 'uses' => 'AdministrationController@usersAPI']);
 Route::get('/externAPI/{input?}', ['middleware' => 'auth',  'as' => 'externAPI', 'uses' => 'AuthorizationsController@externAPI']);
 Route::get('/dniAPI/{input?}', ['as' => 'dniAPI', 'uses' => 'CentroController@dniAPI']);
+Route::get('/listDates/', ['middleware' => 'auth',  'as' => 'listar_citas', 'uses' => 'AuthorizationsController@listDates']);

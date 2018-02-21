@@ -49,9 +49,10 @@ class CentroController extends BaseController
     	dd ($reniecDni->get($input));
     }
     public function sendSMS($job, $data){
+        $data = (object) $data;
     	$date = Date_Auth::find($data->id);
     	if($date){
-    		// Sending Message;
+            //Send Email
     	}
 
     }
