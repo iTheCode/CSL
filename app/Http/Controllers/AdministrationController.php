@@ -130,5 +130,20 @@ class AdministrationController extends BaseController
 		}
 		return view('administration.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
 	}
-	
+
+	public function createUser(Request $request){
+		$user = new Employee();
+		$user->siteds_code = $request::get('user_code');		
+		$user->name = $request::get('firstname');
+		$user->paternal = $request::get('paternal');
+		$user->maternal = $request::get('maternal');
+		$user->username = $request::get('user');
+		$user->password = $request::get('password');
+		$user->area_id = $request::get();
+		$user->email = $request::get('email');
+
+		if($user->save()){
+			//verdadero
+		}
+	}
 }
