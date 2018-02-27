@@ -117,37 +117,52 @@
                                                     
                                                     Nombres :
                                                     <div class="input-group col-md-12">
-                                                       <input class="form-control" id="lastname" name="lastname" type="text">
+                                                       <input class="form-control" id="lastname" name="firstname" type="text">
                                                     </div><br>
                                                 
-                                                    Apellidos :
+                                                    Apellido paterno :
                                                     <div class="input-group col-md-12">
-                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                        <input class="form-control" id="lastname" name="paternal" type="text">
+                                                    </div><br>
+
+                                                    Apellido materno :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" id="lastname" name="maternal" type="text">
+                                                    </div><br>
+
+                                                    Código de usuario :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" id="lastname" name="user_code" type="text">
+                                                    </div><br>
+
+                                                    Área asignada :
+                                                    <div class="input-group col-md-12">
+                                                        <select name="área" class="form-control">
+                                                            <option value="1">área 1</option>
+                                                            <option value="2">...</option>
+                                                        </select>
                                                     </div><br>
                                                
                                                     Usuario :
                                                     <div class="input-group col-md-12">
-                                                        <input class="form-control" id="lastname" name="lastname" type="text">
+                                                        <input class="form-control" id="lastname" name="user" type="text">
                                                     </div><br>
                                                     Contraseña :
                                                     <div class="input-group col-md-12">
-                                                        <input class="form-control" id="lastname" name="lastname" type="password">
+                                                        <input class="form-control" id="lastname" name="password" type="password">
                                                     </div><br>
                                                     Confirmar contraseña :
                                                     <div class="input-group col-md-12">
-                                                        <input class="form-control" id="lastname" name="lastname" type="password">
+                                                        <input class="form-control" id="lastname" name="confirm_password" type="password">
                                                     </div><br>
                                                     Correo electrónico :
                                                     <div class="input-group col-md-12">
-                                                        <input class="form-control" id="lastname" name="lastname" type="email">
-                                                    </div><br>
-                                                    
-                                                    
-                                                    
+                                                        <input class="form-control" id="lastname" name="email" type="email">
+                                                    </div><br>                                             
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary">Guardar</button>
+                                        <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
                                       </div>
                                     </div>
                                   </div>
@@ -254,6 +269,62 @@
             jQuery(document).ready(function($) {
             load_data();
             });
+            
+                $(".boton_guardar").click(function(){
+                    var firstname = $(".firstname").val();
+                        lastname = $(".lastname").val();
+                        user = $(".user").val();
+                        password = $(".password").val();
+                        confirm_password = $(".confirm_password").val();
+                        email = $(".email").val();
+
+                    if (firstname == "") {
+                        $(".firstname").focus();
+                        return false;
+                    }else if(paternal == ""){
+                        $(".paternal").focus();
+                        return false;
+                    }else if(maternal == ""){
+                        $(".maternal").focus();
+                        return false;
+                    }else if(user_code == ""){
+                        $(".user_code").focus();
+                        return false;
+                    }else if (área == "") {
+                        $(".área").focus();
+                        return false;    
+                    }else if (user == "") {
+                        $(".user").focus();
+                        return false;
+                    }else if (password == "") {
+                        $(".password").focus();
+                        return false;
+                    }else if (confirm_password=!password) {
+                        $(".confirm_password").focus();
+                        return false;
+                    }else if (email == "") {
+                        $(".email").focus();
+                        return false;
+                    }else {
+                        $('ajaxgif').removeClass('hide');
+                        var datos = 'firstname='+ firstname + '&paternal=' + paternal + '&maternal=' + maternal +  '&área=' + área+ '&user_code=' + user_code + '&user=' + user + '&password=' + password + '&confirm_password=' + confirm_password + '&email=' + email;
+                        $.ajax({
+                            type: "GET",
+                            url: "/createUser/",
+                            data: datos,
+                            success: function(){
+                                $('.ajaxgif').hide();
+                                $('.msg').alert('Usuario agregado!').addClass('msg_ok').animate({ 'right' : '130px' }, 300);
+                            }
+                            error: function(){
+                                $('.ajaxgif').hide();
+                                $('.msg').alert('Error al agregar usuario!').addClass('msg_error').animate({ 'right' : '130px' }, 300);
+                            }
+                        });
+                        return false;
+                    }
+                })
+            
         </script>
 
     

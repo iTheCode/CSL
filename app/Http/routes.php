@@ -98,6 +98,7 @@ Route::get('/administracion/horario/', ['middleware' => 'auth',  'as' => 'horari
 Route::get('/administracion/usuarios/', ['middleware' => 'auth',  'as' => 'usuarios', 'uses' => 'AdministrationController@showUsers']);
 Route::get('/administracion/personal/', ['middleware' => 'auth',  'as' => 'personal', 'uses' => 'AdministrationController@showPersonal']);
 Route::get('/administracion/servicios/', ['middleware' => 'auth',  'as' => 'servicios', 'uses' => 'AdministrationController@showServices']);
+Route::get('/createUser/',['middleware' => 'auth', 'as' => 'registrar_usuario', 'uses' => 'AdministrationController@createUser']);
 
 
 //API Routes
