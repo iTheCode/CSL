@@ -16,6 +16,7 @@ use \App\Models\Doctor;
 use \App\Models\DiagnosticType;	
 use \App\Models\Coverage;	
 use \App\Models\Service;	
+use \App\Models\CoverageType;
 use \App\Helpers;	
 use View;
 use Queue;
@@ -249,6 +250,10 @@ class AuthorizationsController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('admision.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+
+		$coverages = Helpers::get_list(CoverageType::all());
+		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
+		$medics = Helpers::get_doctors(Doctor::all());
+		return view('admision.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'coverages' => $coverages, 'employees' => $employees, 'medics' => $medics]);
 	}
 }

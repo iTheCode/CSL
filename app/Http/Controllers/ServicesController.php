@@ -15,6 +15,7 @@ use \App\Models\DiagnosticType;
 use \App\Models\ClinicArea;	
 use \App\Models\Service;	
 use \App\Models\ServiceExented;	
+use \App\Models\CoverageType;
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -92,6 +93,8 @@ class ServicesController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('auth.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		$coverages = Helpers::get_list(CoverageType::all());
+		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
+		return view('shop.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'coverages' => $coverages, 'employees' => $employees]);
 	}
 }

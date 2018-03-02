@@ -82,6 +82,7 @@ true);return this}})(jQuery);
                   }
                 });
 
+                  
                  $('.content-page').on('click', 'a[data="address"]', function (e){
                   e.preventDefault();
                   var pathname = new URL($(this).attr('href').replace('#', '')).pathname;
@@ -112,14 +113,15 @@ true);return this}})(jQuery);
                         success: function(data) {
                             handler(data);
                             $("#load_bar").fadeOut(3000);
+                            $('.content-page').animate({'opacity':1});
                         },
                         beforeSend:function(){
+                          $('.content-page').animate({'opacity':0});
                           $("#load_bar").remove();
                           $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background-color: #2aff10c7;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
+                          $("#load_bar").animate({'width':'20%'});
                         },
                         progress: function(e) {
-
-                                console.warn(e);
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
@@ -133,7 +135,7 @@ true);return this}})(jQuery);
                             }
                         },
                         complete: function(resp){
-                            console.log(resp.getAllResponseHeaders());
+                            //console.log(resp.getAllResponseHeaders());
                         }
                     });
                 }
