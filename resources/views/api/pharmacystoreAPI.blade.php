@@ -11,11 +11,11 @@
                                         </div></h3>
                                     </div>
                                     <hr>
-                                    <div style="float:none;">
+                                    <div class="panel-body" style="float:none;">
                                                         <?php $i = (20*($currentPage-1))+1;?>
                                                         @foreach ($users as $product)
 
-							                            <div class="col-sm-6 col-lg-3">
+							                            <div class="col-sm-6">
 							                                <div class="mini-stat clearfix bx-shadow bg-white">
 							                                    <a href="#" class="text-white " ><span class="mini-stat-icon bg-purple waves-effect"><i class="fa fa-flask"></i></span></a>
 							                                    <div class="mini-stat-info text-right text-dark">
@@ -31,7 +31,6 @@
 							                                </div>
 							                            </div>
                                                         @endforeach
-                                    </div>
                                     <div class="col-sm-12">
                                         <div class="dataTables_paginate paging_simple_numbers" id="datatable-editable_paginate">
                                              <?php echo $paginate;?>

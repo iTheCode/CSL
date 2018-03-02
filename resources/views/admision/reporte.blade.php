@@ -23,6 +23,8 @@
 
         <script src="/assets/js/modernizr.min.js"></script>
 
+        <link href="/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <link href="/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -118,30 +120,35 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <hr>
+                                                <form id="generate">
                                                 <div>
+                                                    Cobertura
+                                                    <div class="input-group col-md-12">
+                                                        {{ Form::select('coverage_type', [null=>'Seleccione una cobertura'] + $coverages , null, ['class' => 'select2 form-control']) }}
+                                                    </div><br><br>
+                                                    Medico
+                                                    <div class="input-group col-md-12">
+                                                        {{ Form::select('medic', [null=>'Seleccione un médico'] + $medics , null, ['class' => 'select2 form-control']) }}
+                                                    </div><br><br>
                                                     Fecha de Inicio
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
                                                     Fecha Fin
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
-                                                    <!--Tipo de Documento
+                                                    Admisionista
                                                     <div class="input-group col-md-12">
-                                                        <select name="opcion" class="form-control">
-                                                            <option value="1">Facturas</option>
-                                                            <option value="2">Boletas</option>
-                                                            <option value="2">Notas de Crédito</option>
-                                                        </select>
-                                                    </div><br><br>-->
-                                                    
+                                                        {{ Form::select('employee', [null=>'Seleccione una admisionista'] + $employees , null, ['class' => 'select2 form-control']) }}
+                                                    </div><br><br>
                                                 </div>
                                                 <div class="pull-right"><br>
-                                                    <button type="button" class="btn btn-success btn-custom waves-effect waves-light m-b-5">Generar</button>
+                                                    <button type="submit" class="btn btn-success btn-custom waves-effect waves-light m-b-5">Generar</button>
                                                 </div>
+                                                </form>
                                             </div> <!-- panel-body -->
                                         </div> <!-- panel -->
                                     </div>
@@ -204,14 +211,11 @@
         <!-- jQuery  -->
         <script src="/assets/pages/jquery.chat.js"></script>
         
-        <!--Morris Chart-->
-        <script src="/assets/plugins/raphael/raphael-min.js"></script>
-        
+        <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script type="text/javascript" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         
         <script type="text/javascript">
-            /* ==============================================
-            Counter Up
-            =============================================== */
+            $('.datepicker').datepicker();
         </script>
 
     

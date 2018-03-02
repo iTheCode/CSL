@@ -7,13 +7,12 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
         <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
         <link href="/assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/assets/plugins/morris.js/morris.css">
 
-        <link href="/assets/plugins/fullcalendar/dist/fullcalendar.css" rel="stylesheet">
-        <link href="/assets/plugins/select2/dist/css/select2.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
@@ -24,6 +23,8 @@
 
         <script src="/assets/js/modernizr.min.js"></script>
 
+        <link href="/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <link href="/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -99,52 +100,71 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Horario Médico</h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
-                                    <li class="active">Horario Médico</li>
+                                    <li class="active">Atenciones</li>
                                 </ol>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-lg-12">
-
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <div class="panel panel-default">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                       <div class="" style="">
+                                        <div class="panel" style="margin:0 auto;width:450px">
                                             <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <div id="calendar"></div>
+                                                <div class="media-main">
+                                                    <div class="btn-group-sm">
+                                                    <h4>Generar Reporte</h4>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- end col -->
-                                </div>  <!-- end row -->
-
-                                <!-- BEGIN MODAL -->
-                                <div class="modal fade none-border" id="event-modal"  tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title"><strong>Add Event</strong></h4>
-                                            </div>
-                                            <div class="modal-body"></div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
-                                                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
-                                            </div>
-                                        </div>
+                                                <div class="clearfix"></div>
+                                                <hr>
+                                                <div>
+                                                    Cobertura
+                                                    <div class="input-group col-md-12">
+                                                        {{ Form::select('coverage_type', [null=>'Seleccione una cobertura'] + $coverages , null, ['class' => 'select2 form-control']) }}
+                                                    </div><br><br>
+                                                    Fecha de Inicio
+                                                    <div class="input-group col-md-12">
+                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    </div><br><br>
+                                                    Fecha Fin
+                                                    <div class="input-group col-md-12">
+                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    </div><br><br>
+                                                    Tipo de Documento
+                                                    <div class="input-group col-md-12">
+                                                        <select name="opcion" class="form-control">
+                                                            <option value="1">Facturas</option>
+                                                            <option value="2">Boletas</option>
+                                                        </select>
+                                                    </div><br><br>
+                                                    Impuestos
+                                                    <div class="input-group col-md-12">
+                                                        <select name="opcion" class="form-control">
+                                                            <option value="1">No exonerado de impuestos</option>
+                                                            <option value="2">Libre de impuestos</option>
+                                                        </select>
+                                                    </div><br><br>
+                                                    Admisionista
+                                                    <div class="input-group col-md-12">
+                                                        {{ Form::select('employee', [null=>'Seleccione una admisionista'] + $employees , null, ['class' => 'select2 form-control']) }}
+                                                    </div><br><br>
+                                                </div>
+                                                <div class="pull-right"><br>
+                                                    <button type="button" class="btn btn-success btn-custom waves-effect waves-light m-b-5">Generar</button>
+                                                </div>
+                                            </div> <!-- panel-body -->
+                                        </div> <!-- panel -->
                                     </div>
                                 </div>
+                                </div>
                             </div>
-                            <!-- end col-12 -->
-                        </div> <!-- end row -->
+                        </div> <!-- End row -->
+
 
                     </div> <!-- container -->
                                
@@ -181,6 +201,10 @@
         <script src="/assets/js/jquery.scrollTo.min.js"></script>
 
         <script src="/assets/js/jquery.app.js"></script>
+        
+        <!-- jQuery  -->
+        <script src="/assets/plugins/moment/moment.js"></script>
+        
         <!-- jQuery  -->
         <script src="/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
         <script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
@@ -188,21 +212,26 @@
         <!-- jQuery  -->
         <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
         
-        
-        <script src="/assets/plugins/fullcalendar/dist/moment.min.js"></script>
-        <script src="/assets/plugins/fullcalendar/dist/fullcalendar.min.js"></script>
-        <script src="/assets/plugins/fullcalendar/dist/es.js"></script>
 
-        <script src="/assets/pages/jquery.fullcalendar_medics.js"></script>
+        <!-- jQuery  -->
+        <script src="/assets/pages/jquery.todo.js"></script>
+        
+        <!-- jQuery  -->
+        <script src="/assets/pages/jquery.chat.js"></script>
+        
+        <!--Morris Chart-->
+        <script src="/assets/plugins/raphael/raphael-min.js"></script>
+        
+        <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+        <script type="text/javascript" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         
         <script type="text/javascript">
-            /* ==============================================
-            Counter Up
-            =============================================== */
-            jQuery(document).ready(function($) {
-            });
+            $('.datepicker').datepicker();
         </script>
 
     
     </body>
 </html>
+
+
+
