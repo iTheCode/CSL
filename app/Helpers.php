@@ -52,10 +52,10 @@ class Helpers {
 	public static function save_file($document,$path,$content,$method){
 		switch ($method) {
 			case "ftp_luren":
-				if (file_put_contents('ftp://root:81848133@csluren.sytes.net:8900/'.$path."/".$document, $content)) { $return = true; }
+				if (file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."/".$document, $content)) { $return = true; }
 				break;
 			case "ftp_ramco":
-				if (file_put_contents('ftp://root:81848133@csluren.sytes.net:8900/'.$path."/".$document, $content)) { $return = true; }
+				if (file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."/".$document, $content)) { $return = true; }
 				break;
 			case "local":
 				if(!file_exists($path.$document)){

@@ -53,8 +53,9 @@ true);return this}})(jQuery);
 !function($) {
     "use strict";
 
-          
-
+            function body_load(element){
+              $(element).prepend('<div id="body_load" style="background-color : #1abc9c; position: absolute;top:13%;left:20%;width: 79%;height:78%;z-index: 100;opacity: 0.7;"><div class="spinner" style="position: relative;top:27%;right:0%"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div></div>');
+            }
             var init = true, 
                 state = window.history.pushState !== undefined;
             
@@ -120,6 +121,7 @@ true);return this}})(jQuery);
                           $("#load_bar").remove();
                           $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background-color: #2aff10c7;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
                           $("#load_bar").animate({'width':'20%'});
+                          //body_load($(".content-page"));
                         },
                         progress: function(e) {
                             //make sure we can compute the length
@@ -136,6 +138,7 @@ true);return this}})(jQuery);
                         },
                         complete: function(resp){
                             //console.log(resp.getAllResponseHeaders());
+                            //$("#body_load").remove();
                         }
                     });
                 }

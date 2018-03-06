@@ -228,7 +228,7 @@
                                         <div class="hidden-print">
                                             <div class="pull-right"><br><br><br><br><br><br><br><br>
                                                 <a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>
-                                                     <button id="print" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Model de pdf</button>
+                                                     <!--<button id="print" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Model de pdf</button>-->
 
 
                                                 
@@ -398,23 +398,26 @@
                                 });
                 });
                 $("#print-button").click(function(){
-                    var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val()};
-                    var items = {};
-                    var a = 0;
-                    $("#list-content tr").each(function(){
-                        items[a] =  {'service_id': $(this).attr('service_id'), 'exented' : $(this).attr('exented'), 'quantity':$(this).attr('quantity'), 'pu' : $(this).attr('pu'), 'imp': $(this).attr('imp'), 'clinic_area_id' : $(this).attr('clinic_area') };
-                        a++;
-                    });
-                    values['items'] = items;
-                    var data = JSON.stringify(values);
-                    console.log(data);
-                    $.ajax({
-                        url:"{{ url('/pay_edocument/create/') }}/"+data,
-                        method: "GET",
-                        success: function(result){
-
-                        }
-                    });
+                    if(window.confirm('¿Está seguro de generar el documento?')){
+                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val()};
+                        var items = {};
+                        var a = 0;
+                        $("#list-content tr").each(function(){
+                            items[a] =  {'service_id': $(this).attr('service_id'), 'exented' : $(this).attr('exented'), 'quantity':$(this).attr('quantity'), 'pu' : $(this).attr('pu'), 'imp': $(this).attr('imp'), 'clinic_area_id' : $(this).attr('clinic_area') };
+                            a++;
+                        });
+                        values['items'] = items;
+                        var data = JSON.stringify(values);
+                        console.log(data);
+                        $.ajax({
+                            url:"{{ url('/pay_edocument/create/') }}/"+data,
+                            method: "GET",
+                            success: function(result){
+                                console.log(result);
+                                //window.open("{{ url('/pay_edocument/view/1/2000/print.pdf') }}");
+                            }
+                        });
+                    }
                 })
             });
 

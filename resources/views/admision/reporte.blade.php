@@ -111,7 +111,9 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                        <div class="" style="">
+
                                         <div class="panel" style="margin:0 auto;width:450px">
+
                                             <div class="panel-body">
                                                 <div class="media-main">
                                                     <div class="btn-group-sm">
