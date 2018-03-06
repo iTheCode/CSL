@@ -22,6 +22,7 @@ use \App\Models\PurcharseParticularService;
 use \App\Models\Service;	
 use \App\Models\Clinic;	
 use \App\Models\PayEDocument;	
+use \App\Models\PayDocumentType;	
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -49,7 +50,7 @@ class EDocumentsController extends BaseController
 				$json->payment_document_type = "03";
 				$data = Authorization::find($json->authorization_id);
 				$json->rznSocialUsuario = $data->patient->name." ".$data->patient->paternal." ".$data->patient->maternal;
-				$json->numDocUsuario = $data->patient->document_identity_code;
+				$json->numDocUsuario = str_replace(" ", "", $data->patient->document_identity_code);
 				$json->direccion = $data->patient->direction;
 				$json->local_payment_document_type = "01";
 				break;
@@ -57,7 +58,7 @@ class EDocumentsController extends BaseController
 				$json->payment_document_type = "01";
 				$data = Helpers::get_ruc($json->RUC);
 				$json->rznSocialUsuario = $data->RazonSocial; 
-				$json->numDocUsuario = $json->RUC;
+				$json->numDocUsuario = str_replace(" ", "", $json->RUC);
 				$json->direccion = "";
 				$json->local_payment_document_type = "06";
 				break;
@@ -65,7 +66,7 @@ class EDocumentsController extends BaseController
 				$json->payment_document_type = "03";
 				$data = Helpers::get_dni($json->DNI);
 				$json->rznSocialUsuario = $data->name." ".$data->paternal." ".$data->maternal;
-				$json->numDocUsuario = $json->DNI;
+				$json->numDocUsuario = str_replace(" ", "", $json->DNI);
 				$json->direccion = "";
 				$json->local_payment_document_type = "01";
 				break;
@@ -84,22 +85,23 @@ class EDocumentsController extends BaseController
 
 
 
-		
 		$pay_e_document_type = PayDocumentType::where('code',$json->payment_document_type)->get();
-		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $pay_e_document_type->id)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("pay_e_documents.serie", $user->serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
+		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $pay_e_document_type[0]->id)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("pay_e_documents.serie", $user->serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
 		$pay_edocument = new PayEDocument();
 		if(isset($pay_edocuments[0]))
 			$pay_edocument->code = $pay_edocuments[0]->number+1;
 		else
 			$pay_edocument->code = 1;
 
-		$pay_edocument->pay_document_type_id = $pay_e_document_type;
+		$pay_edocument->pay_document_type_id = $pay_e_document_type[0]->id;
 		$pay_edocument->authorization_id = $json->authorization_id;
 		$pay_edocument->sunat_status = 2;
 		$pay_edocument->emission_date = date("Y-m-d");
+		if(isset($json->particular_service))
+			$pay_edocument->particular_service = $json->particular_service;
 
-		$pay_edocument->particular_service = $json->particular_service;
-		$pay_edocument->insured_service = $json->insured_service;
+		if(isset($json->insured_service))
+			$pay_edocument->insured_service = $json->insured_service;
 		$pay_edocument->numDocUsuario = $json->numDocUsuario;
 		$pay_edocument->rznSocialUsuario = $json->rznSocialUsuario;
 
@@ -107,7 +109,7 @@ class EDocumentsController extends BaseController
 		//$pay_edocument->total_cop_var = ;
 		//$pay_edocument->net_amout = ;
 
-		$pay_edocument->cop_var = $json->discountp;
+		$pay_edocument->total_cop_var = $json->discountp;
 		$pay_edocument->opgravada = $json->opgravada;
 		$pay_edocument->opnogravada = $json->opnogravada;
 		$pay_edocument->opexonerada = $json->opexonerada;
@@ -144,21 +146,20 @@ class EDocumentsController extends BaseController
 			default:
 				break;
 		}
-
+			/*$pdf = PDF::loadView('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]); - && Helpers::save_file($pdf_name,"pdf",$pdf->stream(),"ftp_luren")  */
 		if($pay_edocument->save()){
-			/*$pdf = PDF::loadView('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);*/
 			$json->payEdocument = $pay_edocument;
-			if(Helpers::save_file($file,"data",self:generate_json($json),"ftp_luren") && Helpers::save_file($pdf_name,"pdf",$pdf->stream(),"ftp_luren")){
-				//Create the Queue for to send the email in the night.
+			$json->user = $user;
 
-				//Create the Queue for check if the document receipt for the SUNAT or have an error.
-			}else{
-				return false;
+			try{
+			    Helpers::save_file($file,"",self::generate_json($json),"ftp_luren");
+			    return true;
+			}catch(Exception $ex){
+			    print "Error to send file";
 			}
 		}else{
 			return false;
 		}
-
 	}
 	public function generate_json($json){
 
@@ -168,7 +169,7 @@ class EDocumentsController extends BaseController
 
 		//$content = '{ "cabecera": {"tipOperacion": "01", "fecEmision" : "'.date("Y-m-d").'", "tipDocUsuario" : "'.$json->payment_document_type.'", "numDocUsuario" : "'.$json->numDocUsuario.'", "rznSocialUsuario" : "<![CDATA['.$json->rznSocialUsuario.']]>", "tipMoneda" : "PEN", "sumDsctoGlobal" : "'.$json->discountt.'", "mtoDescuentos" : "'.$json->discountt.'", "mtoOperGravadas" : "'.$json->opgravada.'", "mtoOperInafectas" : "'.$json->opnogravada.'", "mtoOperExoneradas" : "'.$json->opexonerada.'", "mtoIGV" : "'.$json->igv.'", "mtoImpVenta" : "'.$json->total.'"}, "detalle" : ['.str_replace("}{","},{",$items).']}';
 
-		$content = str_pad($json->payEdocument->id, 10, "0",STR_PAD_LEFT)."|".$json->document_type."|00|".$clinica->ruc."|".$json->numDocUsuario."|".date("ymd")."|".date("ymd")."|PEN|".$sub_total."|".$json->discountt."|0.00|".$sub_total."|0.00|".$json->igv."|0.00|0.00|".$json->total."|0|NA|0000000000000|FF0".$user->serie."|".str_pad($pay_edocument->code, 8, "0",STR_PAD_LEFT)."|".$user->username."|".$json->payEdocument->id."||".$json->local_payment_document_type."|01||01|000|00|00|00||0.00|\r\n";
+		$content = str_pad($json->payEdocument->id, 10, "0",STR_PAD_LEFT)."|".$json->document_type."|00|".$clinic->ruc."|".$json->numDocUsuario."|".date("ymd")."|".date("ymd")."|PEN|".$sub_total."|".$json->discountt."|0.00|".$sub_total."|0.00|".$json->igv."|0.00|0.00|".$json->total."|0|NA|0000000000000|FF0".$json->payEdocument->serie."|".str_pad($json->payEdocument->code, 8, "0",STR_PAD_LEFT)."|".$json->user->username."|".$json->payEdocument->id."||".$json->local_payment_document_type."|01||01|000|00|00|00||0.00|\r\n";
 
 		$i = 1;
 		foreach($json->items as $item){
@@ -180,7 +181,7 @@ class EDocumentsController extends BaseController
 			//$content .= '{ "codUnidadMedida" : "NIU", "ctdUnidadItem" : "'.$item->quantity.'", "desItem" : "<![CDATA['.$service->name.']]>", "mtoValorUnitario" : "'.$item->pu.'", "mtoDsctoItem" : "'.$mtoDsctoItem.'", "mtoIgvItem" : "'.$mtoIgvItem.'", "tipAfeIGV" : "'.$item->exented.'0", "mtoPrecioVentaItem" : "'.$mtoPrecioVentaItem.'", "mtoValorVentaItem" : "'.$item->imp.'" }';
 			$afect_igv = ($item->exented == 1) ? 'GRAVADO' : 'EXONERADO';
 
-			$content .= str_pad($i, 10, "0",STR_PAD_LEFT).'|'.str_pad($json->payEdocument->id, 10, "0",STR_PAD_LEFT).'SERVICIO|'.$afect_igv.'|8|'.$item->service_id.'|'.$service->name.'|'.$item->quantity.'|'.$item->pu.'|'.$mtoDsctoItem.'|'.$mtoPrecioVentaItem.'|'.$mtoIgvItem.'|0.000000|0|0.000000|0.000000|'.$item->imp.'|00|\r\n';
+			$content .= str_pad($i, 10, "0",STR_PAD_LEFT)."|".str_pad($json->payEdocument->id, 10, "0",STR_PAD_LEFT)."|SERVICIO|".$afect_igv."|8|".$item->service_id."|".$service->name."|".$item->quantity."|".$item->pu."|".$mtoDsctoItem."|".$item->imp."|".$mtoIgvItem."|0.000000|0|0.000000|0.000000|".$mtoPrecioVentaItem."|00|\r\n";
 			$i++;
 		}
 
@@ -310,7 +311,8 @@ class EDocumentsController extends BaseController
 			//$pay_edocument = PayEDocument::find($this->json->payEdocument);
 			//return $pay_edocument;
 
-			return redirect()->route('login', array('type' => $json->payment_document_type, 'input' => $this->json->payEdocument));
+			//return redirect()->route('login', array('type' => $json->payment_document_type, 'input' => $this->json->payEdocument));
+			return json_encode(array('type' => $this->json->payment_document_type, 'input' => $this->json->payEdocument));
 		}
 
 		//return view('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'pay_edocument' = $pay_edocument]);
