@@ -92,6 +92,17 @@ class Helpers {
 	public static function number_format_sunat($number,$decimals){
 		return (string) str_replace(",","",number_format($number,$decimals));
 	}
+
+	public static function subfijo($xx)
+	{ 
+	    $xx = trim($xx);
+	    $xstrlen = strlen($xx);
+	    if ($xstrlen == 1 || $xstrlen == 2 || $xstrlen == 3)
+	        $xsub = "";
+	    if ($xstrlen == 4 || $xstrlen == 5 || $xstrlen == 6)
+	        $xsub = "MIL";
+	    return $xsub;
+	}
 	public static function numtoletras($xcifra)
 	{
 	    $xarray = array(0 => "Cero",
@@ -158,7 +169,7 @@ class Helpers {
 	                            $key = (int) substr($xaux, 1, 2);
 	                            if (TRUE === array_key_exists($key, $xarray)) {
 	                                $xseek = $xarray[$key];
-	                                $xsub = subfijo($xaux);
+	                                $xsub = Helpers::subfijo($xaux);
 	                                if (substr($xaux, 1, 2) == 20)
 	                                    $xcadena = " " . $xcadena . " VEINTE " . $xsub;
 	                                else
@@ -181,7 +192,7 @@ class Helpers {
 	                        } else {
 	                            $key = (int) substr($xaux, 2, 1);
 	                            $xseek = $xarray[$key];
-	                            $xsub = subfijo($xaux);
+	                            $xsub = Helpers::subfijo($xaux);
 	                            $xcadena = " " . $xcadena . " " . $xseek . " " . $xsub;
 	                        }
 	                        break;
@@ -234,16 +245,6 @@ class Helpers {
 	}
  
  
-	public static function subfijo($xx)
-	{ 
-	    $xx = trim($xx);
-	    $xstrlen = strlen($xx);
-	    if ($xstrlen == 1 || $xstrlen == 2 || $xstrlen == 3)
-	        $xsub = "";
-	    if ($xstrlen == 4 || $xstrlen == 5 || $xstrlen == 6)
-	        $xsub = "MIL";
-	    return $xsub;
-	}
 	public static function get_age( $fecha ) {
 		if(isset($fecha)){
 	    	list($Y,$m,$d) = explode("-",$fecha);

@@ -34,7 +34,7 @@ class ParticularService extends Model
     public function employee(){
         return $this->hasOne('App\Models\Employee', 'id', 'employee_id');
     }
-    public function purchaseinsuredservices(){
+    public function purchaseparticularservices(){
         return $this->hasMany('App\Models\PurchaseParticularService', 'particular_service_id', 'id');
     }
 }

@@ -15,4 +15,10 @@ class PayEDocument extends Model
     public function authorization(){
         return $this->hasOne('App\Models\authorization', 'id', 'authorization_id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
     }
+    public function particularservice(){
+        return $this->hasOne('App\Models\ParticularService', 'id', 'particular_service');
+    }
+    public function insuredservice(){
+        return $this->hasOne('App\Models\InsuredService', 'id', 'insured_service');
+    }
 }

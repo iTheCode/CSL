@@ -38,6 +38,7 @@
                                 <a href="#" class="waves-effect"><i class="md md-payment"></i> <span> Caja </span><span class="pull-right"><i class="md md-add"></i> </a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/caja/atenciones') }}" data="address"> Atenciones </a></li>
+                                    <li><a href="{{ url('/caja/documentos') }}" data="address"> Documentos Emitidos </a></li>
                                     <li><a href="{{ url('/caja/reporte') }}" data="address"> Reportes </a></li>
                                 </ul>
                               

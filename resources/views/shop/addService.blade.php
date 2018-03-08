@@ -223,7 +223,7 @@
                                                                             <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta Paciente</option><option value="3">Boleta DNI</option><option value="4">Boleta No DNI</option><option value="2">Factura RUC</option></select></p>
                                                                             <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
                                                                             <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
-                                                                            <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
+                                                                            <!--<p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>-->
                                                                     </div>
                                         <div class="hidden-print">
                                             <div class="pull-right"><br><br><br><br><br><br><br><br>
@@ -413,8 +413,9 @@
                             url:"{{ url('/pay_edocument/create/') }}/"+data,
                             method: "GET",
                             success: function(result){
-                                console.log(result);
-                                //window.open("{{ url('/pay_edocument/view/1/2000/print.pdf') }}");
+                                data = $.parseJSON(result);
+                                console.log(data);
+                                window.open("/pay_edocument/view/"+data.type+"/"+data.input.id+"/print.pdf");
                             }
                         });
                     }

@@ -96,7 +96,7 @@ class EDocumentsController extends BaseController
 		$pay_edocument->pay_document_type_id = $pay_e_document_type[0]->id;
 		$pay_edocument->authorization_id = $json->authorization_id;
 		$pay_edocument->sunat_status = 2;
-		$pay_edocument->emission_date = date("Y-m-d");
+		$pay_edocument->emission_date = date("Y-m-d H:m:s");
 		if(isset($json->particular_service))
 			$pay_edocument->particular_service = $json->particular_service;
 
@@ -104,6 +104,7 @@ class EDocumentsController extends BaseController
 			$pay_edocument->insured_service = $json->insured_service;
 		$pay_edocument->numDocUsuario = $json->numDocUsuario;
 		$pay_edocument->rznSocialUsuario = $json->rznSocialUsuario;
+		$pay_edocument->direccionUsuario = $json->direccion;
 
 		//$pay_edocument->total_cop_fijo = $json->;
 		//$pay_edocument->total_cop_var = ;
@@ -228,7 +229,8 @@ class EDocumentsController extends BaseController
 						$pis->quantity = $item->quantity;
 						$pis->initial_amount = $item->imp;
 						//Reformular copago 
-						$pis->copayment = Helpers::number_format_sunat($item->imp*($json->discountp/100),2);
+						$pis->copayment = Helpers::number_format_sunat($item->imp*((100-$json->discountp)
+							/100),2);
 						$pis->igv = Helpers::number_format_sunat($pis->copayment * 0.18,2);
 						$pis->final_amount = Helpers::number_format_sunat($pis->copayment+$pis->igv,2);
 						if($pis->save()){
@@ -255,12 +257,13 @@ class EDocumentsController extends BaseController
 						$service = Service::find($item->service_id);
 
 						$pps->service_id = $item->service_id;
-						$pps->insured_service_id = $insured_service->id;
+						$pps->particular_service_id = $insured_service->id;
 						$pps->service_exented_id = $item->exented;
 						$pps->quantity = $item->quantity;
 						$pps->initial_amount = $item->imp;
 						//Reformular copago 
-						$pps->copayment = Helpers::number_format_sunat($item->imp*($json->discountp/100),2);
+						$pps->copayment = Helpers::number_format_sunat($item->imp*((100-$json->discountp)
+							/100),2);
 						$pps->igv = Helpers::number_format_sunat($pps->copayment * 0.18,2);
 						$pps->final_amount = $pps->copayment+$pps->igv;
 						if($pps->save()){
@@ -290,7 +293,8 @@ class EDocumentsController extends BaseController
 					$pcs->insured_service_id = $insured_service->id;
 					$pcs->unitary = $item->pu;
 					//Reformular copago 
-					$pcs->copayment = Helpers::number_format_sunat($item->pu*($json->discountp/100),2);
+					$pcs->copayment = Helpers::number_format_sunat($item->imp*((100-$json->discountp)
+							/100),2);
 					$pcs->igv = Helpers::number_format_sunat($pcs->copayment * 0.18,2);
 					$pcs->final_amount = $pcs->copayment+$pcs->igv;
 					if($pcs->save()){
@@ -319,16 +323,17 @@ class EDocumentsController extends BaseController
 
 	}
 	public function view_print($type,$input){
-		#$pay_edocument = PayEDocument::find($input);
+		$pay_edocument = PayEDocument::find($input);
 
 		if (Auth::check()) {
 		    $user = Auth::user();
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
+		$pay_edocument->serie = str_pad($pay_edocument->serie, 2, "0",STR_PAD_LEFT);
 
 		$pdf = App::make('dompdf.wrapper');
-		$view = view('shop.document_pdf',['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'type' => $type]);
+		$view = view('shop.document_pdf',['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'type' => $type, 'input' => $pay_edocument]);
 		$pdf->setPaper('A4', 'fullpage');
 		return $pdf->loadHTML($view)->stream();
 
