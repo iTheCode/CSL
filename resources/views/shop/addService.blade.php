@@ -228,7 +228,7 @@
                                         <div class="hidden-print">
                                             <div class="pull-right"><br><br><br><br><br><br><br><br>
                                                 <a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>
-                                                     <!--<button id="print" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Model de pdf</button>-->
+                                                     <button id="print" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Model de pdf</button>
 
 
                                                 
@@ -314,7 +314,7 @@
 
                     if(window.confirm('¿Está seguro de generar el documento?')){
                         /*$(".panel-body").slideUp(1000).html('<iframe src="{{ url('/pay_edocument/view/1/2000') }}/" onload="this.contentWindow.print()" alt="pdf" style="width:100%;height:600px"></iframe>').slideDown(1000);*/
-                        window.open("{{ url('/pay_edocument/view/1/2000/print.pdf') }}");
+                        window.open("{{ url('/pay_edocument/view/1/21/print.pdf') }}");
                     }
                     
                 });
