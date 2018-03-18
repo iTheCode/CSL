@@ -8,20 +8,20 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
-        <link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="assets/plugins/morris.js/morris.css">
+        <link href="/assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/assets/plugins/morris.js/morris.css">
 
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/components.css" rel="stylesheet" type="text/css" load="force">
+        <link href="/assets/css/pages.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/modernizr.min.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,7 +44,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left bg-success">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><img src="assets/images/icono.png" alt="CSLuren" width="30" height="30"> <span>{{ $system_name }} </span></a>
+                        <a href="index.html" class="logo"><img src="/assets/images/icono.png" alt="CSLuren" width="30" height="30"> <span>{{ $system_name }} </span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -219,41 +219,44 @@
         </script>
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/wow.min.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
         
-        <script src="assets/js/jquery.app.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="assets/plugins/moment/moment.js"></script>
+        <script src="/assets/js/jquery.app.js"></script>
         
         <!-- jQuery  -->
-        <script src="assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
-        <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
+        <script src="/assets/plugins/moment/moment.js"></script>
         
         <!-- jQuery  -->
-        <script src="assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
+        <script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
+        
+        <!-- jQuery  -->
+        <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
         
 
         <!-- jQuery  -->
-        <script src="assets/pages/jquery.todo.js"></script>
+        <script src="/assets/pages/jquery.todo.js"></script>
         
         <!-- jQuery  -->
-        <script src="assets/pages/jquery.chat.js"></script>
+        <script src="/assets/pages/jquery.chat.js"></script>
         
-        <script src="assets/plugins/Chart.js/Chart.min.js"></script>
+        <script src="/assets/plugins/Chart.js/Chart.min.js"></script>
         
         <!-- jQuery  -->
-        <script src="assets/pages/jquery.dashboard.js"></script>
+        <script src="/assets/pages/jquery.dashboard.js"></script>
         
+        <script src="/assets/plugins/modal-effect/js/classie.js"></script>
+        <script src="/assets/plugins/modal-effect/js/modalEffects.js"></script>
+        <script src="/assets/plugins/jquery-print/js/jQuery.print.js"></script>
         <script type="text/javascript">
             /* ==============================================
             Counter Up

@@ -190,11 +190,11 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             </tr>
             <tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">OP. GRAVADA S./ </td>
-                <td style="widtd: 15%; text-align: right;"> {{ $opgravada }}</td>
+                <td style="widtd: 15%; text-align: right;"> {{ Helpers::number_format_sunat($opgravada,2) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">OP. NO GRAVADA S./ </td>
-                <td style="widtd: 15%; text-align: right;"> {{ $opnogravada }}</td>
+                <td style="widtd: 15%; text-align: right;"> {{ Helpers::number_format_sunat($opnogravada,2) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">OP. EXONERADA S./ </td>
@@ -202,10 +202,10 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             </tr>
             <tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">IGV (18)% S./ </td>
-                <td style="widtd: 15%; text-align: right;"> {{ $igv }}</td>
+                <td style="widtd: 15%; text-align: right;"> {{ Helpers::number_format_sunat($igv,2) }}</td>
             </tr><tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">TOTAL S./ </td>
-                <td style="widtd: 15%; text-align: right;"> {{ $total }}</td>
+                <td style="widtd: 15%; text-align: right;"> {{ Helpers::number_format_sunat($total,2) }}</td>
             </tr>
         </table>
         
@@ -405,11 +405,11 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             </tr>
             <tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">Op Gravada S./ </td>
-                <td style="font-size:0.7em; text-align: right;"> {{ $opgravada }}</td>
+                <td style="font-size:0.7em; text-align: right;"> {{ Helpers::number_format_sunat($opgravada,2) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">Op No Gravada S./ </td>
-                <td style="font-size:0.7em; text-align: right;"> {{ $opnogravada }}</td>
+                <td style="font-size:0.7em; text-align: right;"> {{ Helpers::number_format_sunat($opnogravada,2) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">Op Exonerada S./ </td>
@@ -417,14 +417,14 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             </tr>
             <tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">SUBTOTAL S./ </td>
-                <td style="font-size:0.7em; text-align: right;"> {{ $subtotal }}</td>
+                <td style="font-size:0.7em; text-align: right;"> {{ Helpers::number_format_sunat($subtotal,2) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">IGV (18)% S./ </td>
-                <td style="font-size:0.7em; text-align: right;"> {{ $igv }}</td>
+                <td style="font-size:0.7em; text-align: right;"> {{ Helpers::number_format_sunat($igv,2) }}</td>
             </tr><tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">TOTAL S./ </td>
-                <td style="font-size:0.7em; text-align: right;"> {{ $total }}</td>
+                <td style="font-size:0.7em; text-align: right;"> {{ Helpers::number_format_sunat($total,2) }}</td>
             </tr>
             <tr>
                 <td><br></td>
