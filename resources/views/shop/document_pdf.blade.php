@@ -4,7 +4,7 @@
     tr    { vertical-align: top; }
     td    { vertical-align: top; }
     .midnight-blue{
-        background:#2c3e50;
+        background:#3bc0c3;
         padding: 4px 4px 4px;
         color:white;
         font-weight:bold;
@@ -36,29 +36,27 @@
     </style>
         <table cellspacing="0" style="width: 100%;">
             <tr>
-
                 <td style="width: 25%; color: #444444;">
-                    Clínica Señor de Luren S.A.C.<br>
+                    <img width="200px" src="data:image/<?=pathinfo(public_path('/assets/images/logo.png'), PATHINFO_EXTENSION);?>;base64,<?=base64_encode(file_get_contents(public_path('/assets/images/logo.png')));?>" alt="Logo"><br>
                     
                 </td>
-                <td style="width: 50%; color: #34495e;font-size:12px;text-align:center">Av. San Martín. N° 536 , Ica Ica<br> 
+                <td style="width: 40%; color: #34495e;font-size:12px;text-align:center">Av. San Martín. N° 536 , Ica Ica<br> 
                     Citas: (056) 216166<br>
                     Email: info@clinicaluren.com.pe            </td>
                     <br>
-                <td style="width: 25%">
-                FACTURA ELECTRONICA<br><br><p style="text-align:center">RUC: 20494306043 <br><br>F002-371  </p><p style="text-align:center"></p>
+                <td style="width: 40%; border: 1px solid #3bc0c3;border-radius: 10px;text-align: center;padding-top: 10px;">
+                <?=strtoupper($input->pay_document_type->name);?> ELECTRONICA<br><p style="text-align:center">RUC: 20494306043 <br><br>{{ $input->serie }}-{{ $input->code }}</p><p style="text-align:center"></p>
                 </td>
-                
             </tr>
         </table>
         
         <table cellspacing="0" style="width: 100%; text-align: left; font-size: 11pt;">
             <tr>
-               <td style="width:50%;" class='midnight-blue'>FACTURAR A</td>
+               <td style="width:50%;" class='midnight-blue'>CLIENTE</td>
             </tr>
             <tr>
                <td style="width:50%;" >
-                CONSTRUCTORA KATARINDO S.A.C.<br>20521046024<br>AV. MANUEL OLGUIN NRO. 335 INT. 1707 URB. MONTERRICO CHICO (AL COSTADO DEL EDIFICIO LOS CUBOS) LIMA - LIMA - SANTIAGO DE SURCO          
+                {{ $input->rznSocialUsuario }}<br>{{ $input->numDocUsuario }}<br>{{ $input->direccionUsuario }}          
                </td>
                 <td style="width: 50%">
                
@@ -77,8 +75,7 @@
             </tr>
             <tr>
                <td style="width:50%;" >
-                Fecha: 2018-02-02 17:30:49<br>
-                35 EXAMENES MÉDICOS OCUPACIONALES DE KATARINDO         </td>
+                Fecha: <?=ucfirst(strftime("%B %d, %G, %H:%M ",strtotime($input->emission_date)));?><br></td>
                  <td style="width: 50%">
                
            </td>
@@ -95,34 +92,120 @@
                 <th style="width: 15%;text-align: right" class='midnight-blue'>PRECIO TOTAL</th>
                 
             </tr>
-
+<?php
+$nums = 1;
+$descuento = 0;
+$igv = 0;
+$opgravada = 0;
+$opnogravada = 0;
+$opexonerada = 0;
+$subtotal = 0;
+$final_amount = 0;
+?>
+            @if(isset($input->insuredservice))
+                @foreach($input->insuredservice->purchasecoverageservices as $item)
+                <?php if ($nums%2==0){$clase="clouds";} else {$clase="silver";}?>
             <tr>
-                <td class='silver' style="width: 10%; text-align: center">1</td>
-                <td class='silver' style="width: 60%; text-align: left">EXAMEN MEDICO INCOMPLETO (SÓLO LABORATORIO Y RADIOGRAFIAR)</td>
-                <td class='silver' style="width: 15%; text-align: right">46.00</td>
-                <td class='silver' style="width: 15%; text-align: right">46.00</td>
+                <td class='{{ $clase }}' style="width: 10%; text-align: center">{{ $item->quantity }}</td>
+                <td class='{{ $clase }}' style="width: 60%; text-align: left">{{ $item->service->name }}</td>
+                <td class='{{ $clase }}' style="width: 15%; text-align: right">{{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
+                <td class='{{ $clase }}' style="width: 15%; text-align: right">{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
                 
             </tr>
 
-        
+                <?php 
+                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+                    $final_amount += $item->initial_amount;
+                    
+                    if($item->igv != 0){
+                        $opgravada += $item->final_amount-$item->igv;
+                    }else{
+                        $opnogravada += $item->final_amount-$item->igv;
+                    }
+                    $nums++;
+                ?>
+                @endforeach
+
+                @foreach($input->insuredservice->purchaseinsuredservices as $item)
+                <?php if ($nums%2==0){$clase="clouds";} else {$clase="silver";}?>
             <tr>
-                <td class='clouds' style="width: 10%; text-align: center">34</td>
-                <td class='clouds' style="width: 60%; text-align: left">EXÁMENES MÉDICOS PRE OCUPACIONALES</td>
-                <td class='clouds' style="width: 15%; text-align: right">140.00</td>
-                <td class='clouds' style="width: 15%; text-align: right">4,760.00</td>
+                <td class='{{ $clase }}' style="width: 10%; text-align: center">{{ $item->quantity }}</td>
+                <td class='{{ $clase }}' style="width: 60%; text-align: left">{{ $item->service->name }}</td>
+                <td class='{{ $clase }}' style="width: 15%; text-align: right">{{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
+                <td class='{{ $clase }}' style="width: 15%; text-align: right">{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
                 
             </tr>
 
-                <tr>
-                <td colspan="3" style="widtd: 85%; text-align: right;">SUBTOTAL S./ </td>
-                <td style="widtd: 15%; text-align: right;"> 4,806.00</td>
+                <?php 
+                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+                    $final_amount += $item->initial_amount;
+                    
+                    if($item->igv != 0){
+                        $opgravada += $item->final_amount-$item->igv;
+                    }else{
+                        $opnogravada += $item->final_amount-$item->igv;
+                    }
+                    $nums++;
+                ?>
+                @endforeach
+            @endif
+
+            @if(isset($input->particularservice))
+                @foreach($input->particularservice->purchaseparticularservices as $item)
+                <?php if ($nums%2==0){$clase="clouds";} else {$clase="silver";}?>
+            <tr>
+                <td class='{{ $clase }}' style="width: 10%; text-align: center">{{ $item->quantity }}</td>
+                <td class='{{ $clase }}' style="width: 60%; text-align: left">{{ $item->service->name }}</td>
+                <td class='{{ $clase }}' style="width: 15%; text-align: right">{{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
+                <td class='{{ $clase }}' style="width: 15%; text-align: right">{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
+                
+            </tr>
+
+
+                <?php 
+                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+                    $final_amount += $item->initial_amount;
+                    if($item->igv != 0){
+                        $opgravada += $item->final_amount-$item->igv;
+                    }else{
+                        $opnogravada += $item->final_amount-$item->igv;
+                    }
+                    $nums++;
+                ?>
+                @endforeach
+            @endif
+<?php
+$subtotal = Helpers::number_format_sunat($opgravada+$opnogravada,2);
+$igv = Helpers::number_format_sunat($opgravada*0.18,2);
+$total = Helpers::number_format_sunat($subtotal+$igv,2);
+$descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
+?>
+            <tr>
+                <td><br></td>
+                <td><br></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="widtd: 85%; text-align: right;">DESCUENTO S./ </td>
+                <td style="widtd: 15%; text-align: right;"> {{ Helpers::number_format_sunat($descuento,2) }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="widtd: 85%; text-align: right;">OP. GRAVADA S./ </td>
+                <td style="widtd: 15%; text-align: right;"> {{ $opgravada }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="widtd: 85%; text-align: right;">OP. NO GRAVADA S./ </td>
+                <td style="widtd: 15%; text-align: right;"> {{ $opnogravada }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="widtd: 85%; text-align: right;">OP. EXONERADA S./ </td>
+                <td style="widtd: 15%; text-align: right;"> 0.00</td>
             </tr>
             <tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">IGV (18)% S./ </td>
-                <td style="widtd: 15%; text-align: right;"> 865.08</td>
+                <td style="widtd: 15%; text-align: right;"> {{ $igv }}</td>
             </tr><tr>
                 <td colspan="3" style="widtd: 85%; text-align: right;">TOTAL S./ </td>
-                <td style="widtd: 15%; text-align: right;"> 5,671.08</td>
+                <td style="widtd: 15%; text-align: right;"> {{ $total }}</td>
             </tr>
         </table>
         
@@ -130,49 +213,54 @@
           
         <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
             <tr>
-                <td colspan="" rowspan="0" style="text-align: right;"><br>SON: </td>
-                <td style="padding-right: 20px;text-align: right;"><br> CINCO MIL SEISCIENTOS SETENTA Y UN Y 08/100 SOLES</td>
+                <td colspan="" rowspan="0" style="text-align: left;"><br>SON: </td>
+                <td style="padding-right: 200px;text-align: left;"><br> {{ Helpers::numtoletras($total) }} </td>
             </tr>
             </table>
 
 
 @else
-<div style="padding-left: -30px; padding-top: -30px; width: 8em">
-        <table cellspacing="0" style="width: 8em;">
+<style type="text/css" media="screen">
+    .items tr > *{
+        padding: 8px 100px 8px 2px;
+    }
+</style>
+<div style="padding-left: -30px; padding-top: -40px; width: 10em">
+        <table cellspacing="0" style="width: 17em;">
            
             <tr>
-                <td style="padding-right: -67px;font-size:0.8em;text-align:right;font-weight: bold;">
+                <td style="margin:0 auto;font-size:0.8em;text-align:center;font-weight: bold;">
                      Clínica Señor de Luren S.A.C.
                 </td>
                  
             </tr>
             <tr>
-                <td style="padding-right: -60px;font-size:0.7em;text-align:right;">
+                <td style="margin:0 auto;font-size:0.7em;text-align:center;">
                      Av. San Martín. N° 536 , Ica Ica  
                 </td>
                  
             </tr>
             <tr> 
-                <td style="padding-right: -60px;font-size:0.7em;text-align:right;">
+                <td style="margin:0 auto;font-size:0.7em;text-align:center;">
                      
-                    Mail:info@clinicaluren.com.pe   
+                    Mail: info@clinicaluren.com.pe   
                 </td>
             </tr>
             <tr> 
-                <td style="padding-right: -32px;font-size:0.7em;text-align:right;">
+                <td style="margin:0 auto;font-size:0.7em;text-align:center;">
                       RUC: 20494306043     
                 </td>
             </tr>
             <tr>
-                <td style="padding-right: -30px;font-size:0.7em;text-align:right;">
-                     Citas:(056) 216166
+                <td style="margin:0 auto;font-size:0.7em;text-align:center;">
+                     Citas: (056) 216166
                            
                 </td>
                 
             </tr>
             <tr>
-                <td style="padding-right: -50px;font-size:0.7em;text-align:right;">
-                <br>FACTURA ELECTRONICA<p style="padding-right: -50px ;text-align:center;font-size:1em">FF{{ $input->serie }}-{{ $input->code }}  </p>
+                <td style="margin:0 auto;font-size:0.7em;text-align:center;">
+                <br><?=strtoupper($input->pay_document_type->name);?> ELECTRONICA<p style="text-align:center;font-size:1em">{{ $input->serie }}-{{ $input->code }}  </p>
                 </td>
             </tr>
         </table>
@@ -181,7 +269,7 @@
         <table  style="width: 14em">
             <tr>
                 
-                <td>----------------------------------------------</td>
+                <td>--------------------------------------------------</td>
                 <td><br></td>
                 
             </tr>
@@ -193,7 +281,7 @@
             </tr>
             <tr>
                <td COLSPAN=2 style="width:4em;font-size:0.7em;" >
-                    RUC: {{ $input->numDocUsuario }}    
+                    DNI/RUC: {{ $input->numDocUsuario }}    
                 </td>
                 
             </tr>
@@ -205,7 +293,7 @@
             </tr>
             <tr>
                 <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
-                Fecha: {{ $input->emission_date }}<br>     
+                Fecha: <?=ucfirst(strftime("%B %d, %G, %H:%M ",strtotime($input->emission_date)));?><br>     
                 </td>
                 
             </tr>
@@ -218,108 +306,115 @@
             </tr>
         </table>
         
-        <label style="width: 8em">----------------------------------------------</label>
+        <label style="width: 10em">--------------------------------------------------</label>
        
 <?php
-$discountp = (isset($input->authorization->patient->coverage)) ? $client->coverage->cop_var : 0;
 $descuento = 0;
 $igv = 0;
 $opgravada = 0;
 $opnogravada = 0;
 $opexonerada = 0;
 $subtotal = 0;
+$final_amount = 0;
 ?>     
       
-        <table >
-            <tr>
-                <th style="text-align: center; font-size: 0.7em" >CANT.</th>
-                <th style="text-align: center; font-size: 0.7em" >DESCRIPCION</th>
-                <th style="text-align: center; font-size: 0.7em" >PRECIO. U.</th>
-                <th style="text-align: center; font-size: 0.7em" >PRECIO. T.</th>
-                
-            </tr>
+        <table width="16.5em">
+                <tr>
+                    <th style="vertical-align:text-top; text-align: center; font-size: 0.7em" >CANT.</th>
+                    <th style="vertical-align:text-top; text-align: center; font-size: 0.7em" >DESCRIPCION</th>
+                    <th style="vertical-align:middle; text-align: center; font-size: 0.7em" >PRECIO. U.</th>
+                    <th style="vertical-align:middle; text-align: center; font-size: 0.7em" >PRECIO. T.</th>
+                    
+                </tr>
             @if(isset($input->insuredservice))
                 @foreach($input->insuredservice->purchasecoverageservices as $item)
                 <tr>
                     <td  style="text-align: center; font-size:0.7em" >{{ $item->quantity }}</td>
                     <td  style="text-align: left; font-size:0.7em" >{{ $item->service->name }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ (($item->final_amount-$item->igv)/$item->quantity) }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ ($item->final_amount-$item->igv) }} </td>
-                    
+                    <td  style="text-align: right; font-size:0.7em" > {{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
+                    <td  style="text-align: right; font-size:0.7em" >{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
                 </tr>
-                <tr>
-                    <td><br></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
                 <?php 
-                    $descuento += Helpers::number_format_sunat($item->initial_amount*($discountp/100),2);
+                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+                    $final_amount += $item->initial_amount;
                     
-                    if($item->service_extented_id == 1){
+                    if($item->igv != 0){
                         $opgravada += $item->final_amount-$item->igv;
                     }else{
                         $opnogravada += $item->final_amount-$item->igv;
                     }
-                    $subtotal += $opgravada + $opnogravada;
-                    $igv += Helpers::number_format_sunat($subtotal* 0.18,2);
+                    
                 ?>
                 @endforeach
+
                 @foreach($input->insuredservice->purchaseinsuredservices as $item)
                 <tr>
                     <td  style="text-align: center; font-size:0.7em" >{{ $item->quantity }}</td>
                     <td  style="text-align: left; font-size:0.7em" >{{ $item->service->name }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ (($item->final_amount-$item->igv)/$item->quantity) }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ ($item->final_amount-$item->igv) }} </td>
+                    <td  style="text-align: right; font-size:0.7em" > {{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
+                    <td  style="text-align: right; font-size:0.7em" >{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
                     
                 </tr>
-                <tr>
-                    <td><br></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
                 <?php 
-                    $descuento += Helpers::number_format_sunat($item->initial_amount*($discountp/100),2);
+                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+                    $final_amount += $item->initial_amount;
                     
-                    if($item->service_extented_id == 1){
+                    if($item->igv != 0){
                         $opgravada += $item->final_amount-$item->igv;
                     }else{
                         $opnogravada += $item->final_amount-$item->igv;
                     }
-                    $subtotal += $opgravada + $opnogravada;
-                    $igv += Helpers::number_format_sunat($subtotal* 0.18,2);
                 ?>
                 @endforeach
             @endif
+
+
             @if(isset($input->particularservice))
                 @foreach($input->particularservice->purchaseparticularservices as $item)
                 <tr>
                     <td  style="text-align: center; font-size:0.7em" >{{ $item->quantity }}</td>
                     <td  style="text-align: left; font-size:0.7em" >{{ $item->service->name }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ (($item->final_amount-$item->igv)/$item->quantity) }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ ($item->final_amount-$item->igv) }} </td>
+                    <td  style="text-align: right; font-size:0.7em" > {{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
+                    <td  style="text-align: right; font-size:0.7em" >{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
                     
-                </tr>
-                <tr>
-                    <td><br></td>
-                    <td></td>
-                    <td></td>
                 </tr>
 
                 <?php 
-                    $descuento += Helpers::number_format_sunat($item->initial_amount*($discountp/100),2);
-                    
-                    if($item->service_extented_id == 1){
+                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+                    $final_amount += $item->initial_amount;
+                    if($item->igv != 0){
                         $opgravada += $item->final_amount-$item->igv;
                     }else{
                         $opnogravada += $item->final_amount-$item->igv;
                     }
-                    $subtotal += $opgravada + $opnogravada;
-                    $igv += Helpers::number_format_sunat($subtotal* 0.18,2);
                 ?>
                 @endforeach
             @endif
+<?php
+$subtotal = Helpers::number_format_sunat($opgravada+$opnogravada,2);
+$igv = Helpers::number_format_sunat($opgravada*0.18,2);
+$total = Helpers::number_format_sunat($subtotal+$igv,2);
+$descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
+?>
+        </table><br><br>
+        <table style="padding-right: -10px;width:16em;">
+
+            <tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">Descuento S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> {{ Helpers::number_format_sunat($descuento,2) }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">Op Gravada S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> {{ $opgravada }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">Op No Gravada S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> {{ $opnogravada }}</td>
+            </tr>
+            <tr>
+                <td colspan="3" style="font-size:0.7em; text-align: right;">Op Exonerada S./ </td>
+                <td style="font-size:0.7em; text-align: right;"> 0.00</td>
+            </tr>
             <tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">SUBTOTAL S./ </td>
                 <td style="font-size:0.7em; text-align: right;"> {{ $subtotal }}</td>
@@ -329,15 +424,15 @@ $subtotal = 0;
                 <td style="font-size:0.7em; text-align: right;"> {{ $igv }}</td>
             </tr><tr>
                 <td colspan="3" style="font-size:0.7em; text-align: right;">TOTAL S./ </td>
-                <td style="font-size:0.7em; text-align: right;"> {{ ($subtotal+$igv) }}</td>
+                <td style="font-size:0.7em; text-align: right;"> {{ $total }}</td>
             </tr>
             <tr>
                 <td><br></td>
                 
             </tr>
               <tr>
-                <td  style="  font-size:0.6em;"><br>SON:</td>
-                <td COLSPAN=3 style="   font-size:0.6em;"> {{ Helpers::numtoletras(($subtotal+$igv)) }}</td>
+                <td  style="vertical-align:text-top;font-size:0.6em;"><br>SON:</td>
+                <td COLSPAN=0 style="font-size:0.6em;"> <br>{{ Helpers::numtoletras($total) }}</td>
             </tr>
             
         </table>
@@ -347,7 +442,7 @@ $subtotal = 0;
         
           
             
-        <label style="width: 8em">----------------------------------------------</label>
+        <label style="width: 8em">--------------------------------------------------</label>
         <table cellspacing="0" style="width: 8em;">
             <tr>
                 <td style=" padding-right: -60px ;font-size:0.7em;text-align:right;">

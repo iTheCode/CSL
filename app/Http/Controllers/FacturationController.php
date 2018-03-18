@@ -42,20 +42,31 @@ class FacturationController extends BaseController
 		    $position = $user->area->name;
 		}
 			$input = json_decode($input);
-			if($input->data != "null"){
-				$response = PayDocument::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('id','desc')->paginate(20);
-				$local_response = PayEDocument::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
-			}else{
-				$response = PayDocument::orderBy('id','desc')->paginate(20);
-				$local_response = PayEDocument::orderBy('intern_code','desc')->paginate(20);
+			$from = $input->from;
+			$data = $input->data;
+			if($from == "caja"){
+				if($input->data != "null"){
+					$response = PayEDocument::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('code','desc')->paginate(20);
+				}else{
+					$response = PayEDocument::orderBy('id','desc')->paginate(20);
+				}
+			}
+
+			if($from == "facturacion"){
+
+				if($input->data != "null"){
+					$response = PayDocument::select('patients.id as aID', 'patients.*', 'authorizations.*')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('id','desc')->paginate(20);
+				}else{
+					$response = PayDocument::orderBy('id','desc')->paginate(20);
+				}
 			}
 
 			//dd(Authorization::orderBy('created_at','desc')->first()->insureds->insurance);
 			//return $response;
-			$total_pages = ceil($response->total()+$local_response->total()/20);
+			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.documentsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'pay_documents' => $response, 'local_pay_documents' => $local_response,'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.documentsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'pay_documents' => $response, 'from' => $from, 'data' => $data, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showDocuments()
 	{
