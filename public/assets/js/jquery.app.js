@@ -70,8 +70,8 @@ true);return this}})(jQuery);
                 $(data).filter("script").each(function(){
                   var src = String($(this).attr('src'));
                   var unload = "assets/js/";
-                  var load = String($(this).attr('load'));
-                  if(!(src.indexOf(unload) != -1) || load == "force"){
+                  var load = $(this).attr('load');
+                  if(!(src.indexOf(unload) != -1) || load === "force"){
                       $('.content-page').append($(this));
                   }
                 });
@@ -79,8 +79,8 @@ true);return this}})(jQuery);
                 $(data).filter("link").each(function(){
                   var src = String($(this).attr('href'));
                   var unload = "assets/css/";
-                  var load = String($(this).attr('load'));
-                  if(!(src.indexOf(unload) != -1) || load == "force"){
+                  var load = $(this).attr('load');
+                  if(!(src.indexOf(unload) != -1) || load === "force"){
                       $('.content-page').append($(this));
                   }
                 });
