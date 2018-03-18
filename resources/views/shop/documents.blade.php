@@ -179,7 +179,7 @@
                     if(object != null){ data = object.val(); }else{data = null;}
                     $.ajax(
                               {
-                                  url: "{{ url('/paydocumentsAPI/') }}/{\"data\": \""+data+"\", \"from\": \"facturacion\"}?page="+page, 
+                                  url: "{{ url('/paydocumentsAPI/') }}/{\"data\": \""+data+"\", \"from\": \"caja\"}?page="+page, 
                                   method: "GET",
                                    success: function(result)
                                   {

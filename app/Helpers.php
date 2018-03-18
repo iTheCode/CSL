@@ -52,10 +52,8 @@ class Helpers {
 	public static function save_file($document,$path,$content,$method){
 		switch ($method) {
 			case "ftp_luren":
-				if (file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."/".$document, $content)) { $return = true; }
-				break;
-			case "ftp_ramco":
-				if (file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."/".$document, $content)) { $return = true; }
+				$upload = @file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."/".$document, $content);
+				if ( $upload === FALSE ) { $return = false; } else { $return = true; }
 				break;
 			case "local":
 				if(!file_exists($path.$document)){
@@ -88,6 +86,9 @@ class Helpers {
 				return 'Pendiente';
 				break;
 		}
+	}
+	public static function number_format_cond($number,$space){
+		return (string) str_pad($number, $space, "0",STR_PAD_LEFT);
 	}
 	public static function number_format_sunat($number,$decimals){
 		return (string) str_replace(",","",number_format($number,$decimals));

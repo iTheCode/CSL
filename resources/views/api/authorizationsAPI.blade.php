@@ -6,7 +6,7 @@
                                                     <div class="input-group">
                                                         <span class="input-group-btn">
                                                         @if($data == "null")
-                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese el número de liquidación">
+                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Ingrese su búsqueda">
                                                         @else
                                                         <input type="text" id="search" name="search" class="form-control" value="{{ $data }}" placeholder="Ingrese su búsqueda">
                                                         @endif

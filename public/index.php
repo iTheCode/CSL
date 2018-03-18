@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
+setlocale(LC_TIME, "es_ES");
+ini_set("default_socket_timeout", 120);
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

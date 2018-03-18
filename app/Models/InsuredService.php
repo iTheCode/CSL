@@ -33,7 +33,6 @@ class InsuredService extends Model
     public function employee(){
         return $this->hasOne('App\Models\Employee', 'id', 'employee_id');
     }
-    //
     public function purchaseinsuredservices(){
         return $this->hasMany('App\Models\PurchaseInsuredService', 'insured_service_id', 'id');
     }

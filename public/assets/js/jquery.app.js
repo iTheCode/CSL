@@ -102,12 +102,14 @@ true);return this}})(jQuery);
                 
             }).change(function(event) {
 
+
                 if (state && init) {
                 
                     init = false;
                 
                 } else {
-                
+
+                    $(".select2-hidden-accessible").remove();
                     // Loads the page content and inserts it into the content area
                     $.ajax({
                         url: event.path,
@@ -119,7 +121,7 @@ true);return this}})(jQuery);
                         beforeSend:function(){
                           $('.content-page').animate({'opacity':0});
                           $("#load_bar").remove();
-                          $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background-color: #2aff10c7;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
+                          $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background: #3bc0c3;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
                           $("#load_bar").animate({'width':'20%'});
                           //body_load($(".content-page"));
                         },
@@ -141,8 +143,7 @@ true);return this}})(jQuery);
                             //$("#body_load").remove();
                         }
                     });
-                }
-
+                  }
             });
 
             if (!state) {
