@@ -158,7 +158,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Artisaninweb\SoapWrapper\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class
+        Spatie\Permission\PermissionServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -209,7 +210,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Helpers'    => App\Helpers::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class
+        'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class
 
     ],
 

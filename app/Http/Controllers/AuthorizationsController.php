@@ -77,12 +77,7 @@ class AuthorizationsController extends BaseController
 	}
 	public function showAuthorizations()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
-		return view('admision.authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('admision.authorizations');
 	}	
 	public function findAuthorization($input)
 	{
@@ -255,5 +250,38 @@ class AuthorizationsController extends BaseController
 		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
 		$medics = Helpers::get_doctors(Doctor::all());
 		return view('admision.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'coverages' => $coverages, 'employees' => $employees, 'medics' => $medics]);
+	}
+
+	public function export(Request $request){
+		$authorizations = Authorization::query();
+		$authorizations->when($request::get('coverage_type') != "", function ($query) use ($request){
+	        return $query->whereHas('coverage.sub_coverage_type.coverage_type', function($q) use ($request){
+			    $q->where('coverage_types.id', '=', $request::get('coverage_type'));
+			});
+	    });
+		$authorizations->when($request::get('medic') != "", function ($query) use ($request){
+	        return $query->where('doctor_id', '=', $request::get('medic'));
+	    });
+		$authorizations->when($request::get('date_init') != "", function ($query) use ($request){
+	        return $query->whereDate('date', '>=', $request::get('date_init'));
+	    });
+		$authorizations->when($request::get('date_end') != "", function ($query) use ($request){
+	        return $query->whereDate('date', '<=', $request::get('date_end'));
+	    });
+		$authorizations->when($request::get('employee') != "", function ($query) use ($request){
+	        return $query->where('employee_id', $request::get('employee'));
+	    });
+
+	    $data = json_decode(json_encode($authorizations->get()), true);
+	    
+
+		\Excel::create('atenciones_', function($excel) use ($data){
+		    $excel->sheet('Atenciones', function($sheet) use ($data) {
+		       $sheet->fromArray($data, null, 'A1', true);
+
+		    });
+
+		})->export('xls');
+
 	}
 }

@@ -134,12 +134,12 @@
                                                     </div><br><br>
                                                     Fecha de Inicio
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
+                                                        <input type="text" name="date_init" class="form-control datepicker" placeholder="yyyy-mm-dd">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
                                                     Fecha Fin
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
+                                                        <input type="text" name="date_end" class="form-control datepicker" placeholder="yyyy-mm-dd">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
                                                     Admisionista
@@ -217,7 +217,22 @@
         <script type="text/javascript" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         
         <script type="text/javascript">
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({ format: 'yyyy-mm-dd' });
+            $('#generate').submit(function(e){
+                e.preventDefault();
+                var form = $(this);
+                $.ajax(
+                {
+                    url: "{{ url('/atenciones/generar_reporte/') }}", 
+                    method: "GET",
+                    data: form.serialize(),
+                    success: function(result){
+                        console.log(result);
+                    }
+                });
+                return false;
+
+            });
         </script>
 
     

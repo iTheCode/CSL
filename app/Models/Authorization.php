@@ -55,4 +55,13 @@ class Authorization extends Model
     public function pay_edocuments(){
         return $this->hasMany('App\Models\PayEDocument', 'authorization_id', 'id'); //Primero es la columna de la otra tabla, y luego la columna de este Modelo.
     }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($Authorization) { // before delete() method call this
+            $Authorization->coverage()->delete();
+        });
+    }
+
 }
