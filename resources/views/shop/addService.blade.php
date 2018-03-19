@@ -231,6 +231,7 @@
                                                                             <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
                                                                             <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                             <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
+                                                                            <p><strong>Mail :</strong><input id="mail" name="mail" type="text" class="form-control"> </p>
                                                                     </div>
                                         <div class="hidden-print">
                                             <div class="pull-right"><br><br><br><br><br><br><br><br>
@@ -422,7 +423,7 @@
                         $("#add-item").slideUp();
                         $("#add").parent().slideUp().prev().remove();
 
-                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val()};
+                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
                         var items = {};
                         var a = 0;
                         $("#list-content tr").each(function(){

@@ -111,6 +111,8 @@ class EDocumentsController extends BaseController
 		//$pay_edocument->total_cop_fijo = $json->;
 		//$pay_edocument->total_cop_var = ;
 		//$pay_edocument->net_amout = ;
+		if(isset($json->Mail))
+			$pay_edocument->mail = $json->Mail;
 
 		$pay_edocument->total_cop_var = $json->discountp;
 		$pay_edocument->opgravada = $json->opgravada;
@@ -209,7 +211,7 @@ class EDocumentsController extends BaseController
 
 
 		//$content .= "D|000000001|0000000001|CC: 2410211703|\r\n";
-		$content .= "C|".$json->numDocUsuario."|".$json->rznSocialUsuario."|".$json->direccion."||||||||".$json->local_payment_document_type."|";
+		$content .= "C|".$json->numDocUsuario."|".$json->rznSocialUsuario."|".$json->direccion."||".$json->Mail."||||||".$json->local_payment_document_type."|";
 
 		$this->json = $json;
 
