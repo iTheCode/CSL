@@ -97,7 +97,15 @@ Route::get('/facturacion/contabilidad/', ['middleware' => 'auth',  'as' => 'cont
 //Administración Routes
 
 Route::get('/administracion/horario/', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'AdministrationController@showHourMedic']);
+
 Route::get('/administracion/usuarios/', ['middleware' => 'auth',  'as' => 'usuarios', 'uses' => 'AdministrationController@showUsers']);
+
+//Casper
+Route::get('/administracion/usuarios/create', ['middleware' => 'auth',  'as' => 'crear_usuarios', 'uses' => 'AdministrationController@createUser']);
+Route::get('/administracion/usuarios/edit', ['middleware' => 'auth',  'as' => 'editar_usuarios', 'uses' => 'AdministrationController@editUser']);
+Route::get('/administracion/usuarios/delete', ['middleware' => 'auth',  'as' => 'borrar_usuarios', 'uses' => 'AdministrationController@deleteUer']);
+//Casper
+
 Route::get('/administracion/personal/', ['middleware' => 'auth',  'as' => 'personal', 'uses' => 'AdministrationController@showPersonal']);
 Route::get('/administracion/servicios/', ['middleware' => 'auth',  'as' => 'servicios', 'uses' => 'AdministrationController@showServices']);
 Route::get('/createUser/',['middleware' => 'auth', 'as' => 'registrar_usuario', 'uses' => 'AdministrationController@createUser']);

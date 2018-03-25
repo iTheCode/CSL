@@ -146,4 +146,28 @@ class AdministrationController extends BaseController
 			//verdadero
 		}
 	}
+
+	public function editUser(Request $request){
+		$user = Employee::find($request::get('id'));
+		$user->siteds_code = $request::get('user_code');		
+		$user->name = $request::get('firstname');
+		$user->paternal = $request::get('paternal');
+		$user->maternal = $request::get('maternal');
+		$user->username = $request::get('user');
+		$user->password = $request::get('password');
+		$user->area_id = $request::get();
+		$user->email = $request::get('email');
+
+		if($user->save()){
+			//verdadero
+		}
+	}
+
+	public function deleteUser(Request $request){
+		$user = Employee::find($request::get('id'));
+
+		if($user->delete()){
+			//verdadero
+		}
+	}
 }
