@@ -7,25 +7,25 @@ use App;
 use Mail;
 use \App\Employee as Employee;
 use \App\Models\Area as Area;
-use \App\Models\Authorization;	
-use \App\Models\AuthorizationType;	
-use \App\Models\Insurance;	
-use \App\Models\Insured;	
-use \App\Models\SubCoverageType;	
-use \App\Models\Status;	
-use \App\Models\Doctor;	
-use \App\Models\DiagnosticType;	
-use \App\Models\Coverage;	
-use \App\Models\InsuredService;	
+use \App\Models\Authorization;
+use \App\Models\AuthorizationType;
+use \App\Models\Insurance;
+use \App\Models\Insured;
+use \App\Models\SubCoverageType;
+use \App\Models\Status;
+use \App\Models\Doctor;
+use \App\Models\DiagnosticType;
+use \App\Models\Coverage;
+use \App\Models\InsuredService;
 use \App\Models\PurchaseCoverageService;
-use \App\Models\PurchaseInsuredService;	
-use \App\Models\PurchaseParticularService;	
-use \App\Models\Service;	
-use \App\Models\Clinic;	
-use \App\Models\PayEDocument;	
-use \App\Models\PayDocumentType;	
+use \App\Models\PurchaseInsuredService;
+use \App\Models\PurchaseParticularService;
+use \App\Models\Service;
+use \App\Models\Clinic;
+use \App\Models\PayEDocument;
+use \App\Models\PayDocumentType;
 use \App\Models\ParticularService;
-use \App\Helpers;	
+use \App\Helpers;
 use View;
 use Redirect;
 use Request;
@@ -59,7 +59,7 @@ class EDocumentsController extends BaseController
 			case '2':
 				$json->payment_document_type = "01";
 				$data = Helpers::get_ruc($json->RUC);
-				$json->rznSocialUsuario = $data->RazonSocial; 
+				$json->rznSocialUsuario = $data->RazonSocial;
 				$json->numDocUsuario = str_replace(" ", "", $json->RUC);
 				$json->direccion = "";
 				$json->local_payment_document_type = "06";
@@ -74,12 +74,12 @@ class EDocumentsController extends BaseController
 				break;
 			case '4':
 				$json->payment_document_type = "03";
-				$json->rznSocialUsuario = ""; 
+				$json->rznSocialUsuario = "";
 				$json->numDocUsuario = "0";
 				$json->local_payment_document_type = "00";
 				$json->direccion = "";
 				break;
-			
+
 			default:
 				# code...
 				break;
@@ -119,7 +119,7 @@ class EDocumentsController extends BaseController
 		$pay_edocument->opnogravada = $json->opnogravada;
 		$pay_edocument->opexonerada = $json->opexonerada;
 
-		
+
 		$pay_edocument->total_igv = $json->igv;
 		$pay_edocument->total_amount = $json->total;
 		//$pay_edocument->clinic_code = $json->
@@ -180,7 +180,7 @@ class EDocumentsController extends BaseController
 				$pay_edocument->save();
 			}
 			return true;
-			   
+
 		}else{
 			return false;
 		}
@@ -233,7 +233,7 @@ class EDocumentsController extends BaseController
 				$insured_service = new InsuredService();
 				$insured_service->authorization_id = $authorization->id;
 				$insured_service->doctor_id = $authorization->doctor_id;
-				//$insured_service->clinic_area_id = 
+				//$insured_service->clinic_area_id =
 				$insured_service->employee_id = $user->id;
 				$insured_service->initial_amount = $json->importe;
 				$insured_service->copayment = $json->opgravada + $json->opnogravada + $json->opexonerada;
@@ -252,8 +252,8 @@ class EDocumentsController extends BaseController
 						$pis->quantity = $item->quantity;
 						$pis->initial_amount = $item->imp;
 
-						//Reformular copago 
-						$pis->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2); 
+						//Reformular copago
+						$pis->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2);
 
 						$pis->igv = ($item->exented == 1) ? Helpers::number_format_sunat($pis->copayment * 0.18,2) : "0.00";
 						$pis->final_amount = Helpers::number_format_sunat($pis->copayment+$pis->igv,2);
@@ -265,7 +265,7 @@ class EDocumentsController extends BaseController
 				$particular_service = new ParticularService();
 				$particular_service->authorization_id = $authorization->id;
 				$particular_service->doctor_id = $authorization->doctor_id;
-				//$particular_service->clinic_area_id = 
+				//$particular_service->clinic_area_id =
 				$particular_service->employee_id = $user->id;
 				$particular_service->initial_amount = $json->importe;
 				$particular_service->copayment = $json->opgravada + $json->opnogravada + $json->opexonerada;
@@ -283,8 +283,8 @@ class EDocumentsController extends BaseController
 						$pps->service_exented_id = $item->exented;
 						$pps->quantity = $item->quantity;
 						$pps->initial_amount = $item->imp;
-						//Reformular copago 
-						$pps->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2); 
+						//Reformular copago
+						$pps->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2);
 						$pps->igv = ($item->exented == 1) ? Helpers::number_format_sunat($pps->copayment * 0.18,2) : "0.00";
 						$pps->final_amount = $pps->copayment+$pps->igv;
 						$pps->save();
@@ -296,7 +296,7 @@ class EDocumentsController extends BaseController
 			$insured_service = new InsuredService();
 			$insured_service->authorization_id = $authorization->id;
 			$insured_service->doctor_id = $authorization->doctor_id;
-			//$insured_service->clinic_area_id = 
+			//$insured_service->clinic_area_id =
 			$insured_service->employee_id = $user->id;
 			$insured_service->initial_amount = $json->importe;
 			$insured_service->copayment = $json->opgravada + $json->opnogravada + $json->opexonerada;
@@ -311,8 +311,8 @@ class EDocumentsController extends BaseController
 					$pcs->service_id = $item->service_id;
 					$pcs->insured_service_id = $insured_service->id;
 					$pcs->unitary = $item->pu;
-					//Reformular copago 
-					$pcs->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2); 
+					//Reformular copago
+					$pcs->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2);
 					$pcs->igv = ($item->exented == 1) ? Helpers::number_format_sunat($pcs->copayment * 0.18,2) : "0.00";
 					$pcs->final_amount = $pcs->copayment+$pcs->igv;
 					$pcs->save();
@@ -360,4 +360,4 @@ class EDocumentsController extends BaseController
 
 
 	}
-} 
+}

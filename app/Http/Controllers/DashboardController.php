@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use \App\Employee as Employee;
-use \App\Models\Authorization;	
-use \App\Models\Coverage;	
+use \App\Models\Authorization;
+use \App\Models\Coverage;
 use \App\Models\PayDocument;
-use \App\Models\PayEDocument;		
-use \App\Models\Patient;	
+use \App\Models\PayEDocument;
+use \App\Models\Patient;
 use \App\Models\Area as Area;
 use View;
 use Redirect;
@@ -51,7 +51,7 @@ class DashboardController extends BaseController
 
 
 		$pay_documents_mes = count(PayDocument::where(DB::raw('MONTH(created_at) = ? AND YEAR(created_at) '), [$month, $year])->get()) + count(PayEDocument::where(DB::raw('MONTH(created_at) = ? AND YEAR(created_at) '), [$month, $year])->get());
-		$pay_documents_año_anterior = count(PayDocument::where(DB::raw('YEAR(created_at) '), [$year-1])->get()) + count(PayEDocument::where(DB::raw('YEAR(created_at)'), [$year-1])->get()); 
+		$pay_documents_año_anterior = count(PayDocument::where(DB::raw('YEAR(created_at) '), [$year-1])->get()) + count(PayEDocument::where(DB::raw('YEAR(created_at)'), [$year-1])->get());
 		$porcentaje_pay_documents_mes = number_format((100*$pay_documents_mes)/$pay_documents_año_anterior,2);
 
 		$atenciones_globales = Authorization::select('id', 'date')->where(DB::raw('YEAR(date)'), [$year])->get()->groupBy(function($val) {return Carbon::parse($val->date)->format('m');});
@@ -74,5 +74,5 @@ class DashboardController extends BaseController
 
 		return view('dashboard', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'atenciones_mes' => $atenciones_mes, 'porcentaje_antenciones_mes' => $porcentaje_antenciones_mes, 'emergencias_mes' => $emergencias_mes, 'porcentaje_emergencias_mes' => $porcentaje_emergencias_mes, 'pacientes_nuevos_mes' => $pacientes_nuevos_mes, 'porcentaje_pacientes_mes' => $porcentaje_pacientes_mes, 'pay_documents_mes' => $pay_documents_mes, 'porcentaje_pay_documents_mes' => $porcentaje_pay_documents_mes, 'chart_actual' => $atenciones_globales, 'chart_pasado' => $atenciones_globales_last]);
 	}
-	
+
 }
