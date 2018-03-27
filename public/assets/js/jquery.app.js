@@ -49,7 +49,19 @@ true);return this}})(jQuery);
         return xhr;
     };
 })(jQuery, window);
-
+function ValidURL(str) {
+  var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
+    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
+    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
+    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
+    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
+    '(\#[-a-z\d_]*)?$','i'); // fragment locater
+  if(!pattern.test(str)) {
+    return false;
+  } else {
+    return true;
+  }
+}
 !function($) {
     "use strict";
 
@@ -88,7 +100,11 @@ true);return this}})(jQuery);
                   
                  $('.content-page').on('click', '[data="address"]', function (e){
                   e.preventDefault();
-                  var pathname = new URL($(this).attr('href').replace('#', '')).pathname;
+                  if ($(this).attr('href').indexOf("http://") == 0 || $(this).attr('href').indexOf("https://") == 0) {
+                    var pathname = new URL($(this).attr('href').replace('#', '')).pathname;
+                  }else{
+                    var pathname = $(this).attr('href').replace('#', '');
+                  }
                   $.address.value(pathname);  
 
                   $("#sidebar-menu .active").each(function(){

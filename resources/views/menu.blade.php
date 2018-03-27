@@ -25,6 +25,14 @@
                             </li>
 
                             <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="md md-tv"></i><span> Tickets </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ url('/tickets/registro') }}" data="address"> Registro </a></li>
+                                    <li><a href="{{ url('/tickets/admisión') }}" data="address"> Admisión </a></li>
+                                    <li><a href="{{ url('/tickets/pantalla') }}" data="address"> Pantalla </a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-public"></i><span> Admision </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ url('/admision/atenciones') }}" data="address"> Atenciones Médicas </a></li>
@@ -100,6 +108,7 @@
                                     <li><a href="{{ url('/administracion/usuarios') }}" data="address"> Usuarios </a></li>
                                     <li><a href="{{ url('/administracion/personal') }}" data="address"> Personal </a></li>
                                     <li><a href="{{ url('/administracion/servicios') }}" data="address"> Servicios </a></li>
+                                    <li><a href="{{ url('/administracion/aseguradoras') }}" data="address"> Seguros </a></li>
                                 </ul>
                             </li>
                         </ul>
