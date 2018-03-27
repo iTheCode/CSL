@@ -16,6 +16,7 @@ use \App\Models\ClinicArea;
 use \App\Models\Service;	
 use \App\Models\ServiceExented;	
 use \App\Models\CoverageType;
+use \App\Models\PayDocumentType;
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -39,7 +40,7 @@ class ServicesController extends BaseController
 			//return $response;
 			$total_pages = ceil($response->total()/20);
 			$paginate = Helpers::manual_paginate('atenciones','/atenciones?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('shop.servicesRecents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+		return view('shop.servicesRecents', ['users' => $response, 'paginate' => $paginate]);
 	}
 
 	public function addService($input)
@@ -72,7 +73,7 @@ class ServicesController extends BaseController
 
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 			//return $sub_coverage_types;
-		return view('shop.addService', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
+		return view('shop.addService', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
 	}
 	public function ServicesAPI($input){
 		$services = Helpers::get_codes(Service::where('clinic_area_id', $input)->get());
@@ -94,7 +95,7 @@ class ServicesController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('shop.documents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('shop.documents', []);
 	}
 	public function showReportes()
 	{
@@ -105,6 +106,39 @@ class ServicesController extends BaseController
 		}
 		$coverages = Helpers::get_list(CoverageType::all());
 		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
-		return view('shop.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'coverages' => $coverages, 'employees' => $employees]);
+		$type_documents = Helpers::get_list(PayDocumentType::all());
+		return view('shop.reporte', ['coverages' => $coverages, 'employees' => $employees, 'type_documents' => $type_documents]);
+	}
+	public function export(Request $request){
+		$authorizations = PayEDocument::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
+		$authorizations->when($request::get('coverage_type') != "", function ($query) use ($request){
+	        return $query->whereHas('authorization.coverage.sub_coverage_type.coverage_type', function($q) use ($request){
+			    $q->where('coverage_types.id', '=', $request::get('coverage_type'));
+			});
+	    });
+		$authorizations->when($request::get('date_init') != "", function ($query) use ($request){
+	        return $query->whereDate('date', '>=', $request::get('date_init'));
+	    });
+		$authorizations->when($request::get('date_end') != "", function ($query) use ($request){
+	        return $query->whereDate('date', '<=', $request::get('date_end'));
+	    });
+
+		$authorizations->when($request::get('pay_document_type_id') != "", function ($query) use ($request){
+	        return $query->where('pay_document_type_id', '=', $request::get('pay_document_type_id'));
+	    });
+		$authorizations->when($request::get('employee') != "", function ($query) use ($request){
+	        return $query->where('employee_id', $request::get('employee'));
+	    });
+
+	    $data = json_decode(json_encode($authorizations->get()), true);
+	    
+		\Excel::create('documentos_'.date("Y-m-d H:m:s"), function($excel) use ($data){
+		    $excel->sheet('Documentos Electronicos', function($sheet) use ($data) {
+		       $sheet->fromArray($data, null, 'A1', true);
+
+		    });
+
+		})->export('xls');
+
 	}
 }

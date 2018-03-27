@@ -38,7 +38,7 @@ class CentroController extends BaseController
 		}
 		$response = HospitalizationRoom::all();
 
-		return view('hospitalization.centro', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'rooms' => $response]);
+		return view('hospitalization.centro', ['rooms' => $response]);
 	}
 
     public function dniAPI($input){

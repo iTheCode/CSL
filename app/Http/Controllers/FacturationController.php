@@ -66,7 +66,7 @@ class FacturationController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.documentsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'pay_documents' => $response, 'from' => $from, 'data' => $data, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.documentsAPI', ['pay_documents' => $response, 'from' => $from, 'data' => $data, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showDocuments()
 	{
@@ -75,7 +75,7 @@ class FacturationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('facturation.documents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('facturation.documents', []);
 	}
 	public function showProviders()
 	{
@@ -85,7 +85,7 @@ class FacturationController extends BaseController
 		    $position = $user->area->name;
 		}
 		$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
-		return view('facturation.providers', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'doctors' => $doctors]);
+		return view('facturation.providers', ['doctors' => $doctors]);
 	}
 	public function showContabilidad()
 	{
@@ -94,7 +94,7 @@ class FacturationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('facturation.contabilidad', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('facturation.contabilidad', []);
 	}
 	public function showTramas()
 	{
@@ -107,7 +107,7 @@ class FacturationController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('facturation.tramas', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'lotes' => $response,'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('facturation.tramas', ['lotes' => $response,'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showCharge($input,$id)
 	{
@@ -116,7 +116,7 @@ class FacturationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('facturation.factu', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('facturation.factu', []);
 	}
 	public function showVista()
 	{
@@ -125,7 +125,7 @@ class FacturationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('facturation.vista', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('facturation.vista', []);
 	}
 
 }

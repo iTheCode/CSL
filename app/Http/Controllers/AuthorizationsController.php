@@ -51,7 +51,7 @@ class AuthorizationsController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.externAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.externAPI', ['users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showAuthorizationsAPI($input)
 	{
@@ -73,7 +73,7 @@ class AuthorizationsController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.authorizationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'from' => $from, 'data' => $input->data, 'currentPage' => $response->CurrentPage()]);
+		return view('api.authorizationsAPI', ['users' => $response, 'paginate' => $paginate, 'from' => $from, 'data' => $input->data, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showAuthorizations()
 	{
@@ -86,7 +86,7 @@ class AuthorizationsController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('admision.authorizations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'find' => $input]);
+		return view('admision.authorizations', ['find' => $input]);
 	}
 	public function showDates()
 	{
@@ -95,7 +95,7 @@ class AuthorizationsController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('admision.dates', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('admision.dates', []);
 	}
 	public function showHourMedic()
 	{
@@ -104,7 +104,7 @@ class AuthorizationsController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('admision.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('admision.hour_medic', []);
 	}
 
 	public function showExtern($input,$id)
@@ -114,7 +114,7 @@ class AuthorizationsController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('extern_consult.extern', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'speciality_id' => $id]);
+		return view('extern_consult.extern', ['speciality_id' => $id]);
 	}
 	public function viewAuthorization($input)
 	{
@@ -146,7 +146,7 @@ class AuthorizationsController extends BaseController
 
 
 			//return $sub_coverage_types;
-		return view('admision.authorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
+		return view('admision.authorization', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
 	}
 	public function createAuthorization()
 	{
@@ -160,7 +160,7 @@ class AuthorizationsController extends BaseController
 			$authorization_types = Helpers::get_list(AuthorizationType::all());
 			$services = Helpers::get_services(Service::all());
 			//dd($response = Authorization::all()->first()->patient);
-		return view('admision.createAuthorization', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
+		return view('admision.createAuthorization', ['sub_coverage_types' => $sub_coverage_types, 'doctors' => $doctors, 'authorization_types' => $authorization_types, 'services' => $services]);
 	}
 	public function createDate(Request $request){
 		$date = new Date_Auth();
@@ -249,11 +249,11 @@ class AuthorizationsController extends BaseController
 		$coverages = Helpers::get_list(CoverageType::all());
 		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
 		$medics = Helpers::get_doctors(Doctor::all());
-		return view('admision.reporte', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'coverages' => $coverages, 'employees' => $employees, 'medics' => $medics]);
+		return view('admision.reporte', ['coverages' => $coverages, 'employees' => $employees, 'medics' => $medics]);
 	}
 
 	public function export(Request $request){
-		$authorizations = Authorization::query();
+		$authorizations = Authorization::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
 		$authorizations->when($request::get('coverage_type') != "", function ($query) use ($request){
 	        return $query->whereHas('coverage.sub_coverage_type.coverage_type', function($q) use ($request){
 			    $q->where('coverage_types.id', '=', $request::get('coverage_type'));
@@ -274,8 +274,7 @@ class AuthorizationsController extends BaseController
 
 	    $data = json_decode(json_encode($authorizations->get()), true);
 	    
-
-		\Excel::create('atenciones_', function($excel) use ($data){
+		\Excel::create('atenciones_'.date("Y-m-d H:m:s"), function($excel) use ($data){
 		    $excel->sheet('Atenciones', function($sheet) use ($data) {
 		       $sheet->fromArray($data, null, 'A1', true);
 

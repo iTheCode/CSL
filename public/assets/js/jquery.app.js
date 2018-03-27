@@ -86,7 +86,7 @@ true);return this}})(jQuery);
                 });
 
                   
-                 $('.content-page').on('click', 'a[data="address"]', function (e){
+                 $('.content-page').on('click', '[data="address"]', function (e){
                   e.preventDefault();
                   var pathname = new URL($(this).attr('href').replace('#', '')).pathname;
                   $.address.value(pathname);  

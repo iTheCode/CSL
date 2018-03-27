@@ -22,7 +22,7 @@ class EmergencyController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('emergency.liquidations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('emergency.liquidations', []);
 	}
 		
 

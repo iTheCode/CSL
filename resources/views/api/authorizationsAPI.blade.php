@@ -41,7 +41,7 @@
                                                                 <td>{{ $user->intern_code or 'Corregir Código'}}</td>
                                                                 <td>{{ $user->patient->clinic_history_code or 'Corregir Historia'}}</td>
                                                                 <td>{{ $user->patient->document_identity_code or 'Corregir DNI' }}</td>
-                                                                <td><a href="/paciente/{{ $user->patient->id or '' }}">{{ $user->patient->name or ''}} {{ $user->patient->paternal or '' }} {{ $user->patient->maternal or '' }}</a></td>
+                                                                <td><a href="/paciente/{{ $user->patient->id or '' }}" data="address">{{ $user->patient->name or ''}} {{ $user->patient->paternal or '' }} {{ $user->patient->maternal or '' }}</a></td>
                                                                 <td>{{ $user->insureds->insurance->name or 'Particular' }}</td>
                                                                 <td>{{ $user->date or 'Corregir Fecha' }}</td>
                                                                 <td>

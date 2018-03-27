@@ -56,6 +56,7 @@ Route::get('/caja/atenciones', ['middleware' => 'auth',  'as' => 'services', 'us
 Route::get('/caja/documentos/', ['middleware' => 'auth',  'as' => 'sunat', 'uses' => 'ServicesController@showDocuments']);
 Route::get('/caja/servicio/{input?}', ['middleware' => 'auth',  'as' => 'addservice', 'uses' => 'ServicesController@addService']);
 Route::get('/caja/reporte', ['middleware' => 'auth',  'as' => 'reporte', 'uses' => 'ServicesController@showReportes']);
+Route::get('/caja/generar_reporte', ['middleware' => 'auth',  'as' => 'generar_reporte', 'uses' => 'ServicesController@export']);
 
 
 

@@ -33,7 +33,7 @@ class PatientsController extends BaseController
 			$paginate = Helpers::manual_paginate('pacientes','/pacientes?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
 			//dd($response = Authorization::all()->first()->patient);
 			//return $response;
-		return view('patients.patients', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate]);
+		return view('patients.patients', ['users' => $response, 'paginate' => $paginate]);
 	}
 	
 
@@ -45,7 +45,7 @@ class PatientsController extends BaseController
 		    $position = $user->area->name;
 		}
 			//dd($response = Authorization::all()->first()->patient);
-		return view('patients.createPatient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('patients.createPatient', []);
 	}
 
 	public function getPatientAPI($input = null)
@@ -78,7 +78,7 @@ class PatientsController extends BaseController
 
 		if(isset($response->authorizations))
 			$response->authorizations;
-		return view('patients.view_patient', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'patient' => $response]);
+		return view('patients.view_patient', ['patient' => $response]);
 	}
 
 	public function getPatientJSON($input)

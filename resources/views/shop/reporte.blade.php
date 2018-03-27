@@ -127,27 +127,21 @@
                                                     </div><br><br>
                                                     Fecha de Inicio
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
+                                                        <input type="text" name="date_init" class="form-control datepicker" placeholder="yyyy-mm-dd">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
                                                     Fecha Fin
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" class="form-control datepicker" placeholder="mm/dd/yyyy">
+                                                        <input type="text" name="date_end" class="form-control datepicker" placeholder="yyyy-mm-dd">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                     </div><br><br>
                                                     Tipo de Documento
                                                     <div class="input-group col-md-12">
                                                         <select name="opcion" class="form-control">
-                                                            <option value="1">Facturas</option>
-                                                            <option value="2">Boletas</option>
+                                                            <option value="1">Facturas Electrónicas</option>
+                                                            <option value="2">Boletas Electrónicas</option>
                                                         </select>
-                                                    </div><br><br>
-                                                    Impuestos
-                                                    <div class="input-group col-md-12">
-                                                        <select name="opcion" class="form-control">
-                                                            <option value="1">No exonerado de impuestos</option>
-                                                            <option value="2">Libre de impuestos</option>
-                                                        </select>
+                                                        <!--{{ Form::select('pay_document_type_id', [null=>'Seleccione un Tipo de Documento'] + $type_documents , null, ['class' => 'select2 form-control']) }}-->
                                                     </div><br><br>
                                                     Admisionista
                                                     <div class="input-group col-md-12">
@@ -226,7 +220,71 @@
         <script type="text/javascript" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         
         <script type="text/javascript">
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({ format: 'yyyy-mm-dd' });
+            function date_now_format() {
+              now = new Date();
+              year = "" + now.getFullYear();
+              month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+              day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+              hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+              minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+              second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+              return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+            }
+            $('#generate').submit(function(e){
+                e.preventDefault();
+                var form = $(this);
+                $.ajax(
+                {
+                    url: "{{ url('/caja/generar_reporte/') }}", 
+                    method: "GET",
+                    data: form.serialize(),
+                    success: function(response, status, xhr) {
+                            // check for a filename
+                            var filename = "atenciones_"+date_now_format();
+                            var disposition = xhr.getResponseHeader('Content-Disposition');
+                            if (disposition && disposition.indexOf('attachment') !== -1) {
+                                var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                                var matches = filenameRegex.exec(disposition);
+                                if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                            }
+
+                            var type = xhr.getResponseHeader('Content-Type');
+                            var blob = new Blob([response], { type: type });
+
+                            if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                                // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                                window.navigator.msSaveBlob(blob, filename);
+                            } else {
+                                var URL = window.URL || window.webkitURL;
+                                var downloadUrl = URL.createObjectURL(blob);
+
+                                if (filename) {
+                                    // use HTML5 a[download] attribute to specify filename
+                                    var a = document.createElement("a");
+                                    // safari doesn't support this yet
+                                    if (typeof a.download === 'undefined') {
+                                        window.location = downloadUrl;
+                                    } else {
+                                        a.href = downloadUrl;
+                                        a.download = filename;
+                                        document.body.appendChild(a);
+                                        a.click();
+                                    }
+                                } else {
+                                    window.location = downloadUrl;
+                                }
+
+                                setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                            }
+                        },
+                    complete: function(){
+                        $.address.value("/caja/atenciones");
+                    }
+                });
+                return false;
+
+            });
         </script>
 
     
