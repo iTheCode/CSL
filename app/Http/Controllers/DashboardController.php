@@ -72,7 +72,7 @@ class DashboardController extends BaseController
 			$atenciones_globales_last[$month] = array("count" => count($value));
 		}
 
-		return view('dashboard', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'atenciones_mes' => $atenciones_mes, 'porcentaje_antenciones_mes' => $porcentaje_antenciones_mes, 'emergencias_mes' => $emergencias_mes, 'porcentaje_emergencias_mes' => $porcentaje_emergencias_mes, 'pacientes_nuevos_mes' => $pacientes_nuevos_mes, 'porcentaje_pacientes_mes' => $porcentaje_pacientes_mes, 'pay_documents_mes' => $pay_documents_mes, 'porcentaje_pay_documents_mes' => $porcentaje_pay_documents_mes, 'chart_actual' => $atenciones_globales, 'chart_pasado' => $atenciones_globales_last]);
+		return view('dashboard', ['atenciones_mes' => $atenciones_mes, 'porcentaje_antenciones_mes' => $porcentaje_antenciones_mes, 'emergencias_mes' => $emergencias_mes, 'porcentaje_emergencias_mes' => $porcentaje_emergencias_mes, 'pacientes_nuevos_mes' => $pacientes_nuevos_mes, 'porcentaje_pacientes_mes' => $porcentaje_pacientes_mes, 'pay_documents_mes' => $pay_documents_mes, 'porcentaje_pay_documents_mes' => $porcentaje_pay_documents_mes, 'chart_actual' => $atenciones_globales, 'chart_pasado' => $atenciones_globales_last]);
 	}
 	
 }

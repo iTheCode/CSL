@@ -22,7 +22,7 @@ class TriajeController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('triaje.BaseTriaje', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('triaje.BaseTriaje', []);
 	}
 		public function showFormulario($input)
 	{
@@ -31,7 +31,7 @@ class TriajeController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('triaje.FormularioTriaje', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('triaje.FormularioTriaje', []);
 	}
 
 }

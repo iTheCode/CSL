@@ -50,7 +50,7 @@ class AdministrationController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.usersAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.usersAPI', ['users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function servicesAPI($input)
 	{
@@ -71,7 +71,7 @@ class AdministrationController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.servicesAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.servicesAPI', ['users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function personalAPI($input)
 	{
@@ -92,7 +92,7 @@ class AdministrationController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.personalAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.personalAPI', ['users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function showUsers()
 	{
@@ -101,7 +101,7 @@ class AdministrationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('administration.usuarios', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('administration.usuarios', []);
 	}
 	public function showPersonal()
 	{
@@ -110,7 +110,7 @@ class AdministrationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('administration.personal', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('administration.personal', []);
 	}
 	public function showServices()
 	{
@@ -119,7 +119,7 @@ class AdministrationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('administration.services', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('administration.services', []);
 	}
 	public function showHourMedic()
 	{
@@ -128,7 +128,7 @@ class AdministrationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('administration.hour_medic', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('administration.hour_medic', []);
 	}
 
 	public function createUser(Request $request){

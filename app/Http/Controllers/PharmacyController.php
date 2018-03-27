@@ -50,7 +50,7 @@ class PharmacyController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.liquidationsAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'data' => $input->data, 'currentPage' => $response->CurrentPage()]);
+		return view('api.liquidationsAPI', ['users' => $response, 'paginate' => $paginate, 'data' => $input->data, 'currentPage' => $response->CurrentPage()]);
 	}
 	public function pharmacystoreAPI($input)
 	{
@@ -70,7 +70,7 @@ class PharmacyController extends BaseController
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
 			$paginate = Helpers::manual_paginate($currentPath,$currentPath.'/?page='.$response->CurrentPage(), $response->CurrentPage(), $total_pages, 4);
-		return view('api.pharmacystoreAPI', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
+		return view('api.pharmacystoreAPI', ['users' => $response, 'paginate' => $paginate, 'currentPage' => $response->CurrentPage()]);
 	}
 
 	public function showRecents()
@@ -81,7 +81,7 @@ class PharmacyController extends BaseController
 		    $position = $user->area->name;
 		}
 
-		return view('pharmacy.farmaciaRecents', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('pharmacy.farmaciaRecents', []);
 	}	
 	public function showLiquidations()
 	{
@@ -91,7 +91,7 @@ class PharmacyController extends BaseController
 		    $position = $user->area->name;
 		}
 
-		return view('pharmacy.liquidations', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('pharmacy.liquidations', []);
 	}	
 	public function pharmacyStore()
 	{
@@ -100,7 +100,7 @@ class PharmacyController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('pharmacy.pharmacyStore', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('pharmacy.pharmacyStore', []);
 	}
 	public function showSales($input)
 	{
@@ -109,7 +109,7 @@ class PharmacyController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('pharmacy.sales', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('pharmacy.sales', []);
 	}
 	public function showViewSales()
 	{
@@ -118,7 +118,7 @@ class PharmacyController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('pharmacy.viewsales', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('pharmacy.viewsales', []);
 	}
 	public function addReport()
 	{
@@ -127,7 +127,7 @@ class PharmacyController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('pharmacy.reportes', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]);
+		return view('pharmacy.reportes', []);
 	}
 	
 	

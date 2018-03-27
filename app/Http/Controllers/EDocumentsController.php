@@ -155,7 +155,7 @@ class EDocumentsController extends BaseController
 		}
 
 		$pay_edocument->serie = $json->code_serie.str_pad($user->serie, 2, "0",STR_PAD_LEFT);
-			/*$pdf = PDF::loadView('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position]); - && Helpers::save_file($pdf_name,"pdf",$pdf->stream(),"ftp_luren")  */
+			/*$pdf = PDF::loadView('view_print', []); - && Helpers::save_file($pdf_name,"pdf",$pdf->stream(),"ftp_luren")  */
 		if($pay_edocument->save()){
 			$json->payEdocument = $pay_edocument;
 			$json->user = $user;
@@ -336,7 +336,7 @@ class EDocumentsController extends BaseController
 			return json_encode(array('type' => $this->json->view_print, 'input' => $this->json->payEdocument));
 		}
 
-		//return view('view_print', ['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'pay_edocument' = $pay_edocument]);
+		//return view('view_print', ['pay_edocument' = $pay_edocument]);
 
 	}
 	public function view_print($type,$input){
@@ -350,7 +350,7 @@ class EDocumentsController extends BaseController
 		$pay_edocument->serie = str_pad($pay_edocument->serie, 2, "0",STR_PAD_LEFT);
 
 		$pdf = App::make('dompdf.wrapper');
-		$view = view('shop.document_pdf',['system_name' => 'CSLuren', 'this_year' => date('Y'), 'user' => $name, 'position' => $position, 'type' => $type, 'input' => $pay_edocument]);
+		$view = view('shop.document_pdf',['type' => $type, 'input' => $pay_edocument]);
 		if($type == 2){
 			$pdf->setPaper('A4', 'fullpage');
 		}elseif($type == 1){
