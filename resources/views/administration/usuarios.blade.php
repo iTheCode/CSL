@@ -78,7 +78,7 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12"> <h4 class="pull-left page-title">
-                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#add_modal">
                                     Nuevo Usuario
                                 </button></h4>
                                 <!-- Modal -->
