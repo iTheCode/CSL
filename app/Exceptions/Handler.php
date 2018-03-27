@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
         if(env('APP_DEBUG')){
             return parent::render($request, $e);
         }else{
-            return view('errors.custom', ['request' => $request, 'e' => $e]);
+            return response()->view('errors.custom', ['request' => $request, 'e' => $e]);
         }
     }
 }
