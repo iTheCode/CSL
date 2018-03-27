@@ -82,7 +82,7 @@
                                     Nuevo Usuario
                                 </button></h4>
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -132,37 +132,19 @@
                                                         <input class="form-control" name="email" type="email">
                                                     </div><br>
                                         </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                        <!-- modal-delete -->
-                                <div class="modal" id="modal_delete" tabindex="-1" role="dialog">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <p>Modal body text goes here.</p>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </div>
-                                  </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
                                 </div>
                             </div>
+                            </div>
+                             </div>
+                          </div>
                         </div>
+
+                        <!-- modal-delete -->
                         <!-- Modal document_identity_code-->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -213,12 +195,17 @@
                                             </div><br>
                                 </div>
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
-                              </div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
+                                </div>
                             </div>
+                            </div>
+                             </div>
                           </div>
                         </div>
+
+
+
                         <!--fin modal edit -->
                         <div class="row">
                             <div class="col-md-12">
@@ -272,7 +259,7 @@
             =============================================== */
             function open_modal(origen){
                 if(origen == 'edit'){
-                    $(modal_delete).modal('show');
+                    $("#edit_modal").modal('show');
                 }
             }
             function load_data(page = null,object = null){
