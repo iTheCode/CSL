@@ -33,7 +33,6 @@
         
     </head>
 
-
     <body class="fixed-left">
         
         <!-- Begin page -->
@@ -85,8 +84,6 @@
                 @include('menu')
             </div>
             <!-- Left Sidebar End --> 
-
-
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
@@ -258,6 +255,9 @@
         <script src="/assets/plugins/modal-effect/js/modalEffects.js"></script>
         <script src="/assets/plugins/jquery-print/js/jQuery.print.js"></script>
         <script type="text/javascript">
+
+
+
             /* ==============================================
             Counter Up
             =============================================== */

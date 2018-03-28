@@ -60,29 +60,29 @@ Route::get('/admision/atenciones', ['middleware' => ['auth', 'role:admision|caja
 Route::get('/admision/citas', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'citas', 'uses' => 'AuthorizationsController@showDates']);
 Route::get('/admision/horario', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'horario', 'uses' => 'AuthorizationsController@showHourMedic']);
 Route::get('/atencion/{input}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'atencion', 'uses' => 'AuthorizationsController@viewAuthorization']);
-Route::get('/admision/crear', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_atencion', 'uses' => 'AuthorizationsController@createAuthorization']);
-Route::get('/createAtencion/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_atencion_particular', 'uses' => 'AuthorizationsController@createAtencion']);
-Route::get('/createDate/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_atencion_cita', 'uses' => 'AuthorizationsController@createDate']);
-Route::get('/deleteDate/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'borrar_atencion_cita', 'uses' => 'AuthorizationsController@deleteDate']);
+Route::get('/admision/crear', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_atencion', 'uses' => 'AuthorizationsController@createAuthorization']);
+Route::get('/createAtencion/', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_atencion_particular', 'uses' => 'AuthorizationsController@createAtencion']);
+Route::get('/createDate/', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_atencion_cita', 'uses' => 'AuthorizationsController@createDate']);
+Route::get('/deleteDate/', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'borrar_atencion_cita', 'uses' => 'AuthorizationsController@deleteDate']);
 Route::get('/buscar/{input}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'atencion', 'uses' => 'AuthorizationsController@findAuthorization']);
-Route::get('/admision/reporte', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'reporte', 'uses' => 'AuthorizationsController@showReportes']);
-Route::get('/atenciones/generar_reporte', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'generar_reporte_atenciones', 'uses' => 'AuthorizationsController@export']);
+Route::get('/admision/reporte', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'reporte', 'uses' => 'AuthorizationsController@showReportes']);
+Route::get('/atenciones/generar_reporte', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'generar_reporte_atenciones', 'uses' => 'AuthorizationsController@export']);
 
 
 
 
 //Pacientes Routes
 Route::get('/pacientes/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'pacientes', 'uses' => 'PatientsController@showPatients']);
-Route::get('/createPatient/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
+Route::get('/createPatient/', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'registrar_paciente', 'uses' => 'PatientsController@createPatient']);
 Route::get('/paciente/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'view_patient', 'uses' => 'PatientsController@view_patient']);
-
+//Here
 
 //Caja & Servicios Routes
 Route::get('/caja/atenciones', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'services', 'uses' => 'ServicesController@showRecents']);
 Route::get('/caja/documentos/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'sunat', 'uses' => 'ServicesController@showDocuments']);
 Route::get('/caja/servicio/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'addservice', 'uses' => 'ServicesController@addService']);
-Route::get('/caja/reporte', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'reporte', 'uses' => 'ServicesController@showReportes']);
-Route::get('/caja/generar_reporte', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'generar_reporte', 'uses' => 'ServicesController@export']);
+Route::get('/caja/reporte', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'reporte', 'uses' => 'ServicesController@showReportes']);
+Route::get('/caja/generar_reporte', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'generar_reporte', 'uses' => 'ServicesController@export']);
 
 
 
