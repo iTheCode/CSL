@@ -30,15 +30,15 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        
+
     </head>
 
 
     <body class="fixed-left">
-        
+
         <!-- Begin page -->
         <div id="wrapper">
-        
+
             <!-- Top Bar Start -->
             <div class="topbar ">
                 <!-- LOGO -->
@@ -82,31 +82,32 @@
             <div class="left side-menu">
                 @include('menu')
             </div>
-            <!-- Left Sidebar End --> 
+            <!-- Left Sidebar End -->
 
 
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
-            <!-- ============================================================== -->                      
+            <!-- ============================================================== -->
             <div class="content-page">
 
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-                        
+
                         <!-- Page-Title -->
                         <div class="row">
-                            <div class="col-sm-12"> <h4 class="pull-left page-title"> 
-                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#modalServices">
+                            <div class="col-sm-12"> <h4 class="pull-left page-title">
+                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#add_modal">
                                     Nuevo Servicio
                                 </button></h4>
-                                <div class="modal fade" id="modalServices" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <!-- Modal -->
+                                <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
                                         <label for="exampleInputEmail1">AGREGAR SERVICIO</label>
-                                          
+
                                         </div>
                                         <div class="modal-body">
                                             <div class="form">
@@ -116,17 +117,17 @@
                                                     <div class="input-group col-md-12">
                                                         <input class="form-control" id="lastname" name="lastname" type="text">
                                                     </div><br>
-                                                 
+
                                                     Nombres :
                                                     <div class="input-group col-md-12">
                                                        <input class="form-control" id="lastname" name="lastname" type="text">
                                                     </div><br>
-                                                
+
                                                     Apellidos :
                                                     <div class="input-group col-md-12">
                                                         <input class="form-control" id="lastname" name="lastname" type="text">
                                                     </div><br>
-                                               
+
                                                     Unitario :
                                                     <div class="input-group col-md-12">
                                                         <input class="form-control" id="lastname" name="lastname" type="text">
@@ -149,33 +150,89 @@
                                                     <div class="input-group col-md-12">
                                                         <select name="opcion" class="form-control">
                                                             <option value="1">HONORARIOS Y PROCEDIMIENTOS MÉDICOS</option>
-                                                            
                                                         </select>
                                                     </div><br>
-                                                    
-                                               
-                                    
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary">Guardar</button>
                                       </div>
                                     </div>
-                                  </div>
                                 </div>
                             </div>
+                        <!--end modal-->
+
+                        <!-- Modal document_identity_code-->
+                        <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <label for="exampleInputEmail1">AGREGAR SERVICIO</label>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form">
+                                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
+                                        <div>
+                                            Código :
+                                            <div class="input-group col-md-12">
+                                                <input class="form-control" id="lastname" name="lastname" type="text">
+                                            </div><br>
+
+                                            Nombres :
+                                            <div class="input-group col-md-12">
+                                               <input class="form-control" id="lastname" name="lastname" type="text">
+                                            </div><br>
+
+                                            Apellidos :
+                                            <div class="input-group col-md-12">
+                                                <input class="form-control" id="lastname" name="lastname" type="text">
+                                            </div><br>
+
+                                            Unitario :
+                                            <div class="input-group col-md-12">
+                                                <input class="form-control" id="lastname" name="lastname" type="text">
+                                            </div><br>
+                                            Área clínica :
+                                            <div class="input-group col-md-12">
+                                                <select name="opcion" class="form-control">
+                                                    <option value="1">HON QX-Quirúrgicos</option>
+                                                    <option value="2">Cons Tópicos</option>
+                                                    <option value="3">Proced-Procedimientos Clínicos</option>
+                                                    <option value="4">Labor-Laboratorio</option>
+                                                    <option value="5">RX x-Rayos X</option>
+                                                    <option value="6">ECO-Ecografías</option>
+                                                    <option value="7">TAC-Tomografía axial computarizada</option>
+                                                    <option value="8">Odonto-Procedimientos odontológicos</option>
+                                                    <option value="9">Farmacia</option>
+                                                </select>
+                                            </div><br>
+                                            Área Contable :
+                                            <div class="input-group col-md-12">
+                                                <select name="opcion" class="form-control">
+                                                    <option value="1">HONORARIOS Y PROCEDIMIENTOS MÉDICOS</option>
+                                                </select>
+                                            </div><br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
                         </div>
+                    </div>
+                        <!--fin modal edit -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default" style="display: none;">
-
                                 </div>
                             </div>
                         </div> <!-- End row -->
-
-
                     </div> <!-- container -->
-                               
                 </div> <!-- content -->
                 <footer class="footer text-right">
                     {{ $this_year}} © {{ $system_name }}
@@ -191,7 +248,7 @@
         <!-- END wrapper -->
 
 
-    
+
         <script>
             var resizefunc = [];
         </script>
@@ -209,38 +266,43 @@
         <script src="/assets/js/jquery.scrollTo.min.js"></script>
 
         <script src="/assets/js/jquery.app.js"></script>
-        
+
         <!-- jQuery  -->
         <script src="/assets/plugins/moment/moment.js"></script>
-        
+
         <!-- jQuery  -->
         <script src="/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
         <script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
-        
+
         <!-- jQuery  -->
         <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
-        
+
 
         <!-- jQuery  -->
         <script src="/assets/pages/jquery.todo.js"></script>
-        
+
         <!-- jQuery  -->
         <script src="/assets/pages/jquery.chat.js"></script>
-        
+
         <!--Morris Chart-->
         <script src="/assets/plugins/raphael/raphael-min.js"></script>
-        
-        
+
+
         <script type="text/javascript">
             /* ==============================================
             Counter Up
             =============================================== */
+            function open_modal(origen){
+                 if(origen == 'edit'){
+                   $("#edit_modal").modal('show');
+                 }
+            }
             function load_data(page = null,object = null){
                     $('.panel-body').slideUp(1000);
                     if(object != null){ data = object.val(); }else{data = null;}
                     $.ajax(
                               {
-                                  url: "{{ url('/servicesAPI/') }}/{\"data\": \""+data+"\"}?page="+page, 
+                                  url: "{{ url('/servicesAPI/') }}/{\"data\": \""+data+"\"}?page="+page,
                                   method: "GET",
                                    success: function(result)
                                   {
@@ -261,6 +323,6 @@
             });
         </script>
 
-    
+
     </body>
 </html>

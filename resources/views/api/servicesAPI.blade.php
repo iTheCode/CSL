@@ -1,6 +1,6 @@
 
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Lista de Servicios ( 
+                                        <h3 class="panel-title">Lista de Servicios (
                                                         Total {{ $users->total() }} )
                                         <div class="col-md-4 pull-right" style="margin-right: 20px">
                                                     <div class="input-group">
@@ -36,11 +36,16 @@
                                                                 <td>{{ $user->clinicarea->name or ''}}</td>
                                                                 <td>{{ $user->contable_name }}</td>
                                                                 <td>{{ $user->unitary}} </td>
-                                                                <td></td>
-                                                                
+                                                                <td>
+                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar servicio" data="address" onclick="open_modal('edit')"> <button>Editar</button></a>
+
+                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar servicio" data="address"> <button>Eliminar</button></a>
+
+                                                                </td>
+
                                                             </tr>
                                                         @endforeach
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
