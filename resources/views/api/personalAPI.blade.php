@@ -35,8 +35,8 @@
                                                                 <td>{{ $user->complet_name }}</td>
                                                                 <td>{{ $user->speciality->name or ''}}</td>
                                                                 <td>
-                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar personal" data="address" onclick="open_modal('edit')"> <button>Editar</button></a>
-                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar personal" data="address"> <button>Eliminar</button></a>
+                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar personal" data="address" onclick="open_modal('edit')">Editar</a>
+                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar personal" data="address">Eliminar</a>
                                                                 </td>
 
                                                             </tr>
