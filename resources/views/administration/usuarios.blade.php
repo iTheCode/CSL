@@ -78,11 +78,11 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12"> <h4 class="pull-left page-title">
-                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#add_modal">
+                                <button type="button" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data-toggle="modal" data-target="#add_modal_user">
                                     Nuevo Usuario
                                 </button></h4>
                                 <!-- Modal -->
-                                <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="add_modal_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -144,7 +144,7 @@
 
                         <!-- modal-delete -->
                         <!-- Modal document_identity_code-->
-                        <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="edit_modal_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -258,8 +258,8 @@
             Counter Up
             =============================================== */
             function open_modal(origen){
-                if(origen == 'edit'){
-                    $("#edit_modal").modal('show');
+                if(origen == 'edit_user'){
+                    $("#edit_modal_user").modal('show');
                 }
             }
             function load_data(page = null,object = null){

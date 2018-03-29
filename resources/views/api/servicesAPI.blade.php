@@ -37,7 +37,7 @@
                                                                 <td>{{ $user->contable_name }}</td>
                                                                 <td>{{ $user->unitary}} </td>
                                                                 <td>
-                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar servicio" data="address" onclick="open_modal('edit')">Editar</a>
+                                                                  <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar servicio" data="address" onclick="open_modal('edit_services')">Editar</a>
 
                                                                   <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar servicio" data="address">Eliminar</a>
 
