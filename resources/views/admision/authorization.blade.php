@@ -20,6 +20,8 @@
         <link href="/assets/css/pages.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
+        <link href="/assets/plugins/select2/dist/css/select2.css" rel="stylesheet" type="text/css">
+        <link href="/assets/plugins/select2/dist/css/select2-bootstrap.css" rel="stylesheet" type="text/css">
 
         <link href="/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
         <link href="/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
@@ -176,7 +178,7 @@
                                                 <div class="about-info-p">
                                                     <strong>Nombre Completo</strong>
                                                     <br>
-                                                    <p class="text-muted"><?=mb_convert_case($client->patient->name." ".$client->patient->paternal." ".$client->patient->maternal, MB_CASE_TITLE, "UTF-8");?></p>
+                                                    <p class="text-muted"><a href="{{ url('/paciente/'.$client->patient->id) }}"><?=mb_convert_case($client->patient->name." ".$client->patient->paternal." ".$client->patient->maternal, MB_CASE_TITLE, "UTF-8");?></a> <img src="https://png.icons8.com/ios/1600/unverified-account.png" width="20px" height="20px"><img src="http://agarioskins.com/submitted/useruploads/verified.png" width="20px" height="20px"></p>
                                                 </div>
                                                 <div class="about-info-p">
                                                     <strong>DNI</strong>
@@ -212,100 +214,82 @@
                                     <div class="col-md-8">
                                         <div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
-                                                <h3 class="panel-title">General</h3> 
+                                                <h3 class="panel-title">Información de la Atención</h3> 
                                             </div> 
                                             <div class="panel-body"> 
-                                        <form role="form">
+                                        <form id="atencion" role="form">
                                             <div class="form-group">
                                                 <label for="FullName">Fecha de la Prestación</label>
-                                                <h6>{{ $client->date or ''}}</h6>
+                                                <input name="id" type="text" value="{{ $client->id }}" style="display: none;">
+                                                <h5>{{ $client->date or ''}}</h5>
                                             </div>
                                             <div class="form-group">
                                                 <label for="sub_coverage_type_id">Tipo de Cobertura</label>
                                                 @if($client->coverage->sub_coverage_type)
-                                                    {{ Form::select('sub_coverage_type_id',[null=>'Seleccione la cobertura'] + $sub_coverage_types, $client->coverage->sub_coverage_type->id, ['class' => 'form-control']) }}
+                                                    {{ Form::select('sub_coverage_type_id',[null=>'Seleccione la cobertura'] + $sub_coverage_types, $client->coverage->sub_coverage_type->id, ['class' => 'form-control select2']) }}
                                                 @else
-                                                    {{ Form::select('sub_coverage_type_id',[null=>'Seleccione la cobertura'] + $sub_coverage_types, null, ['class' => 'form-control']) }}
+                                                    {{ Form::select('sub_coverage_type_id',[null=>'Seleccione la cobertura'] + $sub_coverage_types, null, ['class' => 'form-control select2']) }}
                                                 @endif
                                             </div>
                                             <div class="form-group">
                                                 <label for="status_id">Estado de la Prestación</label>
-                                                {{ Form::select('status_id', [null=>'Seleccione estado'] + $statuses, $client->status_id, ['class' => 'form-control']) }}
+                                                {{ Form::select('status_id', [null=>'Seleccione estado'] + $statuses, $client->status_id, ['class' => 'form-control select2']) }}
                                             </div>
                                             <div class="form-group">
                                                 <label for="doctor_id">Médico encargado</label>
-                                                {{ Form::select('doctor_id', [null=>'Seleccione un doctor'] + $doctors, $client->doctor_id, ['class' => 'form-control']) }}
+                                                {{ Form::select('doctor_id', [null=>'Seleccione un doctor'] + $doctors, $client->doctor_id, ['class' => 'form-control select2']) }}
                                             </div>
                                             <div class="form-group">
                                                 
                                             <div class="col-md-6">
                                                     <div class="form-group">
-                                                    <label for="demo1">Copago Fijo</label>
-                                                    <input id="demo1" type="text" value="{{ $client->coverage->cop_fijo or '' }}" class="form-control">
+                                                    <label for="cop_fijo">Copago Fijo</label>
+                                                    <input name="cop_fijo" type="text" value="{{ $client->coverage->cop_fijo or '' }}" class="form-control">
                                                     </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                     <div class="form-group">
-                                                    <label for="Email">Copago Variable</label>
-                                                   <div class="input-group bootstrap-touchspin"><input id="demo1" type="text" value="{{ $client->coverage->cop_var or '' }}" name="demo1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" class="form-control" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix">%</span></div>
+                                                    <label for="cop_var">Copago Variable</label>
+                                                   <div class="input-group bootstrap-touchspin"><input name="cop_var" type="text" value="{{ $client->coverage->cop_var or '' }}"  data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" class="form-control" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix">%</span></div>
                                                    </div>
                                             </div>
-                                                <div class="col-md-8">
+                                            <div class="form-group">
                                                         <label for="first_diagnostic">Primer Diagnóstico</label>
-                                                        {{ Form::select('first_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->first_diagnostic, ['class' => 'form-control']) }}
+                                                        {{ Form::select('first_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->first_diagnostic, ['class' => 'form-control select2']) }}
                                                     
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                        <label for="first_diagnostic_code">Por Código</label>
-                                                        {{ Form::select('first_diagnostic_code', [null=>'Seleccione un código'] + $diagnostic_types_codes, $client->first_diagnostic, ['class' => 'form-control']) }}
-                                                </div>
+                                            </div>
                                             </div>
                                             <div class="form-group">
-                                                <div class="col-md-8">
                                                         <label for="second_diagnostic">Segundo Diagnóstico</label>
-                                                        {{ Form::select('second_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->second_diagnostic, ['class' => 'form-control']) }}
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                        <label for="second_diagnostic_code">Por Código</label>
-                                                        {{ Form::select('second_diagnostic_code', [null=>'Seleccione un código'] + $diagnostic_types_codes, $client->second_diagnostic, ['class' => 'form-control']) }}
-                                                </div>
+                                                        {{ Form::select('second_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->second_diagnostic, ['class' => 'form-control select2']) }}
                                             </div>
 
                                             <div class="form-group">
-                                                <div class="col-md-8">
                                                         <label for="third_diagnostic">Tercer Diagnóstico</label>
-                                                        {{ Form::select('third_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->third_diagnostic, ['class' => 'form-control']) }}
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                        <label for="third_diagnostic_code">Por Código</label>
-                                                        {{ Form::select('third_diagnostic_code', [null=>'Seleccione un código'] + $diagnostic_types_codes, $client->third_diagnostic, ['class' => 'form-control']) }}
-                                                </div>
+                                                        {{ Form::select('third_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->third_diagnostic, ['class' => 'form-control select2']) }}
                                             </div>
                                             <div class="form-group">
-                                                <label for="symptons">Cantidad de Consultas</label>
-                                                <input type="text" class="form-control" value="{{ $client->consultations_quantity or '' }}">
+                                                <label for="consultations_quantity">Cantidad de Consultas</label>
+                                                <input name="consultations_quantity" type="text" class="form-control" value="{{ $client->consultations_quantity or '' }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="symptons">Síntomas</label>
-                                                <textarea style="height: 125px" id="symptons" class="form-control">{{ $client->symptons or '' }}</textarea>
+                                                <label for="symptoms">Síntomas</label>
+                                                <textarea style="height: 125px" name="symptons" class="form-control">{{ $client->symptoms or '' }}</textarea>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="consultations_quantity">Ruc de IPRESS de Transferencia</label>
-                                                <input id="consultations_quantity" type="text" class="form-control" value="{{ $client->consultations_quantity or '' }}">
+                                                <label for="ruc_transference">Ruc de IPRESS de Transferencia</label>
+                                                <input name="ruc_transference" type="text" class="form-control" value="{{ $client->ruc_transference or '' }}">
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-6">
                                                     <label for="date_transference">Fecha de Transferencia</label>
-                                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" value="{{ $client->date_transference or '' }}" id="date_transference">
+                                                    <input name="date_transference" type="text" class="form-control" placeholder="mm/dd/yyyy" value="{{ $client->date_transference or '' }}" id="date_transference">
                                                 </div>
                                                 <div class="col-md-6">
                                                 <label for="time_transference">Hora de Transferencia</label>
-                                                <div class="bootstrap-timepicker"><input id="time_transference" type="text" class="form-control" value="{{ $client->time_transference or '00:00' }}"></div>
+                                                <div class="bootstrap-timepicker"><input id="time_transference" name="time_transference" type="text" class="form-control" value="{{ $client->time_transference or '00:00' }}"></div>
                                                 </div>
                                             </div><br><br><br><br><br>
                                             <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Guardar Cambios</button>
@@ -451,8 +435,25 @@
                                                                                 <tr>
                                                                                     <td>{{ $i++ }}</td>
                                                                                     <td>{{ $ip->liquidation or '' }} </td>
+                                                                                    @if(isset($in->digemid_product))
                                                                                     <td>{{ $in->digemid_product->code or '' }}</td>
                                                                                     <td class="col-md-5">{{ $in->digemid_product->name or '' }} {{ $in->digemid_product->concentration or '' }}</td>
+                                                                                    @elseif(isset($in->cum_sunasa_product))
+                                                                                    <td>{{ $in->cum_sunasa_product->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->cum_sunasa_product->name or '' }} {{ $in->cum_sunasa_product->form or '' }}</td>
+                                                                                    @elseif(isset($in->ean_product))
+                                                                                    <td>{{ $in->ean_product->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->ean_product->name or '' }} {{ $in->ean_product->concentration or '' }} {{ $in->ean_product->form_simplificated or '' }}</td>
+                                                                                    @elseif(isset($in->material_product))
+                                                                                    <td>{{ $in->material_product->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->material_product->name or '' }} {{ $in->material_product->concentration or '' }} {{ $in->material_product->form_simplificated or '' }}</td>
+                                                                                    @elseif(isset($in->sismed_product))
+                                                                                    <td>{{ $in->sismed_product->code or '' }}</td>
+                                                                                    <td class="col-md-5">{{ $in->sismed_product->name or '' }} {{ $in->material_product->unity or '' }} {{ $in->sismed_product->presentation or '' }}</td>
+                                                                                    @else
+                                                                                    <td>000</td>
+                                                                                    <td class="col-md-5">{{ $in->name or '' }}</td>
+                                                                                    @endif
                                                                                     <td>{{ $ip->created_at or '' }}</td>
                                                                                     <td>{{ $ip->employee->username or 'Sin asignar'}}</td>
                                                                                 </tr>
@@ -692,6 +693,7 @@
         <!-- jQuery  -->
         <script src="/assets/pages/jquery.chat.js"></script>
         
+        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript"></script>
         <!--Morris Chart-->
         <script src="/assets/plugins/raphael/raphael-min.js"></script>
         <script src="/assets/plugins/morris.js/morris.min.js"></script>
@@ -711,6 +713,19 @@
                 $('#date_transference').datepicker();
                 $(".wraper").fadeIn();
                 $(".indicator").attr("style","right: 442px; left: 0px;");
+                $('select.select2').select2();
+                $("#atencion").submit(function(){
+                      $.ajax({
+                            url:"{{ url('/saveAtencion/') }}/",
+                            method: "GET",
+                            async:false,
+                            data: $(this).serialize(),
+                            success: function(result){
+                                location.reload();
+                            }
+                        });
+                      return false;
+                });
             });
         </script>
 
