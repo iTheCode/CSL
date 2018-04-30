@@ -329,14 +329,14 @@ $final_amount = 0;
             @if(isset($input->insuredservice))
                 @foreach($input->insuredservice->purchasecoverageservices as $item)
                 <tr>
-                    <td  style="text-align: center; font-size:0.7em" >{{ $item->quantity }}</td>
+                    <td  style="text-align: center; font-size:0.7em" >1</td>
                     <td  style="text-align: left; font-size:0.7em" >{{ $item->service->name }}</td>
-                    <td  style="text-align: right; font-size:0.7em" > {{ Helpers::number_format_sunat($item->initial_amount/$item->quantity,2) }}</td>
-                    <td  style="text-align: right; font-size:0.7em" >{{ Helpers::number_format_sunat($item->initial_amount,2) }}</td>
+                    <td  style="text-align: right; font-size:0.7em" > {{ Helpers::number_format_sunat($item->final_amount,2) }}</td>
+                    <td  style="text-align: right; font-size:0.7em" >{{ Helpers::number_format_sunat($item->final_amount,2) }}</td>
                 </tr>
                 <?php 
-                    $descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
-                    $final_amount += $item->initial_amount;
+                    $descuento += 0;
+                    $final_amount += $item->final_amount;
                     
                     if($item->igv != 0){
                         $opgravada += $item->final_amount-$item->igv;

@@ -402,11 +402,7 @@
                     var val = $(this).val();
                     $.ajax(
                               {
-                                @if($client->insureds)
                                   url: "{{ url('/ServiceFindAPI/') }}/"+val, 
-                                @else
-                                  url: "{{ url('/ServicePFindAPI/') }}/"+val, 
-                                @endif
                                   method: "GET",
                                    success: function(result)
                                   {

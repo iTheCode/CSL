@@ -96,7 +96,9 @@ function ValidURL(str) {
                       $('.content-page').append($(this));
                   }
                 });
-
+                $(data).filter("style").each(function(){
+                      $('.content-page').prepend($(this));
+                });
                   
                  $('.content-page').on('click', '[data="address"]', function (e){
                   e.preventDefault();
