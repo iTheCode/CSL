@@ -161,23 +161,37 @@ class EDocumentsController extends BaseController
 			$json->user = $user;
 			$content_file = self::generate_json($json);
 			$content_pdf = self::view_print("01",$pay_edocument->id);
-			if(!Helpers::save_file($file,"",$content_file,"ftp_luren") or !Helpers::save_file($pdf_name,"PDF",$content_pdf,"ftp_luren")){
-				$files = array(
-							array('file' => $file, 'content' => $content_file),
-							array('file' => $pdf_name, 'content' => $content_pdf)
-						);
-				Mail::raw('[Archivo] : '.$file, function ($message) use ($files,$pay_edocument) {
-				    $message->from('facturacion@clinicaluren.com.pe', 'Facturación Clínica Luren');
+			if(!Helpers::save_file($file,"",$content_file,"url_luren")){
+				$files = array(array('file' => $file, 'content' => $content_file));
+				if(!Helpers::save_file($file,"",$content_file,"ftp_luren")){
+					Mail::raw('[Archivo] : '.$file, function ($message) use ($files,$pay_edocument) {
+					    $message->from('facturacion@clinicaluren.com.pe', 'Facturación Clínica Luren');
 
-				    $message->to('sistemas@clinicaluren.com.pe');
+					    $message->to('sistemas@clinicaluren.com.pe');
 
-					$message->subject("[Envio Automático] Error : ".$pay_edocument->serie."-".$pay_edocument->code);
-					foreach($files as $file){
-						$message->attachData($file['content'],$file['file']);
-					}
-				});
-				$pay_edocument->sunat_status = 1;
-				$pay_edocument->save();
+						$message->subject("[Envio Automático] Error XML : ".$pay_edocument->serie."-".$pay_edocument->code);
+						foreach($files as $file){
+							$message->attachData($file['content'],$file['file']);
+						}
+					$pay_edocument->sunat_status = 0;
+					$pay_edocument->save();
+					});
+				}
+			}
+			if(!Helpers::save_file($pdf_name,"PDF/",$content_pdf,"url_luren")){
+				$files = array(array('file' => $pdf_name, 'content' => $content_pdf));
+				if(!Helpers::save_file($pdf_name,"PDF/",$content_pdf,"ftp_luren")){
+					Mail::raw('[Archivo] : '.$file, function ($message) use ($files,$pay_edocument) {
+					    $message->from('facturacion@clinicaluren.com.pe', 'Facturación Clínica Luren');
+
+					    $message->to('sistemas@clinicaluren.com.pe');
+
+						$message->subject("[Envio Automático] Error PDF : ".$pay_edocument->serie."-".$pay_edocument->code);
+						foreach($files as $file){
+							$message->attachData($file['content'],$file['file']);
+						}
+					});
+				}
 			}
 			return true;
 

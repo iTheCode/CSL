@@ -52,8 +52,28 @@ class Helpers {
 	public static function save_file($document,$path,$content,$method){
 		switch ($method) {
 			case "ftp_luren":
-				$upload = @file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."/".$document, $content);
+				$upload = @file_put_contents('ftp://root:81848133@s1.clinicaluren.com.pe:8900/'.$path."".$document, $content);
 				if ( $upload === FALSE ) { $return = false; } else { $return = true; }
+				break;
+			case "url_luren":
+				$domain = 'http://s1.clinicaluren.com.pe:9000/';
+				$token = "Y6qqncSSM";
+				$ch = curl_init();
+				$data= array(
+					'path' => urlencode($path),
+					'document' => urlencode($document),
+					'content' => urlencode($content),
+					'token' => urlencode($token)
+				);
+				curl_setopt($ch, CURLOPT_URL, $domain);
+				curl_setopt($ch, CURLOPT_POST, count($data));
+		        if (is_array($data)) {
+		            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+		        }
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$server_output = @curl_exec($ch);
+				curl_close ($ch);
+				if ($server_output == "OK") { $return = true; } else { $return = false; }
 				break;
 			case "local":
 				if(!file_exists($path.$document)){

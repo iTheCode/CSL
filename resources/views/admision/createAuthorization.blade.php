@@ -159,7 +159,7 @@
             transition: all 1s ease;
         }
 
-        .btn{
+        .btn-modified{
           position: absolute;
           top: 10px;
           right: 10px;
@@ -173,10 +173,10 @@
           transition: all 1s ease;
           cursor: pointer;
         }
-        .btn:hover{
+        .btn-modified:hover{
             color:#fff;
         }
-        .btn.active{
+        .btn-modified.active{
           opacity: 1;
           color:#fff;
         }
@@ -446,25 +446,14 @@
                                                                             
                                                                             <div class="content-auth">
                                                                             </div>
-                                                                            
-                                                                            <div class="btn">imprimir</div>
-                                                                            
                                                                           </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="payments_options" class="row" style="margin-top: 400px;">
-                                                                            <div class="col-md-4">
+                                                                    <div id="payments_options" class="pull-left text-left col-md-4"><br>
                                                                                 <p><strong>Tipo de Pago:</strong> 
                                                                                 <select class="form-control col-md-4" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta</option><option value="2">Factura</option><option value="3">Boleta No Paciente</option></select></p>
-                                                                                <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
-                                                                                <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1">Ticketera</option><option value="2" selected>Media Hoja</option></select></p>
-                                                                            </div>
+                                                                                <p><strong>Tipo de Documento: </strong><select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta del Paciente</option><option value="2">Factura con RUC</option><option value="3">Boleta con DNI</option><option value="4">Boleta sin DNI</option></select></p><p style="display: none;" class="input-group m-t-10"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"><span class="input-group-btn" style="top: 10px;right: -1px;"><button type="button" class="btn waves-effect waves-light btn-primary return-select"><i class="md md-keyboard-return"></i></button></span></p><p style="display: none;" class="input-group m-t-10"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> <span class="input-group-btn" style="top: 10px;right: -1px;"><button type="button" class="btn waves-effect waves-light btn-primary return-select"><i class="md md-keyboard-return"></i></button></span></p><p><strong>Mail :</strong><input id="mail" name="mail" type="text" class="form-control"> </p>
+                                                                                <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1" selected>Ticketera</option><option value="2">Media Hoja</option></select></p>
                                                                     </div>
                                                     </div>
                                                 </section>
@@ -569,10 +558,15 @@
                 $("#pay_edocument_type").change(function(){
                     var selected = $(this).val();
                     if(selected == 2){
-                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus().prev().remove();
+                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus();
                     }else if(selected == 3){
-                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus().prev().prev().remove();
+                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus();
                     }
+                });
+
+                $(".return-select").click(function(){
+                    $(this).parent().parent().fadeOut(1000);
+                    $("#pay_edocument_type").parent().fadeIn(2000);
                 });
                 $("a[href='#next']").click(function(){
 
@@ -646,7 +640,6 @@
                                   data: data,
                                    success: function(result)
                                   {
-                                    console.log(result);
                                     if (result.insureds == null) {
                                         result.insureds = new Object();
                                         result.insureds.hold_name = result.patient.name;
@@ -657,7 +650,40 @@
                                     }
                                     $('.content-auth').html('<div class="head"><p>'+result.patient.name+' '+result.patient.paternal+' '+result.patient.maternal+'</p><span>'+result.insureds.insurance.name+'</span></div><div class="data"><div class="inner-data"><p>Atención</p><span>#'+result.id+'</span></div><div class="inner-data"><p>Autorización</p><span>#'+result.code+'</span></div><div class="inner-data"><p>Código Interno</p><span>#'+result.intern_code+'</span></div><div class="inner-data"><p>Historia Clínica</p><span>'+result.patient.clinic_history_code+'</span></div><div class="inner-data"><p>Pago Fijo</p><span>S/.'+parseFloat(result.coverage.cop_fijo).toFixed(2)+'</span></div><div class="inner-data"><p>Cubierto al</p><span>'+result.coverage.cop_var+'%</span></div></div>');
 
+                                    $("#print-button").click(function(){
+                                        if(window.confirm('¿Está seguro de imprimir el documento?')){
+                                          var val = $("select[name='service_id']").val();
+                                          var items = {};
+                                          var copago_fijo = result.coverage.cop_fijo;
+                                          $.ajax({
+                                                      url: "{{ url('/ServiceFindAPI/') }}/"+val, 
+                                                      method: "GET",
+                                                       success: function(item_result)
+                                                      {
+                                                        items[0] =  {'service_id': $("select[name='service_id']").val(), 'exented' : '1', 'quantity': '1', 'pu' : parseFloat(copago_fijo/1.18).toFixed(2), 'imp': parseFloat(copago_fijo/1.18).toFixed(2), 'clinic_area_id' : item_result.clinic_area_id, 'discountp': '0'};
+                                                        var values = { 'authorization_id' : result.id, 'discountp' : result.coverage.cop_var, 'discountt' : '0', 'importe' : parseFloat(result.coverage.cop_fijo/1.18).toFixed(2), 'opgravada' : parseFloat(result.coverage.cop_fijo/1.18).toFixed(2), 'opnogravada' : '0', 'opexonerada' : '0', 'subtotal' : parseFloat(result.coverage.cop_fijo/1.18).toFixed(2) , 'igv' : parseFloat(parseFloat(result.coverage.cop_fijo/1.18).toFixed(2)*0.18).toFixed(2), 'total': parseFloat(result.coverage.cop_fijo).toFixed(2), 'is_coverage' : 1, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
 
+                                                          values['items'] = items;
+
+                                                          var data = JSON.stringify(values);
+                                                          $.ajax({
+                                                              url:"{{ url('/pay_edocument/create/') }}/"+data,
+                                                              method: "GET",
+                                                              async:false,
+                                                              success: function(result){
+                                                                  $.address.value("/caja/documentos");
+                                                                  data = $.parseJSON(result);
+                                                                  url_path = "{{ url('/pay_edocument/view/') }}/"+data.type+"/"+data.input.id+"/print.pdf"
+                                                                  window.open(url_path,"_blank");
+                                                              }
+                                                          });
+
+
+                                                      }
+                                                    });
+                              
+                                        }
+                                    });
                                                                             
                                   }
                                 });
@@ -668,13 +694,6 @@
                     if( i == "3"){var response = true; $(this).text('Crear Atención').addClass('create_atencion');if($("#name").val() == "" || $("#name").val() == null){response = false;} if(value != "3"){$('table tbody tr').each(function(){if ($(this).hasClass('bg-primary')){response = response || true;}else{ response = response || false; }});} if(!response){alert("Seleccione un paciente"); location.reload(); }}else{$(this).text('Next').removeClass('create_atencion');}
                     if (i == "4"){ 
                         $("a[href='#finish']").parent().html('<hr><a id="print-button" href="#" class="btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>'); 
-                        $("#print-button").click(function(){
-                            if(window.confirm('¿Está seguro de imprimir el documento?')){
-                                $(".modal-body").print();
-                                // emitir documento y enviarlo a la sunat //
-                            }
-                            //$("#custom-width-modal").delay(700).modal("hide");
-                        });
                     }
                     var val = $('#userName').val();
                     var internal = "/getPatientAPI/";
