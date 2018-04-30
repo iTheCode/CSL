@@ -313,7 +313,7 @@
             var total = 0.00;
             jQuery(document).ready(function($) {
                 
-            @if($client->insureds)
+            @if($client->insureds->coverage)
                 $('.toggle').toggles({on: true});
             @else
                 $('.toggle').toggles({on: false});
