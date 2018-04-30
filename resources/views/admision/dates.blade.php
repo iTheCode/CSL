@@ -22,6 +22,8 @@
         <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
 
+        <link href="/assets/plugins/select2/dist/css/select2.css" rel="stylesheet" type="text/css">
+        <link href="/assets/plugins/select2/dist/css/select2-bootstrap.css" rel="stylesheet" type="text/css">
         <script src="/assets/js/modernizr.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -135,7 +137,7 @@
                                             <div class="modal-body"></div>
                                             <div id="consult" style="display: none;">
                                                 <?php $all = App\Models\Speciality::all() ;?>
-                                                <select class="form-control" >
+                                                <select class="form-control select2" >
                                                     @foreach($all as $spec)
                                                         @if($spec->name != "")
                                                         <option value="{{ $spec->id }}">{{ $spec->name }}</option>
@@ -145,7 +147,7 @@
                                             </div>
                                             <div id="doctors" style="display: none;">
                                                 <?php $all = App\Models\Doctor::all() ;?>
-                                                <select class="form-control" >
+                                                <select class="form-control select2" >
                                                     @foreach($all as $spec)
                                                         @if($spec->complet_name != "")
                                                         <option value="{{ $spec->id }}">{{ $spec->complet_name }}</option>
@@ -212,17 +214,18 @@
         <script src="/assets/plugins/fullcalendar/dist/moment.min.js"></script>
         <script src="/assets/plugins/fullcalendar/dist/fullcalendar.min.js"></script>
         <script src="/assets/plugins/fullcalendar/dist/es.js"></script>
-        <script src="/assets/pages/jquery.fullcalendar.js"></script>
+        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript"></script>
         
         <script type="text/javascript">
             /* ==============================================
             Counter Up
             =============================================== */
             jQuery(document).ready(function($) {
-
+                $('select.select2').select2();
             });
         </script>
 
+        <script src="/assets/pages/jquery.fullcalendar.js"></script>
     
     </body>
 </html>
