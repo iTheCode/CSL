@@ -238,6 +238,63 @@ class AuthorizationsController extends BaseController
 		}
 
 	}
+	public function saveAtencion(Request $request)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		}
+		$a = Authorization::find($request::get('id'));
+		if($request::get('authorization_type_id'))
+			$a->authorization_type_id = $request::get('authorization_type_id');
+		if($request::get('doctor_id'))
+			$a->doctor_id = $request::get('doctor_id');
+		if($request::get('status_id'))
+			$a->status_id = $request::get('status_id');
+		if($request::get('first_diagnostic'))
+			$a->first_diagnostic= $request::get('first_diagnostic');
+		if($request::get('second_diagnostic'))
+			$a->second_diagnostic = $request::get('second_diagnostic');
+		if($request::get('third_diagnostic'))
+			$a->third_diagnostic = $request::get('third_diagnostic');
+		if($request::get('consultations_quantity'))
+			$a->consultations_quantity = $request::get('consultations_quantity');
+		if($request::get('symptoms'))
+			$a->symptoms = $request::get('symptoms');
+		if($request::get('ruc_transference'))
+			$a->ruc_transference = $request::get('ruc_transference');
+		if($request::get('date_transference'))
+			$a->date_transference = $request::get('date_transference');
+		if($request::get('time_transference'))
+			$a->time_transference = $request::get('time_transference');
+		if($a->save()){
+			if($request::get('sub_coverage_type_id')){
+				$sub_coverage_type = SubCoverageType::find($request::get('sub_coverage_type_id'));
+				$c = $a->coverage;
+				if(!$sub_coverage_type){ 
+					$c->sub_coverage_type_id = null;
+				} else { 
+					$c->sub_coverage_type_id = $sub_coverage_type->id; 
+					$c->name  = $sub_coverage_type->name;
+					$c->code = $sub_coverage_type->code;
+				}
+			}
+			if($request::get('cop_fijo'))
+				$c->cop_fijo = $request::get('cop_fijo');
+			if($request::get('cop_var'))
+				$c->cop_var = $request::get('cop_var');
+			if($c->save()){
+				if(isset($a->insureds))
+					$a->insureds->insurance->name;
+				if(isset($a->coverage))
+					$a->coverage->cop_var;
+				if(isset($a->patient))
+					$a->patient->name;
+				return $a;
+			}
+		}
+
+	}
 	public function showReportes()
 	{
 		if (Auth::check()) {
