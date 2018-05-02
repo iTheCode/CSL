@@ -551,6 +551,7 @@ wow.init();
 
 /* === following js will activate the menu in left side bar based on url ==== */
 $(document).ready(function() {
+  Sidemenu.openLeftBar();
   $(".search-bar").keypress(function(e) {
       if(e.which == 13) {
           window.location.href = '/buscar/'+$(this).val();
