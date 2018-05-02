@@ -70,7 +70,7 @@
                             </li>
 
                             <li>
-                                <a href="/hospitalizacion/habitaciones') }}" class="waves-effect" data="address"><i class="md md-local-hotel"></i><span> Hospitalización </span></a>
+                                <a href="{{ url('/hospitalizacion/habitaciones') }}" class="waves-effect" data="address"><i class="md md-local-hotel"></i><span> Hospitalización </span></a>
                             </li>
 
                             <li class="has_sub">

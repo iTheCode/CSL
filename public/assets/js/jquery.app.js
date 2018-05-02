@@ -211,9 +211,11 @@ function ValidURL(str) {
       
       toggle_slimscroll(".slimscrollleft");
       $("body").trigger("resize");
+      $(".side-menu").removeAttr("style");
     },
     //menu item click
     Sidemenu.prototype.menuItemClick = function(e) {
+
        if(!$("#wrapper").hasClass("enlarged")){
         if($(this).parent().hasClass("has_sub")) {
           e.preventDefault();
@@ -551,7 +553,7 @@ wow.init();
 
 /* === following js will activate the menu in left side bar based on url ==== */
 $(document).ready(function() {
-  Sidemenu.openLeftBar();
+  $('.open-left').click();
   $(".search-bar").keypress(function(e) {
       if(e.which == 13) {
           window.location.href = '/buscar/'+$(this).val();
@@ -566,4 +568,5 @@ $(document).ready(function() {
             $(this).parent().parent().prev().click(); // click the item to make it drop
         }
     });
+
 });
