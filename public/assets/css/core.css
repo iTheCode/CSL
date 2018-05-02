@@ -84,13 +84,13 @@ a:focus {
 .footer {
   background-color: #f9f9f9;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
-  bottom: 0px;
+  bottom: -250px;
   color: #58666e;
   text-align: left !important;
   padding: 20px 30px;
   position: absolute;
   right: 0;
-  left: 240px;
+  left: 0px;
 }
 #wrapper {
   height: 100%;
