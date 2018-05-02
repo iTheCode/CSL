@@ -110,27 +110,27 @@ class ServicesController extends BaseController
 		return view('shop.reporte', ['coverages' => $coverages, 'employees' => $employees, 'type_documents' => $type_documents]);
 	}
 	public function export(Request $request){
-		$authorizations = PayEDocument::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
-		$authorizations->when($request::get('coverage_type') != "", function ($query) use ($request){
+		$edocuments = PayEDocument::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
+		$edocuments->when($request::get('coverage_type') != "", function ($query) use ($request){
 	        return $query->whereHas('authorization.coverage.sub_coverage_type.coverage_type', function($q) use ($request){
 			    $q->where('coverage_types.id', '=', $request::get('coverage_type'));
 			});
 	    });
-		$authorizations->when($request::get('date_init') != "", function ($query) use ($request){
+		$edocuments->when($request::get('date_init') != "", function ($query) use ($request){
 	        return $query->whereDate('date', '>=', $request::get('date_init'));
 	    });
-		$authorizations->when($request::get('date_end') != "", function ($query) use ($request){
+		$edocuments->when($request::get('date_end') != "", function ($query) use ($request){
 	        return $query->whereDate('date', '<=', $request::get('date_end'));
 	    });
 
-		$authorizations->when($request::get('pay_document_type_id') != "", function ($query) use ($request){
+		$edocuments->when($request::get('pay_document_type_id') != "", function ($query) use ($request){
 	        return $query->where('pay_document_type_id', '=', $request::get('pay_document_type_id'));
 	    });
-		$authorizations->when($request::get('employee') != "", function ($query) use ($request){
+		$edocuments->when($request::get('employee') != "", function ($query) use ($request){
 	        return $query->where('employee_id', $request::get('employee'));
 	    });
 
-	    $data = json_decode(json_encode($authorizations->get()), true);
+	    $data = json_decode(json_encode($edocuments->get()), true);
 	    
 		\Excel::create('documentos_'.date("Y-m-d H:m:s"), function($excel) use ($data){
 		    $excel->sheet('Documentos Electronicos', function($sheet) use ($data) {

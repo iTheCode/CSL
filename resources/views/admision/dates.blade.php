@@ -215,6 +215,8 @@
         <script src="/assets/plugins/fullcalendar/dist/fullcalendar.min.js"></script>
         <script src="/assets/plugins/fullcalendar/dist/es.js"></script>
         <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript"></script>
+
+        <script src="/assets/pages/jquery.fullcalendar.js"></script>
         
         <script type="text/javascript">
             /* ==============================================
@@ -224,8 +226,6 @@
                 $('select.select2').select2();
             });
         </script>
-
-        <script src="/assets/pages/jquery.fullcalendar.js"></script>
     
     </body>
 </html>

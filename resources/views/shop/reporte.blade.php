@@ -611,6 +611,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <hr>
+                                                <form id="generate">
                                                 <div>
                                                     Cobertura
                                                     <div class="input-group col-md-12">
@@ -640,8 +641,9 @@
                                                     </div><br><br>
                                                 </div>
                                                 <div class="pull-right"><br>
-                                                    <button type="button" class="btn btn-success btn-custom waves-effect waves-light m-b-5">Generar</button>
+                                                    <button type="submit" class="btn btn-success btn-custom waves-effect waves-light m-b-5">Generar</button>
                                                 </div>
+                                                </form>
                                             </div> <!-- panel-body -->
                                         </div> <!-- panel -->
                                     </div>
@@ -836,7 +838,7 @@
                     data: form.serialize(),
                     success: function(response, status, xhr) {
                             // check for a filename
-                            var filename = "atenciones_"+date_now_format();
+                            var filename = "documentos_"+date_now_format();
                             var disposition = xhr.getResponseHeader('Content-Disposition');
                             if (disposition && disposition.indexOf('attachment') !== -1) {
                                 var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
