@@ -97,7 +97,7 @@
 
                 <!-- Start content -->
                 <div class="content">
-                <div class="wraper container-fluid" style="display: none;">
+                <div class="wraper container-fluid" >
                     
                 <!--<div class="row">
                         <div class="col-sm-12">
@@ -714,7 +714,7 @@
                 $('#date_transference').datepicker();
                 $(".wraper").fadeIn();
                 $(".indicator").attr("style","right: 442px; left: 0px;");
-                //$('select.select2').select2();
+                $('select.select2').select2();
                 $("#atencion").submit(function(){
                       $.ajax({
                             url:"{{ url('/saveAtencion/') }}/",
