@@ -298,7 +298,7 @@
                                             </div> 
                                         </div> 
 
-                                        <div class="panel panel-default panel-fill">
+                                        <!--<div class="panel panel-default panel-fill">
                                             <div class="panel-heading"> 
                                                 <h3 class="panel-title">Progreso de Atención</h3> 
                                             </div> 
@@ -314,6 +314,7 @@
 
                                             </div> 
                                         </div>
+                                        -->
 
                                     </div>
 
@@ -713,7 +714,7 @@
                 $('#date_transference').datepicker();
                 $(".wraper").fadeIn();
                 $(".indicator").attr("style","right: 442px; left: 0px;");
-                $('select.select2').select2();
+                //$('select.select2').select2();
                 $("#atencion").submit(function(){
                       $.ajax({
                             url:"{{ url('/saveAtencion/') }}/",
