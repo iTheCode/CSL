@@ -34,9 +34,70 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        
-    </head>
+        <style type="text/css" media="screen">
+            .js .inputfile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
 
+            .inputfile + label {
+                width: 100%;
+                font-size: 1.25rem;
+                /* 20px */
+                font-weight: 700;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                cursor: pointer;
+                display: inline-block;
+                overflow: hidden;
+                padding: 0.625rem 1.25rem;
+                /* 10px 20px */
+            }
+
+            .no-js .inputfile + label {
+                display: none;
+            }
+
+            .inputfile:focus + label,
+            .inputfile.has-focus + label {
+                outline: 1px dotted #000;
+                outline: -webkit-focus-ring-color auto 5px;
+            }
+
+            .inputfile + label * {
+                /* pointer-events: none; */
+                /* in case of FastClick lib use */
+            }
+
+            .inputfile + label svg {
+                width: 1em;
+                height: 1em;
+                vertical-align: middle;
+                fill: currentColor;
+                margin-top: -0.25em;
+                /* 4px */
+                margin-right: 0.25em;
+                /* 4px */
+            }
+
+            .inputfile-2 + label {
+                color: #00b19d;
+                border: 2px solid currentColor;
+            }
+
+            .inputfile-2:focus + label,
+            .inputfile-2.has-focus + label,
+            .inputfile-2 + label:hover {
+                color: #036b5f;
+            }
+
+        </style>
+    </head>
+    
 
     <body class="fixed-left">
         
@@ -136,17 +197,17 @@
                             </li> 
                             @endif
                             <li class="tab" style="width: 20%;"> 
-                                <a href="#payments" data-toggle="tab" aria-expanded="false"> 
-                                    <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
-                                    <span class="hidden-xs">Pagos</span> 
-                                </a> 
-                            </li> 
-                            <li class="tab" style="width: 20%;"> 
                                 <a href="#documents" data-toggle="tab" aria-expanded="false"> 
                                     <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
-                                    <span class="hidden-xs">Documentos</span> 
+                                    <span class="hidden-xs">Adjuntos</span> 
                                 </a> 
                             </li>
+                            <li class="tab" style="width: 20%;"> 
+                                <a href="#payments" data-toggle="tab" aria-expanded="false"> 
+                                    <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
+                                    <span class="hidden-xs">Facturación</span> 
+                                </a> 
+                            </li> 
                         </ul> 
                         </div>
                         <div class="hidden-xs col-sm-3 col-lg-6">
@@ -471,9 +532,7 @@
                             @endif
 
                             <div class="tab-pane" id="payments">
-                                <button type="button" class=" float btn waves-effect waves-light btn-success " data-toggle="modal" style="margin-right:5px;margin-top: 5px;">
-                                        +
-                                        </button>
+                                <button type="button" class="float btn waves-effect waves-light btn-success " data-toggle="modal" style="margin-right:5px;margin-top: 5px;">+</button>
                                 <!-- Personal-Information -->
                                 <div class="panel panel-default panel-fill">
                                     <div class="panel-heading"> 
@@ -548,9 +607,9 @@
                                             <div class="form">
                                             <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
                                                  <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Tipo de documento :</label>
+                                                    <label for="username" class="control-label col-lg-2">Tipo de Documento :</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="username" name="username" type="text">
+                                                        {{ Form::select('document_type_id', [null=>'Seleccione un Tipo de Documento'] + $document_types, null, ['class' => 'form-control']) }}
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
@@ -563,23 +622,25 @@
                                                 <div class="form-group">
                                                     <label for="username" class="control-label col-lg-2">Área :</label>
                                                     <div class="col-lg-10">
-                                                        <select name="opcion" class="form-control">
-                                                            <option value="1">HOSPITALIZACIÓN</option>
-                                                           
-                                                            
-                                                        </select>
+                                                        {{ Form::select('area_id', [null=>'Seleccione un Área'] + $areas, null, ['class' => 'form-control']) }}
                                                     </div>
                                                     
                                                 </div>
-                                              
+                                                <div class="form-group">
+                                                    <label for="username" class="control-label col-lg-2">Archivo :</label>
+                                                    <div class="col-lg-10">
+                                                      <input type="file" name="file" id="file" class="inputfile inputfile-2" data-multiple-caption="{count} archivo(s) seleccionado(s)" multiple="">
+                                                      <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span> Elige un archivo…</span></label>
+                                                    </div>
+                                                    
+                                                </div>
+
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
-                                        <button type="button" class="btn waves-effect waves-light btn-success">SUBIR</button>
-                                        <form name="formulario" action="envio.php" method="post"  enctype="multipart/form-data">
-                                        <input name="archivo" type="file" size="20" class="btn waves-effect waves-light btn-success "> 
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                            <button type="button" class="btn waves-effect waves-light btn-success">SUBIR</button>
 
-                                      </div>
+                                        </div>
 
                                     </div>
                                   </div>
@@ -621,14 +682,14 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
+                                                                    <!--<tr>
                                                                         <td>1</td>
                                                                         <td>Carta de Garantia</td>
                                                                         <td>Prueba de Documento</td>
                                                                         <td>29/05/2017</td>
                                                                         <td><span class="label label-info">Hospitalizacion</span></td>
                                                                         <td>sis_fabian</td>
-                                                                    </tr>
+                                                                    </tr>-->
                                                                     
                                                                 </tbody>
                                                             </table>
@@ -705,7 +766,7 @@
         <script type="text/javascript" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script src="/assets/pages/jquery.dashboard.js"></script>
         
-        <script type="text/javascript">
+        <script type="text/javascript" load="force">
             /* ==============================================
             Counter Up
             =============================================== */
@@ -714,7 +775,7 @@
                 $('#date_transference').datepicker();
                 $(".wraper").fadeIn();
                 $(".indicator").attr("style","right: 442px; left: 0px;");
-                $('select.select2').select2();
+                $('.select2').select2();
                 $("#atencion").submit(function(){
                       $.ajax({
                             url:"{{ url('/saveAtencion/') }}/",
@@ -726,6 +787,26 @@
                             }
                         });
                       return false;
+                });
+            });
+            var inputs = document.querySelectorAll( '.inputfile' );
+            Array.prototype.forEach.call( inputs, function( input )
+            {
+                var label    = input.nextElementSibling,
+                    labelVal = label.innerHTML;
+
+                input.addEventListener( 'change', function( e )
+                {
+                    var fileName = '';
+                    if( this.files && this.files.length > 1 )
+                        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+                    else
+                        fileName = e.target.value.split( '\\' ).pop();
+
+                    if( fileName )
+                        label.querySelector( 'span' ).innerHTML = fileName;
+                    else
+                        label.innerHTML = labelVal;
                 });
             });
         </script>

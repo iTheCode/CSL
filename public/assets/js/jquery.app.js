@@ -79,6 +79,15 @@ function ValidURL(str) {
                 $('.content-page').html($('.content-page', data).html());
                 $('.wrapper').show();
 
+                $(data).filter("link").each(function(){
+                  var src = String($(this).attr('href'));
+                  var unload = "assets/css/";
+                  var load = $(this).attr('load');
+                  if(!(src.indexOf(unload) != -1) || load === "force"){
+                      $('.content-page').append($(this));
+                  }
+                });
+                
                 $(data).filter("script").each(function(){
                   var src = String($(this).attr('src'));
                   var unload = "assets/js/";
@@ -88,14 +97,6 @@ function ValidURL(str) {
                   }
                 });
 
-                $(data).filter("link").each(function(){
-                  var src = String($(this).attr('href'));
-                  var unload = "assets/css/";
-                  var load = $(this).attr('load');
-                  if(!(src.indexOf(unload) != -1) || load === "force"){
-                      $('.content-page').append($(this));
-                  }
-                });
                 $(data).filter("style").each(function(){
                       $('.content-page').prepend($(this));
                 });
