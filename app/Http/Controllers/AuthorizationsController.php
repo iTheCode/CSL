@@ -17,6 +17,8 @@ use \App\Models\DiagnosticType;
 use \App\Models\Coverage;	
 use \App\Models\Service;	
 use \App\Models\CoverageType;
+use \App\Models\DocumentType;
+use \App\Models\ClinicArea;
 use \App\Helpers;	
 use View;
 use Queue;
@@ -34,11 +36,6 @@ class AuthorizationsController extends BaseController
 
 	public function externAPI($input)
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 			$input = json_decode($input);
 			if($input->data != "null"){
 				$response = Authorization::select('patients.id as aID', 'patients.*', 'authorizations.*', 'doctor.complet_name', 'specialities.name')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->join('specialities', 'specialities.id', '=', 'doctors.speciality_id')->where('specialities.id', $input->from)->where('authorizations.code', $input->data)->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('intern_code','desc')->paginate(20);
@@ -55,11 +52,6 @@ class AuthorizationsController extends BaseController
 	}
 	public function showAuthorizationsAPI($input)
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 			$input = json_decode($input);
 			$from = $input->from;
 			if($input->data != "null"){
@@ -81,54 +73,31 @@ class AuthorizationsController extends BaseController
 	}	
 	public function findAuthorization($input)
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('admision.authorizations', ['find' => $input]);
 	}
 	public function showDates()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('admision.dates', []);
 	}
 	public function showHourMedic()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('admision.hour_medic', []);
 	}
 
 	public function showExtern($input,$id)
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('extern_consult.extern', ['speciality_id' => $id]);
 	}
 	public function viewAuthorization($input)
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 			$response = Authorization::find($input);
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
 			$statuses = Helpers::get_list(Status::all());
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::orderby('name')->get());
 			$diagnostic_types_codes = Helpers::get_diagnostic_codes(DiagnosticType::orderBy('id')->get());
+			$document_types = Helpers::get_list(DocumentType::all());
+			$areas = Helpers::get_list(ClinicArea::all());
 			if(!isset($response->employee_id)){ $response->employee_id = $user->id; $response->save();}
 
 			if(isset($response->insuredservices))
@@ -146,7 +115,7 @@ class AuthorizationsController extends BaseController
 
 
 			//return $sub_coverage_types;
-		return view('admision.authorization', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes]);
+		return view('admision.authorization', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'document_types' => $document_types]);
 	}
 	public function createAuthorization()
 	{
