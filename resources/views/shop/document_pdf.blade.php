@@ -445,7 +445,7 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
         <label style="width: 8em">--------------------------------------------------</label>
         <table cellspacing="0" style="width: 8em;">
             <tr>
-                <td style=" padding-right: -60px ;font-size:0.7em;text-align:right;">
+                <td style=" padding-right: -30px ;font-size:0.7em;text-align:right;">
                     Autorizado Mediante Resolución:<br> N° 203-2015/SUNAT
                 </td>
             </tr>
