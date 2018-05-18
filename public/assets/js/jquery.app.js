@@ -160,7 +160,7 @@ function ValidURL(str) {
                             }
                         },
                         complete: function(resp){
-                            //console.log(resp.getAllResponseHeaders());
+                            console.log(resp.getAllResponseHeaders());
                             //$("#body_load").remove();
                         }
                     });
