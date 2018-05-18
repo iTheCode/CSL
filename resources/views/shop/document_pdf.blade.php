@@ -455,7 +455,7 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
                 </td>
             </tr>
             <tr>
-                <td style=" padding-right: -60px ;font-size:0.7em;text-align:right;">
+                <td style=" padding-right: -70px ;font-size:0.7em;text-align:right;">
                     Gracias por su preferencia!         
                 </td>
             </tr>
