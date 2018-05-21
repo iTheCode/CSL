@@ -17,6 +17,7 @@ class AddContentLength {
         $response = $next($request);
         if(!$response->header('Content-Length',strlen($response->content())))
             @header("Content-length: ",strlen($response->content()));
+        if(!$response->header('X-Total-length',strlen($response->content())))
             @header("X-Total-length: ",strlen($response->content()));
         return $response;
     }
