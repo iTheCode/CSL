@@ -134,6 +134,7 @@ function ValidURL(str) {
                     // Loads the page content and inserts it into the content area
                     $.ajax({
                         url: event.path,
+                        async: false,
                         success: function(data) {
                             handler(data);
                             $("#load_bar").fadeOut(3000);
@@ -147,6 +148,9 @@ function ValidURL(str) {
                           //body_load($(".content-page"));
                         },
                         progress: function(e) {
+                          var total = evt.lengthComputable ? evt.total : parseInt(e.getResponseHeader('X-Total-Length'));
+                          console.log(total);
+                          console.log(e.getAllResponseHeaders());
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
