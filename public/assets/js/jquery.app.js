@@ -147,6 +147,7 @@ function ValidURL(str) {
                           //body_load($(".content-page"));
                         },
                         progress: function(e) {
+                            console.log(e);
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
