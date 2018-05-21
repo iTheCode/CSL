@@ -130,7 +130,7 @@ function ValidURL(str) {
                 
                 } else {
 
-                    $(".select2-hidden-accessible").remove();
+                    //$(".select2-hidden-accessible").remove();
                     // Loads the page content and inserts it into the content area
                     $.ajax({
                         url: event.path,
@@ -147,7 +147,6 @@ function ValidURL(str) {
                           //body_load($(".content-page"));
                         },
                         progress: function(e) {
-                            console.log(e);
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
@@ -157,7 +156,7 @@ function ValidURL(str) {
                             }
                             //this usually happens when Content-Length isn't set
                             else {
-                                console.warn('Content Length not reported!');
+                              console.log(e);
                             }
                         },
                         complete: function(resp){
