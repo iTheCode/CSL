@@ -767,15 +767,13 @@
         <script src="/assets/pages/jquery.dashboard.js"></script>
         
         <script type="text/javascript" load="force">
-            /* ==============================================
-            Counter Up
-            =============================================== */
+
+            $('select.select2').select2();
             jQuery(document).ready(function($) {
                 $('#time_transference').timepicker({showMeridian: false});
                 $('#date_transference').datepicker();
                 $(".wraper").fadeIn();
                 $(".indicator").attr("style","right: 442px; left: 0px;");
-                $('.select2').select2();
                 $("#atencion").submit(function(){
                       $.ajax({
                             url:"{{ url('/saveAtencion/') }}/",
