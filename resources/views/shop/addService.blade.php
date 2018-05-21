@@ -179,7 +179,7 @@
                                                                 <div class="col-md-2">
                                                                     <label class="col-md-2 control-label" for="name"> Cobertura</label>
                                                                     <div class="col-lg-3 control-label" style="padding-top: 29px;">
-                                                                        <div id="discountp" style="display: none;">{{ $client->coverage->cop_var or '0'}}</div>
+                                                                        <div id="discountp" style="display: none;">0</div>
                                                                         <div id="cobertura-toggle" class="toggle toggle-success"></div>
                                                                     </div>
                                                                 </div>
