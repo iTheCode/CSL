@@ -134,7 +134,7 @@ function ValidURL(str) {
                     // Loads the page content and inserts it into the content area
                     $.ajax({
                         url: event.path,
-                        async: false,
+                        async: true,
                         success: function(data) {
                             handler(data);
                             $("#load_bar").fadeOut(3000);
@@ -148,23 +148,18 @@ function ValidURL(str) {
                           //body_load($(".content-page"));
                         },
                         progress: function(e) {
-                          var total = evt.lengthComputable ? evt.total : parseInt(e.getResponseHeader('X-Total-Length'));
-                          console.log(total);
-                          console.log(e.getAllResponseHeaders());
                             //make sure we can compute the length
                             if(e.lengthComputable) {
                                 //calculate the percentage loaded
-                                var pct = ((e.loaded / e.total) * 100)+"%";
-                                $("#load_bar").animate({'width':pct});
-                                
+                                var total = e.total;
+                            } else {
+                                var total = this.getResponseHeader('X-Total-Length');
                             }
-                            //this usually happens when Content-Length isn't set
-                            else {
-                              console.log(e);
-                            }
+                            var pct = ((e.loaded / total) * 100)+"%";
+                            $("#load_bar").animate({'width':pct});
                         },
                         complete: function(resp){
-                            console.log(resp.getAllResponseHeaders());
+                            //console.log(resp.getAllResponseHeaders());
                             //$("#body_load").remove();
                         }
                     });
