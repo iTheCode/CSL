@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Session;
 use \App\Employee as Employee;
 use View;
 use Redirect;
@@ -43,4 +44,9 @@ class LoginController extends BaseController
 			return redirect()->route('login')->with('status', $e->getMessage());
 		}
 	}
+	public function doLogout(){
+        Auth::logout();
+        Session::flush();
+        return Redirect::to('/');
+    }
 }
