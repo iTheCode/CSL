@@ -54,8 +54,6 @@ class ServicesController extends BaseController
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
 			$statuses = Helpers::get_list(Status::all());
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
-			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::orderby('name')->get());
-			$diagnostic_types_codes = Helpers::get_diagnostic_codes(DiagnosticType::orderBy('id')->get());
 			$areas = Helpers::get_list(ClinicArea::all());
 			$services = Helpers::get_list(Service::all());
 			$codes = Helpers::get_codes(Service::all());
@@ -73,7 +71,7 @@ class ServicesController extends BaseController
 
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 			//return $sub_coverage_types;
-		return view('shop.addService', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'diagnostic_types' => $diagnostic_types, 'diagnostic_types_codes' => $diagnostic_types_codes, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
+		return view('shop.addService', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
 	}
 	public function ServicesAPI($input){
 		$services = Helpers::get_codes(Service::where('clinic_area_id', $input)->get());
