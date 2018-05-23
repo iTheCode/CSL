@@ -8,19 +8,19 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+        <link rel="shortcut icon" href="/assets/images/favicon_1.ico">
 
-        <link href="assets/plugins/notifications/notification.css" rel="stylesheet">
+        <link href="/assets/plugins/notifications/notification.css" rel="stylesheet">
 
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/pages.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/modernizr.min.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +33,7 @@
     </head>
     <style>
         html{
-            background-image: url('assets/images/bg.jpg');
+            background-image: url('/assets/images/bg.jpg');
             background-repeat:no-repeat;    
             background-size: 100%;
         }
@@ -48,7 +48,7 @@
             <div class="panel panel-color panel-primary panel-pages">
                 <div class="panel-heading bg-img"> 
                     <div class="bg-overlay"></div>
-                    <h3 class="text-center m-t-10 text-white"><img src="assets/images/logo.png" alt=""> </h3>
+                    <h3 class="text-center m-t-10 text-white"><img src="/assets/images/logo.png" alt=""> </h3>
                 </div> 
 
 
@@ -86,27 +86,34 @@
 
 
         <!-- Main  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/wow.min.js"></script>
-        <script src="assets/js/jquery.nicescroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/wow.min.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
 
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="/assets/js/jquery.app.js"></script>
 
-        <script src="assets/plugins/notifyjs/dist/notify.min.js"></script>
-        <script src="assets/plugins/notifications/notify-metro.js"></script>
-        <script src="assets/plugins/notifications/notifications.js"></script>
+        <script src="/assets/plugins/notifyjs/dist/notify.min.js"></script>
+        <script src="/assets/plugins/notifications/notify-metro.js"></script>
+        <script src="/assets/plugins/notifications/notifications.js"></script>
 	
         
         <script>
             var resizefunc = [];
             
+            $("button[type='submit']").click(function(){
+                $(this).fadeOut();
+                $(this).parent().html('<a class="btn btn-lg w-lg waves-effect waves-light" style="background-color: #39b49a;"><img src="/assets/images/heartbeat.gif" width="25px" height="25px"></a>');
+                $("form").submit();
+                return false;
+            });
+
             @if(Session::has('status'))
             $(document).ready(function(){
                 $.Notification.notify('warning','bottom right', 'Intente Denuevo', '{{ Session::get('status') }}');

@@ -13,6 +13,7 @@
 
 // Login Routes
 Route::get('/', array('uses' => 'LoginController@showLogin', 'as' => 'login'));
+Route::get('/logout', array('uses' => 'LoginController@doLogout', 'as' => 'logout'));
 Route::post('/', array('uses' => 'LoginController@doLogin'));
 
 //Dashboard Routes
