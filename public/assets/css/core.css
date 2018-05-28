@@ -250,7 +250,7 @@ a:focus {
   background-color: #29b6f6 !important;
 }
 .bg-success {
-  background-color: #00b19d !important;
+  background-color: #39b49a !important;
 }
 .bg-info {
   background-color: #29b6f6 !important;
@@ -292,7 +292,7 @@ a:focus {
   color: #ffd740;
 }
 .text-success {
-  color: #00b19d;
+  color: #39b49a;
 }
 .text-info {
   color: #29b6f6;
@@ -330,7 +330,7 @@ a:focus {
   background-color: #29b6f6;
 }
 .label-success {
-  background-color: #00b19d;
+  background-color: #39b49a;
 }
 .label-info {
   background-color: #29b6f6;
@@ -371,7 +371,7 @@ a:focus {
   background-color: #29b6f6;
 }
 .badge-success {
-  background-color: #00b19d;
+  background-color: #39b49a;
 }
 .badge-info {
   background-color: #29b6f6;
@@ -643,7 +643,7 @@ a:focus {
   color: #29b6f6;
 }
 .has-success .form-control {
-  border-color: #00b19d;
+  border-color: #39b49a;
   box-shadow: none !important;
 }
 .has-warning .form-control {
