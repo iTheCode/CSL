@@ -94,8 +94,8 @@ class AuthorizationsController extends BaseController
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
 			$statuses = Helpers::get_list(Status::all());
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
-			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::orderby('name')->get());
-			$diagnostic_types_codes = Helpers::get_diagnostic_codes(DiagnosticType::orderBy('id')->get());
+			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::all());
+			$diagnostic_types_codes = Helpers::get_diagnostic_codes(DiagnosticType::all());
 			$document_types = Helpers::get_list(DocumentType::all());
 			$areas = Helpers::get_list(ClinicArea::all());
 			if(!isset($response->employee_id)){ $response->employee_id = $user->id; $response->save();}
@@ -279,7 +279,7 @@ class AuthorizationsController extends BaseController
 	}
 
 	public function export(Request $request){
-		$authorizations = Authorization::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic as Primer Diagnostico')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
+		$authorizations = Authorization::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic as Primer Diagnostico')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderBy('authorizations.intern_code', 'desc');
 		$authorizations->when($request::get('coverage_type') != "", function ($query) use ($request){
 	        return $query->whereHas('coverage.sub_coverage_type.coverage_type', function($q) use ($request){
 			    $q->where('coverage_types.id', '=', $request::get('coverage_type'));

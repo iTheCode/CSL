@@ -23,6 +23,6 @@ class DiagnosticType extends Model
     }
 
     public function diagnostic_category(){
-        return $this->hasOne('App\Models\DiagnosticCatogory', 'id', 'diagnostic_category_id');
+        return $this->hasOne('App\Models\DiagnosticCategory', 'id', 'diagnostic_category_id');
     }
 }
