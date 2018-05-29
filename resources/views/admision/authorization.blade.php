@@ -755,15 +755,15 @@
         <!-- jQuery  -->
         <script src="/assets/pages/jquery.chat.js"></script>
         
-        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript"></script>
+        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript" load="force"></script>
         <!--Morris Chart-->
         <script src="/assets/plugins/raphael/raphael-min.js"></script>
         <script src="/assets/plugins/morris.js/morris.min.js"></script>
         
         <!-- jQuery  -->
 
-        <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <script type="text/javascript" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js" load="force"></script>
+        <script" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" load="force"></script>
         <script src="/assets/pages/jquery.dashboard.js"></script>
         
         <script type="text/javascript" load="force">
