@@ -91,7 +91,7 @@ class AuthorizationsController extends BaseController
 	public function viewAuthorization($input)
 	{
 			$response = Authorization::find($input);
-			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
+			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::all());
 			$statuses = Helpers::get_list(Status::all());
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 			$diagnostic_types = Helpers::get_diagnostic(DiagnosticType::all());
@@ -125,7 +125,7 @@ class AuthorizationsController extends BaseController
 		    $position = $user->area->name;
 		}
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
-			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
+			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::all());
 			$authorization_types = Helpers::get_list(AuthorizationType::all());
 			$services = Helpers::get_services(Service::all());
 			//dd($response = Authorization::all()->first()->patient);

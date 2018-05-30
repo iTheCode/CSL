@@ -25,7 +25,6 @@
 
         <link href="/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
         <link href="/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
-        <script src="/assets/js/modernizr.min.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -766,6 +765,7 @@
         <script" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" load="force"></script>
         <script src="/assets/pages/jquery.dashboard.js"></script>
         
+        <script src="/assets/js/modernizr.min.js"></script>
         <script type="text/javascript" load="force">
 
             $('select.select2').select2();

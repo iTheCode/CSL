@@ -89,6 +89,8 @@ function ValidURL(str) {
                 });
                 
                 $(data).filter("script").each(function(){
+
+                  console.log(this);
                   var src = String($(this).attr('src'));
                   var unload = "assets/js/";
                   var load = $(this).attr('load');
