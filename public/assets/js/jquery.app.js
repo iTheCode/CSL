@@ -134,6 +134,7 @@ function ValidURL(str) {
 
                     //$(".select2-hidden-accessible").remove();
                     // Loads the page content and inserts it into the content area
+                    console.log(event.path);
                     $.ajax({
                         url: event.path,
                         async: true,
