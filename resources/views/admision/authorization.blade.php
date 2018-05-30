@@ -701,6 +701,7 @@
                         </div> 
                     </div>
                     </div>
+                    </div>
                 </div> <!-- container -->
                                
                 </div> <!-- content -->
@@ -716,12 +717,6 @@
 
         </div>
         <!-- END wrapper -->
-
-
-    
-        <script>
-            var resizefunc = [];
-        </script>
 
         <!-- jQuery  -->
         <script src="/assets/js/jquery.min.js"></script>
@@ -762,7 +757,7 @@
         <!-- jQuery  -->
 
         <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js" load="force"></script>
-        <script" src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" load="force"></script>
+        <script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" load="force"></script>
         <script src="/assets/pages/jquery.dashboard.js"></script>
         
         <script src="/assets/js/modernizr.min.js"></script>
