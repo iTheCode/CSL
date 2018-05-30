@@ -108,7 +108,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left bg-success">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><img src="/assets/images/icono.png" alt="CSLuren" width="30" height="30"> <span>{{ $system_name }} </span></a>
+                        <a href="/" class="logo"><img src="/assets/images/icono.png" alt="CSLuren" width="30" height="30"> <span>{{ $system_name }} </span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -238,22 +238,22 @@
                                                 <div class="about-info-p">
                                                     <strong>Nombre Completo</strong>
                                                     <br>
-                                                    <p class="text-muted"><a href="{{ url('/paciente/'.$client->patient->id) }}"><?=mb_convert_case($client->patient->name." ".$client->patient->paternal." ".$client->patient->maternal, MB_CASE_TITLE, "UTF-8");?></a> <img src="https://png.icons8.com/ios/1600/unverified-account.png" width="20px" height="20px"><img src="http://agarioskins.com/submitted/useruploads/verified.png" width="20px" height="20px"></p>
+                                                    <p class="text-muted"><a href="{{ url('/paciente/'.$client->patient->id) }}" data="address"><?=mb_convert_case($client->patient->name." ".$client->patient->paternal." ".$client->patient->maternal, MB_CASE_TITLE, "UTF-8");?></a> <img src="https://png.icons8.com/ios/1600/unverified-account.png" width="20px" height="20px"><img src="http://agarioskins.com/submitted/useruploads/verified.png" width="20px" height="20px"></p>
                                                 </div>
                                                 <div class="about-info-p">
                                                     <strong>DNI</strong>
                                                     <br>
-                                                    <p class="text-muted">{{ $client->patient->document_identity_code or Html::link('/paciente/'.$client->patient->id,'Corregir DNI') }}</p>
+                                                    <p class="text-muted">{{ $client->patient->document_identity_code or Html::link('/paciente/'.$client->patient->id,'Corregir DNI', array('data' => 'address', true)) }}</p>
                                                 </div>
                                                 <div class="about-info-p">
                                                     <strong>Sexo</strong>
                                                     <br>
-                                                    <p class="text-muted">{{ $client->patient->sex or Html::link('/paciente/'.$client->patient->id, 'Corregir Sexo')}}</p>
+                                                    <p class="text-muted">{{ $client->patient->sex or Html::link('/paciente/'.$client->patient->id, 'Corregir Sexo', array('data' => 'address', true)) }}</p>
                                                 </div>
                                                 <div class="about-info-p m-b-0">
                                                     <strong>Fecha de Nacimiento</strong>
                                                     <br>
-                                                    <p class="text-muted">{{ $client->patient->birthday or Html::link('/paciente/'.$client->patient->id,'Corregir Fecha') }} ( {{ Helpers::get_age($client->patient->birthday) }} )</p>
+                                                    <p class="text-muted">{{ $client->patient->birthday or Html::link('/paciente/'.$client->patient->id,'Corregir Fecha', array('data' => 'address', true)) }} ( {{ Helpers::get_age($client->patient->birthday) }} )</p>
                                                 </div>
                                             </div> 
                                         </div>
@@ -557,7 +557,7 @@
                                                                         @foreach ($client->pay_documents as $p)
                                                                             <tr>
                                                                                 <td>{{ $i++ }}</td>
-                                                                                <td><a href="{{ url('/pay_edocument/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
+                                                                                <td><a href="{{ url('/pay_edocument/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}" data="address">{{ $p->code or '' }}</a></td>
                                                                                 <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                 <td>{{ $p->created_at or '' }}</td>
                                                                                 <td>{{ $p->emission_date or '' }}</td>
@@ -570,7 +570,7 @@
                                                                         @foreach ($client->pay_edocuments as $p)
                                                                             <tr>
                                                                                 <td>{{ $i++ }}</td>
-                                                                                <td><a href="{{ url('/pay_edocument/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->serie }}-{{ $p->code or '' }}</a></td>
+                                                                                <td><a href="{{ url('/pay_edocument/'.$p->pay_document_type->id.'/'.$p->id) }}" data="address">{{ $p->serie }}-{{ $p->code or '' }}</a></td>
                                                                                 <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                 <td>{{ $p->created_at or '' }}</td>
                                                                                 <td>{{ $p->emission_date or '' }}</td>
