@@ -90,6 +90,9 @@ class AuthorizationsController extends BaseController
 	}
 	public function viewAuthorization($input)
 	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
 			$response = Authorization::find($input);
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::all());
 			$statuses = Helpers::get_list(Status::all());

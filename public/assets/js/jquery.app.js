@@ -89,8 +89,6 @@ function ValidURL(str) {
                 });
                 
                 $(data).filter("script").each(function(){
-
-                  console.log(this);
                   var src = String($(this).attr('src'));
                   var unload = "assets/js/";
                   var load = $(this).attr('load');
@@ -134,13 +132,12 @@ function ValidURL(str) {
 
                     $(".select2-hidden-accessible").remove();
                     // Loads the page content and inserts it into the content area
-                    console.log(event.path);
                     $.ajax({
                         url: event.path,
                         async: true,
                         success: function(data) {
-                            handler(data);
                             $("#load_bar").fadeOut(3000);
+                            handler(data);
                             $('.content-page').animate({'opacity':1});
                         },
                         beforeSend:function(){

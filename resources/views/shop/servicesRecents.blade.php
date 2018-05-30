@@ -186,6 +186,25 @@
                               {
                                   url: "{{ url('/authorizationsAPI/') }}/{\"data\": \""+data+"\", \"from\": \"caja\"}?page="+page, 
                                   method: "GET",
+                                beforeSend:function(){
+                                      $("#btn-fullscreen").parent().hide();
+                                      $("#btn-fullscreen").parent().parent().prepend('<li class="hidden-xs"><a href="#" id="loading-gif" class="waves-effect waves-light"><img id="btn-fullscreen" src="/assets/images/heartbeat.gif" width="35px" height="35px"></li></a></li>');
+                                      $("#load_bar").remove();
+                                      $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background: #3bc0c3;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
+                                      $("#load_bar").animate({'width':'20%'});
+                                      //body_load($(".content-page"));
+                                },
+                                progress: function(e) {
+                                        //make sure we can compute the length
+                                        if(e.lengthComputable) {
+                                            //calculate the percentage loaded
+                                            var total = e.total;
+                                        } else {
+                                            var total = this.getResponseHeader('X-Total-Length');
+                                        }
+                                        var pct = ((e.loaded / total) * 100)+"%";
+                                        $("#load_bar").animate({'width':pct}).show();
+                                },
                                    success: function(result)
                                   {
                                     $('.panel').html(result).fadeIn(1000).children(".panel-body").fadeIn(1000);
@@ -196,7 +215,12 @@
                                         }
                                     });
                                         $('[data-toggle="tooltip"]').tooltip();
-                                  }
+                                  },
+                                complete: function(){
+                                     $("#load_bar").fadeOut(3000);
+                                    $("#loading-gif").parent().remove();
+                                    $("#btn-fullscreen").parent().show();
+                                }
                     });
             }
             jQuery(document).ready(function($) {

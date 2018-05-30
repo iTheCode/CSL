@@ -368,7 +368,7 @@
                                             <i class="fa fa-stethoscope"></i>
                                         </div> <!-- cd-timeline-img -->
                                         <div class="cd-timeline-content">
-                                            <h3><a href="{{ url('/atencion/'.$auth->id) }}">{{ $auth->code }}</a></h3>
+                                            <h3><a href="{{ url('/atencion/'.$auth->id) }}" data="address">{{ $auth->code }}</a></h3>
                                             <hr>
                                                 <ul class="list-inline">
                                                                             <li class="clearfix">
