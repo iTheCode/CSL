@@ -132,7 +132,7 @@ function ValidURL(str) {
                 
                 } else {
 
-                    //$(".select2-hidden-accessible").remove();
+                    $(".select2-hidden-accessible").remove();
                     // Loads the page content and inserts it into the content area
                     console.log(event.path);
                     $.ajax({
