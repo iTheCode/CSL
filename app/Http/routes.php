@@ -50,11 +50,25 @@ Route::get('/ver_roles', function() {
 		$roles = $user->getRoleNames();
 		$roles = (count($roles) >= 1) ? $roles[0] : '';
 		print $user->name." -> ".$roles."<br>";
+		$permissions = $user->getAllPermissions();
+		foreach ($permissions as $permission){
+			print " Permission: ".$permission->name."<br>";
+		}
 	}
 	
 	//$user->getDirectPermissions(); 
 	//$user->getPermissionsViaRoles(); 
 });
+
+Route::get('/roles', function() { 
+
+	$roles = \Spatie\Permission\Models\Role::all();
+	foreach($roles as $role){
+		print $role->name."<br>";
+	}
+	
+});
+
 
 //Admision Routes
 Route::get('/admision/atenciones', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'atenciones', 'uses' => 'AuthorizationsController@showAuthorizations']);
@@ -137,7 +151,6 @@ Route::get('/administracion/usuarios/delete', ['middleware' => ['auth', 'role:ad
 
 Route::get('/administracion/personal/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'personal', 'uses' => 'AdministrationController@showPersonal']);
 Route::get('/administracion/servicios/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'servicios', 'uses' => 'AdministrationController@showServices']);
-Route::get('/createUser/',['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'], 'as' => 'registrar_usuario', 'uses' => 'AdministrationController@createUser']);
 
 
 

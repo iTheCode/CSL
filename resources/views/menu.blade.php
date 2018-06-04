@@ -88,7 +88,7 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="fa fa-ambulance"></i><span> Emergencia </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Liquidaciones</a></li>
+                                    <li><a href="{{ url('/emergencia/atenciones') }}" data="address"> Atenciones Preferentes </a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">

@@ -29,7 +29,9 @@
                                                                 <th>Fecha de Emisión</th>
                                                                 <th>Estado</th>
                                                                 <th>Usuario</th>
-                                                                <th>Acciones</th>
+                                                                @can('credit note boletas')
+                                                                    <th>Acciones</th>
+                                                                @endcan
                                                             </tr>
 
                                                         </thead>
@@ -57,12 +59,14 @@
                                                                                     <td>{{ $i++ }}</td>
                                                                                     <td>{{ $p->authorization->code or '' }}</td>
                                                                                     <td>{{ $p->authorization->patient->name or '' }} {{ $p->authorization->patient->paternal or '' }} {{ $p->authorization->patient->maternal or '' }}</td>
-                                                                                    <td><a href="{{ url('/pay_edocument/view/'.$p->pay_document_type->id.'/'.$p->id.'/print.pdf') }}">{{ $p->serie }}-{{ Helpers::number_format_cond($p->code,7)}}</a></td>
+                                                                                    <td><a href="{{ url('/pay_edocument/view/'.$p->pay_document_type->id.'/'.$p->id.'/print.pdf') }}" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver Documento">{{ $p->serie }}-{{ Helpers::number_format_cond($p->code,7)}}</a></td>
                                                                                     <td>{{ $p->pay_document_type->name or '' }}</td>
-                                                                                    <td>{{ $p->created_at or '' }}</td>
                                                                                     <td>{{ $p->emission_date or '' }}</td>
                                                                                     <td><span class="label label-success">{{ Helpers::sunat_status($p->sunat_status) }}</span></td>
                                                                                     <td>{{ $p->employee->username or 'Sin asignar'}}</td>
+                                                                                    @can('credit note boletas')
+                                                                                        <td><a href="" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nota de Crédito" data="address"> <i class="md md-block"></i></a></td>
+                                                                                    @endcan
                                                                                 </tr>
                                                             @endforeach
                                                         @endif
