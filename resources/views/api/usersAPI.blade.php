@@ -18,10 +18,15 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
+                                                                <th>SITEDS Code</th>
                                                                 <th>Nombres Completos</th>
                                                                 <th>Usuario</th>
                                                                 <th>Área</th>
-                                                                <th>Acciones</th>
+                                                                @role('sistemas')
+                                                                    <th>Acciones</th>
+                                                                @else
+
+                                                                @endrole
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -29,12 +34,17 @@
                                                         @foreach ($users as $user)
                                                             <tr>
                                                                 <td>{{ $i++ }}</td>
+                                                                <td>{{ $user->siteds_code }}</td>
                                                                 <td>{{ $user->name }} {{ $user->paternal }} {{ $user->maternal }}</td>
                                                                 <td>{{ $user->username }}</td>
                                                                 <td>{{ $user->area->name or ''}}</td>
                                                                 <td>
-                                                                <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar usuario" data="address" onclick="open_modal('edit_user')"> Editar</a>
-                                                                <a href="#" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$user->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar usuario" data="address"> Eliminar</a>
+                                                                @role('sistemas')
+                                                                    <a href="#" type="button" class="btn btn-success btn-custom btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar Usuario" onclick="open_modal('edit_user')"><i class="md md-mode-edit"></i></a>
+                                                                    <a href="#" type="button" class="btn btn-success btn-custom btn-icon waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dar de baja"><i class="md  md-keyboard-arrow-down"></i></a>
+                                                                    <a href="#" type="button" class="btn btn-success btn-custom btn-icon waves-effect waves-light btn-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Activar Usuario"><i class="md  md-keyboard-arrow-up"></i></a>
+                                                                @else
+                                                                @endrole
                                                                 </td>
 
                                                             </tr>

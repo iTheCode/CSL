@@ -153,47 +153,39 @@
                                 <div class="modal-body">
                                     <div class="form">
                                     <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
-                                        <div>
-                                            Nombres :
-                                            <div class="input-group col-md-12">
-                                               <input class="form-control" name="firstname" type="text">
-                                            </div><br>
-                                            Apellido paterno :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="paternal" type="text">
-                                            </div><br>
-                                            Apellido materno :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="maternal" type="text">
-                                            </div><br>
-                                            Código de usuario :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="user_code" type="text">
-                                            </div><br>
-                                            Área asignada :
-                                            <div class="input-group col-md-12">
-                                                <select name="área" class="form-control">
-                                                    <option value="1">área 1</option>
-                                                    <option value="2">...</option>
-                                                </select>
-                                            </div><br>
-                                            Usuario :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="user" type="text">
-                                            </div><br>
-                                            Contraseña :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="password" type="password">
-                                            </div><br>
-                                            Confirmar contraseña :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="confirm_password" type="password">
-                                            </div><br>
-                                            Correo electrónico :
-                                            <div class="input-group col-md-12">
-                                                <input class="form-control" name="email" type="email">
-                                            </div><br>
-                                </div>
+                                        <div id="edit-content">
+                                                    Usuario :
+                                                    <div class="input-group col-md-12">
+                                                       <input class="form-control" name="firstname" type="text" disabled>
+                                                    </div><br>
+                                                    Nombres Completos :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" name="paternal" type="text" disabled>
+                                                    </div><br>
+                                                    Código SITEDS :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" name="user_code" type="text">
+                                                    </div><br>
+                                                    Área Asignada :
+                                                    <div class="input-group col-md-12">
+                                                        {{ Form::select('area_id', [null=>'Seleccione un area'] + $areas, null, ['class' => 'form-control']) }}
+                                                    </div><br>
+                                                    Permisos :
+                                                    <div class="input-group col-md-12">
+                                                        @foreach($permissions as $permission)
+                                                            <div class="checkbox checkbox-inline checkbox-success checkbox-circle">
+                                                                <input value="{{ $permission->id }}" id="{{ $permission->name }}" type="checkbox">
+                                                                <label for="{{ $permission->name }}">
+                                                                    {{ $permission->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div><br>
+                                                    Contraseña :
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" name="password" type="password">
+                                                    </div><br>
+                                        </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                     <button type="button" class="btn btn-primary" name="boton_guardar">Guardar</button>
@@ -203,8 +195,6 @@
                              </div>
                           </div>
                         </div>
-
-
 
                         <!--fin modal edit -->
                         <div class="row">
@@ -284,7 +274,7 @@
                     });
             }
             jQuery(document).ready(function($) {
-            load_data();
+                load_data();
             });
                 $(".boton_guardar").click(function(){
                     var firstname = $(".firstname").val();
@@ -325,7 +315,7 @@
                         var datos = 'firstname='+ firstname + '&paternal=' + paternal + '&maternal=' + maternal +  '&área=' + área+ '&user_code=' + user_code + '&user=' + user + '&password=' + password + '&confirm_password=' + confirm_password + '&email=' + email;
                         $.ajax({
                             type: "GET",
-                            url: "/createUser/",
+                            url: "/administracion/usuarios/create/",
                             data: datos,
                             success: function(){
                                 $('.ajaxgif').hide();

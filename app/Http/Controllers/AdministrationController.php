@@ -101,7 +101,10 @@ class AdministrationController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
-		return view('administration.usuarios', []);
+		$areas =  Helpers::get_list(Area::all());
+		$permissions = \Spatie\Permission\Models\Permission::all();
+		$roles = \Spatie\Permission\Models\Role::all();
+		return view('administration.usuarios', ['areas' => $areas, 'permissions' => $permissions]);
 	}
 	public function showPersonal()
 	{
