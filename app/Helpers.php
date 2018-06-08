@@ -5,8 +5,8 @@ class Helpers {
 		return count($element);
 	}
 	public static function days_ago ($date){
-		$datetime1 = new DateTime($date);
-		$datetime2 = new DateTime('now');
+		$datetime1 = new \DateTime($date);
+		$datetime2 = new \DateTime('now');
 		$interval = $datetime1->diff($datetime2);
 		return $interval->format('%R%a días');
 	}

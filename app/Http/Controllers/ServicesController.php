@@ -17,6 +17,7 @@ use \App\Models\Service;
 use \App\Models\ServiceExented;	
 use \App\Models\CoverageType;
 use \App\Models\PayDocumentType;
+use \App\Models\PayEDocument;
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -58,7 +59,6 @@ class ServicesController extends BaseController
 			$services = Helpers::get_list(Service::all());
 			$codes = Helpers::get_codes(Service::all());
 			$service_exented = Helpers::get_list(ServiceExented::all());
-			date_default_timezone_set('America/Lima');
 			$date = date("F j, Y, g:i a");
 			if(isset($response->coverage)){
 				if(isset($response->insureds) && count($response->insuredservices) == 0 && $response->coverage->cop_var != "100"){
@@ -73,6 +73,30 @@ class ServicesController extends BaseController
 			//return $sub_coverage_types;
 		return view('shop.addService', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
 	}
+
+	public function e_notes($input,$type)
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		    $name = $user->name." ".$user->paternal;
+		    $position = $user->area->name;
+		}
+			$pay_e_document = PayEDocument::find($input);
+			$response = $pay_e_document->authorization;
+			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
+			$statuses = Helpers::get_list(Status::all());
+			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
+			$areas = Helpers::get_list(ClinicArea::all());
+			$services = Helpers::get_list(Service::all());
+			$codes = Helpers::get_codes(Service::all());
+			$service_exented = Helpers::get_list(ServiceExented::all());
+			$date = date("F j, Y, g:i a");
+
+		return view('shop.e_notes', ['document' => $pay_e_document,'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
+	}
+
+
+
 	public function ServicesAPI($input){
 		$services = Helpers::get_codes(Service::where('clinic_area_id', $input)->get());
 		return view('api.ServiceAPI', ['services' => $services]);
