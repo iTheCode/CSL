@@ -160,7 +160,6 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        RenatoMarinho\LaravelPageSpeed\ServiceProvider::class
 
     ],
 
