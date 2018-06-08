@@ -98,6 +98,7 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
+                                <h4 class="pull-left page-title"><a href="{{ url('/caja/crear') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" data="address">Nuevo Documento</a> </h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
                                     <li class="active">Documentos de Pago</li>
