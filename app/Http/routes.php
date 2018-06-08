@@ -43,6 +43,13 @@ Route::get('/aplicar_roles', function() {
 	//$user->getDirectPermissions(); 
 	//$user->getPermissionsViaRoles(); 
 });
+
+Route::get('/aplicar_permisos', function() { 
+
+	$user = \App\Employee::find(1);
+	$user->givePermissionTo(\Spatie\Permission\Models\Permission::find(2));
+	dd($user);
+});
 Route::get('/ver_roles', function() { 
 
 	$users = \App\Employee::all(); 
@@ -52,7 +59,7 @@ Route::get('/ver_roles', function() {
 		print $user->name." -> ".$roles."<br>";
 		$permissions = $user->getAllPermissions();
 		foreach ($permissions as $permission){
-			print " Permission: ".$permission->name."<br>";
+			print " ---  Permission: ".$permission->name."<br>";
 		}
 	}
 	
@@ -69,6 +76,14 @@ Route::get('/roles', function() {
 	
 });
 
+Route::get('/permisos', function() { 
+
+	$roles = \Spatie\Permission\Models\Permission::all();
+	foreach($roles as $role){
+		print $role."<br>";
+	}
+	
+});
 
 //Admision Routes
 Route::get('/admision/atenciones', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'atenciones', 'uses' => 'AuthorizationsController@showAuthorizations']);
@@ -97,6 +112,7 @@ Route::get('/paciente/{input?}', ['middleware' => ['auth', 'role:admision|caja|f
 Route::get('/caja/atenciones', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'services', 'uses' => 'ServicesController@showRecents']);
 Route::get('/caja/documentos/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'sunat', 'uses' => 'ServicesController@showDocuments']);
 Route::get('/caja/servicio/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'addservice', 'uses' => 'ServicesController@addService']);
+Route::get('/caja/e_notes/{input?}/{type?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'emit_e_note', 'uses' => 'ServicesController@e_notes']);
 Route::get('/caja/reporte', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'reporte', 'uses' => 'ServicesController@showReportes']);
 Route::get('/caja/generar_reporte', ['middleware' => ['auth', 'role:admision|caja|facturacion|administracion|estadistica|sistemas'],  'as' => 'generar_reporte', 'uses' => 'ServicesController@export']);
 

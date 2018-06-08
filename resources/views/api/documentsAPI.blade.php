@@ -65,7 +65,10 @@
                                                                                     <td><span class="label label-success">{{ Helpers::sunat_status($p->sunat_status) }}</span></td>
                                                                                     <td>{{ $p->employee->username or 'Sin asignar'}}</td>
                                                                                     @can('credit note boletas')
-                                                                                        <td><a href="" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nota de Crédito" data="address"> <i class="md md-block"></i></a></td>
+                                                                                        <?php if( (str_replace('días','',Helpers::days_ago($p->emission_date)) < 7 && $p->pay_document_type->code == "03" ) or ($p->pay_document_type->code == "01")){ ?>
+                                                                                        <td><a href="{{ url('/caja/e_notes/'.$p->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nota de Crédito" data="address"> <i class="md md-block"></i></a></td>
+
+                                                                                        <?php } ?>
                                                                                     @endcan
                                                                                 </tr>
                                                             @endforeach
