@@ -174,8 +174,8 @@
                     <div class="row user-tabs hidden-xs" style="margin-right: -20px;">
                         <div class="col-sm-9 col-lg-6">
                             <ul class="nav nav-tabs tabs tabs-top" style="width: 100%;">
-                            <li class="tab active" style="width: 20%;">
-                                <a href="#details" data-toggle="tab" aria-expanded="true" class="active"> 
+                            <li class="tab" style="width: 20%;">
+                                <a href="#details" data-toggle="tab" aria-expanded="true"> 
                                     <span class="visible-xs"><i class="fa fa-home"></i></span> 
                                     <span class="hidden-xs">Principal</span> 
                                 </a>
