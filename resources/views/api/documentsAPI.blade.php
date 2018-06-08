@@ -66,7 +66,7 @@
                                                                                     <td>{{ $p->employee->username or 'Sin asignar'}}</td>
                                                                                     @can('credit note boletas')
                                                                                         <?php if( (str_replace('días','',Helpers::days_ago($p->emission_date)) < 7 && $p->pay_document_type->code == "03" ) or ($p->pay_document_type->code == "01")){ ?>
-                                                                                        <td><a href="{{ url('/caja/e_notes/'.$p->id) }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nota de Crédito" data="address"> <i class="md md-block"></i></a></td>
+                                                                                        <td><a href="{{ url('/caja/e_notes/'.$p->id.'/07') }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nota de Crédito" data="address"> <i class="md md-block"></i></a></td>
 
                                                                                         <?php } ?>
                                                                                     @endcan
