@@ -606,27 +606,27 @@
                                             <div class="form">
                                             <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
                                                  <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Tipo de Documento :</label>
+                                                    <label for="document_typ_id" class="control-label col-lg-2">Tipo :</label>
                                                     <div class="col-lg-10">
                                                         {{ Form::select('document_type_id', [null=>'Seleccione un Tipo de Documento'] + $document_types, null, ['class' => 'form-control']) }}
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Motivo :</label>
+                                                    <label for="motivo" class="control-label col-lg-2">Motivo :</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="username" name="username" type="text">
+                                                        <input class="form-control" id="motivo" name="motivo" type="text">
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Área :</label>
+                                                    <label for="area_id" class="control-label col-lg-2">Área :</label>
                                                     <div class="col-lg-10">
                                                         {{ Form::select('area_id', [null=>'Seleccione un Área'] + $areas, null, ['class' => 'form-control']) }}
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="username" class="control-label col-lg-2">Archivo :</label>
+                                                    <label for="file" class="control-label col-lg-2">Archivo :</label>
                                                     <div class="col-lg-10">
                                                       <input type="file" name="file" id="file" class="inputfile inputfile-2" data-multiple-caption="{count} archivo(s) seleccionado(s)" multiple="">
                                                       <label for="file"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span> Elige un archivo…</span></label>

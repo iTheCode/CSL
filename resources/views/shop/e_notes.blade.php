@@ -149,10 +149,17 @@
                                                             </div>
                                                 
                                     
-                                                            <div class="col-md-8">
+                                                            <div class="col-md-6">
                                                                 <label class="col-md-8 control-label" for="name"> Código *</label>
                                                                 {{ Form::select('code_id', [null=>'Seleccione un servicio'] + $codes, null, ['class' => 'select2 form-control']) }}
                                                             </div>
+                                                                <div class="col-md-2">
+                                                                    <label class="col-md-2 control-label" for="name"> IGV</label>
+                                                                    <div class="col-lg-3 control-label" style="padding-top: 29px;">
+                                                                        <div id="igv-option" style="display: none;">0</div>
+                                                                        <div id="igv-option-toggle" class="toggle toggle-success"></div>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-md-4">
                                                                 <label class="col-md-2 control-label" for="name"> Exento</label>
                                                                 {{ Form::select('service_exented_id', $service_exented, null, ['class' => 'select2 form-control']) }}
@@ -161,7 +168,7 @@
                                                                 <div class="col-md-2">
                                                                 <label class="col-md-2 control-label" for="name"> Factor</label>
                                                                 @if($client->insureds)
-                                                                    <input name="factor" type="text" class="form-control" value="{{ $client->insureds->insurance->factor->factor or 'Corregir Factor'}}">
+                                                                    <input name="factor" type="text" class="form-control" value="1" disabled>
                                                                 @else
                                                                     <input name="factor" type="text" class="form-control" value="1" disabled>
                                                                 @endif
@@ -310,13 +317,16 @@
             var subtotal = 0.00;
             var igv = 0.00;
             var total = 0.00;
+            var igv_option = true;
             jQuery(document).ready(function($) {
                 
             @if($client->insureds->coverage)
-                $('.toggle').toggles({on: true});
+                $('#cobertura-toggle').toggles({on: true});
             @else
-                $('.toggle').toggles({on: false});
+                $('#cobertura-toggle').toggles({on: false});
             @endif
+
+                $('#igv-option-toggle').toggles({on: true});
                 $('#cobertura-toggle').on('toggle', function(e, active) {
                       if (active) {
                         console.log("Toggle On");
@@ -324,6 +334,17 @@
                       } else {
                         console.log("Toggle Off");
                         $("#discountp").text(0);
+                      }
+                      console.log($("#discountp").text());
+                });
+
+                $('#igv-option-toggle').on('toggle', function(e, active) {
+                      if (active) {
+                        igv_option = true;
+                        $('input[name="factor"]').val('1').attr("disabled", true);
+                      } else {
+                        igv_option = false;
+                        $('input[name="factor"]').val('{{ $client->insureds->insurance->factor->factor or 'Corregir Factor'}}').attr("disabled", false);
                       }
                       console.log($("#discountp").text());
                 });
