@@ -37,7 +37,7 @@ class PatientsController extends BaseController
 	}
 	
 
-	public function createAuthorization()
+	public function createPatient()
 	{
 		if (Auth::check()) {
 		    $user = Auth::user();

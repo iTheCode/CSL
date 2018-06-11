@@ -119,11 +119,11 @@
                                                 <h4 class="text-right"><img src="/assets/images/logo.png"  width="250" height="70" alt="CSLuren"></h4>
                                                 
                                             </div>
-                                            <div class="pull-right">
-                                                <h4>Atención #{{ $client->id }}<br>
-                                                Autorización #{{ $client->code or 'XXXXXX'}}<br>
-                                                Código Interno #{{ $client->intern_code or ''}}
-                                                </h4>
+                                            <div class="pull-right col-md-3 input-group m-t-4">
+                                                                        <input type="text" id="document_identity_code" name="document_identity_code" class="form-control" placeholder="DNI / RUC">
+                                                                        <span class="input-group-btn">
+                                                                        <button type="button" class="btn waves-effect waves-light btn-primary"><i class="md md-search"></i></button>
+                                                                        </span>
                                             </div>
                                         </div>
                                         <hr>
@@ -132,65 +132,54 @@
                                                 
                                                 <div class="pull-left m-t-30">
                                                     <address>
-                                                    <p><strong>Tipo: </strong> {{ $client->insureds->insurance->name or 'Atención Particular' }} </p>
-                                                    <p class="m-t-10"><strong>Paciente: </strong> {{ $client->patient->name }} {{ $client->patient->paternal }} {{ $client->patient->maternal }}</p>
-                                                    <p class="m-t-10"><strong>Titular: </strong> {{ $client->insureds->hold_name or $client->patient->name }} {{ $client->insureds->hold_paternal or $client->patient->paternal }} {{ $client->insureds->hold_maternal or $client->patient->maternal }}</p>
+                                                    <p><strong>Documento: </strong> XXXXXXXXXXXX </p>
+                                                    <p class="m-t-10"><strong>Cliente: </strong> Desconocido </p>
                                                       </address>
                                                 </div>
                                                 <div class="pull-right m-t-30">
                                                     <p><strong>Fecha: </strong> {{ $date }}</p>
-                                                    <p class="m-t-10"><strong>Empresa: </strong> {{ $client->insureds->company->name or 'No Posee' }}</p>
-                                                    <p class="m-t-10"><strong>Cobertura: </strong> {{ $client->coverage->cop_var or '0'}}%</p>
+                                                    <p><strong>Tipo: </strong> Venta Particular </p>
                                                 </div>
                                                 <div id="add-item" class="pull-left m-t-30">
                                                             <div class="col-md-4">
-                                                            <label class="col-md-4 control-label" for="name"> Doctor *</label>
+                                                                <label class="col-md-4 control-label" for="name"> Doctor *</label>
                                                                 {{ Form::select('doctor_id', [null=>'Seleccione un doctor'] + $doctors, null, ['class' => 'select2 form-control col-md-2']) }}
 
                                                             </div>
-                                                
-                                    
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-8">
                                                                 <label class="col-md-8 control-label" for="name"> Código *</label>
                                                                 {{ Form::select('code_id', [null=>'Seleccione un servicio'] + $codes, null, ['class' => 'select2 form-control']) }}
                                                             </div>
 
-                                                                <div class="col-md-2">
-                                                                    <label class="col-md-2 control-label" for="name"> IGV</label>
-                                                                    <div class="col-lg-3 control-label" style="padding-top: 29px;">
-                                                                        <div id="igv-option" style="display: none;">0</div>
-                                                                        <div id="igv-option-toggle" class="toggle toggle-success"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
+                                                            <div class="col-md-4">
                                                                 <label class="col-md-2 control-label" for="name"> Exento</label>
                                                                 {{ Form::select('service_exented_id', $service_exented, null, ['class' => 'select2 form-control']) }}
-                                                                </div>
+                                                            </div>
 
-                                                                <div class="col-md-2">
+                                                            <div class="col-md-2">
                                                                 <label class="col-md-2 control-label" for="name"> Factor</label>
                                                                 @if($client->insureds)
                                                                     <input name="factor" type="text" class="form-control" value="1" disabled>
                                                                 @else
                                                                     <input name="factor" type="text" class="form-control" value="1" disabled>
                                                                 @endif
-                                                                </div>
-                                                                <div class="col-md-2">
+                                                            </div>
+                                                            <div class="col-md-2">
                                                                 <label class="col-md-2 control-label" for="name"> Cantidad</label>
                                                                     <input name="cantidad" type="text" class="form-control" value="1">
-                                                                </div>
-                                                                <div class="col-md-2">
+                                                            </div>
+                                                            <div class="col-md-2">
                                                                 <label class="col-md-2 control-label" for="name"> Unitario</label>
                                                                     <input name="unitary" type="text" class="form-control" value="">
-                                                                </div>
-
-                                                                <div class="col-md-2">
-                                                                    <label class="col-md-2 control-label" for="name"> Cobertura</label>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                    <label class="col-md-2 control-label" for="name"> IGV</label>
                                                                     <div class="col-lg-3 control-label" style="padding-top: 29px;">
+                                                                        <div id="igv-option" style="display: none;">0</div>
                                                                         <div id="discountp" style="display: none;">0</div>
-                                                                        <div id="cobertura-toggle" class="toggle toggle-success"></div>
+                                                                        <div id="igv-option-toggle" class="toggle toggle-success"></div>
                                                                     </div>
-                                                                </div>
+                                                            </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,11 +224,10 @@
                                         <hr>
                                                                     <div id="payments_options" class="pull-left text-left col-md-4">
                                                                             <p><strong>Tipo de Pago:</strong> <select class="form-control" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
-                                                                            <p><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1" selected>Boleta Paciente</option><option value="3">Boleta DNI</option><option value="4">Boleta No DNI</option><option value="2">Factura RUC</option></select></p>
-                                                                            <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
-                                                                            <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                             <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1" selected>Ticketera</option><option value="2">Media Hoja</option></select></p>
                                                                             <p><strong>Mail :</strong><input id="mail" name="mail" type="text" class="form-control"> </p>
+                                                                            <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
+                                                                            <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                     </div>
                                         <div class="hidden-print">
                                             <div class="pull-right"><br><br><br><br><br><br><br><br>
@@ -322,8 +310,12 @@
             var igv_option = true;
             jQuery(document).ready(function($) {
                 
-            @if($client->insureds->coverage)
-                $('#cobertura-toggle').toggles({on: true});
+            @if($client->insureds)
+                @if($client->insureds->coverage)
+                    $('#cobertura-toggle').toggles({on: true});
+                @else
+                    $('#cobertura-toggle').toggles({on: false});
+                @endif
             @else
                 $('#cobertura-toggle').toggles({on: false});
             @endif
@@ -332,7 +324,7 @@
                 $('#cobertura-toggle').on('toggle', function(e, active) {
                       if (active) {
                         console.log("Toggle On");
-                        $("#discountp").text("{{ $client->coverage->cop_var or '0'}}");
+                        $("#discountp").text("0");
                       } else {
                         console.log("Toggle Off");
                         $("#discountp").text(0);
@@ -346,17 +338,9 @@
                         $('input[name="factor"]').val('1').attr("disabled", true);
                       } else {
                         igv_option = false;
-                        $('input[name="factor"]').val('{{ $client->insureds->insurance->factor->factor or 'Corregir Factor'}}').attr("disabled", false);
+                        $('input[name="factor"]').val('1').attr("disabled", true);
                       }
                       console.log($("#discountp").text());
-                });
-                $("#pay_edocument_type").change(function(){
-                    var selected = $(this).val();
-                    if(selected == 2){
-                        $(this).parent().fadeOut(1000).next().fadeIn(2000).focus();
-                    }else if(selected == 3){
-                        $(this).parent().fadeOut(1000).next().next().fadeIn(2000).focus();
-                    }
                 });
                 $("#add").click(function(){
                     var discountp = $("#discountp").text();
@@ -367,7 +351,7 @@
                     var clinic_area_id = $('select[name="clinic_area_id"]').val();
                     var arr = service.split('|');
                     var factor = parseFloat($('input[name="factor"]').val());
-                    if(factor == 1 || igv_option == true){
+                    if(igv_option == true){
                         var unitario = parseFloat($('input[name="unitary"]').val()/1.18);
                     }else{
                         var unitario = parseFloat($('input[name="unitary"]').val());
@@ -428,7 +412,7 @@
                                    success: function(result)
                                   {
                                     $('input[name="quantity"]').val(1);
-                                    $('input[name="unitary"]').val(parseFloat(result.unitary*1.18).toFixed(2));
+                                    //$('input[name="unitary"]').val(parseFloat(result.unitary*1).toFixed(2));
                                   }
                                 });
                 });
@@ -440,7 +424,7 @@
                         $("#add-item").slideUp();
                         $("#add").parent().slideUp().prev().remove();
 
-                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
+                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
                         var items = {};
                         var a = 0;
                         $("#list-content tr").each(function(){
@@ -450,7 +434,7 @@
                         values['items'] = items;
                         var data = JSON.stringify(values);
                         $.ajax({
-                            url:"{{ url('/pay_edocument/create/') }}/"+data,
+                            url:"{{ url('/pay_edocument/createManual/') }}/"+data,
                             method: "GET",
                             async:false,
                             success: function(result){

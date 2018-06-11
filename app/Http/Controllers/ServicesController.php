@@ -81,6 +81,7 @@ class ServicesController extends BaseController
 		    $name = $user->name." ".$user->paternal;
 		    $position = $user->area->name;
 		}
+			$response = Authorization::find(105098);
 			$sub_coverage_types = Helpers::get_hash_sub(SubCoverageType::orderBy('name')->get());
 			$statuses = Helpers::get_list(Status::all());
 			$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
@@ -90,7 +91,7 @@ class ServicesController extends BaseController
 			$service_exented = Helpers::get_list(ServiceExented::all());
 			$date = date("F j, Y, g:i a");
 
-		return view('shop.createManual', [ 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
+		return view('shop.createManual', [ 'client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
 	}
 	public function e_notes($input,$type)
 	{
