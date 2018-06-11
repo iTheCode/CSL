@@ -326,7 +326,7 @@
                 $('#cobertura-toggle').toggles({on: true});
             @else
                 $('#cobertura-toggle').toggles({on: false});
-            @endif
+            @endifv
 
                 $('#igv-option-toggle').toggles({on: true});
                 $('#cobertura-toggle').on('toggle', function(e, active) {
@@ -428,7 +428,7 @@
                                    success: function(result)
                                   {
                                     $('input[name="quantity"]').val(1);
-                                    $('input[name="unitary"]').val(parseFloat(result.unitary*1.18).toFixed(2));
+                                    $('input[name="unitary"]').val(parseFloat(result.unitary*1).toFixed(2));
                                   }
                                 });
                 });

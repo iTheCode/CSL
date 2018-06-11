@@ -186,5 +186,5 @@ Route::get('/servicesAPI/{input?}', ['middleware' => ['auth', 'role:admision|caj
 Route::get('/personalAPI/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'personalAPI', 'uses' => 'AdministrationController@personalAPI']);
 Route::get('/usersAPI/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'usersAPI', 'uses' => 'AdministrationController@usersAPI']);
 Route::get('/externAPI/{input?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'externAPI', 'uses' => 'AuthorizationsController@externAPI']);
-Route::get('/dniAPI/{input?}', ['as' => 'dniAPI', 'uses' => 'CentroController@dniAPI']);
+Route::get('/cedulaAPI/{input?}', ['as' => 'cedulaAPI', 'uses' => 'CentroController@cedulaAPI']);
 Route::get('/listDates/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'listar_citas', 'uses' => 'AuthorizationsController@listDates']);

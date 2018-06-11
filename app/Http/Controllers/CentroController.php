@@ -17,6 +17,7 @@ use \App\Models\DiagnosticType;
 use \App\Models\Coverage;	
 use \App\Models\Hospitalization;
 use \App\Models\HospitalizationRoom;	
+use \App\Models\Patient;    
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -41,12 +42,29 @@ class CentroController extends BaseController
 		return view('hospitalization.centro', ['rooms' => $response]);
 	}
 
-    public function dniAPI($input){
-    	$reniecDni = new \Tecactus\Reniec\DNI('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImJkMTRiNzg1MzdmOWUwYjJkNjU5NzcwNzAzZGNhNmI5YzM3MTBhNDU5OTVmOWFmNTA3M2I2MjI5OTg4NGRlZGZkMzQxMWM5YTZkZDQ3ZjFlIn0.eyJhdWQiOiIxIiwianRpIjoiYmQxNGI3ODUzN2Y5ZTBiMmQ2NTk3NzA3MDNkY2E2YjljMzcxMGE0NTk5NWY5YWY1MDczYjYyMjk5ODg0ZGVkZmQzNDExYzlhNmRkNDdmMWUiLCJpYXQiOjE1MDgzNDg1MDQsIm5iZiI6MTUwODM0ODUwNCwiZXhwIjoxNTM5ODg0NTA0LCJzdWIiOiI1MCIsInNjb3BlcyI6WyJ1c2UtcmVuaWVjIl19.tVCoCf7k7m0nq_e7Y86C9BSP1mA_MExOEUYvXuBTv-3k-hNMMps5fGXWUhgfpk5bqLU7qaSpxsXo2YlXJtVyVgJ1WD-zDxTKEqBUrSjn7ZTGefK_CPw7vdRGUbBfPHOb03CsLQVlSpKU9NelUhUx4s1vKbqGEyRChCoUZxhh7VaibDv_sv_Uawynx0Ocx5wtBd9u7GTPuTdQoBhQVC-Czo94vMNm9a2sAG9l4BEU6ZjhPBNeaKtTV-F5aZWoFFJ9ImPyhS1BFwk8dNM3EUP8AXX_XZpMTc2P3JXU59dVsEYqNJ-pprsCrfmqTlNM4erYyAqzeBb6fvSWs02-521nqkcjNwMlzGiQsqzRJslteLgtyooJHxUG7Or0ntmdHQMJevWUyc4pb0_F35l90GBcC0I0tAllI8im-X0DGsX1syL1JzOgrPa5pPW6mla-xTz4OYwFL76V1fg3-c_AEQkK67-BvEcJb6RCHSTc3cg0QKSOYVhpSTvi0MdzVoAVdsl6s3cyuAEQFDlCRtMpfSSWMx5f4BLDKmFe-Rstpa2lljamKUKqGhsY6vxuyzojVL_NEA83Jt_EWdouDW7GiqCS9Rd11KPfnEjzRsxWeAi6svXrvdPHceAVzHvkEGZj5h9okOILGlE0YL2d0By-DbxskrZNktKbPJZUoEElB3rn9yA');
+    public function cedulaAPI($input){
 
-    	//$reniecDni = new \Tecactus\Reniec\DNI('6VctJJd0pw1FsJ2aLxMlahOG49KAWr8ixDsUW46v');
-    	//dd($reniecDni);
-    	dd ($reniecDni->get($input));
+        $lenght = strlen($input);
+        $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImMxM2ZiNDI4NGM1MmY2OGEwNTNmOWEyNDA2ZTBjNjFiMjQ0OWYwOTcyM2YzMzJmYzg2ZWRiZjhiODM2MzUxZGUzNzM4MDY0NzM1YzBjM2M4In0.eyJhdWQiOiIxIiwianRpIjoiYzEzZmI0Mjg0YzUyZjY4YTA1M2Y5YTI0MDZlMGM2MWIyNDQ5ZjA5NzIzZjMzMmZjODZlZGJmOGI4MzYzNTFkZTM3MzgwNjQ3MzVjMGMzYzgiLCJpYXQiOjE1Mjg3NTU2NDIsIm5iZiI6MTUyODc1NTY0MiwiZXhwIjoxNTYwMjkxNjQyLCJzdWIiOiI1MCIsInNjb3BlcyI6WyJ1c2UtcmVuaWVjIiwidXNlLXN1bmF0Il19.Vgg6APVjRpAh7UkCpOvOJQFvjlFFYDtlHS-h7UdsluQGbaLY3_6C0iPyI2LFD7TKDPNTIQfCLR0_3dctSPQE44vhpRAZHJqhpZ7nmREwjtunHki-wKyffufA-z4tSNeJO2JVB0Ea_9rlmUuXhUUYhbitQcO4GwdDTkH85oAtearAn7W9DdkB56vbYd8YZflu-ABdTyWieoFowM6HWLa9At1F0AnFSvbQtqze9bOSI6PHh9WGrCbnuZSYmt51Rvx8nMv-pFVA7RVpj6DO6SdqtA2WweKOX8e6y4PvMDRxyrT9FQBabmkmCGDHcKa_XsTIRen9YKq-c_sRGQuQLiLFkFc8n3kGt_Is2Nwqz2vo09_MUsGWNSEBWXAoCiczKcy-gS3-RIKOTpuTFx63xqUiymULr4NZtheXUHVb6zPj7RUuBzTWnQiy824hTwm3QC4moj300-J4hvS0CzwA3lZOOsocnyKNPa3hRpHGrTQJSW-Wo67-Gu8E73pyZxu-Mgohblbl2LQfYPxWvvom7TOFC-Rbiu_kHpkcDvvowOgjdY0VfubGWDyiQb6Kk8Ti8C1Px0tk_sw_nEVE-mrLNVZYf_34DWHWSanRR3RqCF6uEpkYF7-1aiJYAMwwulQbEQNAdkgSRrGtRCXeQpZh4oIV2JfA-RGxuzpd-VVMRnS4szw";
+        if($lenght == 8){
+            //$client = Patient::where('document_identity_code', $input)->get();
+            if(isset($client)){
+                dd($client);
+            }else{
+                $tecactus = new \Tecactus\Reniec\DNI($token);
+                dd($tecactus->get($input));
+            }
+        }elseif($lenght == 11){
+            $tecactus = new \Tecactus\Sunat\RUC($token);
+            dd($tecactus->getByRuc($input));
+        }else{
+            $result['full_name'] = "No Existe";
+            $result["address"] = "No Existe";
+            $result["document"] = "0";
+        }
+        $result = json_encode($result);
+        return $result;
+    	
     }
     public function sendSMS($job, $data){
         $data = (object) $data;

@@ -98,7 +98,7 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <!--<h4 class="pull-left page-title"><a href="{{ url('/registrar_atencion') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Paciente</a> </h4>-->
+                                <h4 class="pull-left page-title"><a href="{{ url('/createPatient') }}" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">Nuevo Paciente</a> </h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#">{{  $system_name }}</a></li>
                                     <li class="active">Atenciones</li>
