@@ -8,14 +8,14 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.6.*",
         "laravelcollective/html": "^5.4",
-        "tecactus/reniec-php": "^1.2",
-        "tecactus/sunat-php": "1.*",
         "artisaninweb/laravel-soap": "0.3.*",
         "maatwebsite/excel": "~2.1.0",
         "spatie/laravel-permission": "^2.7",
         "barryvdh/laravel-dompdf": "^0.8.2",
         "phpoffice/phpspreadsheet": "^1.1",
-        "illuminate/support": "5.6.*"
+        "illuminate/support": "5.6.*",
+        "jossmp/sunatphp": "^1.7",
+        "jossmp/reniec": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
