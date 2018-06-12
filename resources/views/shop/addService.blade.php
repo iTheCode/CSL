@@ -322,11 +322,15 @@
             var igv_option = true;
             jQuery(document).ready(function($) {
                 
-            @if($client->insureds->coverage)
-                $('#cobertura-toggle').toggles({on: true});
+            @if($client->insureds)
+                @if($client->insureds->coverage)
+                    $('#cobertura-toggle').toggles({on: true});
+                @else
+                    $('#cobertura-toggle').toggles({on: false});
+                @endif
             @else
                 $('#cobertura-toggle').toggles({on: false});
-            @endifv
+            @endif
 
                 $('#igv-option-toggle').toggles({on: true});
                 $('#cobertura-toggle').on('toggle', function(e, active) {
