@@ -56,7 +56,7 @@ class CentroController extends BaseController
                 );
             }else{
                 $reniec = new \Reniec\Reniec();
-                $person = $reniec->search($input));
+                $person = $reniec->search($input);
                 if( $person->success != false ){
                     $return = Array(
                                     'full_name' => $person->result->name." ".$person->result->paternal." ".$person->result->maternal,
@@ -75,7 +75,7 @@ class CentroController extends BaseController
             }
         }elseif($lenght == 11){
             $sunat = new \Sunat\Sunat();
-            $empresa = $sunat->search($input));
+            $empresa = $sunat->search($input);
             if( $empresa->success != false ){
                 $return = Array(
                                 'full_name' => $person->result->RazonSocial,
