@@ -43,23 +43,61 @@ class CentroController extends BaseController
 	}
 
     public function cedulaAPI($input){
-
+        $input = str_replace(" ", "", $input);
         $lenght = strlen($input);
         if($lenght == 8){
-            //$client = Patient::where('document_identity_code', $input)->get();
+            $client = Patient::where('document_identity_code', $input)->get();
             if(isset($client)){
-                dd($client);
+                $return = Array(
+                                'full_name' => $client->name." ".$client->paternal." ".$client->maternal,
+                                'address' => $client->address,
+                                'document' => $input,
+                                'type' => '2'
+                );
             }else{
                 $reniec = new \Reniec\Reniec();
-                dd($reniec->search($input));
+                $person = $reniec->search($input));
+                if( $person->success != false ){
+                    $return = Array(
+                                    'full_name' => $person->result->name." ".$person->result->paternal." ".$person->result->maternal,
+                                    'address' => $client->address,
+                                    'document' => $input,
+                                    'type' => '2'
+                    );
+                }else{
+                    $return = Array(
+                                    'full_name' => 'Sin Resultados',
+                                    'address' => 'Sin Resultados',
+                                    'document' => $input,
+                                    'type' => '4'
+                    );
+                }
             }
         }elseif($lenght == 11){
-            $empresa = new \Sunat\Sunat();
-            dd($empresa->search($input));
+            $sunat = new \Sunat\Sunat();
+            $empresa = $sunat->search($input));
+            if( $empresa->success != false ){
+                $return = Array(
+                                'full_name' => $person->result->RazonSocial,
+                                'address' => $client->Direccion,
+                                'document' => $input,
+                                'type' => '3'
+                );
+            }else{
+                $return = Array(
+                                'full_name' => 'Sin Resultados',
+                                'address' => 'Sin Resultados',
+                                'document' => $input,
+                                'type' => '4'
+                );
+            }
         }else{
-            $result['full_name'] = "No Existe";
-            $result["address"] = "No Existe";
-            $result["document"] = "0";
+            $return = Array(
+                            'full_name' => 'Sin Resultados',
+                            'address' => 'Sin Resultados',
+                            'document' => $input,
+                            'type' => '4'
+            );
         }
         $result = json_encode($result);
         return $result;

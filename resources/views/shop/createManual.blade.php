@@ -113,6 +113,60 @@
                                     <!-- <div class="panel-heading">
                                         <h4>Invoice</h4>
                                     </div> -->
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h4 class="panel-title">Agregar Servicio</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form">
+                                            <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
+                                                 <div class="form-group">
+                                                    <label for="document_typ_id" class="control-label col-lg-2">Nombre:</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="motivo" class="control-label col-lg-2">Código:</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="motivo" class="control-label col-lg-2">Área Contable:</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="motivo" class="control-label col-lg-2">Área Clínica:</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="motivo" class="control-label col-lg-2">Precio Unitario:</label>
+                                                    <div class="col-lg-10">
+                                                        <input class="form-control" id="motivo" name="motivo" type="text"><label><input type="checkbox" id="cbox1" name="igv" value="igv"> Incluye IGV</label>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn waves-effect waves-light btn-success">Crear</button>
+
+                                        </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                            </div>
+
                                     <div class="panel-body">
                                         <div class="clearfix">
                                             <div class="pull-left">
@@ -185,7 +239,8 @@
                                         </div>
                                         <div class="m-h-50"></div>
                                                                 <div class="pull-right">
-                                                                    <a id="add" href="#" class="btn btn-primary waves-effect waves-light">Agregar</a>
+                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="md md-create"></i> Nuevo Producto</a>
+                                                                    <a id="add" href="#" class="btn btn-primary waves-effect waves-light"> <i class="md md-add-box"></i> Agregar</a>
                                                                 </div>  
                                         <div class="m-h-50"></div>
                                         <div class="row">
@@ -224,13 +279,15 @@
                                         <hr>
                                                                     <div id="payments_options" class="pull-left text-left col-md-4">
                                                                             <p><strong>Tipo de Pago:</strong> <select class="form-control" id="pay_type" name="pay_type"><option value="">Seleccione el tipo de Pago</option><option value="1" selected>Efectivo</option></select></p>
+                                                                            <p style="display:none;"><strong>Tipo de Documento: </strong> <select class="form-control" id="pay_edocument_type" name="pay_edocument_type"><option value="">Seleccione el tipo de Documento</option><option value="1">Boleta Paciente</option><option value="3">Boleta DNI</option><option value="4" selected>Boleta No DNI</option><option value="2">Factura RUC</option></select></p>
                                                                             <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1" selected>Ticketera</option><option value="2">Media Hoja</option></select></p>
                                                                             <p><strong>Mail :</strong><input id="mail" name="mail" type="text" class="form-control"> </p>
+                                                                             <p><strong>Anotación :</strong><input id="anotacion" name="anotacion" type="text" class="form-control"> </p>
                                                                             <p style="display: none;"><strong>RUC :</strong><input id="ruc" name="ruc" type="text" class="form-control"> </p>
                                                                             <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                     </div>
                                         <div class="hidden-print">
-                                            <div class="pull-right"><br><br><br><br><br><br><br><br>
+                                            <div class="pull-right"><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                                 <a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>
                                                 
                                             </div>  
@@ -321,6 +378,10 @@
             @endif
 
                 $('#igv-option-toggle').toggles({on: true});
+
+
+
+
                 $('#cobertura-toggle').on('toggle', function(e, active) {
                       if (active) {
                         console.log("Toggle On");
@@ -424,7 +485,7 @@
                         $("#add-item").slideUp();
                         $("#add").parent().slideUp().prev().remove();
 
-                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
+                        var values = { 'authorization_id' : '105098', 'discountp' : '0', 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),' payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
                         var items = {};
                         var a = 0;
                         $("#list-content tr").each(function(){

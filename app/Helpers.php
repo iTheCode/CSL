@@ -389,16 +389,4 @@ class Helpers {
 			}
 			return $array;
 		}
-		public static function get_ruc($ruc){
-				return json_decode(file_get_contents("http://edunegociosperu.com/sunat-ws/?ruc=".$ruc));
-		}
-		public static function get_dni($input){
-					$reniecDni = new \Tecactus\Reniec\DNI('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjdkNDI0YTM5OWM4Nzk0MDNmNzA1Yjg1YTg0NDJlZDI2OTI1NGZhOTc4YzZhNDgzMzIzNWFkN2MwMzM5N2I1ZGYxNTNlODk1ZTdjNDNmMmZmIn0.eyJhdWQiOiIxIiwianRpIjoiN2Q0MjRhMzk5Yzg3OTQwM2Y3MDViODVhODQ0MmVkMjY5MjU0ZmE5NzhjNmE0ODMzMjM1YWQ3YzAzMzk3YjVkZjE1M2U4OTVlN2M0M2YyZmYiLCJpYXQiOjE1MTUwMTU1MTQsIm5iZiI6MTUxNTAxNTUxNCwiZXhwIjoxNTQ2NTUxNTE0LCJzdWIiOiI1MCIsInNjb3BlcyI6WyJ1c2UtcmVuaWVjIiwidXNlLXN1bmF0Il19.CFgNhQ-8xL9QDqb9wV3ea8pv5AJPfwhxQdU7gWQ1ZytUbWKtxfLrRcZAK_tDo80xlW5M9NkI6tDQ1QFAoP9O8B12KfSY_3dZZZpNnMOTYexiQDtXA-H_eCpwEgBs6xlrGywQdUh5VRw3Berht-T1hflXDV4zxZ5gzuljlZ8a3sH3Nnh0ZeVITlFgU2AtpKb1xT63O1quhGbV-Gnzjm3aK-iMSyGhymhAGFBPy6HbMxqkvM1uN9VU37eB3Zn0n1rf9IMAdD2iFjgQCxCpRWwFndkHjGCht0mQ_zWdnWA9f7y2spQkRhFSuhM1m6XrKE3UAn_bYMwpQzBZ3ydzuGbYGg19J-kn7iSrU3hoHgYiIDvOSV1xWBVuRIMxSyFeL2Q1OJVx4mDb5B0KnxI3Ms2-GpFgYwslto-1xK5gwFGyf0l8n27mnvxPFRbrWHN4e98CUdIf7MZtuFmWbHLDvr5UvYMRG3z0UM_qljKzqJqUxn9sbgsZawYJHMEqVeIsboGkQ48gpuHM4I8DJg6Jr2jat1rTyoJANHWpjOBpdykIQ6F9ysxpN7MR5YnflSUA6NVim1qYIpeLKt-rHuyp-amc_ozncY1qoY58vABFV4uODtikRURFO6duyfCEfBCA5EqFOxpy-Gr5eEkr8s35yNZQDZwe2dN1nnE45w4Sy0ZSARE');
-					$json_reniec = $reniecDni->get($input);
-					$json["name"] = $json_reniec->nombres;
-					$json["paternal"] = $json_reniec->apellido_paterno;
-					$json["maternal"] = $json_reniec->apellido_materno;
-				return json_encode($json);
-			
-		}
 }
