@@ -58,17 +58,17 @@ class EDocumentsController extends BaseController
 				break;
 			case '2':
 				$json->payment_document_type = "01";
-				$data = Helpers::get_ruc($json->RUC);
-				$json->rznSocialUsuario = $data->RazonSocial;
-				$json->numDocUsuario = str_replace(" ", "", $json->RUC);
-				$json->direccion = "";
+				$data = app('App\Http\Controllers\CentroController')->cedulaAPI(str_replace(" ", "", $json->RUC));
+				$json->rznSocialUsuario = $data->full_name;
+				$json->numDocUsuario = $data->document;
+				$json->direccion = $data->address;
 				$json->local_payment_document_type = "06";
 				break;
 			case '3':
 				$json->payment_document_type = "03";
-				$data = Helpers::get_dni($json->DNI);
-				$json->rznSocialUsuario = $data->name." ".$data->paternal." ".$data->maternal;
-				$json->numDocUsuario = str_replace(" ", "", $json->DNI);
+				$data = app('App\Http\Controllers\CentroController')->cedulaAPI(str_replace(" ", "", $json->DNI));
+				$json->rznSocialUsuario = $data->full_name;
+				$json->numDocUsuario = $data->document;
 				$json->direccion = "";
 				$json->local_payment_document_type = "01";
 				break;
