@@ -157,7 +157,7 @@
                                                  <div class="form-group">
                                                     <label for="motivo" class="control-label col-lg-2">Precio Unitario:</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="unitary" name="unitary" type="text"><label><input type="checkbox" id="igv_checkbox" name="igv_checkbox" value="igv"> Incluye IGV</label>
+                                                        <input class="form-control" id="unitary" type="text"><label><input type="checkbox" id="igv_checkbox" name="igv_checkbox" value="igv"> Incluye IGV</label>
                                                     </div>
                                                 </div>
 
