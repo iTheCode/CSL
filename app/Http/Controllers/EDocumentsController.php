@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\Model as Model;
 class EDocumentsController extends BaseController
 {
 	private $json;
-	public function get_last_document($serie, $type){
+	public function get_last_document($type, $serie){
 		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $type)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
 		if(isset($pay_edocuments[0]))
 			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->exists())
