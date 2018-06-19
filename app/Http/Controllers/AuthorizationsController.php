@@ -312,6 +312,6 @@ class AuthorizationsController extends BaseController
 
 		    });
 
-		})->export('xls');
+		})->export('csv');
 	}
 }
