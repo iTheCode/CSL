@@ -53,7 +53,7 @@ class CentroController extends BaseController
                                 'full_name' => $client->name." ".$client->paternal." ".$client->maternal,
                                 'address' => $client->direction,
                                 'document' => $input,
-                                'type' => '2'
+                                'type' => '3'
                 );
             }else{
                 $reniec = new \Reniec\Reniec();
@@ -63,7 +63,7 @@ class CentroController extends BaseController
                                     'full_name' => $person->result->name." ".$person->result->paternal." ".$person->result->maternal,
                                     'address' => $client->address,
                                     'document' => $input,
-                                    'type' => '2'
+                                    'type' => '3'
                     );
                 }else{
                     $return = Array(
@@ -82,7 +82,7 @@ class CentroController extends BaseController
                                 'full_name' => $person->result->RazonSocial,
                                 'address' => $client->Direccion,
                                 'document' => $input,
-                                'type' => '3'
+                                'type' => '2'
                 );
             }else{
                 $return = Array(

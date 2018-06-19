@@ -303,6 +303,9 @@ class AuthorizationsController extends BaseController
 
 	    $data = json_decode(json_encode($authorizations->get()), true);
 	    
+	    if (ob_get_contents()) ob_end_clean();
+		ob_start();
+
 		\Excel::create('atenciones_'.date("Y-m-d H:m:s"), function($excel) use ($data){
 		    $excel->sheet('Atenciones', function($sheet) use ($data) {
 		       $sheet->fromArray($data, null, 'A1', true);
@@ -310,6 +313,5 @@ class AuthorizationsController extends BaseController
 		    });
 
 		})->export('xls');
-
 	}
 }

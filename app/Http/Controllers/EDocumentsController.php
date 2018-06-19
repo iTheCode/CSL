@@ -41,7 +41,7 @@ class EDocumentsController extends BaseController
 	public function get_last_document($serie, $type){
 		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $type)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
 		if(isset($pay_edocuments[0]))
-			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->("e.serie", $serie)->exists())
+			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->exists())
 				$pay_edocument = $this->get_last_document($serie,$type);
 			else
 				$pay_edocument = $pay_edocuments[0]->number+1;
