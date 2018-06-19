@@ -78,6 +78,21 @@ class ServicesController extends BaseController
 		$input = json_decode($input);
 		if(!Service::where('name', '=', $input->name)->exists() && (!Service::where('code', '=', $input->code)->exists() || $input->code == '99.99.99')){
 
+			if($input->code == '99.99.99'){
+				$find = Service::where('code', 'like', '99%')->orderBy('id', 'desc')->first();
+				if(isset($find)){
+					$explore = explode('.', $find->code);
+					if(($explore[2]+1) == 10){
+						$explore[1] = str_pad(($explore[1]+1), 2, "0", STR_PAD_LEFT);
+						$explore[2] = "01";
+					}else{
+						$explore[2] = str_pad(($explore[2]+1), 2, "0", STR_PAD_LEFT);
+					}
+					$input->code = $explore[0].".".$explore[1].".".$explore[2];
+				}else{
+					$input->code = "99.01.01";
+				}
+			}
 			$s = new Service();
 			$s->sub_category_service_id = 1;
 			$s->code = $input->code;
