@@ -304,6 +304,14 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
                 </td>
                 
             </tr>
+            @if(isset($input->anotation) && $input->anotation != "")
+            <tr>
+                <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
+                Anotación: {{ $input->anotation }}
+                </td>
+                
+            </tr>
+            @endif
         </table>
         
         <label style="width: 10em">--------------------------------------------------</label>

@@ -74,6 +74,27 @@ class ServicesController extends BaseController
 		return view('shop.addService', ['client' => $response, 'sub_coverage_types' => $sub_coverage_types, 'statuses' => $statuses, 'doctors' => $doctors, 'areas' => $areas, 'services' => $services, 'codes' => $codes, 'service_exented' => $service_exented, 'date' => $date]);
 	}
 
+	public function createService($input){
+		$input = json_decode($input);
+		if(!Service::where('name', '=', $input->name)->exists() && (!Service::where('code', '=', $input->code)->exists() || $input->code == '99.99.99')){
+
+			$s = new Service();
+			$s->sub_category_service_id = 1;
+			$s->code = $input->code;
+			$s->name = $input->name;
+			$s->sub_category_service_id = NULL;
+			$s->contable_code = 1;
+			$s->contable_name = $input->contable_name;
+			$s->clinic_area_id = $input->clinic_area_id;
+			$s->unitary = $input->unitary;
+			if($s->save()){
+				return json_encode(Array('s'=>$s, 'status' => 'success'));
+			}
+		}else{
+			return json_encode(Array('s' => 'El servicio ya existe, verificar.', 'status' => 'error'));
+		}
+	}
+
 	public function createManual()
 	{
 		if (Auth::check()) {
