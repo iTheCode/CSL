@@ -170,7 +170,7 @@
                                                                 <div class="col-md-2">
                                                                 <label class="col-md-2 control-label" for="name"> Factor</label>
                                                                 @if($client->insureds)
-                                                                    <input name="factor" type="text" class="form-control" value="1" disabled>
+                                                                    <input name="factor" type="text" class="form-control" value="{{ $client->insureds->insurance->factor->factor or 'Corregir Factor'}}" >
                                                                 @else
                                                                     <input name="factor" type="text" class="form-control" value="1" disabled>
                                                                 @endif
@@ -240,9 +240,10 @@
                                                                             <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                             <p><strong>Vista de Impresión: </strong> <select class="form-control" id="pay_edocument_view" name="pay_edocument_view><option value="">Seleccione la visa de Impresión</option><option value="1" selected>Ticketera</option><option value="2">Media Hoja</option></select></p>
                                                                             <p><strong>Mail :</strong><input id="mail" name="mail" type="text" class="form-control"> </p>
+                                                                            <p><strong>Anotación :</strong><input id="anotacion" name="anotacion" type="text" class="form-control"> </p>
                                                                     </div>
                                         <div class="hidden-print">
-                                            <div class="pull-right"><br><br><br><br><br><br><br><br>
+                                            <div class="pull-right">
                                                 <a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>
                                                 
                                             </div>  
@@ -319,11 +320,11 @@
             var subtotal = 0.00;
             var igv = 0.00;
             var total = 0.00;
-            var igv_option = true;
+            var igv_option = false;
             jQuery(document).ready(function($) {
                 
-            @if($client->insureds)
-                @if($client->insureds->coverage)
+            @if($client->coverage)
+                @if($client->coverage->cop_var != 0)
                     $('#cobertura-toggle').toggles({on: true});
                 @else
                     $('#cobertura-toggle').toggles({on: false});
@@ -332,7 +333,7 @@
                 $('#cobertura-toggle').toggles({on: false});
             @endif
 
-                $('#igv-option-toggle').toggles({on: true});
+                $('#igv-option-toggle').toggles({on: false});
                 $('#cobertura-toggle').on('toggle', function(e, active) {
                       if (active) {
                         console.log("Toggle On");
@@ -444,7 +445,7 @@
                         $("#add-item").slideUp();
                         $("#add").parent().slideUp().prev().remove();
 
-                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
+                        var values = { 'authorization_id' : {{ $client->id }}, 'discountp' : {{ $client->coverage->cop_var or '0'}}, 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),'payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val(), "Anotation": $("#anotacion").val()};
                         var items = {};
                         var a = 0;
                         $("#list-content tr").each(function(){

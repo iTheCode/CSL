@@ -46,17 +46,18 @@ class CentroController extends BaseController
         $input = str_replace(" ", "", $input);
         $lenght = strlen($input);
         if($lenght == 8){
-            $client = Patient::where('document_identity_code', $input)->get();
+            $client = Patient::where('document_identity_code', $input)->limit(1)->get();
             if(isset($client)){
+                $client = $client->first();
                 $return = Array(
                                 'full_name' => $client->name." ".$client->paternal." ".$client->maternal,
-                                'address' => $client->address,
+                                'address' => $client->direction,
                                 'document' => $input,
                                 'type' => '2'
                 );
             }else{
                 $reniec = new \Reniec\Reniec();
-                $person = $reniec->search($input);
+                $person = (object) $reniec->search($input);
                 if( $person->success != false ){
                     $return = Array(
                                     'full_name' => $person->result->name." ".$person->result->paternal." ".$person->result->maternal,
@@ -75,7 +76,7 @@ class CentroController extends BaseController
             }
         }elseif($lenght == 11){
             $sunat = new \Sunat\Sunat();
-            $empresa = $sunat->search($input);
+            $empresa = (object) $sunat->search($input,true);
             if( $empresa->success != false ){
                 $return = Array(
                                 'full_name' => $person->result->RazonSocial,
@@ -99,8 +100,7 @@ class CentroController extends BaseController
                             'type' => '4'
             );
         }
-        $result = json_encode($result);
-        return $result;
+        return json_encode($return);
     	
     }
     public function sendSMS($job, $data){

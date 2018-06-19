@@ -122,42 +122,49 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form">
-                                            <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="#" novalidate="novalidate">
+                                            <form class="cmxform form-horizontal tasi-form" id="createService" method="get" action="#" novalidate="novalidate">
                                                  <div class="form-group">
                                                     <label for="document_typ_id" class="control-label col-lg-2">Nombre:</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                        <input class="form-control" id="name" name="name" type="text">
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
                                                     <label for="motivo" class="control-label col-lg-2">Código:</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                        <input class="form-control" id="code" name="code" type="text" value="99.99.99">
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
                                                     <label for="motivo" class="control-label col-lg-2">Área Contable:</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                        <select class="form-control select2" id="service_contable_code" name="service_contable_code" prompt="Área contable">
+                                                          <option value="0" selected>Seleccione un Área Contable</option>
+                                                          <option value="1">HONORARIOS, PROCEDIMIENTOS MÉDICOS Y Q</option>
+                                                          <option value="2">PROCEDIMIENTOS ODONTOLOGICOS</option>
+                                                          <option value="3">HOTELERÍA SERVICIO CLINICO Y TOPICO</option>
+                                                          <option value="4">EXAMENES AUXILIARES DE LABORATORIO</option>
+                                                          <option value="5">DIAGNOSTICOS POR IMAGENES Y OTROS DE AYUDA</option>
+                                                          <option value="9">OTROS</option></select>
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
                                                     <label for="motivo" class="control-label col-lg-2">Área Clínica:</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="motivo" name="motivo" type="text">
+                                                        {{ Form::select('clinic_area_id', [null=>'Seleccione una Área Clínica'] + $areas, null, ['class' => 'select2 form-control']) }}
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
                                                     <label for="motivo" class="control-label col-lg-2">Precio Unitario:</label>
                                                     <div class="col-lg-10">
-                                                        <input class="form-control" id="motivo" name="motivo" type="text"><label><input type="checkbox" id="cbox1" name="igv" value="igv"> Incluye IGV</label>
+                                                        <input class="form-control" id="unitary" name="unitary" type="text"><label><input type="checkbox" id="igv_checkbox" name="igv_checkbox" value="igv"> Incluye IGV</label>
                                                     </div>
                                                 </div>
 
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn waves-effect waves-light btn-success">Crear</button>
+                                            <button id="submitService" type="button" class="btn waves-effect waves-light btn-success">Crear</button>
 
                                         </div>
 
@@ -176,7 +183,7 @@
                                             <div class="pull-right col-md-3 input-group m-t-4">
                                                                         <input type="text" id="document_identity_code" name="document_identity_code" class="form-control" placeholder="DNI / RUC">
                                                                         <span class="input-group-btn">
-                                                                        <button type="button" class="btn waves-effect waves-light btn-primary"><i class="md md-search"></i></button>
+                                                                        <button id="search-cedula" type="button" class="btn waves-effect waves-light btn-primary"><i class="md md-search"></i></button>
                                                                         </span>
                                             </div>
                                         </div>
@@ -184,7 +191,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 
-                                                <div class="pull-left m-t-30">
+                                                <div id="information-personal" class="pull-left m-t-30">
                                                     <address>
                                                     <p><strong>Documento: </strong> XXXXXXXXXXXX </p>
                                                     <p class="m-t-10"><strong>Cliente: </strong> Desconocido </p>
@@ -239,8 +246,8 @@
                                         </div>
                                         <div class="m-h-50"></div>
                                                                 <div class="pull-right">
-                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="md md-create"></i> Nuevo Producto</a>
-                                                                    <a id="add" href="#" class="btn btn-primary waves-effect waves-light"> <i class="md md-add-box"></i> Agregar</a>
+                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="md md-create"></i> Agregar Servicio</a>
+                                                                    <a id="add" href="#" class="btn btn-primary waves-effect waves-light"> <i class="md md-add-box"></i> Agregar Venta</a>
                                                                 </div>  
                                         <div class="m-h-50"></div>
                                         <div class="row">
@@ -287,7 +294,7 @@
                                                                             <p style="display: none;"><strong>DNI :</strong><input id="dni" name="dni" type="text" class="form-control"> </p>
                                                                     </div>
                                         <div class="hidden-print">
-                                            <div class="pull-right"><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                            <div class="pull-right">
                                                 <a id="print-button" href="#" class="btn btn-success waves-effect waves-light m-b-5"><i class="fa fa-print"></i> <span>Imprimir Voucher</span></a>
                                                 
                                             </div>  
@@ -367,8 +374,39 @@
             var igv_option = true;
             jQuery(document).ready(function($) {
                 
-            @if($client->insureds)
-                @if($client->insureds->coverage)
+                $("#submitService").click(function(){
+                    var name = $("#name").val();
+                    var code = $("#code").val();
+                    var contable_area = $("#service_contable_code option:selected").text();
+                    var clinic_area = $("select[name='clinic_area_id']").val();
+                    if ($('#igv_checkbox').is(":checked"))
+                    {
+                        var unitary = parseFloat($("#unitary").val()/1.18).toFixed(2);
+                    }else{
+                        var unitary = $("#unitary").val();
+                    }
+                    var values = {'name': name, 'code': code, 'contable_name': contable_area, 'clinic_area_id': clinic_area, 'unitary': unitary}; 
+                    var data = JSON.stringify(values);
+                    console.log(data);
+                    $.ajax(
+                              {
+                                  url: "{{ url('/caja/crear/servicio/') }}/"+data, 
+                                  method: "GET",
+                                   success: function(result)
+                                  {
+                                    data = $.parseJSON(result);
+                                    if(data.status ==  "success"){
+                                        $("select[name='code_id']").append($('<option>', {value: data.s.id, text: data.s.name }));
+                                    }else{
+                                        alert(data.s);
+                                    }
+                                  }
+                                });
+                });
+
+
+            @if($client->coverage)
+                @if($client->coverage->cop_var != 0)
                     $('#cobertura-toggle').toggles({on: true});
                 @else
                     $('#cobertura-toggle').toggles({on: false});
@@ -379,7 +417,25 @@
 
                 $('#igv-option-toggle').toggles({on: true});
 
-
+                $('#search-cedula').click(function(){
+                    var val = $('#document_identity_code').val();
+                    $.ajax({
+                                  url: "{{ url('/cedulaAPI/') }}/"+val, 
+                                  method: "GET",
+                                   success: function(result)
+                                  {
+                                    data = $.parseJSON(result);
+                                    $('#information-personal').html('<address><p><strong>Documento: </strong> '+data.document+' </p><p class="m-t-10"><strong>Cliente: </strong> '+data.full_name+' </p></address>');
+                                    $('#pay_edocument_type').val(data.type);
+                                    console.log(data.document.length);
+                                    if(data.document.length == 8){
+                                        $("#dni").val(data.document);
+                                    }else if(data.document.length == 11){
+                                        $("#ruc").val(data.document);
+                                    }
+                                  }
+                                });
+                });
 
 
                 $('#cobertura-toggle').on('toggle', function(e, active) {
@@ -450,19 +506,6 @@
 
                 });
                 $('select.select2').select2();
-                $('select[name="clinic_area_id"]').change(function(){
-                    var val = $(this).val();
-                    $.ajax(
-                              {
-                                  url: "{{ url('/ServiceAPI/') }}/"+val, 
-                                  method: "GET",
-                                   success: function(result)
-                                  {
-                                    $('select[name="code_id"]').html(result);
-                                    $('select[name="code_id"]').parent().find("a").find('span:first').text('Seleccione un servicio');
-                                  }
-                                });
-                });
                 $('select[name="code_id"]').change(function(){
 
                     var val = $(this).val();
@@ -485,7 +528,7 @@
                         $("#add-item").slideUp();
                         $("#add").parent().slideUp().prev().remove();
 
-                        var values = { 'authorization_id' : '105098', 'discountp' : '0', 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),' payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val()};
+                        var values = { 'authorization_id' : '105098', 'discountp' : '0', 'discountt' : discountt, 'importe' : importe, 'opgravada' : opgravada, 'opnogravada' : opnogravada, 'opexonerada' : opexonerada, 'subtotal' : subtotal , 'igv' : igv, 'total': total, 'is_coverage' : 0, 'payment_type' : $("#pay_type").val(), 'view_print': $("#pay_edocument_view").val(),' payment_document_type' : $("#pay_edocument_type").val(), 'DNI' : $("#dni").val(), 'RUC': $("#ruc").val(), 'Mail' : $("#mail").val(), "Anotation": $("#anotacion").val()};
                         var items = {};
                         var a = 0;
                         $("#list-content tr").each(function(){
@@ -495,7 +538,7 @@
                         values['items'] = items;
                         var data = JSON.stringify(values);
                         $.ajax({
-                            url:"{{ url('/pay_edocument/createManual/') }}/"+data,
+                            url:"{{ url('/pay_edocument/create/') }}/"+data,
                             method: "GET",
                             async:false,
                             success: function(result){

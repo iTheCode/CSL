@@ -38,6 +38,19 @@ use Illuminate\Database\Eloquent\Model as Model;
 class EDocumentsController extends BaseController
 {
 	private $json;
+	public function get_last_document($serie, $type){
+		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $type)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
+		if(isset($pay_edocuments[0]))
+			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->("e.serie", $serie)->exists())
+				$pay_edocument = $this->get_last_document($serie,$type);
+			else
+				$pay_edocument = $pay_edocuments[0]->number+1;
+		else
+			$pay_edocument = 1;
+
+		return $pay_edocument;
+
+	}
 	public function generate_pay_edocument($json){
 		if (Auth::check()) {
 		    $user = Auth::user();
@@ -58,7 +71,7 @@ class EDocumentsController extends BaseController
 				break;
 			case '2':
 				$json->payment_document_type = "01";
-				$data = app('App\Http\Controllers\CentroController')->cedulaAPI(str_replace(" ", "", $json->RUC));
+				$data = json_decode(app('App\Http\Controllers\CentroController')->cedulaAPI(str_replace(" ", "", $json->RUC)));
 				$json->rznSocialUsuario = $data->full_name;
 				$json->numDocUsuario = $data->document;
 				$json->direccion = $data->address;
@@ -66,7 +79,7 @@ class EDocumentsController extends BaseController
 				break;
 			case '3':
 				$json->payment_document_type = "03";
-				$data = app('App\Http\Controllers\CentroController')->cedulaAPI(str_replace(" ", "", $json->DNI));
+				$data = json_decode(app('App\Http\Controllers\CentroController')->cedulaAPI(str_replace(" ", "", $json->DNI)));
 				$json->rznSocialUsuario = $data->full_name;
 				$json->numDocUsuario = $data->document;
 				$json->direccion = "";
@@ -90,10 +103,8 @@ class EDocumentsController extends BaseController
 		$pay_e_document_type = PayDocumentType::where('code',$json->payment_document_type)->get();
 		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $pay_e_document_type[0]->id)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $user->serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
 		$pay_edocument = new PayEDocument();
-		if(isset($pay_edocuments[0]))
-			$pay_edocument->code = $pay_edocuments[0]->number+1;
-		else
-			$pay_edocument->code = 1;
+		
+		$pay_edocument->code = $this->get_last_document($pay_e_document_type[0]->id, $user->serie);
 
 		$pay_edocument->pay_document_type_id = $pay_e_document_type[0]->id;
 		$pay_edocument->authorization_id = $json->authorization_id;
@@ -121,6 +132,8 @@ class EDocumentsController extends BaseController
 
 
 		$pay_edocument->total_igv = $json->igv;
+		if(isset($json->anotation))
+			$pay_edocument->anotation = $json->anotation;
 		$pay_edocument->total_amount = $json->total;
 		//$pay_edocument->clinic_code = $json->
 		$pay_edocument->is_closed = 1;
