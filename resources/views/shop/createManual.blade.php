@@ -114,7 +114,7 @@
                                         <h4>Invoice</h4>
                                     </div> -->
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="modalNewService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -193,7 +193,7 @@
                                                 
                                                 <div id="information-personal" class="pull-left m-t-30">
                                                     <address>
-                                                    <p><strong>Documento: </strong> XXXXXXXXXXXX </p>
+                                                    <p><strong>Documento: </strong> Desconocido </p>
                                                     <p class="m-t-10"><strong>Cliente: </strong> Desconocido </p>
                                                       </address>
                                                 </div>
@@ -253,7 +253,7 @@
                                         </div>
                                         <div class="m-h-50"></div>
                                                                 <div class="pull-right">
-                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#exampleModalCenter"><i class="md md-create"></i> Agregar Servicio</a>
+                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewService"><i class="md md-create"></i> Agregar Servicio</a>
                                                                     <a id="add" href="#" class="btn btn-primary waves-effect waves-light"> <i class="md md-add-box"></i> Agregar Venta</a>
                                                                 </div>  
                                         <div class="m-h-50"></div>
@@ -403,10 +403,11 @@
                                   {
                                     data = $.parseJSON(result);
                                     if(data.status ==  "success"){
-                                        $("select[name='code_id']").append($('<option>', {value: data.s.id, text: data.s.name }));
+                                        $("select[name='code_id']").append($('<option>', {value: data.s.id, text: data.s.name +" | " + data.s.code }));
                                     }else{
                                         alert(data.s);
                                     }
+                                    $("#modalNewService").modal('toggle');
                                   }
                                 });
                 });
