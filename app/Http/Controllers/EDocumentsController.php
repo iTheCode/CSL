@@ -118,6 +118,7 @@ class EDocumentsController extends BaseController
 		$pay_edocument->numDocUsuario = $json->numDocUsuario;
 		$pay_edocument->rznSocialUsuario = $json->rznSocialUsuario;
 		$pay_edocument->direccionUsuario = $json->direccion;
+		$pay_edocument->view_print = $json->view_print;
 
 		//$pay_edocument->total_cop_fijo = $json->;
 		//$pay_edocument->total_cop_var = ;

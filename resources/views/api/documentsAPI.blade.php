@@ -67,7 +67,7 @@
                                                                                         <td>{{ $p->authorization->code or '' }}</td>
                                                                                         <td>{{ $p->authorization->patient->name or '' }} {{ $p->authorization->patient->paternal or '' }} {{ $p->authorization->patient->maternal or '' }}</td> 
                                                                                     @endif
-                                                                                    <td><a href="{{ url('/pay_edocument/view/'.$p->pay_document_type->id.'/'.$p->id.'/print.pdf') }}" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver Documento">{{ $p->serie }}-{{ Helpers::number_format_cond($p->code,7)}}</a></td>
+                                                                                    <td><a href="{{ url('/pay_edocument/view/'.$p->view_print.'/'.$p->id.'/print.pdf') }}" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver Documento">{{ $p->serie }}-{{ Helpers::number_format_cond($p->code,7)}}</a></td>
                                                                                     <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                     <td>{{ $p->emission_date or '' }}</td>
                                                                                     <td><span class="label label-success">{{ Helpers::sunat_status($p->sunat_status) }}</span></td>
