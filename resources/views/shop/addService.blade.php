@@ -425,7 +425,6 @@
                 });
                 $('select[name="code_id"]').change(function(){
 
-                    var val = ;
                     var data = JSON.stringify({'id': {{ $client->id }}, 'service_id': $(this).val()});
                     $.ajax(
                               {
