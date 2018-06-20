@@ -61,14 +61,14 @@ class ServicesController extends BaseController
 			$codes = Helpers::get_codes(Service::all());
 			$service_exented = Helpers::get_list(ServiceExented::all());
 			$date = date("F j, Y, g:i a");
-			if(isset($response->coverage)){
+			/*if(isset($response->coverage)){
 				if(isset($response->insureds) && count($response->insuredservices) == 0 && $response->coverage->cop_var != "100"){
 
 					$response->coverage->cop_var = "0";
 					$response->insureds->insurance->factor->factor = "1";
 
 				}
-			}
+			}*/
 
 			//if(is_null($response->employee_id)) { $response->employee_id = $user->id; $response->save();}
 			//return $sub_coverage_types;
@@ -163,9 +163,9 @@ class ServicesController extends BaseController
 		$a = Authorization::find($input->id);
 
 		if($a->insureds){
-			$factor = Factor::where('insurance_id', '=', $client->insureds->insurance->id)->where('clinic_area_id', '=', $service->clinic_area_id);
-			if(isset($factor))
-				$factor = $factor->factor;
+			$factor = Factor::where('insurance_id', '=', $a->insureds->insurance->id)->where('clinic_area_id', '=', $service->clinic_area_id)->get();
+			if(isset($factor[0]))
+				$factor = $factor[0]->factor;
 			else
 				$factor = 1;
 		}

@@ -187,7 +187,7 @@
                                                                 <div class="col-md-2">
                                                                     <label class="col-md-2 control-label" for="name"> Cobertura</label>
                                                                     <div class="col-lg-3 control-label" style="padding-top: 29px;">
-                                                                        <div id="discountp" style="display: none;">0</div>
+                                                                        <div id="discountp" style="display: none;">{{ $client->coverage->cop_var or '0'}}</div>
                                                                         <div id="cobertura-toggle" class="toggle toggle-success"></div>
                                                                     </div>
                                                                 </div>
@@ -348,10 +348,10 @@
                 $('#igv-option-toggle').on('toggle', function(e, active) {
                       if (active) {
                         igv_option = true;
-                        $('input[name="factor"]').val('1').attr("disabled", true);
+                        $('input[name="factor"]').attr("disabled", true);
                       } else {
                         igv_option = false;
-                        $('input[name="factor"]').val('{{ $client->insureds->insurance->factor->factor or 'Corregir Factor'}}').attr("disabled", false);
+                        $('input[name="factor"]').attr("disabled", false);
                       }
                       console.log($("#discountp").text());
                 });
@@ -371,7 +371,11 @@
                     var service_id = $('select[name="code_id"] option:selected').val();
                     var clinic_area_id = $('select[name="clinic_area_id"]').val();
                     var arr = service.split('|');
-                    var factor = parseFloat($('input[name="factor"]').val());
+                    if(igv_option == true){
+                        var factor = 1;
+                    }else{
+                        var factor = parseFloat($('input[name="factor"]').val());
+                    }
                     if(factor == 1 || igv_option == true){
                         var unitario = parseFloat($('input[name="unitary"]').val()/1.18);
                     }else{
@@ -432,8 +436,10 @@
                                   method: "GET",
                                    success: function(result)
                                   {
+                                    data = $.parseJSON(result);
                                     $('input[name="quantity"]').val(1);
-                                    $('input[name="unitary"]').val(parseFloat(result.unitary*1).toFixed(2));
+                                    $('input[name="unitary"]').val(parseFloat(data.service.unitary).toFixed(2));
+                                    $('input[name="factor"]').val(data.factor);
                                   }
                                 });
                 });
