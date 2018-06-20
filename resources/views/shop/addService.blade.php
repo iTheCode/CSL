@@ -404,7 +404,7 @@
                     total = parseFloat(parseFloat(subtotal)+parseFloat(igv)).toFixed(2);
                     $("#totales").html('<p class="text-right"><b>Descuento ({{ $client->coverage->cop_var or "0"}}%) :</b> '+discountt+'</p><p class="text-right"><b>Op. Gravada:</b> '+opgravada+'</p><p class="text-right"><b>Op. No Gravada:</b> '+opnogravada+'</p><p class="text-right"><b>Op. Exonerada:</b> '+opexonerada+'</p><p class="text-right"><b>Subtotal:</b> '+subtotal+'</p><p class="text-right"><b>IGV (18%) :</b> '+igv+'</p><hr><h3 class="text-right">S./ '+total+'</h3>');
 
-                    $("#list-content").append("<tr id='"+arr[1].replace(/\s/g,'')+"' service_id='"+service_id+"'' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' clinic_area='"+clinic_area_id+"' discountp='"+discountp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5 delete-button'>-</a></td></tr>");
+                    $("#list-content").append("<tr id='"+arr[1].replace(/\s/g,'')+"' service_id='"+service_id+"'' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' doctor_id='"+doctor_id+"' clinic_area='"+clinic_area_id+"' discountp='"+discountp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5 delete-button'>-</a></td></tr>");
 
                     return false;
 
@@ -425,10 +425,11 @@
                 });
                 $('select[name="code_id"]').change(function(){
 
-                    var val = $(this).val();
+                    var val = ;
+                    var data = JSON.stringify({'id': {{ $client->id }}, 'service_id': $(this).val()});
                     $.ajax(
                               {
-                                  url: "{{ url('/ServiceFindAPI/') }}/"+val, 
+                                  url: "{{ url('/ServiceFindAPI/') }}/"+data, 
                                   method: "GET",
                                    success: function(result)
                                   {
@@ -449,7 +450,7 @@
                         var items = {};
                         var a = 0;
                         $("#list-content tr").each(function(){
-                            items[a] =  {'service_id': $(this).attr('service_id'), 'exented' : $(this).attr('exented'), 'quantity':$(this).attr('quantity'), 'pu' : $(this).attr('pu'), 'imp': $(this).attr('imp'), 'clinic_area_id' : $(this).attr('clinic_area'), 'discountp': $(this).attr('discountp')};
+                            items[a] =  {'service_id': $(this).attr('service_id'), 'exented' : $(this).attr('exented'), 'quantity':$(this).attr('quantity'), 'pu' : $(this).attr('pu'), 'imp': $(this).attr('imp'), 'doctor_id': $(this).attr('doctor_id'), 'clinic_area_id' : $(this).attr('clinic_area'), 'discountp': $(this).attr('discountp')};
                             a++;
                         });
                         values['items'] = items;

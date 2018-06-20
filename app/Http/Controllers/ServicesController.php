@@ -18,6 +18,7 @@ use \App\Models\ServiceExented;
 use \App\Models\CoverageType;
 use \App\Models\PayDocumentType;
 use \App\Models\PayEDocument;
+use \App\Models\Factor;
 use \App\Helpers;	
 use View;
 use Redirect;
@@ -157,8 +158,20 @@ class ServicesController extends BaseController
 		return view('api.ServiceAPI', ['services' => $services]);
 	}
 	public function ServiceAPI($input){
-		$service = Service::find($input);
-		return $service;
+		$input = json_decode($input);
+		$service = Service::find($input->service_id);
+		$a = Authorization::find($input->id);
+
+		if($a->insureds){
+			$factor = Factor::where('insurance_id', '=', $client->insureds->insurance->id)->where('clinic_area_id', '=', $service->clinic_area_id);
+			if(isset($factor))
+				$factor = $factor->factor;
+			else
+				$factor = 1;
+		}
+		else
+			$factor = 1;
+		return json_encode(Array('factor' => $factor, 'service' => $service));
 	}
 
 	public function addServicePay(Request $request) {
