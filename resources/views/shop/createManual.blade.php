@@ -516,10 +516,10 @@
                 $('select.select2').select2();
                 $('select[name="code_id"]').change(function(){
 
-                    var val = $(this).val();
+                    var data = JSON.stringify({'id': '105098', 'service_id': $(this).val()});
                     $.ajax(
                               {
-                                  url: "{{ url('/ServiceFindAPI/') }}/"+val, 
+                                  url: "{{ url('/ServiceFindAPI/') }}/"+data, 
                                   method: "GET",
                                    success: function(result)
                                   {
