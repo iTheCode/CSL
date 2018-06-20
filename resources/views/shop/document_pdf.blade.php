@@ -276,7 +276,7 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             <tr>
                 <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
 
-                @if(isset($input->rznSocialUsuario))
+                @if(isset($input->rznSocialUsuario) && $input->rznSocialUsuario != "")
                     Cliente: {{ $input->rznSocialUsuario }}    
                 @else
                     Cliente: Sin Documento
@@ -295,8 +295,8 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
                 
             </tr>
             <tr>
-                <td COLSPAN=2 style="width:8em;font-size:0.7em;" >ç
-                @if(isset($input->direccionUsuario))
+                <td COLSPAN=2 style="width:8em;font-size:0.7em;" >
+                @if(isset($input->direccionUsuario) && $input->direccionUsuario != "")
                     Dirección: {{ $input->direccionUsuario }}    
                 @else
                     Dirección: Sin Documento
