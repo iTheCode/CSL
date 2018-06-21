@@ -45,7 +45,7 @@
                                                                                     <td>{{ $p->authorization->code or '' }}</td>
                                                                                     <td>{{ $p->authorization->patient->name or '' }} {{ $p->authorization->patient->paternal or '' }} {{ $p->authorization->patient->maternal or '' }}</td>
                                                                                     <td><a href="{{ url('/pay_edocument/charge_document/'.$p->pay_document_type->id.'/'.$p->id) }}">{{ $p->code or '' }}</a></td>
-                                                                                    <td>{{ $p->emission_date or '' }}</td>
+                                                                                    <td>{{ $p->created_at or '' }}</td>
                                                                                     <td>{{ $p->pay_document_type->name or '' }}</td>
                                                                                     <td><span class="label label-success">{{ Helpers::sunat_status($p->sunat_status) }}</span></td>
                                                                                     <td>{{ $p->employee->username or 'Sin asignar'}}</td>
