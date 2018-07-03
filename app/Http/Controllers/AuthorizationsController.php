@@ -276,7 +276,7 @@ class AuthorizationsController extends BaseController
 		}
 
 		$coverages = Helpers::get_list(CoverageType::all());
-		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
+		$employees = Helpers::get_employee(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
 		$medics = Helpers::get_doctors(Doctor::all());
 		return view('admision.reporte', ['coverages' => $coverages, 'employees' => $employees, 'medics' => $medics]);
 	}
