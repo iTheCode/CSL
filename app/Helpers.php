@@ -365,6 +365,12 @@ class Helpers {
 			}
 			return $array;
 		}
+		public static function get_employee($list){
+			foreach($list as $item){
+				$array[$item->id] = $item->username." - ".$item->name.", ".$item->paternal;
+			}
+			return $array;
+		}
 		public static function get_codes($list){
 			foreach($list as $item){
 				$array[$item->id] = $item->name." | ".$item->code;

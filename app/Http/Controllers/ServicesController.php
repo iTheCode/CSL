@@ -195,21 +195,13 @@ class ServicesController extends BaseController
 		    $position = $user->area->name;
 		}
 		$coverages = Helpers::get_list(CoverageType::all());
-		$employees = Helpers::get_list(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
+		$employees = Helpers::get_employee(Employee::where('area_id', 1)->orWhere('area_id', 2)->get());
 		$type_documents = Helpers::get_list(PayDocumentType::all());
 		return view('shop.reporte', ['coverages' => $coverages, 'employees' => $employees, 'type_documents' => $type_documents]);
 	}
 	public function export(Request $request){
-		$edocuments = PayEDocument::select('authorizations.code as Codigo', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
+		$edocuments = PayEDocument::select('employees.username as Adminisionista', 'pay_e_documents.created_at as Fecha', 'pay_e_documents.pay_document_type_id as TD', 'pay_e_documents.serie as Serie', 'pay_e_documents.code as Numero', 'pay_e_documents.numDocUsuario as Doc', 'pay_e_documents.rznSocialUsuario as Nombres', 'pay_e_documents.opgravada as Gravada', 'pay_e_documents.opnogravada as NoGravada', 'pay_e_documents.opexonerada as Exonerada', 'pay_e_documents.total_igv as IGV', 'pay_e_documents.total_amount as Total')->join('employees', 'employees.id', '=', 'pay_e_documents.employee_id')->orderby('pay_e_documents.id', 'desc');
 
-		#$edocuments = PayEDocument::select('employees.username as Adminisionista', 'pay_e_documents.date as Fecha', 'authorizations.intern_code as Control' , DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal) AS Nombres'), 'authorizations.date as Fecha', 'doctors.complet_name as Medico', 'insurances.name as Aseguradora',DB::raw('IFNULL(insurances.name, "Particular") as Aseguradora'),  'employees.username as Adminisionista', 'patients.phone as Telefono', 'authorizations.first_diagnostic')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->join('doctors', 'doctors.id', '=', 'authorizations.doctor_id')->leftJoin('insureds', 'insureds.patient_id', '=', 'patients.id')->leftJoin('insurances', 'insurances.id', '=', 'insureds.insurance_id')->join('employees', 'employees.id', '=', 'authorizations.employee_id')->orderby('authorizations.intern_code', 'desc');
-
-
-		$edocuments->when($request::get('coverage_type') != "", function ($query) use ($request){
-	        return $query->whereHas('authorization.coverage.sub_coverage_type.coverage_type', function($q) use ($request){
-			    $q->where('coverage_types.id', '=', $request::get('coverage_type'));
-			});
-	    });
 		$edocuments->when($request::get('date_init') != "", function ($query) use ($request){
 	        return $query->whereDate('date', '>=', $request::get('date_init'));
 	    });
@@ -225,14 +217,17 @@ class ServicesController extends BaseController
 	    });
 
 	    $data = json_decode(json_encode($edocuments->get()), true);
-	    
+
+	    if (ob_get_contents()) ob_end_clean();
+		ob_start();
+
 		\Excel::create('documentos_'.date("Y-m-d H:m:s"), function($excel) use ($data){
 		    $excel->sheet('Documentos Electronicos', function($sheet) use ($data) {
 		       $sheet->fromArray($data, null, 'A1', true);
 
 		    });
 
-		})->export('xls');
+		})->export('csv');
 
 	}
 }

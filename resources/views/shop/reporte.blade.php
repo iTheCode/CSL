@@ -613,10 +613,6 @@
                                                 <hr>
                                                 <form id="generate">
                                                 <div>
-                                                    Cobertura
-                                                    <div class="input-group col-md-12">
-                                                        {{ Form::select('coverage_type', [null=>'Seleccione una cobertura'] + $coverages , null, ['class' => 'select2 form-control']) }}
-                                                    </div><br><br>
                                                     Fecha de Inicio
                                                     <div class="input-group col-md-12">
                                                         <input type="text" name="date_init" class="form-control datepicker" placeholder="yyyy-mm-dd">
@@ -629,11 +625,11 @@
                                                     </div><br><br>
                                                     Tipo de Documento
                                                     <div class="input-group col-md-12">
-                                                        <select name="opcion" class="form-control">
+                                                        <select name="pay_document_type_id" class="form-control">
+                                                            <option>Seleccione un Tipo de Documento</option>
                                                             <option value="1">Facturas Electrónicas</option>
                                                             <option value="2">Boletas Electrónicas</option>
                                                         </select>
-                                                        <!--{{ Form::select('pay_document_type_id', [null=>'Seleccione un Tipo de Documento'] + $type_documents , null, ['class' => 'select2 form-control']) }}-->
                                                     </div><br><br>
                                                     Admisionista
                                                     <div class="input-group col-md-12">
