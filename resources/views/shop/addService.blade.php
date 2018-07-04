@@ -155,6 +155,10 @@
                                                                 {{ Form::select('code_id', [null=>'Seleccione un servicio'] + $codes, null, ['class' => 'select2 form-control']) }}
                                                             </div>
 
+                                                            <div class="col-md-6" style="display:none;">
+                                                                <label class="col-md-8 control-label" for="name"> Área Clínica *</label>
+                                                                {{ Form::select('clinic_area_id', [null=>'Seleccione una Área Clínica'] + $areas, null, ['class' => 'form-control']) }}
+                                                            </div>
                                                                 <div class="col-md-2">
                                                                     <label class="col-md-2 control-label" for="name"> IGV</label>
                                                                     <div class="col-lg-3 control-label" style="padding-top: 29px;">
@@ -353,7 +357,6 @@
                         igv_option = false;
                         $('input[name="factor"]').attr("disabled", false);
                       }
-                      console.log($("#discountp").text());
                 });
                 $("#pay_edocument_type").change(function(){
                     var selected = $(this).val();
@@ -373,12 +376,9 @@
                     var arr = service.split('|');
                     if(igv_option == true){
                         var factor = 1;
-                    }else{
-                        var factor = parseFloat($('input[name="factor"]').val());
-                    }
-                    if(factor == 1 || igv_option == true){
                         var unitario = parseFloat($('input[name="unitary"]').val()/1.18);
                     }else{
+                        var factor = parseFloat($('input[name="factor"]').val());
                         var unitario = parseFloat($('input[name="unitary"]').val());
                     }
                     
@@ -408,7 +408,7 @@
                     total = parseFloat(parseFloat(subtotal)+parseFloat(igv)).toFixed(2);
                     $("#totales").html('<p class="text-right"><b>Descuento ({{ $client->coverage->cop_var or "0"}}%) :</b> '+discountt+'</p><p class="text-right"><b>Op. Gravada:</b> '+opgravada+'</p><p class="text-right"><b>Op. No Gravada:</b> '+opnogravada+'</p><p class="text-right"><b>Op. Exonerada:</b> '+opexonerada+'</p><p class="text-right"><b>Subtotal:</b> '+subtotal+'</p><p class="text-right"><b>IGV (18%) :</b> '+igv+'</p><hr><h3 class="text-right">S./ '+total+'</h3>');
 
-                    $("#list-content").append("<tr id='"+arr[1].replace(/\s/g,'')+"' service_id='"+service_id+"'' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' doctor_id='"+doctor_id+"' clinic_area='"+clinic_area_id+"' discountp='"+discountp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5 delete-button'>-</a></td></tr>");
+                    $("#list-content").append("<tr id='"+arr[1].replace(/\s/g,'')+"' service_id='"+service_id+"' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' doctor_id='"+doctor_id+"' clinic_area='"+clinic_area_id+"' discountp='"+discountp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5 delete-button'>-</a></td></tr>");
 
                     return false;
 
@@ -438,8 +438,13 @@
                                   {
                                     data = $.parseJSON(result);
                                     $('input[name="quantity"]').val(1);
-                                    $('input[name="unitary"]').val(parseFloat(data.service.unitary).toFixed(2));
+                                    if(data.service.unitary != "" || data.service.unitary != null){
+                                        $('input[name="unitary"]').val('0');
+                                    }else{
+                                        $('input[name="unitary"]').val(parseFloat(data.service.unitary).toFixed(2));
+                                    }
                                     $('input[name="factor"]').val(data.factor);
+                                    $('select[name="clinic_area_id"]').val(data.service.clinic_area_id);
                                   }
                                 });
                 });
