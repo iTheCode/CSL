@@ -65,7 +65,11 @@ class EDocumentsController extends BaseController
 				$json->payment_document_type = "03";
 				$data = Authorization::find($json->authorization_id);
 				if(str_replace(" años","",Helpers::get_age($data->patient->birthday)) < 18){
-					$json->rznSocialUsuario = $data->insureds->hold_name." ".$data->insureds->hold_paternal." ".$data->insureds->hold_maternal;
+					if(isset($data->insureds)){
+						$json->rznSocialUsuario = $data->insureds->hold_name." ".$data->insureds->hold_paternal." ".$data->insureds->hold_maternal;
+					}else{
+						$json->rznSocialUsuario = "";
+					}
 					$json->numDocUsuario = "0";
 					$json->direccion = "";
 					$json->local_payment_document_type = "00";
