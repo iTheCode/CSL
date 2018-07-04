@@ -151,7 +151,7 @@
                                                  <div class="form-group">
                                                     <label for="motivo" class="control-label col-lg-2">Área Clínica:</label>
                                                     <div class="col-lg-10">
-                                                        {{ Form::select('clinic_area_id', [null=>'Seleccione una Área Clínica'] + $areas, null, ['class' => 'select2 form-control']) }}
+                                                        {{ Form::select('new_clinic_area_id', [null=>'Seleccione una Área Clínica'] + $areas, null, ['class' => 'select2 form-control']) }}
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
@@ -212,6 +212,11 @@
                                                                 {{ Form::select('code_id', [null=>'Seleccione un servicio'] + $codes, null, ['class' => 'select2 form-control']) }}
                                                             </div>
 
+
+                                                            <div class="col-md-6" style="display:none;">
+                                                                <label class="col-md-8 control-label" for="name"> Área Clínica *</label>
+                                                                {{ Form::select('clinic_area_id', [null=>'Seleccione una Área Clínica'] + $areas, null, ['class' => 'form-control']) }}
+                                                            </div>
                                                             <div class="col-md-4">
                                                                 <label class="col-md-2 control-label" for="name"> Exento</label>
                                                                 {{ Form::select('service_exented_id', $service_exented, null, ['class' => 'select2 form-control']) }}
@@ -385,7 +390,7 @@
                     var name = $("#name").val();
                     var code = $("#code").val();
                     var contable_area = $("#service_contable_code option:selected").text();
-                    var clinic_area = $("select[name='clinic_area_id']").val();
+                    var clinic_area = $("select[name='new_clinic_area_id']").val();
                     if ($('#igv_checkbox').is(":checked"))
                     {
                         var unitary = parseFloat($("#unitary").val()/1.18).toFixed(2);
@@ -448,13 +453,10 @@
 
                 $('#cobertura-toggle').on('toggle', function(e, active) {
                       if (active) {
-                        console.log("Toggle On");
                         $("#discountp").text("0");
                       } else {
-                        console.log("Toggle Off");
                         $("#discountp").text(0);
                       }
-                      console.log($("#discountp").text());
                 });
 
                 $('#igv-option-toggle').on('toggle', function(e, active) {
@@ -465,9 +467,9 @@
                         igv_option = false;
                         $('input[name="factor"]').val('1').attr("disabled", true);
                       }
-                      console.log($("#discountp").text());
                 });
                 $("#add").click(function(){
+                    console.log(igv_option);
                     var discountp = $("#discountp").text();
                     var doctor = $('select[name="doctor_id"] option:selected').text();
                     var doctor_id = $('select[name="doctor_id"] option:selected').val();
@@ -508,7 +510,7 @@
                     total = parseFloat(parseFloat(subtotal)+parseFloat(igv)).toFixed(2);
                     $("#totales").html('<p class="text-right"><b>Descuento ({{ $client->coverage->cop_var or "0"}}%) :</b> '+discountt+'</p><p class="text-right"><b>Op. Gravada:</b> '+opgravada+'</p><p class="text-right"><b>Op. No Gravada:</b> '+opnogravada+'</p><p class="text-right"><b>Op. Exonerada:</b> '+opexonerada+'</p><p class="text-right"><b>Subtotal:</b> '+subtotal+'</p><p class="text-right"><b>IGV (18%) :</b> '+igv+'</p><hr><h3 class="text-right">S./ '+total+'</h3>');
 
-                    $("#list-content").append("<tr id='"+arr[1].replace(/\s/g,'')+"' service_id='"+service_id+"'' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' doctor_id='"+doctor_id+"' clinic_area='"+clinic_area_id+"' discountp='"+discountp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5 delete-button'>-</a></td></tr>");
+                    $("#list-content").append("<tr id='"+arr[1].replace(/\s/g,'')+"' service_id='"+service_id+"' exented='"+exonerado+"' quantity='"+cantidad+"' pu='"+pu+"' imp='"+imp+"' doctor_id='"+doctor_id+"' clinic_area='"+clinic_area_id+"' discountp='"+discountp+"'><td>"+arr[1]+"</td><td>"+arr[0].substr(0, 45)+" ("+doctor.substr(0, 40)+")</td><td>"+cantidad+"</td><td>"+pu+"</td><td>"+imp+"</td><td><a val='"+arr[1]+"' onclick='deleteb(this)' class='btn "+btn+" btn-custom waves-effect waves-light m-b-5 delete-button'>-</a></td></tr>");
 
                     return false;
 
@@ -523,7 +525,9 @@
                                   method: "GET",
                                    success: function(result)
                                   {
+                                    data = $.parseJSON(result);
                                     $('input[name="quantity"]').val(1);
+                                    $('select[name="clinic_area_id"]').val(data.service.clinic_area_id);
                                     //$('input[name="unitary"]').val(parseFloat(result.unitary*1).toFixed(2));
                                   }
                                 });

@@ -99,7 +99,6 @@
             <!-- Start right Content here -->
             <!-- ============================================================== -->                      
             <div class="content-page">
-
                                         <div id="edit-patient" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
                                             <div class="modal-dialog"> 
                                                 <div class="modal-content"> 
@@ -294,21 +293,183 @@
                                                 </div> 
                                             </div>
                                         </div><!-- /.modal -->
+                                        <div id="print-hc" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
+                                            <div class="modal-dialog modal-lg"> 
+                                                <div class="modal-content"> 
+                                                    <div class="modal-header"> 
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                                                        <h4 class="modal-title">Datos de Paciente</h4> 
+                                                    </div> 
+                                                    <div class="modal-body"> 
+                                                        <table>
+                                                            <tbody><tr>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                                <td width="10%">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="5">
+                                                                    <img alt="Logo" height="70" src="/assets/images/logo.png" width="400">
+                                                                </td>
+                                                                <td colspan="2"></td>
+                                                                <td style="font-size:10px" colspan="5">
+                                                                    Servicios de: Emergencia, Ambulatorio, Hospitalización, Centro Quirúrgico, Salud Ocupacional y Ambulancia.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="10px" colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2"></td>
+                                                                <td colspan="4" style="font-size:30px">
+                                                                    HISTORIA CLÍNICA
+                                                                </td>
+                                                                <td colspan="4">
+                                                                    <input class="form-control" id="clinic_history_code" name="clinic_history_code" type="text" value="66783">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td colspan="3"><strong>APELLIDOS Y NOMBRES</strong></td>
+                                                                <td colspan="9"><input class="form-control" id="name" name="name" type="text" value="ROJAS CARBAJO AINARA FERNANDA"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="1px" colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td><strong>F. Nacimiento</strong></td>
+                                                                <td colspan="2"><input class="form-control" id="" name="" type="text" value="21-03-2015"></td>
+                                                                <td align="center"><strong>Edad : </strong></td>        
+                                                                <td colspan="2"><input class="form-control" id="age" name="age" type="text" value="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td><strong>DNI</strong></td>
+                                                                <td colspan="2">
+                                                                    <form accept-charset="UTF-8" action="/actualizar_dni" data-remote="true" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+                                                                        <input id="patient_id" name="patient_id" type="hidden" value="93062">
+                                                                        <input class="form-control" id="document_identity_code" name="document_identity_code" type="text" value="79028455">
+                                                        </form>     </td>
+                                                                <td align="center"><strong>Teléfono</strong></td>
+                                                                <td colspan="2">
+                                                                    <form accept-charset="UTF-8" action="/actualizar_telefono" data-remote="true" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+                                                                    <input id="patient_id" name="patient_id" type="hidden" value="93062">
+                                                                        <input class="form-control" id="phone" name="phone" type="text" value="997404737">
+                                                        </form>     </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>   
+                                                            <tr style="font-size:15px">
+                                                                <td><strong>Direccion</strong></td>
+                                                                <td colspan="11">
+                                                                    <form accept-charset="UTF-8" action="/actualizar_direccion" data-remote="true" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+                                                                    <input id="patient_id" name="patient_id" type="hidden" value="93062">
+                                                                    <input class="form-control" id="direction" name="direction" type="text" value="SANTA ROSA DE SAN JOAQUIN VIEJO -ICA">
+                                                        </form>     </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td><strong>Convenio</strong></td>
+                                                                <td colspan="5"><input class="form-control" id="" name="" type="text"></td>
+                                                                <td><strong>Particular</strong></td>
+                                                                <td><input class="form-control" id="" name="" type="text" value="X"></td>
+                                                                
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td><strong>Otros(Especificar)</strong></td>
+                                                                <td colspan="12">
+                                                                    <form accept-charset="UTF-8" action="/actualizar_otros" data-remote="true" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+                                                                        <input id="patient_id" name="patient_id" type="hidden" value="93062">
+                                                                        <textarea class="form-control" cols="20" id="other" name="other" rows="2"></textarea> 
+                                                        </form>     </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td colspan="12">
+                                                                    @if(str_replace(" años","",Helpers::get_age($patient->birthday)) < 18)
+                                                                    <p>
+                                                                        De conformidad a lo establecido en la Ley 29733, Ley de Protección de Datos Personales, yo CARBAJO QUIJANDRIA ROSA AZUCENA, con DNI° 70258872, Autorizo a la Clínica Señor de Luren de Ica S.A.C, al registro, tratamiento y transferencia de los datos recogidos de mi menor hijo durante los procesos de atención de salud. Los cuales pasará a formar parte del banco de datos personas – Historia Clínica – bajo la responsabilidad de la Clínica Señor de Luren de Ica S.A.C, los que registran con la finalidad de recolectar información necesaria para la correcta atención y control de salud. Conozco que puedo ejercer, de acuerdo a la legislación vigente, los derechos de información, acceso, actualización, inclusión, rectificación y oposición sobre sus datos personales, enviando una comunicación escrita al departamento de Administración de la Clínica Señor de Luren de Ica S.A.C
+                                                                    </p>
+                                                                    @else
+                                                                    <p>
+                                                                        De conformidad a lo establecido en la Ley 29733, Ley de Protección de Datos Personales, yo CARBAJO QUIJANDRIA ROSA AZUCENA, con DNI° 70258872, Autorizo a la Clínica Señor de Luren de Ica S.A.C, al registro, tratamiento y transferencia de los datos recogidos de mi persona durante los procesos de atención de salud. Los cuales pasará a formar parte del banco de datos personas – Historia Clínica – bajo la responsabilidad de la Clínica Señor de Luren de Ica S.A.C, los que registran con la finalidad de recolectar información necesaria para la correcta atención y control de salud. Conozco que puedo ejercer, de acuerdo a la legislación vigente, los derechos de información, acceso, actualización, inclusión, rectificación y oposición sobre sus datos personales, enviando una comunicación escrita al departamento de Administración de la Clínica Señor de Luren de Ica S.A.C
+                                                                    </p>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="12">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-size:15px">
+                                                                <td>
+                                                                <div class="impre">
+                                                                    <form accept-charset="UTF-8" action="/actualizar_fecha_generacion" data-remote="true" method="post" role="form"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+                                                                        <input id="patient_id" name="patient_id" type="hidden" value="93062">
+                                                                        <input class="form-control" id="date_generation" name="date_generation" type="date" value="">
+                                                                        <input name="commit" type="submit" value="Enviar">
+                                                        </form>     </div>      
+                                                                </td>
+                                                                <td colspan="4"></td>
+                                                                <td align="right" colspan="7">
+                                                                    <div id="date_generation_text">
+                                                                        Ica, Martes, 03 de Julio del 2018
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4"><img alt="Horizontal" height="15" src="/assets/images/horizontal.jpg" width="400"></td>
+                                                                <td colspan="8"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4" align="center">(70258872)</td>
+                                                                <td colspan="8"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="4" align="center">CARBAJO QUIJANDRIA ROSA AZUCENA</td>
+                                                                <td colspan="8"></td>
+                                                            </tr>
+                                                            
+                                                        </tbody></table>
+                                                    </div>
+                                                    <div class="modal-footer"> 
+                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
+                                                        <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button> 
+                                                    </div> 
+                                                </div> 
+                                            </div>
+                                        </div><!-- /.modal -->
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-
-                        <!-- Page-Title -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Paciente</h4>
-                                <ol class="breadcrumb pull-right">
-                                    <li><a href="#">Moltran</a></li>
-                                    <li><a href="#">Pages</a></li>
-                                    <li class="active">Timeline</li>
-                                </ol>
-                            </div>
-                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -320,8 +481,14 @@
                                             <div class="panel-body">
                                                 <div class="media-main">
                                                     <div class="pull-right btn-group-sm">
-                                                        <a href="#" class="btn btn-success waves-effect waves-light tooltips" data-toggle="modal" data-target="#edit-patient">
+                                                        <a href="#" class="btn btn-success waves-effect waves-light tooltips modal" data-toggle="tooltip" data-target="#edit-patient" data-toggle="tooltip" data-placement="top" title=""  data-original-title="Editar Paciente">
                                                             <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-success waves-effect waves-light tooltips modal" data-toggle="tooltip" data-target="#print-hc" data-original-title="Autorización Historia Clínica">
+                                                            <i class="md md-assignment"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-success waves-effect waves-light tooltips modal" data-toggle="tooltip" data-target="#print-hc-n" data-original-title="Anexo Historia Clínica">
+                                                            <i class="md md-description"></i>
                                                         </a>
                                                     </div>
                                                     <div class="info">
@@ -338,7 +505,7 @@
                                                                                     </li> <br>
                                                                             <li class="clearfix">
                                                                                             <strong class="title">Edad</strong>
-                                                                                            <span class="text-muted">{{ Helpers::get_age($patient->birthday) }} ({{ $patient->birthday }})</span>
+                                                                                            <span class="text-muted">{{ Helpers::get_age($patient->birthday) }} ( {{ $patient->birthday }} )</span>
                                                                                     </li> <br>      
                                                                                 <li class="clearfix">
                                                                                             <strong class="title">Dirección</strong>
@@ -459,6 +626,9 @@
         
         <script type="text/javascript">
             jQuery(document).ready(function($){
+                $(".modal").click(function(){
+                    $($(this).data('target')).modal('show');
+                });
                 $("#convert_insured").click(function(event) {
                     $(this).fadeOut();
                     $(".modal-title").text("Convertir a Asegurado");
