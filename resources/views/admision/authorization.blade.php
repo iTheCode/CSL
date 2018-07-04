@@ -776,7 +776,7 @@
                             async:false,
                             data: $(this).serialize(),
                             success: function(result){
-                                location.reload();
+                                $.address.value("/admision/atenciones");
                             }
                         });
                       return false;

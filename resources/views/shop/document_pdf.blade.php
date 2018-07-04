@@ -287,9 +287,9 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             <tr>
                <td COLSPAN=2 style="width:4em;font-size:0.7em;" >
                 @if($input->numDocUsuario == 0)
-                    DNI/RUC: {{ $input->numDocUsuario }} 
-                @else
                     DNI/RUC: Sin Documento
+                @else
+                    DNI/RUC: {{ $input->numDocUsuario }} 
                 @endif   
                 </td>
                 
