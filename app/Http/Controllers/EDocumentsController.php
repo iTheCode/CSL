@@ -64,10 +64,18 @@ class EDocumentsController extends BaseController
 			case '1':
 				$json->payment_document_type = "03";
 				$data = Authorization::find($json->authorization_id);
-				$json->rznSocialUsuario = $data->patient->name." ".$data->patient->paternal." ".$data->patient->maternal;
-				$json->numDocUsuario = str_replace(" ", "", $data->patient->document_identity_code);
-				$json->direccion = $data->patient->direction;
-				$json->local_payment_document_type = "01";
+				if(str_replace(" años","",Helpers::get_age($data->patient->birthday)) < 18){
+					$json->rznSocialUsuario = $data->insureds->hold_name." ".$data->insureds->hold_paternal." ".$data->insureds->hold_maternal;
+					$json->numDocUsuario = "0";
+					$json->direccion = "";
+					$json->local_payment_document_type = "00";
+				}
+				else{
+					$json->rznSocialUsuario = $data->patient->name." ".$data->patient->paternal." ".$data->patient->maternal;
+					$json->numDocUsuario = str_replace(" ", "", $data->patient->document_identity_code);
+					$json->direccion = $data->patient->direction;
+					$json->local_payment_document_type = "01";
+				}
 				break;
 			case '2':
 				$json->payment_document_type = "01";
