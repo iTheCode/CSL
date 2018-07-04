@@ -275,6 +275,7 @@ class EDocumentsController extends BaseController
 						$service = Service::find($item->service_id);
 
 						$pis->doctor_id = $item->doctor_id;
+						$pis->clinic_area_id = $item->clinic_area_id;
 						$pis->service_id = $item->service_id;
 						$pis->insured_service_id = $insured_service->id;
 						$pis->service_exented_id = $item->exented;
@@ -307,6 +308,7 @@ class EDocumentsController extends BaseController
 						$pps = new PurchaseParticularService();
 						$service = Service::find($item->service_id);
 
+						$pps->clinic_area_id = $item->clinic_area_id;
 						$pps->doctor_id = $item->doctor_id;
 						$pps->service_id = $item->service_id;
 						$pps->particular_service_id = $particular_service->id;
@@ -339,6 +341,7 @@ class EDocumentsController extends BaseController
 				foreach($json->items as $item){
 					$pcs = new PurchaseCoverageService();
 
+					$pcs->clinic_area_id = $item->clinic_area_id;
 					$pcs->doctor_id = $item->doctor_id;
 					$pcs->service_id = $item->service_id;
 					$pcs->insured_service_id = $insured_service->id;
