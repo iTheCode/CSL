@@ -40,7 +40,7 @@
                     <img width="200px" src="data:image/<?=pathinfo(public_path('/assets/images/logo.png'), PATHINFO_EXTENSION);?>;base64,<?=base64_encode(file_get_contents(public_path('/assets/images/logo.png')));?>" alt="Logo"><br>
                     
                 </td>
-                <td style="width: 40%; color: #34495e;font-size:12px;text-align:center">Av. San Martín. N° 536 , Ica Ica<br> 
+                <td style="width: 40%; color: #34495e;font-size:12px;text-align:center">Av. San Martín. N° 536 , Ica<br> 
                     Citas: (056) 216166<br>
                     Email: info@clinicaluren.com.pe            </td>
                     <br>
@@ -320,7 +320,7 @@ $total = Helpers::number_format_sunat($subtotal+$igv,2);
             
             <tr>
                 <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
-                Atención: {{ $input->employee->name }}
+                Atención: {{ $input->employee->name }} {{ $input->employee->paternal }}
                 </td>
                 
             </tr>
