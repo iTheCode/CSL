@@ -178,7 +178,6 @@ $final_amount = 0;
 $subtotal = Helpers::number_format_sunat($opgravada+$opnogravada,2);
 $igv = Helpers::number_format_sunat($opgravada*0.18,2);
 $total = Helpers::number_format_sunat($subtotal+$igv,2);
-$descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
 ?>
             <tr>
                 <td><br></td>
@@ -275,22 +274,30 @@ $descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
             </tr>
             <tr>
                 <td  COLSPAN=2 style="width:4em;font-size:0.7em;" >
-
+                @if(str_replace(" años","",Helpers::get_age($input->authorization->patient->birthday)) < 18)
+                    Cliente: {{ $input->authorization->insureds->hold_name or '' }} {{ $input->authorization->insureds->hold_paternal or '' }}  {{ $input->authorization->insureds->hold_maternal or '' }}
+                @else
                 @if(isset($input->rznSocialUsuario) && $input->rznSocialUsuario != "")
                     Cliente: {{ $input->rznSocialUsuario }}    
                 @else
                     Cliente: Sin Documento
-                @endif                
+                @endif     
+                @endif           
                 </td>
                 
             </tr>
             <tr>
                <td COLSPAN=2 style="width:4em;font-size:0.7em;" >
+
+                @if(str_replace(" años","",Helpers::get_age($input->authorization->patient->birthday)) < 18)
+                    DNI/RUC: Sin Documento
+                @else
                 @if($input->numDocUsuario == 0)
                     DNI/RUC: Sin Documento
                 @else
                     DNI/RUC: {{ $input->numDocUsuario }} 
                 @endif   
+                @endif
                 </td>
                 
             </tr>
@@ -415,7 +422,6 @@ $final_amount = 0;
 $subtotal = Helpers::number_format_sunat($opgravada+$opnogravada,2);
 $igv = Helpers::number_format_sunat($opgravada*0.18,2);
 $total = Helpers::number_format_sunat($subtotal+$igv,2);
-$descuentoP = Helpers::number_format_sunat((100*$descuento)/$final_amount,0);
 ?>
         </table><br><br>
         <table style="padding-right: -10px;width:16em;">
