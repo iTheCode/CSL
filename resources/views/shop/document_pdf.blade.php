@@ -280,7 +280,7 @@ $total = Helpers::number_format_sunat($subtotal+$igv,2);
                 @if(isset($input->rznSocialUsuario) && $input->rznSocialUsuario != "")
                     Cliente: {{ $input->rznSocialUsuario }}    
                 @else
-                    Cliente: Sin Documento
+                    Cliente: Cliente Desconocido
                 @endif     
                 @endif           
                 </td>
@@ -306,7 +306,7 @@ $total = Helpers::number_format_sunat($subtotal+$igv,2);
                 @if(isset($input->direccionUsuario) && $input->direccionUsuario != "")
                     Dirección: {{ $input->direccionUsuario }}    
                 @else
-                    Dirección: Sin Documento
+                    Dirección: Sin Dirección
                 @endif
                 </td>
                 
