@@ -439,9 +439,9 @@
                                     data = $.parseJSON(result);
                                     $('input[name="quantity"]').val(1);
                                     if(data.service.unitary != "" || data.service.unitary != null){
-                                        $('input[name="unitary"]').val('0');
-                                    }else{
                                         $('input[name="unitary"]').val(parseFloat(data.service.unitary).toFixed(2));
+                                    }else{
+                                        $('input[name="unitary"]').val('0');
                                     }
                                     $('input[name="factor"]').val(data.factor);
                                     $('select[name="clinic_area_id"]').val(data.service.clinic_area_id);
