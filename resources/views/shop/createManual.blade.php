@@ -336,7 +336,7 @@
                                         </div>
                                         <div class="m-h-50"></div>
                                                                 <div class="pull-right">
-                                                                    <a id="new_patient" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewPatient"><i class="md md-person-add"></i> Crear Paciente</a>
+                                                                    <!--<a id="new_patient" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewPatient"><i class="md md-person-add"></i> Crear Paciente</a>-->
                                                                     <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewService"><i class="md md-create"></i> Crear Servicio</a>
                                                                     <a id="add" href="#" class="btn btn-primary waves-effect waves-light"> <i class="md md-add-box"></i> Agregar Venta</a>
                                                                 </div>  
