@@ -76,11 +76,12 @@ class CentroController extends BaseController
             }
         }elseif($lenght == 11){
             $sunat = new \Sunat\Sunat();
-            $empresa = (object) $sunat->search($input,true);
+            $empresa = (object) $sunat->search($input);
             if( $empresa->success != false ){
+                $empresa->result = (object) $empresa->result;
                 $return = Array(
-                                'full_name' => $person->result->RazonSocial,
-                                'address' => $client->Direccion,
+                                'full_name' => $empresa->result->RazonSocial,
+                                'address' => $empresa->result->Direccion,
                                 'document' => $input,
                                 'type' => '2'
                 );

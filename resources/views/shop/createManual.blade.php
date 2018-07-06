@@ -113,6 +113,84 @@
                                     <!-- <div class="panel-heading">
                                         <h4>Invoice</h4>
                                     </div> -->
+                                <div id="modalNewPatient" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">
+                                            <div class="modal-dialog"> 
+                                                <div class="modal-content"> 
+                                                    <div class="modal-header"> 
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                                                        <h4 class="modal-title">Datos de Paciente</h4> 
+                                                    </div> 
+                                                    <div class="modal-body"> 
+                                                        <div id="patient_data">
+                                                            <div class="row"> 
+                                                                <div class="col-md-4"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-1" class="control-label">Nombre</label> 
+                                                                        <input type="text" class="form-control" name="name" value=""> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="col-md-4"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-2" class="control-label">Paterno</label> 
+                                                                        <input type="text" class="form-control" name="paterno" value=""> 
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="col-md-4"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-2" class="control-label">Materno</label> 
+                                                                        <input type="text" class="form-control" name="materno" value=""> 
+                                                                    </div> 
+                                                                </div> 
+                                                            </div> 
+                                                            <div class="row"> 
+                                                                <div class="col-md-12"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-3" class="control-label">Dirección</label> 
+                                                                        <input type="text" class="form-control" name="direccion" value=""> 
+                                                                    </div> 
+                                                                </div>  
+                                                            </div> 
+                                                            <div class="row"> 
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-4" class="control-label">DNI</label> 
+                                                                        <input type="text" class="form-control" name="document_identity_code" value=""> 
+                                                                        <label><input type="checkbox" id="no_dni_checkbox" name="no_dni_checkbox" value=""> No DNI</label>
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-5" class="control-label">Fecha de Nacimiento</label> 
+                                                                        <input type="text" class="form-control" name="fecha" value=""> 
+                                                                    </div> 
+                                                                </div> 
+                                                            </div>
+                                                            <div class="row"> 
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-3" class="control-label">Sexo</label> 
+                                                                        <select class="form-control" name="sex" id="">
+                                                                            <option value="1">Masculino</option>
+                                                                            <option value="2">Femenino</option>
+                                                                        </select>
+                                                                    </div> 
+                                                                </div>
+                                                                <div class="col-md-6"> 
+                                                                    <div class="form-group"> 
+                                                                        <label for="field-6" class="control-label">Teléfono</label> 
+                                                                        <input type="text" class="form-control" name="telefono" value=""> 
+                                                                    </div> 
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer"> 
+                                                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button> 
+                                                        <button type="button" class="btn btn-info waves-effect waves-light">Crear Paciente</button> 
+                                                    </div> 
+                                                </div> 
+                                            </div>
+                                        </div><!-- /.modal -->
                                 <!-- Modal -->
                                 <div class="modal fade" id="modalNewService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
@@ -258,7 +336,8 @@
                                         </div>
                                         <div class="m-h-50"></div>
                                                                 <div class="pull-right">
-                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewService"><i class="md md-create"></i> Agregar Servicio</a>
+                                                                    <a id="new_patient" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewPatient"><i class="md md-person-add"></i> Crear Paciente</a>
+                                                                    <a id="new_service" href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalNewService"><i class="md md-create"></i> Crear Servicio</a>
                                                                     <a id="add" href="#" class="btn btn-primary waves-effect waves-light"> <i class="md md-add-box"></i> Agregar Venta</a>
                                                                 </div>  
                                         <div class="m-h-50"></div>
