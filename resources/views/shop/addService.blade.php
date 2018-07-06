@@ -413,7 +413,7 @@
                     return false;
 
                 });
-                $('select.select2').select2();
+                $('select.select2').select2({ width: 'resolve' });   
                 $('select[name="clinic_area_id"]').change(function(){
                     var val = $(this).val();
                     $.ajax(
