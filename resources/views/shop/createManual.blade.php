@@ -515,7 +515,7 @@
                     return false;
 
                 });
-                $('select.select2').select2();
+                $('select.select2').select2({ width: 'resolve' });   
                 $('select[name="code_id"]').change(function(){
 
                     var data = JSON.stringify({'id': '105098', 'service_id': $(this).val()});
