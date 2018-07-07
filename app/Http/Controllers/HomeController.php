@@ -1,10 +1,10 @@
 <?php
-date_default_timezone_set('America/Lima');
 
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+@date_default_timezone_set('America/Lima');
 
 class HomeController extends Controller
 {

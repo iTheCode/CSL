@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set('America/Lima');
 
 namespace App\Http\Controllers;
 
@@ -9,6 +8,8 @@ use View;
 use Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Routing\Controller as BaseController;
+
+@date_default_timezone_set('America/Lima');
 
 /**
 * 

@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set('America/Lima');
 
 namespace App\Http\Controllers;
 
@@ -18,6 +17,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
+
+@date_default_timezone_set('America/Lima');
 
 class DashboardController extends BaseController
 {

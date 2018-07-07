@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set('America/Lima');
 
 namespace App\Http\Controllers;
 
@@ -32,6 +31,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model as Model;
+
+
+@date_default_timezone_set('America/Lima');
 
 class FacturationController extends BaseController
 {

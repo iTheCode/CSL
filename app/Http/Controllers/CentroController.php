@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set('America/Lima');
 
 namespace App\Http\Controllers;
 
@@ -27,6 +26,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Database\Eloquent\Model as Model;
+
+@date_default_timezone_set('America/Lima');
 
 class CentroController extends BaseController
 {
