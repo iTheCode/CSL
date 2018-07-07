@@ -626,9 +626,9 @@
                                                     Tipo de Documento
                                                     <div class="input-group col-md-12">
                                                         <select name="pay_document_type_id" class="form-control">
-                                                            <option>Seleccione un Tipo de Documento</option>
-                                                            <option value="1">Facturas Electrónicas</option>
-                                                            <option value="2">Boletas Electrónicas</option>
+                                                            <option value="">Seleccione un Tipo de Documento</option>
+                                                            <option value="01">Facturas Electrónicas</option>
+                                                            <option value="03">Boletas Electrónicas</option>
                                                         </select>
                                                     </div><br><br>
                                                     Admisionista
@@ -827,11 +827,11 @@
             $('#generate').submit(function(e){
                 e.preventDefault();
                 var form = $(this);
+                var data = "?date_init="+$('input[name="date_init"]').val()+"&date_end="+$('input[name="date_end"]').val()+"&pay_document_type_id="+$('select[name="pay_document_type_id"]').val()+"&employee="+$('select[name="employee"]').val();
                 $.ajax(
                 {
-                    url: "{{ url('/caja/generar_reporte/') }}", 
+                    url: "{{ url('/caja/generar_reporte/') }}"+data, 
                     method: "GET",
-                    data: form.serialize(),
                     success: function(response, status, xhr) {
                             // check for a filename
                             var filename = "documentos_"+date_now_format();
