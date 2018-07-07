@@ -200,17 +200,17 @@ class ServicesController extends BaseController
 		return view('shop.reporte', ['coverages' => $coverages, 'employees' => $employees, 'type_documents' => $type_documents]);
 	}
 	public function export(Request $request){
-		$edocuments = PayEDocument::select('employees.username as Adminisionista', 'pay_e_documents.created_at as Fecha', 'pay_e_documents.pay_document_type_id as TD', 'pay_e_documents.serie as Serie', 'pay_e_documents.code as Numero', 'pay_e_documents.numDocUsuario as Doc', 'pay_e_documents.rznSocialUsuario as Nombres', 'pay_e_documents.opgravada as Gravada', 'pay_e_documents.opnogravada as NoGravada', 'pay_e_documents.opexonerada as Exonerada', 'pay_e_documents.total_igv as IGV', 'pay_e_documents.total_amount as Total')->join('employees', 'employees.id', '=', 'pay_e_documents.employee_id')->orderby('pay_e_documents.id', 'desc');
+		$edocuments = PayEDocument::select('employees.username as Adminisionista', 'pay_e_documents.emission_date as Fecha', 'pay_e_documents.pay_document_type_id as TD', 'pay_e_documents.serie as Serie', 'pay_e_documents.code as Numero', 'pay_e_documents.numDocUsuario as Doc', 'pay_e_documents.rznSocialUsuario as Nombres', 'pay_e_documents.opgravada as Gravada', 'pay_e_documents.opnogravada as NoGravada', 'pay_e_documents.opexonerada as Exonerada', 'pay_e_documents.total_igv as IGV', 'pay_e_documents.total_amount as Total')->join('employees', 'employees.id', '=', 'pay_e_documents.employee_id')->orderby('pay_e_documents.id', 'desc');
 
 		$edocuments->when($request::get('date_init') != "", function ($query) use ($request){
-	        return $query->whereDate('pay_e_documents.date', '>=', $request::get('date_init'));
+	        return $query->whereDate('pay_e_documents.emission_date', '>=', $request::get('date_init'));
 	    });
 		$edocuments->when($request::get('date_end') != "", function ($query) use ($request){
-	        return $query->whereDate('pay_e_documents.date', '<=', $request::get('date_end'));
+	        return $query->whereDate('pay_e_documents.emission_date', '<=', $request::get('date_end'));
 	    });
 
 		$edocuments->when($request::get('pay_document_type_id') != "", function ($query) use ($request){
-	        return $query->where('pay_document_type_id', '=', $request::get('pay_document_type_id'));
+	        return $query->where('pay_e_documentspay_document_type_id', '=', $request::get('pay_document_type_id'));
 	    });
 		$edocuments->when($request::get('employee') != "", function ($query) use ($request){
 	        return $query->where('pay_e_documents.employee_id', $request::get('employee'));
