@@ -1,5 +1,4 @@
 <?php
-date_default_timezone_set('America/Lima');
 
 namespace App\Http\Controllers;
 
@@ -31,6 +30,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model as Model;
 use Carbon\Carbon;
+
+@date_default_timezone_set('America/Lima');
 
 class AuthorizationsController extends BaseController
 {
