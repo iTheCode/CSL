@@ -212,7 +212,7 @@ class ServicesController extends BaseController
 	    });
 
 		$edocuments->when($request::get('pay_document_type_id') != "", function ($query) use ($request){
-	        return $query->where('pay_e_documentspay_document_type_id', '=', $request::get('pay_document_type_id'));
+	        return $query->where('pay_e_documents.pay_document_type_id', '=', $request::get('pay_document_type_id'));
 	    });
 		$edocuments->when($request::get('employee') != "", function ($query) use ($request){
 	        return $query->where('pay_e_documents.employee_id', $request::get('employee'));

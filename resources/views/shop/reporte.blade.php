@@ -627,8 +627,8 @@
                                                     <div class="input-group col-md-12">
                                                         <select name="pay_document_type_id" class="form-control">
                                                             <option value="">Seleccione un Tipo de Documento</option>
-                                                            <option value="01">Facturas Electrónicas</option>
-                                                            <option value="03">Boletas Electrónicas</option>
+                                                            <option value="1">Facturas Electrónicas</option>
+                                                            <option value="3">Boletas Electrónicas</option>
                                                         </select>
                                                     </div><br><br>
                                                     Admisionista
