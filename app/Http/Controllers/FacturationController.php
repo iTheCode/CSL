@@ -49,18 +49,18 @@ class FacturationController extends BaseController
 			$data = $input->data;
 			if($from == "caja"){
 				if($input->data != "null"){
-					$response = PayEDocument::select('pay_e_documents.*')->join('authorizations', 'pay_e_documents.authorization_id', '=', 'authorizations.id')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere(DB::raw('CONCAT(pay_e_documents.serie, "-", pay_e_documents.code )'), 'like', '%' . $input->data . '%')->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('pay_e_documents.code','desc')->paginate(20);
+					$response = PayEDocument::select('pay_e_documents.*')->join('authorizations', 'pay_e_documents.authorization_id', '=', 'authorizations.id')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere(DB::raw('CONCAT(pay_e_documents.serie, "-", pay_e_documents.code )'), 'like', '%' . $input->data . '%')->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderByRaw('pay_e_documents.code+0 desc')->paginate(20);
 				}else{
-					$response = PayEDocument::orderBy('id','desc')->paginate(20);
+					$response = PayEDocument::orderByRaw('code+0 desc')->paginate(20);
 				}
 			}
 
 			if($from == "facturacion"){
 
 				if($input->data != "null"){
-					$response = PayDocument::select('pay_documents.*')->join('authorizations', 'pay_documents.authorization_id', '=', 'authorizations.id')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('pay_documents.code', 'like', '%' . $input->data . '%')->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderBy('pay_documents.id','desc')->paginate(20);
+					$response = PayDocument::select('pay_documents.*')->join('authorizations', 'pay_documents.authorization_id', '=', 'authorizations.id')->join('patients', 'patients.id', '=', 'authorizations.patient_id')->where('authorizations.code', $input->data)->orWhere('pay_documents.code', 'like', '%' . $input->data . '%')->orWhere('patients.document_identity_code',$input->data)->orWhere(DB::raw('CONCAT(patients.name, " ", patients.paternal, " ", patients.maternal )'), 'like', '%' . $input->data . '%')->orderByRaw('pay_documents.code+0 desc')->paginate(20);
 				}else{
-					$response = PayDocument::orderBy('id','desc')->paginate(20);
+					$response = PayDocument::orderByRaw('code+0 desc')->paginate(20);
 				}
 			}
 
