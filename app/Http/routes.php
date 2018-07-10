@@ -128,6 +128,8 @@ Route::get('/pay_edocument/create/{input}', ['middleware' => ['auth', 'role:admi
 Route::get('/pay_edocument/view/{type}/{input}/print.pdf', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'viewpayedocument', 'uses' => 'EDocumentsController@view_print']);
 Route::get('/pay_edocument/charge_document/{type}/{id}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'payedocument', 'uses' => 'FacturationController@showCharge']);
 
+Route::get('/pay_edocument/re_send/{id}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'payedocument', 'uses' => 'EDocumentsController@re_send_document']);
+
 //Hospitalización Routes
 Route::get('/hospitalizacion/habitaciones/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'centro', 'uses' => 'CentroController@centro']);
 
