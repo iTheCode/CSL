@@ -245,7 +245,7 @@ class EDocumentsController extends BaseController
 			$mtoPrecioVentaItem = Helpers::number_format_sunat($item->pu*$item->quantity,2)-$mtoDsctoItem;
 
 			//$content .= '{ "codUnidadMedida" : "NIU", "ctdUnidadItem" : "'.$item->quantity.'", "desItem" : "<![CDATA['.$service->name.']]>", "mtoValorUnitario" : "'.$item->pu.'", "mtoDsctoItem" : "'.$mtoDsctoItem.'", "mtoIgvItem" : "'.$mtoIgvItem.'", "tipAfeIGV" : "'.$item->exented.'0", "mtoPrecioVentaItem" : "'.$mtoPrecioVentaItem.'", "mtoValorVentaItem" : "'.$item->imp.'" }';
-			$afect_igv = ($item->exented == 1) ? 'GRAVADO' : 'EXONERADO';
+			$afect_igv = ($item->exented == 1) ? 'GRAVADO' : 'INAFECTO';
 			$mtoIgvItem = ($item->exented == 1) ? $mtoIgvItem : "0.00";
 			$content .= str_pad($i, 10, "0",STR_PAD_LEFT)."|".str_pad($json->payEdocument->code, 10, "0",STR_PAD_LEFT)."|SERVICIO|".$afect_igv."|8|".$item->service_id."|".$service->name."|".$item->quantity."|".$item->pu."|".$mtoDsctoItem."|".$mtoPrecioVentaItem ."|".$mtoIgvItem."|0.000000|0|0.000000|0.000000|".($mtoPrecioVentaItem+$mtoIgvItem)."|00|\r\n";
 			$i++;
