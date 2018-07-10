@@ -41,9 +41,9 @@ class EDocumentsController extends BaseController
 {
 	private $json;
 	public function get_last_document($type, $serie){
-		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $type)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
+		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $type)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->whereRaw("RIGHT(pay_e_documents.serie,1) = ? or RIGHT(pay_e_documents.serie,2) = ?", [$serie,$serie])->orderByRaw('pay_e_documents.code+0 desc')->limit("1")->get();
 		if(isset($pay_edocuments[0]))
-			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->exists())
+			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_document_typeuments.employee_id')->where("e.serie", $serie)->exists())
 				$pay_edocument = $this->get_last_document($serie,$type);
 			else
 				$pay_edocument = $pay_edocuments[0]->number+1;
@@ -115,7 +115,6 @@ class EDocumentsController extends BaseController
 
 
 		$pay_e_document_type = PayDocumentType::where('code',$json->payment_document_type)->get();
-		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $pay_e_document_type[0]->id)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $user->serie)->orderBy('pay_e_documents.id', 'DESC')->limit("1")->get();
 		$pay_edocument = new PayEDocument();
 		
 		$pay_edocument->code = $this->get_last_document($pay_e_document_type[0]->id, $user->serie);
