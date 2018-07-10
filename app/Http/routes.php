@@ -150,6 +150,9 @@ Route::get('/triaje/atencion/{input}', ['middleware' => ['auth', 'role:admision|
 
 Route::get('/consulta_externa/{input?}/{id?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'consulta_externa', 'uses' => 'AuthorizationsController@showExtern']);
 
+
+//Route::get('/last_id/{type?}/{serie?}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'consa', 'uses' => 'EDocumentsController@get_last_document']);
+
 //Facturacion Routes
 
 Route::get('/facturacion/sunat/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'sunat', 'uses' => 'FacturationController@showDocuments']);
