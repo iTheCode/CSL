@@ -40,10 +40,74 @@ use Illuminate\Database\Eloquent\Model as Model;
 class EDocumentsController extends BaseController
 {
 	private $json;
+
+
+	public function re_send_document($id){
+		$pay_edocument = PayEDocument::find($id);
+		$i = 0;
+		$items = Array();
+		$descuento = 0;
+		$importe = 0;
+		if(isset($pay_edocument->insuredservice)){
+			foreach($pay_edocument->insuredservice->purchaseinsuredservices as $item){
+				$exented = ($item->igv == "0.00") ? "0" : "1";
+				$items[$i++] = '{"service_id": "'.$item->service_id.'", "exented" : "'.$exented.'", "quantity": "'.$item->quantity.'", "pu" : "'.($item->initial_amount/$item->quantity).'", "imp": '.$item->initial_amount.', "doctor_id": "'.$item->doctor_id.'", "clinic_area_id" : "'.$item->clinic_area_id.'", "discountp": "'.round(100 - round( (100*$item->copayment) / $item->initial_amount ,0),0).'"}';
+				$descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+				$importe += $item->initial_amount;
+			}
+			foreach($pay_edocument->insuredservice->purchasecoverageservices as $item){
+				$exented = ($item->igv == "0.00") ? "0" : "1";
+				$items[$i++] = '{"service_id": "'.$item->service_id.'", "exented" : "'.$exented.'", "quantity": "1", "pu" : "'.$item->initial_amount.'", "imp": '.$item->initial_amount.', "doctor_id": "'.$item->doctor_id.'", "clinic_area_id" : "'.$item->clinic_area_id.'", "discountp": "'.round(100 - round( (100*$item->copayment) / $item->initial_amount ,0),0).'"}';
+				$descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+				$importe += $item->initial_amount;
+			}
+		}
+		if(isset($pay_edocument->particularservice)){
+			foreach($pay_edocument->particularservice->purchaseparticularservices as $item){
+				$exented = ($item->igv == "0.00") ? "0" : "1";
+				$items[$i++] = '{"service_id": "'.$item->service_id.'", "exented" : "'.$exented.'", "quantity": "'.$item->quantity.'", "pu" : "'.($item->initial_amount/$item->quantity).'", "imp": '.$item->initial_amount.', "doctor_id": "'.$item->doctor_id.'", "clinic_area_id" : "'.$item->clinic_area_id.'", "discountp": "'.round(100 - round( (100*$item->copayment) / $item->initial_amount ,0),0).'"}';
+				$descuento += Helpers::number_format_sunat($item->initial_amount-$item->final_amount+$item->igv,2);
+				$importe += $item->initial_amount;
+			}
+		}
+
+		if($pay_edocument->numDocUsuario == 0){
+			$payment_document_type = 4;
+			$dni = "";
+			$ruc = "";
+		}else{
+			if(strlen($pay_edocument->numDocUsuario) == 8){
+				if($pay_edocument->id != 105098){
+					$payment_document_type = 1;
+					$dni = $pay_edocument->numDocUsuario;
+					$ruc = "";
+				}else{
+					$payment_document_type = 3;
+					$dni = $pay_edocument->numDocUsuario;
+					$ruc = "";
+				}
+			}elseif(strlen($pay_edocument->numDocUsuario) == 11){
+					$payment_document_type = 2;
+					$dni = "";
+					$ruc = $pay_edocument->numDocUsuario;
+			}
+		}
+		$json_items = '{';
+		foreach ($items as $key => $value) {
+			$json_items .= '"'.$key.'":'.$value.', ';
+		}
+		$json_items = substr($json_items,0,-2).'}';
+		$json_format = '{ "authorization_id" : "'.$pay_edocument->authorization_id.'", "discountp" : "'.$pay_edocument->total_cop_var.'", "discountt" : "'.$descuento.'", "importe" : "'.$importe.'", "opgravada" : "'.$pay_edocument->opgravada.'", "opnogravada" : "'.$pay_edocument->opnogravada.'", "opexonerada" : "'.$pay_edocument->opexonerada.'", "subtotal" : "'.($pay_edocument->total_amount-$pay_edocument->igv).'", "igv" : "'.$pay_edocument->total_igv.'", "total": "'.$pay_edocument->total_amount.'", "is_coverage" : 0, "payment_type" : "1", "view_print": "'.$pay_edocument->view_print.'","payment_document_type" : "'.$payment_document_type.'", "DNI" : "'.$dni.'", "RUC": "'.$ruc.'","Mail": "'.$pay_edocument->mail.'", "anotation": "'.$pay_edocument->anotation.'", "datetime": "'.$pay_edocument->emission_date.'", "items": '.$json_items.' }';
+		$new_document = json_decode($this->create_edocument($json_format));
+
+		return $new_document;
+
+
+	}
 	public function get_last_document($type, $serie){
 		$pay_edocuments = PayEDocument::select(DB::raw('LAST_INSERT_ID(code) as number'))->where("pay_e_documents.pay_document_type_id", $type)->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->whereRaw("RIGHT(pay_e_documents.serie,1) = ? or RIGHT(pay_e_documents.serie,2) = ?", [$serie,$serie])->orderByRaw('pay_e_documents.code+0 desc')->limit("1")->get();
 		if(isset($pay_edocuments[0]))
-			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_document_typeuments.employee_id')->where("e.serie", $serie)->exists())
+			if(PayEDocument::where('code', '=', ($pay_edocuments[0]->number+1))->join('employees as e', 'e.id','=','pay_e_documents.employee_id')->where("e.serie", $serie)->exists())
 				$pay_edocument = $this->get_last_document($serie,$type);
 			else
 				$pay_edocument = $pay_edocuments[0]->number+1;
@@ -122,7 +186,13 @@ class EDocumentsController extends BaseController
 		$pay_edocument->pay_document_type_id = $pay_e_document_type[0]->id;
 		$pay_edocument->authorization_id = $json->authorization_id;
 		$pay_edocument->sunat_status = 2;
-		$pay_edocument->emission_date = date("Y-m-d H:m:s");
+		if(isset($json->datetime)){
+			$json->timestamp = strtotime($json->datetime);
+		}else{
+			$json->timestamp = strtotime(date("Y-m-d H:m:s"));
+		}
+
+		$pay_edocument->emission_date = date("Y-m-d H:m:s", $json->timestamp);
 		if(isset($json->particular_service))
 			$pay_edocument->particular_service = $json->particular_service;
 
@@ -158,21 +228,21 @@ class EDocumentsController extends BaseController
 		switch ($json->payment_document_type) {
 			case '01':
 				//$file = $clinic->ruc."-".$json->payment_document_type."-F00".$user->serie."-".$pay_edocument->code.".json";
-				$file = $clinic->ruc."001DOC".str_pad($pay_edocument->code, 10, "0",STR_PAD_LEFT).date("ymd")."FA.txt";
+				$file = $clinic->ruc."001DOC".str_pad($pay_edocument->code, 10, "0",STR_PAD_LEFT).date("ymd", $json->timestamp)."FA.txt";
 				$pdf_name = $clinic->ruc."-".$json->payment_document_type."-FF".str_pad($user->serie, 2, "0",STR_PAD_LEFT)."-".$pay_edocument->code.".pdf";
 				$json->document_type = "FA";
 				$json->code_serie = "FF";
 				break;
 			case '03':
 				//$file = $clinic->ruc."-".$json->payment_document_type."-B00".$user->serie."-".$pay_edocument->code.".json";
-				$file = $clinic->ruc."001DOC".str_pad($pay_edocument->code, 10, "0",STR_PAD_LEFT).date("ymd")."BO.txt";
+				$file = $clinic->ruc."001DOC".str_pad($pay_edocument->code, 10, "0",STR_PAD_LEFT).date("ymd", $json->timestamp)."BO.txt";
 				$pdf_name = $clinic->ruc."-".$json->payment_document_type."-BB".str_pad($user->serie, 2, "0",STR_PAD_LEFT)."-".$pay_edocument->code.".pdf";
 				$json->document_type = "BO";
 				$json->code_serie = "BB";
 				break;
 			case '07':
 				//$file = $clinic->ruc."-".$json->payment_document_type."-F00".$user->serie."-".$pay_edocument->code.".json";
-				$file = $clinic->ruc."001DOC".str_pad($pay_edocument->code, 10, "0",STR_PAD_LEFT).date("ymd")."NC.txt";
+				$file = $clinic->ruc."001DOC".str_pad($pay_edocument->code, 10, "0",STR_PAD_LEFT).date("ymd", $json->timestamp)."NC.txt";
 				$pdf_name = $clinic->ruc."-".$json->payment_document_type."-FF".str_pad($user->serie, 2, "0",STR_PAD_LEFT)."-".$pay_edocument->code.".pdf";
 				$json->document_type = "NC";
 				$json->code_serie = "FF";
@@ -232,9 +302,9 @@ class EDocumentsController extends BaseController
 		$sub_total = round($json->opgravada+$json->opnogravada+$json->opexonerada,2);
 
 
-		//$content = '{ "cabecera": {"tipOperacion": "01", "fecEmision" : "'.date("Y-m-d").'", "tipDocUsuario" : "'.$json->payment_document_type.'", "numDocUsuario" : "'.$json->numDocUsuario.'", "rznSocialUsuario" : "<![CDATA['.$json->rznSocialUsuario.']]>", "tipMoneda" : "PEN", "sumDsctoGlobal" : "'.$json->discountt.'", "mtoDescuentos" : "'.$json->discountt.'", "mtoOperGravadas" : "'.$json->opgravada.'", "mtoOperInafectas" : "'.$json->opnogravada.'", "mtoOperExoneradas" : "'.$json->opexonerada.'", "mtoIGV" : "'.$json->igv.'", "mtoImpVenta" : "'.$json->total.'"}, "detalle" : ['.str_replace("}{","},{",$items).']}';
+		//$content = '{ "cabecera": {"tipOperacion": "01", "fecEmision" : "'.date("Y-m-d", $json->timestamp).'", "tipDocUsuario" : "'.$json->payment_document_type.'", "numDocUsuario" : "'.$json->numDocUsuario.'", "rznSocialUsuario" : "<![CDATA['.$json->rznSocialUsuario.']]>", "tipMoneda" : "PEN", "sumDsctoGlobal" : "'.$json->discountt.'", "mtoDescuentos" : "'.$json->discountt.'", "mtoOperGravadas" : "'.$json->opgravada.'", "mtoOperInafectas" : "'.$json->opnogravada.'", "mtoOperExoneradas" : "'.$json->opexonerada.'", "mtoIGV" : "'.$json->igv.'", "mtoImpVenta" : "'.$json->total.'"}, "detalle" : ['.str_replace("}{","},{",$items).']}';
 
-		$content = str_pad($json->payEdocument->code, 10, "0",STR_PAD_LEFT)."|".$json->document_type."|00|".$clinic->ruc."|".$json->numDocUsuario."|".date("ymd")."|".date("ymd")."|PEN|".$sub_total."|".$json->discountt."|".$sub_total."|0.00|".$json->igv."|0.00|0.00|".$json->total."|0|NA|0000000000000|".$json->payEdocument->serie."|".str_pad($json->payEdocument->code, 8, "0",STR_PAD_LEFT)."|BBENDEZU|".$json->payEdocument->id."||".$json->local_payment_document_type."|01||01|000|00|00|00||0.00|\r\n";
+		$content = str_pad($json->payEdocument->code, 10, "0",STR_PAD_LEFT)."|".$json->document_type."|00|".$clinic->ruc."|".$json->numDocUsuario."|".date("ymd", $json->timestamp)."|".date("ymd", $json->timestamp)."|PEN|".$sub_total."|".$json->discountt."|".$sub_total."|0.00|".$json->igv."|0.00|0.00|".$json->total."|0|NA|0000000000000|".$json->payEdocument->serie."|".str_pad($json->payEdocument->code, 8, "0",STR_PAD_LEFT)."|BBENDEZU|".$json->payEdocument->id."||".$json->local_payment_document_type."|01||01|000|00|00|00||0.00|\r\n";
 
 		$i = 1;
 		foreach($json->items as $item){
@@ -372,7 +442,6 @@ class EDocumentsController extends BaseController
 
 	}
 	public function create_edocument($input){
-
 
 		$input = json_decode($input);
 		$authorization = Authorization::find($input->authorization_id);
