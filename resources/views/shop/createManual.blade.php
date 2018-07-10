@@ -612,6 +612,7 @@
                                 });
                 });
                 $("#print-button").click(function(e){
+                    e.preventDefault();
                     if(window.confirm('¿Está seguro de generar el documento?')){
                         $(".hidden-print").slideUp(); 
                         $("#payments_options").slideUp();
