@@ -364,7 +364,8 @@ class EDocumentsController extends BaseController
 						$pis->service_exented_id = $item->exented;
 						$pis->quantity = $item->quantity;
 						$pis->initial_amount = $item->imp;
-
+						$pis->unitary = $item->pu;
+						$pis->factor = 1;
 						//Reformular copago
 						$pis->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2);
 
@@ -398,6 +399,7 @@ class EDocumentsController extends BaseController
 						$pps->service_exented_id = $item->exented;
 						$pps->quantity = $item->quantity;
 						$pps->initial_amount = $item->imp;
+						$pps->unitary = $item->pu;
 						//Reformular copago
 						$pps->copayment = Helpers::number_format_sunat($item->imp-(Helpers::number_format_sunat($item->imp * ($item->discountp/100),2)),2);
 						$pps->igv = ($item->exented == 1) ? Helpers::number_format_sunat($pps->copayment * 0.18,2) : "0.00";
