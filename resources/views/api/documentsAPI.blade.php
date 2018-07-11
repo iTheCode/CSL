@@ -79,7 +79,7 @@
                                                                                         <?php } ?>
                                                                                     @endcan
                                                                                     @role('sistemas')
-                                                                                        <td><a href="{{ url('/pay_edocument/re_send/'.$p->id.'') }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Re Generar" target="_blank"> <i class="md md-block"></i></a></td>
+                                                                                        <td><a href="{{ url('/pay_edocument/re_send/'.$p->id.'') }}" type="button" class="btn btn-icon waves-effect waves-light {{Helpers::get_color(@$p->authorization->coverage->sub_coverage_type->coverage_type->id)}} m-b-5" data-toggle="tooltip" data-placement="top" title="" data-original-title="Re Generar" target="_blank"> <i class="md md-cached"></i></a></td>
                                                                                     @endrole
                                                                                 </tr>
                                                             @endforeach
