@@ -77,12 +77,12 @@ class EDocumentsController extends BaseController
 			$ruc = "";
 		}else{
 			if(strlen($pay_edocument->numDocUsuario) == 8){
-				if($pay_edocument->id != 105098){
-					$payment_document_type = 1;
+				if($pay_edocument->authorization_id == "105098"){
+					$payment_document_type = 3;
 					$dni = $pay_edocument->numDocUsuario;
 					$ruc = "";
 				}else{
-					$payment_document_type = 3;
+					$payment_document_type = 1;
 					$dni = $pay_edocument->numDocUsuario;
 					$ruc = "";
 				}
@@ -99,8 +99,7 @@ class EDocumentsController extends BaseController
 		$json_items = substr($json_items,0,-2).'}';
 		$json_format = '{ "authorization_id" : "'.$pay_edocument->authorization_id.'", "discountp" : "'.$pay_edocument->total_cop_var.'", "discountt" : "'.$descuento.'", "importe" : "'.$importe.'", "opgravada" : "'.$pay_edocument->opgravada.'", "opnogravada" : "'.$pay_edocument->opnogravada.'", "opexonerada" : "'.$pay_edocument->opexonerada.'", "subtotal" : "'.($pay_edocument->total_amount-$pay_edocument->igv).'", "igv" : "'.$pay_edocument->total_igv.'", "total": "'.$pay_edocument->total_amount.'", "is_coverage" : 0, "payment_type" : "1", "view_print": "'.$pay_edocument->view_print.'","payment_document_type" : "'.$payment_document_type.'", "DNI" : "'.$dni.'", "RUC": "'.$ruc.'","Mail": "'.$pay_edocument->mail.'", "anotation": "'.$pay_edocument->anotation.'", "datetime": "'.$pay_edocument->emission_date.'", "items": '.$json_items.' }';
 		$new_document = json_decode($this->create_edocument($json_format));
-
-		return $new_document;
+		dd(Redirect::to(url('/pay_edocument/view/'.$new_document->type.'/'.$new_document->input.'/print.pdf')));
 
 
 	}
