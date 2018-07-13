@@ -84,7 +84,7 @@ function ValidURL(str) {
                   var unload = "assets/css/";
                   var load = $(this).attr('load');
                   if(!(src.indexOf(unload) != -1) || load === "force"){
-                      $('.content-page').append($(this));
+                      $('.content-page').prepend($(this));
                   }
                 });
                 
