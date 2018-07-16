@@ -160,6 +160,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        HTMLMin\HTMLMin\HTMLMinServiceProvider
 
     ],
 
@@ -211,7 +212,8 @@ return [
         'Helpers'    => App\Helpers::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
 
     ],
 
