@@ -9,23 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
         <link rel="shortcut icon" href="/assets/images/favicon.ico">
-
-        <link href="/assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="/assets/plugins/morris.js/morris.css">
-
-        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/pages.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
-        <link href="/assets/plugins/select2/dist/css/select2.css" rel="stylesheet" type="text/css">
-        <link href="/assets/plugins/select2/dist/css/select2-bootstrap.css" rel="stylesheet" type="text/css">
-
-        <link href="/assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-        <link href="/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
+        <link href="{{ mix_css(['/assets/plugins/sweetalert/dist/sweetalert.css', '/assets/plugins/morris.js/morris.css', '/assets/css/bootstrap.min.css', '/assets/css/core.css', '/assets/css/icons.css', '/assets/css/components.css', '/assets/css/pages.css', '/assets/css/menu.css', '/assets/css/responsive.css', '/assets/plugins/select2/dist/css/select2.css', '/assets/plugins/select2/dist/css/select2-bootstrap.css', '/assets/plugins/timepicker/bootstrap-timepicker.min.css', '/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'], '/assets/css/all.css')}}" rel="stylesheet" type="text/css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
