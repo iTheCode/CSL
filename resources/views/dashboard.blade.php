@@ -10,17 +10,8 @@
 
         <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
-        <link href="/assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="/assets/plugins/morris.js/morris.css">
-
-        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/pages.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/menu.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css">
-
+        
+        <link href="{{ mix_css(['/assets/css/bootstrap.min.css', '/assets/plugins/sweetalert/dist/sweetalert.css','/assets/plugins/morris.js/morris.css','/assets/css/core.css','/assets/css/icons.css','/assets/css/components.css','/assets/css/pages.css','/assets/css/menu.css','/assets/css/responsive.css'], '/assets/css/all.css')}}" rel="stylesheet" type="text/css">
         <script src="/assets/js/modernizr.min.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
