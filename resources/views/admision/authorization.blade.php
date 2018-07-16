@@ -13,6 +13,9 @@
         <link href="{{ mix_css(['/assets/plugins/select2/dist/css/select2.css', '/assets/plugins/select2/dist/css/select2-bootstrap.css'], '/assets/plugins/select2/dist/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
         <link href="{{ mix_css(['/assets/plugins/timepicker/bootstrap-timepicker.min.css'], '/assets/plugins/timepicker/all.css')}}" rel="stylesheet" type="text/css" load="force">
         <link href="{{ mix_css(['/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'], '/assets/plugins/bootstrap-datepicker/dist/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
+
+        <script src="/assets/js/modernizr.min.js"></script>
+        
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -225,7 +228,7 @@
                                                 <div class="about-info-p">
                                                     <strong>Nombre Completo</strong>
                                                     <br>
-                                                    <p class="text-muted"><a href="{{ url('/paciente/'.$client->patient->id) }}" data="address"><?=mb_convert_case($client->patient->name." ".$client->patient->paternal." ".$client->patient->maternal, MB_CASE_TITLE, "UTF-8");?></a> <img src="https://png.icons8.com/ios/1600/unverified-account.png" width="20px" height="20px"><img src="http://agarioskins.com/submitted/useruploads/verified.png" width="20px" height="20px"></p>
+                                                    <p class="text-muted"><a href="{{ url('/paciente/'.$client->patient->id) }}" data="address"><?=mb_convert_case($client->patient->name." ".$client->patient->paternal." ".$client->patient->maternal, MB_CASE_TITLE, "UTF-8");?></a> <!--<img src="https://png.icons8.com/ios/1600/unverified-account.png" width="20px" height="20px"><img src="http://agarioskins.com/submitted/useruploads/verified.png" width="20px" height="20px">--></p>
                                                 </div>
                                                 <div class="about-info-p">
                                                     <strong>DNI</strong>
@@ -706,7 +709,7 @@
         <!-- END wrapper -->
 
 
-        <script src="{{ mix_js(['/assets/js/jquery.min.js', '/assets/js/bootstrap.min.js', '/assets/js/detect.js', '/assets/js/fastclick.js', '/assets/js/jquery.slimscroll.js', '/assets/js/jquery.blockUI.js', '/assets/js/waves.js', '/assets/js/wow.min.js', '/assets/js/jquery.nicescroll.js', '/assets/js/jquery.scrollTo.min.js', '/assets/js/jquery.app.js', '/assets/js/modernizr.min.js'], '/assets/js/all.js')}}" type="text/javascript" load="force" ></script>
+        <script src="{{ mix_js(['/assets/js/jquery.min.js', '/assets/js/bootstrap.min.js', '/assets/js/detect.js', '/assets/js/fastclick.js', '/assets/js/jquery.slimscroll.js', '/assets/js/jquery.blockUI.js', '/assets/js/waves.js', '/assets/js/wow.min.js', '/assets/js/jquery.nicescroll.js', '/assets/js/jquery.scrollTo.min.js', '/assets/js/jquery.app.js'], '/assets/js/all.js')}}" type="text/javascript" load="force" ></script>
         <script src="/assets/pages/jquery.todo.js"></script>
         <script src="/assets/pages/jquery.chat.js"></script>
         <script src="/assets/pages/jquery.dashboard.js"></script>

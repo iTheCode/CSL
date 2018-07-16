@@ -134,7 +134,7 @@ function ValidURL(str) {
                     // Loads the page content and inserts it into the content area
                     $.ajax({
                         url: event.path,
-                        async: false,
+                        async: true,
                         success: function(data) {
                             $("#load_bar").fadeOut(3000);
                             handler(data);
