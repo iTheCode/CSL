@@ -9,8 +9,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
         <link rel="shortcut icon" href="/assets/images/favicon.ico">
-        <link href="{{ mix_css(['/assets/plugins/sweetalert/dist/sweetalert.css', '/assets/plugins/morris.js/morris.css', '/assets/css/bootstrap.min.css', '/assets/css/core.css', '/assets/css/icons.css', '/assets/css/components.css', '/assets/css/pages.css', '/assets/css/menu.css', '/assets/css/responsive.css', '/assets/plugins/select2/dist/css/select2.css', '/assets/plugins/select2/dist/css/select2-bootstrap.css', '/assets/plugins/timepicker/bootstrap-timepicker.min.css', '/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'], '/assets/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
+        <link href="{{ mix_css(['/assets/plugins/sweetalert/dist/sweetalert.css', '/assets/plugins/morris.js/morris.css', '/assets/css/bootstrap.min.css', '/assets/css/core.css', '/assets/css/icons.css', '/assets/css/components.css', '/assets/css/pages.css', '/assets/css/menu.css', '/assets/css/responsive.css'], '/assets/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
         <link href="{{ mix_css(['/assets/plugins/select2/dist/css/select2.css', '/assets/plugins/select2/dist/css/select2-bootstrap.css'], '/assets/plugins/select2/dist/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
+        <link href="{{ mix_css(['/assets/plugins/timepicker/bootstrap-timepicker.min.css'], '/assets/plugins/timepicker/all.css')}}" rel="stylesheet" type="text/css" load="force">
+        <link href="{{ mix_css(['/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'], '/assets/plugins/bootstrap-datepicker/dist/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -703,49 +705,21 @@
         </div>
         <!-- END wrapper -->
 
-        <!-- jQuery  -->
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-        <script src="/assets/js/detect.js"></script>
-        <script src="/assets/js/fastclick.js"></script>
-        <script src="/assets/js/jquery.slimscroll.js"></script>
-        <script src="/assets/js/jquery.blockUI.js"></script>
-        <script src="/assets/js/waves.js"></script>
-        <script src="/assets/js/wow.min.js"></script>
-        <script src="/assets/js/jquery.nicescroll.js"></script>
-        <script src="/assets/js/jquery.scrollTo.min.js"></script>
 
-        <script src="/assets/js/jquery.app.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/plugins/moment/moment.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
-        <script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
-        
-
-        <!-- jQuery  -->
+        <script src="{{ mix_js(['/assets/js/jquery.min.js', '/assets/js/bootstrap.min.js', '/assets/js/detect.js', '/assets/js/fastclick.js', '/assets/js/jquery.slimscroll.js', '/assets/js/jquery.blockUI.js', '/assets/js/waves.js', '/assets/js/wow.min.js', '/assets/js/jquery.nicescroll.js', '/assets/js/jquery.scrollTo.min.js', '/assets/js/jquery.app.js', '/assets/js/modernizr.min.js'], '/assets/js/all.js')}}" type="text/javascript" load="force" ></script>
         <script src="/assets/pages/jquery.todo.js"></script>
-        
-        <!-- jQuery  -->
         <script src="/assets/pages/jquery.chat.js"></script>
-        
-        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript" load="force"></script>
-        <!--Morris Chart-->
+        <script src="/assets/pages/jquery.dashboard.js"></script>
         <script src="/assets/plugins/raphael/raphael-min.js"></script>
         <script src="/assets/plugins/morris.js/morris.min.js"></script>
-        
-        <!-- jQuery  -->
-
         <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js" load="force"></script>
         <script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" load="force"></script>
-        <script src="/assets/pages/jquery.dashboard.js"></script>
-        
-        <script src="/assets/js/modernizr.min.js"></script>
+        <script src="/assets/plugins/moment/moment.js"></script>
+        <script src="/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
+        <script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
+        <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript" load="force"></script>
+
         <script type="text/javascript" load="force">
 
             $('select.select2').select2();
