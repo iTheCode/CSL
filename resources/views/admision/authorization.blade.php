@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
         <link rel="shortcut icon" href="/assets/images/favicon.ico">
-        <link href="{{ mix_css(['/assets/plugins/sweetalert/dist/sweetalert.css', '/assets/plugins/morris.js/morris.css', '/assets/css/bootstrap.min.css', '/assets/css/core.css', '/assets/css/icons.css', '/assets/css/components.css', '/assets/css/pages.css', '/assets/css/menu.css', '/assets/css/responsive.css', '/assets/plugins/select2/dist/css/select2.css', '/assets/plugins/select2/dist/css/select2-bootstrap.css', '/assets/plugins/timepicker/bootstrap-timepicker.min.css', '/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'], '/assets/css/all.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{ mix_css(['/assets/plugins/sweetalert/dist/sweetalert.css', '/assets/plugins/morris.js/morris.css', '/assets/css/bootstrap.min.css', '/assets/css/core.css', '/assets/css/icons.css', '/assets/css/components.css', '/assets/css/pages.css', '/assets/css/menu.css', '/assets/css/responsive.css', '/assets/plugins/select2/dist/css/select2.css', '/assets/plugins/select2/dist/css/select2-bootstrap.css', '/assets/plugins/timepicker/bootstrap-timepicker.min.css', '/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'], '/assets/css/all.css')}}" rel="stylesheet" type="text/css" load="force">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
