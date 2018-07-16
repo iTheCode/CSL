@@ -141,7 +141,8 @@ function ValidURL(str) {
                             $('.content-page').animate({'opacity':1});
                         },
                         beforeSend:function(){
-                          $(".nav .navbar-nav .navbar-right .pull-right").html('<li class="hidden-xs"><a href="#" id="loading-gif" class="waves-effect waves-light"><img id="btn-fullscreen" src="/assets/images/heartbeat.gif" width="35px" height="35px"></li></a></li>');
+                          $("#btn-fullscreen").parent().hide();
+                          $("#btn-fullscreen").parent().parent().prepend('<li class="hidden-xs"><a href="#" id="loading-gif" class="waves-effect waves-light"><img id="btn-fullscreen" src="/assets/images/heartbeat.gif" width="35px" height="35px"></li></a></li>');
                           $('.content-page').animate({'opacity':0});
                           $("#load_bar").remove();
                           $(".topbar").append('<div id="load_bar" style="width: 0%;height: 4px;background: #3bc0c3;position: absolute;bottom: -4px;z-index: -999;opacity: 0.7;box-shadow: 0px 2px 9px 0px #424242;"></div>');
@@ -160,8 +161,9 @@ function ValidURL(str) {
                             $("#load_bar").animate({'width':pct});
                         },
                         complete: function(resp){
-                          $(".nav .navbar-nav .navbar-right .pull-right").html('<li class="hidden-xs" style="display:none;"><a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a></li>');
-                          $("#btn-fullscreen").parent().show();
+                            $("#loading-gif").parent().remove();
+                            $("#btn-fullscreen").parent().parent().html('<li class="hidden-xs"><a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a></li>');
+                            $("#btn-fullscreen").parent().show();
                             //console.log(resp.getAllResponseHeaders());
                             //$("#body_load").remove();
                         }
