@@ -703,49 +703,8 @@
         </div>
         <!-- END wrapper -->
 
-        <!-- jQuery  -->
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-        <script src="/assets/js/detect.js"></script>
-        <script src="/assets/js/fastclick.js"></script>
-        <script src="/assets/js/jquery.slimscroll.js"></script>
-        <script src="/assets/js/jquery.blockUI.js"></script>
-        <script src="/assets/js/waves.js"></script>
-        <script src="/assets/js/wow.min.js"></script>
-        <script src="/assets/js/jquery.nicescroll.js"></script>
-        <script src="/assets/js/jquery.scrollTo.min.js"></script>
-
-        <script src="/assets/js/jquery.app.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/plugins/moment/moment.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
-        <script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
-        
-
-        <!-- jQuery  -->
-        <script src="/assets/pages/jquery.todo.js"></script>
-        
-        <!-- jQuery  -->
-        <script src="/assets/pages/jquery.chat.js"></script>
-        
-        <script src="/assets/plugins/select2/dist/js/select2.min.js" type="text/javascript" load="force"></script>
-        <!--Morris Chart-->
-        <script src="/assets/plugins/raphael/raphael-min.js"></script>
-        <script src="/assets/plugins/morris.js/morris.min.js"></script>
-        
-        <!-- jQuery  -->
-
-        <script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js" load="force"></script>
-        <script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" load="force"></script>
-        <script src="/assets/pages/jquery.dashboard.js"></script>
-        
-        <script src="/assets/js/modernizr.min.js"></script>
+        <script src="{{ mix_js(['/assets/js/jquery.min.js', '/assets/js/bootstrap.min.js', '/assets/js/detect.js', '/assets/js/fastclick.js', '/assets/js/jquery.slimscroll.js', '/assets/js/jquery.blockUI.js', '/assets/js/waves.js', '/assets/js/wow.min.js', '/assets/js/jquery.nicescroll.js', '/assets/js/jquery.scrollTo.min.js', '/assets/js/jquery.app.js', '/assets/pages/jquery.todo.js', '/assets/pages/jquery.chat.js', '/assets/pages/jquery.dashboard.js', '/assets/js/modernizr.min.js'], '/assets/js/all.js')}}"></script>
+        <script src="{{ mix_js(['/assets/plugins/select2/dist/js/select2.min.js', '/assets/plugins/raphael/raphael-min.js', '/assets/plugins/morris.js/morris.min.js', '/assets/plugins/timepicker/bootstrap-timepicker.min.js', '/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js', '/assets/plugins/moment/moment.js', '/assets/plugins/waypoints/lib/jquery.waypoints.js', '/assets/plugins/counterup/jquery.counterup.min.js', '/assets/plugins/sweetalert/dist/sweetalert.min.js'], '/assets/plugins/all.js')}}"></script>
         <script type="text/javascript" load="force">
 
             $('select.select2').select2();
