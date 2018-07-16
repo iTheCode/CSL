@@ -162,7 +162,6 @@ function ValidURL(str) {
                         },
                         complete: function(resp){
                             $("#loading-gif").parent().remove();
-                            $("#btn-fullscreen").parent().parent().html('<li class="hidden-xs"><a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a></li>');
                             $("#btn-fullscreen").parent().show();
                             //console.log(resp.getAllResponseHeaders());
                             //$("#body_load").remove();
