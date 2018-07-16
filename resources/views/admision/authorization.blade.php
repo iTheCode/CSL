@@ -307,14 +307,12 @@
                                             <div class="form-group">
                                                         <label for="first_diagnostic">Primer Diagnóstico</label>
                                                         {{ Form::select('first_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->first_diagnostic, ['class' => 'form-control select2']) }}
-                                                    
                                             </div>
                                             </div>
                                             <div class="form-group">
                                                         <label for="second_diagnostic">Segundo Diagnóstico</label>
                                                         {{ Form::select('second_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->second_diagnostic, ['class' => 'form-control select2']) }}
                                             </div>
-
                                             <div class="form-group">
                                                         <label for="third_diagnostic">Tercer Diagnóstico</label>
                                                         {{ Form::select('third_diagnostic', [null=>'Seleccione un diagnóstico'] + $diagnostic_types, $client->third_diagnostic, ['class' => 'form-control select2']) }}
