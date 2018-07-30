@@ -82,30 +82,20 @@ class FacturationController extends BaseController
 	}
 	public function showProviders()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		$doctors = Helpers::get_doctors(Doctor::orderBy('complet_name')->get());
 		return view('facturation.providers', ['doctors' => $doctors]);
 	}
 	public function showContabilidad()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('facturation.contabilidad', []);
+	}
+
+	public function showEstatus()
+	{
+		return view('facturation.estatus_e', []);
 	}
 	public function showTramas()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 			$response = PayDocumentGroup::orderBy('code','desc')->paginate(20);
 			$total_pages = ceil($response->total()/20);
 			$currentPath = Route::getFacadeRoot()->current()->uri();
@@ -114,20 +104,10 @@ class FacturationController extends BaseController
 	}
 	public function showCharge($input,$id)
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('facturation.factu', []);
 	}
 	public function showVista()
 	{
-		if (Auth::check()) {
-		    $user = Auth::user();
-		    $name = $user->name." ".$user->paternal;
-		    $position = $user->area->name;
-		}
 		return view('facturation.vista', []);
 	}
 

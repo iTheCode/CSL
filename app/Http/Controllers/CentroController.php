@@ -20,6 +20,7 @@ use \App\Models\HospitalizationRoom;
 use \App\Models\Patient;    
 use \App\Helpers;	
 use View;
+use SSH;
 use Redirect;
 use Request;
 use Illuminate\Support\Facades\Input;
@@ -114,4 +115,26 @@ class CentroController extends BaseController
     	}
 
     }
+
+    public function send_email($document){
+        SSH::run(['php /home/fabian/mailer/send.php '.$document.' '.($document+1).' 01'], function($line)
+        {
+            echo str_replace("\n","<br>\n",$line);
+        });
+    }
+    public function force_send($type, $serie, $document){
+        SSH::run(['php /home/fabian/hack-sunat.php '.$type.' '.$serie.' '.$document.''], function($line)
+        {
+            echo str_replace("\n","<br>\n",$line);
+        });
+    }
+
+
+
+
+
+
+
+
+
 }

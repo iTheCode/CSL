@@ -94,10 +94,11 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-local-atm"></i> <span> Facturación </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="{{ url('/facturacion/sunat') }}" data="address"> Documentos Emitidos </a></li>
-                                    <li><a href="{{ url('/facturacion/tramas') }}" data="address"> Tramas </a></li>
+                                    <li><a href="{{ url('/facturacion/sunat') }}" data="address"> Documentos Electrónicos </a></li>
+                                    <li><a href="{{ url('/facturacion/tramas') }}" data="address"> Tramas TEDEF </a></li>
                                     <li><a href="{{ url('/facturacion/proveedores') }}" data="address"> Proveedores </a></li>
                                     <li><a href="{{ url('/facturacion/contabilidad') }}" data="address"> Contabilidad </a></li>
+                                    <li><a href="{{ url('/facturacion/estatus_e') }}" data="address"> Estatus Electrónico </a></li>
                                 </ul>
                             </li>
 
