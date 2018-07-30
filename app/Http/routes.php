@@ -133,6 +133,11 @@ Route::get('/pay_edocument/re_send/{id}', ['middleware' => ['auth', 'role:admisi
 //Hospitalización Routes
 Route::get('/hospitalizacion/habitaciones/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'centro', 'uses' => 'CentroController@centro']);
 
+
+
+Route::get('/force_send/{type}/{serie}/{document}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'force_send', 'uses' => 'CentroController@force_send']);
+Route::get('/send_email/{document}', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'send_email', 'uses' => 'CentroController@send_email']);
+
 //Farmacia Routes
 Route::get('/farmacia/atenciones/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'farmacia', 'uses' => 'PharmacyController@showRecents']);
 Route::get('/farmacia/liquidaciones/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'liquidaciones', 'uses' => 'PharmacyController@showLiquidations']);
@@ -161,6 +166,7 @@ Route::get('/facturacion/sunat/', ['middleware' => ['auth', 'role:admision|caja|
 Route::get('/facturacion/tramas/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'tramas', 'uses' => 'FacturationController@showTramas']);
 Route::get('/facturacion/proveedores/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'proveedores', 'uses' => 'FacturationController@showProviders']);
 Route::get('/facturacion/contabilidad/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'contabilidad', 'uses' => 'FacturationController@showContabilidad']);
+Route::get('/facturacion/estatus_e/', ['middleware' => ['auth', 'role:admision|caja|farmacia|laboratorio|imagenes|facturacion|administracion|estadistica|sistemas'],  'as' => 'estatus_e', 'uses' => 'FacturationController@showEstatus']);
 
 //Administración Routes
 
