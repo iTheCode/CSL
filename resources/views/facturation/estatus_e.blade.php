@@ -162,7 +162,7 @@
                                                 <div id="mail">
                                                     Documento a Enviar
                                                     <div class="input-group col-md-12">
-                                                        <input type="text" name="document" class="form-control" placeholder="1">
+                                                        <input type="text" name="document_mail" class="form-control" placeholder="1">
                                                         <span class="input-group-addon"><i class="mmd md-class"></i></span>
                                                     </div><br><br>
 
@@ -279,7 +279,7 @@
             function enviar_mail(){
 
                 $("div#mail").hide();
-                var document_send = $("input[name='document']").val().toString();
+                var document_send = $("input[name='document_mail']").val().toString();
                             $.ajax(
                                           {
                                               url: "{{ url('/send_email/') }}/"+document_send,
